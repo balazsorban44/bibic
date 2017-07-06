@@ -55,7 +55,6 @@ gulp.task('images', () => {
   gulp.src(path.join(src + 'media/images/*'))
   .pipe(imageResize({
      width : 1920,
-     crop : true,
      upscale : false
    }))
   .pipe(imagemin(
