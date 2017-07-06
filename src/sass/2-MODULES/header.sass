@@ -1,15 +1,20 @@
 #hero
   position: relative
+  height: 300px
   display: flex
+  max-width: 100vw
+  overflow: hidden
   justify-content: center
   align-items: center
-  min-height: 350px
   h1
     font-family: ConeriaScript, monospace
     font-weight: lighter
     position: absolute
-    z-index: 1
-    color: $accent-color
+    top: 0
+    left: 0
+    padding: 1em
+    z-index: 2
+    color: $light
     display: flex
     flex-direction: column
     align-items: center
@@ -18,11 +23,22 @@
       font-size: 2em
     span:last-child
       font-size: .9em
-
+#hero-img
+  align-self: flex-start
   img
     position: absolute
-    width: 100vw
+    margin-left: -95%
+    height: 120%
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
     height: 100%
+    top: 0
+    left: 0
+    background-color: transparentize($accent-color, .5)
+    z-index: 1
+
 
 nav
   background-color: $accent-color

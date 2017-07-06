@@ -8,15 +8,29 @@ main
     color: $accent-color-2
     font-family: ConeriaScript
     font-weight: lighter
+    text-transform: none
   ul
     li
       display: flex
       flex-direction: column
       align-items: center
+      margin: 2em 0
       img
         border-radius: 50%
         width: 128px
         height: 128px
+#bemutatkozas
+  background:
+    image: url(../img/intro.jpg)
+    size: cover
+#szolgaltatasok-galeria
+  li
+    @for $i from 1 through 3
+      &:nth-child(#{$i})
+        background:
+          image: url(../img/services_#{$i}.jpg)
+          size: cover
+
 #arak
   #szobak
     ul
