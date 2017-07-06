@@ -11,22 +11,26 @@
   font-family: ConeriaScript
   src: url(../fonts/ConeriaScript.ttf)
 
+section
+  display: flex
+  justify-content: center
+  flex-direction: column
+
+h3, h4, p
+  font-size: TheanoDidot
+  color: #c7c7c7
+
 h2
-  color: $accent-color-2
+  font-size: 3em
   text-transform: uppercase
   text-align: center
   line-height: 1.7
   font-family: Cocogoose
   padding-top: 2em
-h3, h4
-  font-family: TheanoDidot
+
 h3
   text-align: center
-  color: darken($accent-color, 10)
-  text-transform: uppercase
-  font-family: Cocogoose
-  font-size: 1.2em
-  padding-bottom: 2em
+
 
 a
   color: $light
@@ -36,6 +40,7 @@ a
     color: $accent-color-2
     border-bottom: 1px solid $accent-color-2
 p
+  font-size: 1.2em
   padding: 1.5em
   line-height: 1.2
-  text-align: justify
+  text-align: center

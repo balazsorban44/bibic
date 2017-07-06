@@ -6,6 +6,8 @@
   overflow: hidden
   justify-content: center
   align-items: center
+  @media (min-width:360px)
+    height: 85vh
   h1
     font-family: ConeriaScript, monospace
     font-weight: lighter
@@ -18,17 +20,31 @@
     display: flex
     flex-direction: column
     align-items: center
-
     span:first-child
       font-size: 2em
     span:last-child
       font-size: .9em
+    @media (min-width:360px)
+      margin-top: -20%
+      position: static
+      color: $accent-color
+      span:first-child
+        font-size: 3em
+      span:last-child
+        font-size: 1.9em
 #hero-img
   align-self: flex-start
   img
     position: absolute
     margin-left: -95%
     height: 120%
+
+    @media (min-width:360px)
+      height: auto
+      width: 100%
+      margin-left: 0
+      left: 0
+      top: -35%
   &::after
     content: ''
     position: absolute
@@ -36,14 +52,15 @@
     height: 100%
     top: 0
     left: 0
-    background-color: transparentize($accent-color, .5)
+    background-color: transparentize($accent-color, .8)
     z-index: 1
-
 
 nav
   background-color: $accent-color
   font-family: Cocogoose
   text-transform: uppercase
+  background:
+    image: url(../img/bg.jpg)
   ul
     justify-content: center
     display: flex

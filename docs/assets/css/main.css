@@ -10,7 +10,7 @@ li {
 
 img {
   color: white;
-  background-color: cornflowerblue;
+  background-color: #444;
   text-align: center;
   vertical-align: middle; }
 
@@ -30,24 +30,25 @@ img {
   font-family: ConeriaScript;
   src: url(../fonts/ConeriaScript.ttf); }
 
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+
+h3, h4, p {
+  font-size: TheanoDidot;
+  color: #c7c7c7; }
+
 h2 {
-  color: #d3b098;
+  font-size: 3em;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.7;
   font-family: Cocogoose;
   padding-top: 2em; }
 
-h3, h4 {
-  font-family: TheanoDidot; }
-
 h3 {
-  text-align: center;
-  color: #281816;
-  text-transform: uppercase;
-  font-family: Cocogoose;
-  font-size: 1.2em;
-  padding-bottom: 2em; }
+  text-align: center; }
 
 a {
   color: white;
@@ -58,9 +59,10 @@ a {
     border-bottom: 1px solid #d3b098; }
 
 p {
+  font-size: 1.2em;
   padding: 1.5em;
   line-height: 1.2;
-  text-align: justify; }
+  text-align: center; }
 
 #hero {
   position: relative;
@@ -70,6 +72,9 @@ p {
   overflow: hidden;
   justify-content: center;
   align-items: center; }
+  @media (min-width: 360px) {
+    #hero {
+      height: 85vh; } }
   #hero h1 {
     font-family: ConeriaScript, monospace;
     font-weight: lighter;
@@ -86,6 +91,15 @@ p {
       font-size: 2em; }
     #hero h1 span:last-child {
       font-size: .9em; }
+    @media (min-width: 360px) {
+      #hero h1 {
+        margin-top: -20%;
+        position: static;
+        color: #482c29; }
+        #hero h1 span:first-child {
+          font-size: 3em; }
+        #hero h1 span:last-child {
+          font-size: 1.9em; } }
 
 #hero-img {
   align-self: flex-start; }
@@ -93,6 +107,13 @@ p {
     position: absolute;
     margin-left: -95%;
     height: 120%; }
+    @media (min-width: 360px) {
+      #hero-img img {
+        height: auto;
+        width: 100%;
+        margin-left: 0;
+        left: 0;
+        top: -35%; } }
   #hero-img::after {
     content: '';
     position: absolute;
@@ -100,13 +121,14 @@ p {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(72, 44, 41, 0.5);
+    background-color: rgba(72, 44, 41, 0.2);
     z-index: 1; }
 
 nav {
   background-color: #482c29;
   font-family: Cocogoose;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  background-image: url(../img/bg.jpg); }
   nav ul {
     justify-content: center;
     display: flex;
@@ -117,38 +139,52 @@ nav {
   nav a {
     padding: .1em; }
 
-#kapcsolat ul {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap; }
-
-#kapcsolat li {
-  padding: 1.5em; }
+#kapcsolat {
+  background-image: url(../img/bg.jpg);
+  background-size: cover; }
+  #kapcsolat ul {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap; }
+  #kapcsolat li {
+    padding: 1.5em; }
 
 main {
   color: white;
   background-color: #482c29; }
 
-#landing h2 {
-  padding: 1em 0;
-  color: #d3b098;
-  font-family: ConeriaScript;
-  font-weight: lighter;
-  text-transform: none; }
-
-#landing ul li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2em 0; }
-  #landing ul li img {
-    border-radius: 50%;
-    width: 128px;
-    height: 128px; }
+#landing {
+  background-image: url(../img/bg.jpg); }
+  #landing h2 {
+    padding: 1em 0;
+    color: #d3b098;
+    font-family: ConeriaScript;
+    font-weight: lighter;
+    text-transform: none; }
+  #landing h3 {
+    text-transform: uppercase;
+    font-size: 1.2em; }
+  #landing ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0; }
+    #landing ul li img {
+      border-radius: 50%;
+      width: 128px;
+      height: 128px;
+      margin: 1em 0; }
 
 #bemutatkozas {
   background-image: url(../img/intro.jpg);
   background-size: cover; }
+  #bemutatkozas h2 {
+    color: #d3b098; }
+
+#szolgaltatasok h3 {
+  font-family: Cocogoose;
+  padding-bottom: 3em;
+  color: #d3b098; }
 
 #szolgaltatasok-galeria li:nth-child(1) {
   background-image: url(../img/services_1.jpg);
@@ -162,34 +198,81 @@ main {
   background-image: url(../img/services_3.jpg);
   background-size: cover; }
 
-#arak #szobak ul {
-  margin: 1.5em;
-  display: flex; }
-  #arak #szobak ul li {
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-  #arak #szobak ul h4 {
-    text-align: center; }
+#szolgaltatasok-galeria li p {
+  padding: 3em; }
 
-#arak #sorozo h3 {
-  text-align: right; }
-
-#arak #sorozo ul {
+#szobak li {
+  position: relative;
+  min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; }
+  justify-content: center;
+  overflow: hidden; }
+  #szobak li:nth-child(1) h4 {
+    background-color: #724444; }
+  #szobak li:nth-child(2) h4 {
+    background-color: #5e9782; }
+  #szobak li:nth-child(3) h4 {
+    background-color: #b35d41; }
+  #szobak li:nth-child(4) h4 {
+    background-color: #844644; }
+  #szobak li:nth-child(5) h4 {
+    background-color: #405572; }
+  #szobak li:nth-child(6) h4 {
+    background-color: #5e7240; }
 
-#arak #sorozo span {
-  margin-left: 1.5em; }
+#szobak h4, #szobak p {
+  position: relative;
+  z-index: 1; }
+
+#szobak h4 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  width: 86px;
+  height: 86px;
+  margin: 2em auto 0 auto;
+  border-radius: 50%; }
+
+#szobak img {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: auto; }
+
+#arak {
+  background-image: url(../img/price.jpg);
+  background-size: cover;
+  padding: 0 1.5em 4em 1.5em; }
+  #arak h2 {
+    padding-top: .5em; }
+  #arak #rooms ul {
+    margin: 1.5em;
+    display: flex; }
+    #arak #rooms ul li {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+    #arak #rooms ul h4 {
+      text-align: center; }
+  #arak #sorozo h3 {
+    text-align: right; }
+  #arak #sorozo ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; }
+  #arak #sorozo span {
+    margin-left: 1.5em; }
 
 #foglalas h3 {
   text-align: center; }
 
 #gallery {
-  margin: 1.5em;
   display: flex;
   justify-content: center; }
   #gallery img {
-    width: 80%;
+    width: 100%;
     min-height: 200px; }
