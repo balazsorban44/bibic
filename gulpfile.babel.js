@@ -9,6 +9,7 @@ import babel from 'gulp-babel'
 
 // Media
 import imagemin from 'gulp-imagemin'
+import imageResize from 'gulp-image-resize'
 
 // Utilities
 import jshint from 'gulp-jshint'
@@ -52,7 +53,14 @@ gulp.task('es6', () => {
 
 gulp.task('images', () => {
   gulp.src(path.join(src + 'media/images/*'))
-  .pipe(imagemin())
+  .pipe(imageResize({
+     width : 1920,
+     crop : true,
+     upscale : false
+   }))
+  .pipe(imagemin(
+    imagemin.jpegtran({progressive: true})
+  ))
   .pipe(gulp.dest(path.join(build + 'assets/img')))
 })
 
