@@ -2,6 +2,9 @@ body, ul, h1, h2, h3, h4 {
   margin: 0;
   padding: 0; }
 
+a {
+  text-decoration: none; }
+
 p {
   padding: 1.5em; }
 
@@ -10,12 +13,36 @@ li {
 
 img {
   color: white;
-  background-color: #7c2020;
+  background-color: cornflowerblue;
   text-align: center;
   vertical-align: middle; }
 
+@font-face {
+  font-family: Cocogoose;
+  src: url(../fonts/Cocogoose.otf); }
+
+@font-face {
+  font-family: Coolvetica;
+  src: url(../fonts/Coolvetica.ttf); }
+
+@font-face {
+  font-family: Theano;
+  src: url(../fonts/TheanoDidot.ttf); }
+
+@font-face {
+  font-family: ConeriaScript;
+  src: url(../fonts/ConeriaScript.ttf); }
+
 h2 {
   text-align: center; }
+
+a {
+  color: white;
+  transition: .5s;
+  padding-bottom: .2em; }
+  a:hover {
+    color: #d3b098;
+    border-bottom: 1px solid #d3b098; }
 
 p {
   text-align: justify; }
@@ -25,23 +52,38 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 228px; }
+  min-height: 350px; }
   #hero h1 {
+    font-family: ConeriaScript, monospace;
+    font-weight: lighter;
     position: absolute;
     z-index: 1;
-    color: white; }
+    color: #482c29;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    #hero h1 span:first-child {
+      font-size: 2em; }
+    #hero h1 span:last-child {
+      font-size: .9em; }
   #hero img {
     position: absolute;
-    width: 100%;
+    width: 100vw;
     height: 100%; }
 
-nav ul {
-  align-content: center;
-  display: flex;
-  flex-wrap: wrap; }
-
-nav li {
-  padding: 1.5em; }
+nav {
+  background-color: #482c29;
+  font-family: Cocogoose;
+  text-transform: uppercase; }
+  nav ul {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap; }
+  nav li {
+    margin: .5em;
+    padding: .5em; }
+  nav a {
+    padding: .1em; }
 
 #kapcsolat ul {
   justify-content: center;
@@ -50,6 +92,16 @@ nav li {
 
 #kapcsolat li {
   padding: 1.5em; }
+
+main {
+  color: white;
+  background-color: #482c29; }
+
+#landing h2 {
+  padding: 1em 0;
+  color: #d3b098;
+  font-family: ConeriaScript;
+  font-weight: lighter; }
 
 #landing ul li {
   display: flex;
