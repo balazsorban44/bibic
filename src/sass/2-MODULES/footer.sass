@@ -1,9 +1,8 @@
 #kapcsolat
-  background:
-    image: url(../img/footer.jpg)
-    size: cover
+  @include import-img(footer)
+  background-size: cover
   ul
-    padding: 1.5em 0
+    padding: 1.5em 0 0
     justify-content: center
     display: flex
     flex-wrap: wrap
@@ -21,30 +20,13 @@
       &:hover
         background-color: $accent-color-2
         border: none
+  span
+    display: none
+#reachout
+  padding: 0 0 1.5em !important
+  li img
+    max-width: 48px
 
-#map, #mail, #tel, #fb
-  a
-    background:
-      image: linear-gradient(to right, $light 33%, transparent 0%)
-      position: bottom
-      size: 3px 1px
-      repeat: repeat-x
-  display: flex
-  align-items: center
-  &::before
-    content: ''
-    margin-right: .5em
-    width: 24px
-    height: 24px
-    background-size: cover
-#map::before
-  background-image: url(../img/icons/map.png)
-#mail::before
-  background-image: url(../img/icons/mail.png)
-#tel::before
-  background-image: url(../img/icons/tel.png)
-#fb::before
-  background-image: url(../img/icons/fb.png)
 
 #galeria
   h2
@@ -58,3 +40,12 @@
   img
     width: 90vw
     height: 55vw
+
+#copyright
+  text-align: center
+  font-size: .6em
+  padding: 2em
+
+  a
+    color: $accent-color-2
+    border-bottom: 1px solid $accent-color-2

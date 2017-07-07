@@ -1,48 +1,85 @@
-@font-face
-  font-family: Cocogoose
-  src:  url(../fonts/Cocogoose.otf)
-@font-face
-  font-family: Coolvetica
-  src: url(../fonts/Coolvetica.ttf)
-@font-face
-  font-family: Theano
-  src: url(../fonts/TheanoDidot.ttf)
-@font-face
-  font-family: ConeriaScript
-  src: url(../fonts/ConeriaScript.ttf)
+// ------------------------------ TYPOGRAPHY ------------------------------ //
 
-section
+@include import-font(Cocogoose,otf)
+@include import-font(ConeriaScript)
+@include import-font(Coolvetica)
+@include import-font(TheanoDidot)
+
+h1
+  font-weight: lighter
+  position: absolute
+  top: 0
+  left: 0
+  padding: 1em
+  z-index: 2
+  color: $light
   display: flex
-  justify-content: center
   flex-direction: column
-  h2
-    line-height: normal
+  align-items: center
+  span:first-child
+    font-size: 2em
+  span:last-child
+    font-size: .9em
+  @media (min-width:1024px)
+    margin-top: -30%
+    position: static
+    color: $accent-color
+    span:first-child
+      font-size: 3rem
+    span:last-child
+      font-size: 1.9rem
+h1, #landing h2
+  font-family: ConeriaScript
 
+#landing, #bemutatkozas
+  h2
+    color: $accent-color-2
+
+
+#szolgaltatasok, #szobak
+  h3
+    padding-bottom: 1.5rem
+    text-transform: uppercase
+    font-family: Cocogoose
+    color: $accent-color-3
+    font-size: 0.75em
+    letter-spacing: 0.50em
+
+#arak
+  h2, h3, h4, h5, p
+    font-family: Cocogoose
+
+h2, h3, p
+  font-size: 1.2rem
+  text-align: center
+  line-height: 1.5
 
 h3, h4, p
-  font-family: Theano
-  color: #c7c7c7
+  font-family: TheanoDidot
+  color: $grey
 
 h2
-  font-size: 1.5em
+  padding-top: 1.5rem
+  font-size: 1.5rem
   text-transform: uppercase
-  text-align: center
-  line-height: 1.7
   font-family: Cocogoose
-  padding-top: 1em
 
-h3
-  text-align: center
-
-a
+main, a
   color: $light
+a
   transition: .5s
-  padding-bottom: .2em
   &:hover
     color: $accent-color-2
     border-bottom: 1px solid $accent-color-2
 p
-  font-size: 1.2em
-  padding: 1.5em
+  padding: 1rem 1.5rem
   line-height: 1.2
-  text-align: center
+
+
+// ------------------------------ MISC ------------------------------ //
+main
+  background-color: $accent-color
+section
+  display: flex
+  justify-content: center
+  flex-direction: column

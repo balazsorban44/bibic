@@ -1,194 +1,22 @@
-main
-  color: $light
-  background:
-    color: $accent-color
 #landing
-  background:
-    image: url(../img/bg.jpg)
+  @include import-img(bg)
   h2
-    line-height: 1.5
-    padding: 1em 0
-    color: $accent-color-2
-    font-family: ConeriaScript
     font-weight: lighter
     text-transform: none
-  h3
-    text-transform: uppercase
-    font-size: 1.2em
-  ul
-    li
-      display: flex
-      flex-direction: column
-      align-items: center
-      margin: 2em 0
-      img
-        border-radius: 50%
-        width: 128px
-        height: 128px
-        margin: 1em 0
+
+  li
+    display: flex
+    flex-direction: column
+    align-items: center
+  img
+    border-radius: 50%
+    width: 128px
+    height: 128px
+    margin: 1em 0
   p
-    padding: 1em 1.5em
     &:first-of-type
       text-align: left
     &:nth-of-type(2)
       padding: 0
     &:last-of-type
       text-align: right
-#bemutatkozas
-  background:
-    image: url(../img/intro.jpg)
-    size: cover
-  h2
-    color: $accent-color-2
-  p
-    text-align: left
-  ul
-    padding-bottom: 5vmin
-  li
-    padding: 3.5vmin
-  ul,li
-    display: flex
-    justify-content: center
-
-  img
-    height: 50vmin
-    align-self: flex-start
-#szolgaltatasok, #szobak
-  h3
-    font-family: Cocogoose
-    padding-bottom: 1em
-    color: $accent-color-3
-    text-transform: uppercase
-    font-size: 0.75em
-    letter-spacing: 0.50em
-
-#szolgaltatasok
-  li
-    @for $i from 1 through 3
-      &:nth-child(#{$i})
-        background:
-          image: url(../img/services_#{$i}.jpg)
-          size: cover
-          position: center
-    a
-      display: flex
-      align-items: center
-      padding: .5em
-      p
-        text-align: right
-        max-width: 80%
-        padding: .5em
-      span
-        width: 24px
-        height: 24px
-        background:
-          image: url(../img/icons/arrow.png)
-          size: cover
-    &:hover
-      transform: scale(1.1)
-
-#szobak
-  h2, h3
-    background-color: $accent-color-2
-  h3
-    color: $accent-color-4
-
-  li
-    position: relative
-    overflow: hidden
-    display: flex
-    flex-direction: column
-    @for $i from 1 through length($rooms)
-      &:nth-child(#{$i})
-        background-color: darken(nth($rooms, $i), 20)
-        h4
-          background-color: nth($rooms, $i)
-
-  h4, p
-    position: relative
-    z-index: 1
-
-  h4
-    order: 1
-    font-family: Coolvetica
-    text-transform: uppercase
-    letter-spacing: .05em
-    color: $light
-    display: flex
-    justify-content: center
-    align-items: center
-    font-size: 1.2em
-    width: 86px
-    height: 86px
-    margin: -43px auto 0 auto
-    border-radius: 50%
-
-  p
-    order: 2
-    font-family: serif
-    font-style: italic
-
-  img
-    width: 100%
-
-#arak
-  justify-content: flex-start
-  background:
-    image: url(../img/price.jpg)
-    size: cover
-  h2
-    padding-top: 1.5em
-  p
-    padding: 0 .5em
-    &:last-of-type
-      text-align: right
-      font-size: .9em
-      color: $light
-#rooms
-  padding-bottom: 2em
-  ul
-    padding: 1.5em .5em 0
-    display: flex
-  li
-    margin: .1em
-    display: flex
-    flex-direction: column
-    align-items: center
-  h4
-    font-family: Cocogoose
-    font-weight: normal
-    text-align: center
-#sorozo
-  padding: .5em
-  h3
-    text-align: right
-  p
-    font-size: .8em
-  ul
-    display: flex
-    flex-direction: column
-    align-items: flex-end
-  span
-    margin-left: 1.5em
-#foglalas
-  background:
-    image: url(../img/reservation.jpg)
-    size: cover
-    position: center
-  min-height: 70vh
-  justify-content: flex-end
-  h3
-    text-align: center
-    padding-bottom: 2em
-  a
-    font-size: .9em
-    color: $lightred
-    background-image: linear-gradient(to right, $lightred 33%, transparent 0%)
-    background-position: bottom
-    background-size: 3px 1px
-    background-repeat: repeat-x
-    &:hover
-
-      background-image: linear-gradient(to right, $light 33%, transparent 0%)
-      color: $light
-      border-bottom: none
