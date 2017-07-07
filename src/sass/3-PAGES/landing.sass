@@ -25,6 +25,14 @@ main
         width: 128px
         height: 128px
         margin: 1em 0
+  p
+    padding: 1em 1.5em
+    &:first-of-type
+      text-align: left
+    &:nth-of-type(2)
+      padding: 0
+    &:last-of-type
+      text-align: right
 #bemutatkozas
   background:
     image: url(../img/intro.jpg)
@@ -122,9 +130,11 @@ main
 #foglalas
   h3
     text-align: center
-#gallery
+#galeria
   display: flex
   justify-content: center
+  h2
+    color: $light
   img
     width: 100%
     min-height: 200px
