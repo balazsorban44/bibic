@@ -1,10 +1,60 @@
 #kapcsolat
   background:
-    image: url(../img/bg.jpg)
+    image: url(../img/footer.jpg)
     size: cover
   ul
+    padding: 1.5em 0
     justify-content: center
     display: flex
     flex-wrap: wrap
   li
-    padding: 1.5em
+    padding: .5em .5em
+    a:hover
+      border-bottom: none
+    img
+      box-sizing: border-box
+      max-width: 72px
+      background-color: transparent
+      padding: .2em
+      border-radius: 50%
+      transition: .5s
+      &:hover
+        background-color: $accent-color-2
+        border: none
+
+#map, #mail, #tel, #fb
+  a
+    background:
+      image: linear-gradient(to right, $light 33%, transparent 0%)
+      position: bottom
+      size: 3px 1px
+      repeat: repeat-x
+  display: flex
+  align-items: center
+  &::before
+    content: ''
+    margin-right: .5em
+    width: 24px
+    height: 24px
+    background-size: cover
+#map::before
+  background-image: url(../img/icons/map.png)
+#mail::before
+  background-image: url(../img/icons/mail.png)
+#tel::before
+  background-image: url(../img/icons/tel.png)
+#fb::before
+  background-image: url(../img/icons/fb.png)
+
+#galeria
+  h2
+    padding-top: 0
+    color: $light
+
+#gallery
+  display: flex
+  justify-content: center
+  align-items: center
+  img
+    width: 90vw
+    height: 55vw

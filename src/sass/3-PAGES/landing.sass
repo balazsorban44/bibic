@@ -132,39 +132,63 @@ main
     width: 100%
 
 #arak
+  justify-content: flex-start
   background:
     image: url(../img/price.jpg)
     size: cover
-  padding: 0 1.5em 4em 1.5em
   h2
-    padding-top: .5em
-  #rooms
-    ul
-      margin: 1.5em
-      display: flex
-      li
-        display: flex
-        flex-direction: column
-        align-items: center
-      h4
-        text-align: center
-  #sorozo
-    h3
+    padding-top: 1.5em
+  p
+    padding: 0 .5em
+    &:last-of-type
       text-align: right
-    ul
-      display: flex
-      flex-direction: column
-      align-items: flex-end
-    span
-      margin-left: 1.5em
+      font-size: .9em
+      color: $light
+#rooms
+  padding-bottom: 2em
+  ul
+    padding: 1.5em .5em 0
+    display: flex
+  li
+    margin: .1em
+    display: flex
+    flex-direction: column
+    align-items: center
+  h4
+    font-family: Cocogoose
+    font-weight: normal
+    text-align: center
+#sorozo
+  padding: .5em
+  h3
+    text-align: right
+  p
+    font-size: .8em
+  ul
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+  span
+    margin-left: 1.5em
 #foglalas
+  background:
+    image: url(../img/reservation.jpg)
+    size: cover
+    position: center
+  min-height: 70vh
+  justify-content: flex-end
   h3
     text-align: center
-#galeria
-  display: flex
-  justify-content: center
-  h2
-    color: $light
-  img
-    width: 100%
-    min-height: 200px
+    padding-bottom: 2em
+  a
+    font-size: .9em
+    color: $lightred
+    background-image: linear-gradient(to right, $lightred 33%, transparent 0%)
+    background-position: bottom
+    background-size: 3px 1px
+    background-repeat: repeat-x
+    &:hover
+
+      background-image: linear-gradient(to right, $light 33%, transparent 0%)
+      color: $light
+      border-bottom: none
