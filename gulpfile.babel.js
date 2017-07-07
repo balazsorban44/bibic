@@ -52,13 +52,15 @@ gulp.task('es6', () => {
 // Media tasks
 
 gulp.task('images', () => {
-  gulp.src(path.join(src + 'media/images/*'))
+  gulp.src(path.join(src + 'media/images/**/*'))
   .pipe(imageResize({
      width : 1920,
      upscale : false
    }))
   .pipe(imagemin(
-    imagemin.jpegtran({progressive: true})
+    imagemin.jpegtran({progressive: true},
+    imagemin.optipng({optimizationLevel: 5})
+    )
   ))
   .pipe(gulp.dest(path.join(build + 'assets/img')))
 })
@@ -75,6 +77,6 @@ gulp.task('watch', () => {
   gulp.watch(path.join(src + 'js/*.js'), ['es6'])
   livereload.reload()
 })
-gulp.task('default', ['watch','preprocess', 'images'])
+gulp.task('default', ['watch','preprocess'])
 
 module.exports = gulp

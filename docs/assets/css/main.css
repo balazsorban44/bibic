@@ -34,6 +34,8 @@ section {
   display: flex;
   justify-content: center;
   flex-direction: column; }
+  section h2 {
+    line-height: normal; }
 
 h3, h4, p {
   font-family: Theano;
@@ -45,7 +47,7 @@ h2 {
   text-align: center;
   line-height: 1.7;
   font-family: Cocogoose;
-  padding-top: 2em; }
+  padding-top: 1em; }
 
 h3 {
   text-align: center; }
@@ -188,26 +190,55 @@ main {
   background-size: cover; }
   #bemutatkozas h2 {
     color: #d3b098; }
+  #bemutatkozas p {
+    text-align: left; }
+  #bemutatkozas ul {
+    padding-bottom: 5vmin; }
+  #bemutatkozas li {
+    padding: 3.5vmin; }
+  #bemutatkozas ul, #bemutatkozas li {
+    display: flex;
+    justify-content: center; }
+  #bemutatkozas img {
+    height: 50vmin;
+    align-self: flex-start; }
 
-#szolgaltatasok h3 {
+#szolgaltatasok h3, #szobak h3 {
   font-family: Cocogoose;
-  padding-bottom: 3em;
-  color: #d3b098; }
+  padding-bottom: 1em;
+  color: #38211e;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 0.50em; }
 
-#szolgaltatasok-galeria li:nth-child(1) {
+#szolgaltatasok li:nth-child(1) {
   background-image: url(../img/services_1.jpg);
   background-size: cover; }
 
-#szolgaltatasok-galeria li:nth-child(2) {
+#szolgaltatasok li:nth-child(2) {
   background-image: url(../img/services_2.jpg);
   background-size: cover; }
 
-#szolgaltatasok-galeria li:nth-child(3) {
+#szolgaltatasok li:nth-child(3) {
   background-image: url(../img/services_3.jpg);
   background-size: cover; }
 
-#szolgaltatasok-galeria li p {
-  padding: 3em; }
+#szolgaltatasok li a {
+  display: flex;
+  align-items: center;
+  padding: .5em; }
+  #szolgaltatasok li a p {
+    text-align: right;
+    max-width: 80%;
+    padding: .5em; }
+  #szolgaltatasok li a span {
+    width: 24px;
+    height: 24px;
+    background-image: url(../img/icons/arrow.png);
+    background-size: cover; }
+
+#szolgaltatasok li:hover {
+  transform: scale(1.1); }
 
 #szobak li {
   position: relative;

@@ -39,20 +39,52 @@ main
     size: cover
   h2
     color: $accent-color-2
-#szolgaltatasok
+  p
+    text-align: left
+  ul
+    padding-bottom: 5vmin
+  li
+    padding: 3.5vmin
+  ul,li
+    display: flex
+    justify-content: center
+
+  img
+    height: 50vmin
+    align-self: flex-start
+#szolgaltatasok, #szobak
   h3
     font-family: Cocogoose
-    padding-bottom: 3em
-    color: $accent-color-2
-#szolgaltatasok-galeria
+    padding-bottom: 1em
+    color: $accent-color-3
+    text-transform: uppercase
+    font-size: 0.75em
+    letter-spacing: 0.50em
+
+#szolgaltatasok
   li
     @for $i from 1 through 3
       &:nth-child(#{$i})
         background:
           image: url(../img/services_#{$i}.jpg)
           size: cover
-    p
-      padding: 3em
+    a
+      display: flex
+      align-items: center
+      padding: .5em
+      p
+        text-align: right
+        max-width: 80%
+        padding: .5em
+      span
+        width: 24px
+        height: 24px
+        background:
+          image: url(../img/icons/arrow.png)
+          size: cover
+    &:hover
+      transform: scale(1.1)
+
 #szobak
   li
     position: relative
