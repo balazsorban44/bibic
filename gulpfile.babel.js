@@ -54,13 +54,14 @@ gulp.task('es6', () => {
 gulp.task('images', () => {
   gulp.src(path.join(src + 'media/images/**/*'))
   .pipe(imageResize({
-     width : 1920,
+     width : 1080,
      upscale : false
    }))
   .pipe(imageMin({
     jpegoptim: true,
+    jpegRecompress: true,
      mozjpeg: true,
-     guetzli: false,
+     guetzli: true,
      optipng: true
   }))
   .pipe(gulp.dest(path.join(build + 'assets/img')))
