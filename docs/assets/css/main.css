@@ -142,10 +142,10 @@ section {
     z-index: 1; }
 
 nav {
-  background-color: #482c29;
+  background-color: #1f1511;
   font-family: Cocogoose;
   text-transform: uppercase;
-  background-image: url(../img/bg.jpg); }
+  background-image: url(../img/bg.png); }
   nav ul {
     justify-content: center;
     display: flex;
@@ -207,7 +207,8 @@ nav {
     border-bottom: 1px solid #d3b098; }
 
 #landing {
-  background-image: url(../img/bg.jpg); }
+  background-image: url(../img/bg.png);
+  background-color: #1f1511; }
   #landing h2 {
     font-weight: lighter;
     text-transform: none; }
