@@ -1,22 +1,22 @@
 section#galeria
   h2 Galéria
   #gallery
-    img(src='' alt='Kép 1.')
+    img(src=assets+'img/gallery/1.jpg' alt='Kép 1.')
 ul
   li
     a(href='http://www.bibicvendeghazak.hu')
-      img(src='' alt='Bíbic vendégházak')
+      img(src=assets+'img/icons/bibic.png' alt='Bíbic vendégházak')
   li
-    a(href='#')
-      img(src='' alt='Szallas.hu')
+    a(href='')
+      img(src=assets+'img/icons/szallas.png' alt='Szallas.hu')
   li
-    a(href='#')
-      img(src='' alt='Booking.com')
-  li
+    a(href='')
+      img(src=assets+'img/icons/booking.png' alt='Booking.com')
+  li#map
     a(href=address) #{addressString}
-  li
+  li#mail
     a(href='mailto:'+email) #{email}
-  li
+  li#tel
     a(href='tel:'+tel) #{telString}
-  li
+  li#fb
     a(href=facebook) Facebook
