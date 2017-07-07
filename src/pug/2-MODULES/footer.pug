@@ -12,11 +12,25 @@ ul
   li
     a(href='')
       img(src=assets+'img/icons/booking.png' alt='Booking.com')
-  li#map
-    a(href=address) #{addressString}
-  li#mail
-    a(href='mailto:'+email) #{email}
-  li#tel
-    a(href='tel:'+tel) #{telString}
-  li#fb
-    a(href=facebook) Facebook
+ul#reachout
+  li
+    a(href=address)
+      span #{addressString}
+      img(src=assets+'img/icons/map.png' alt='Cím')
+  li
+    a(href='mailto:'+email)
+      span #{email}
+      img(src=assets+'img/icons/mail.png' alt='E-mail')
+  li
+    a(href='tel:'+tel)
+      span #{telString}
+      img(src=assets+'img/icons/tel.png' alt='Telefon')
+  li
+    a(href=facebook)
+      span Facebook
+      img(src=assets+'img/icons/fb.png' alt='Facebook')
+#copyright
+  h4 Minden jog fenntartva. Képek, Design - © 
+    a(href='') Boós Gergő
+  h4 Design, Megvalósítás - © 
+    a(href='http://balazsorban.com') Orbán Balázs
