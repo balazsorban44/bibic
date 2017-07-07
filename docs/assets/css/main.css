@@ -68,13 +68,13 @@ p {
 
 #hero {
   position: relative;
-  height: 300px;
+  height: 65vmax;
   display: flex;
   max-width: 100vw;
   overflow: hidden;
   justify-content: center;
   align-items: center; }
-  @media (min-width: 360px) {
+  @media (min-width: 1024px) {
     #hero {
       height: 85vh; } }
   #hero h1 {
@@ -93,7 +93,7 @@ p {
       font-size: 2em; }
     #hero h1 span:last-child {
       font-size: .9em; }
-    @media (min-width: 360px) {
+    @media (min-width: 1024px) {
       #hero h1 {
         margin-top: -30%;
         position: static;
@@ -109,7 +109,7 @@ p {
     position: absolute;
     margin-left: -95%;
     height: 120%; }
-    @media (min-width: 360px) {
+    @media (min-width: 1024px) {
       #hero-img img {
         height: auto;
         width: 100%;
@@ -142,14 +142,66 @@ nav {
     padding: .1em; }
 
 #kapcsolat {
-  background-image: url(../img/bg.jpg);
+  background-image: url(../img/footer.jpg);
   background-size: cover; }
   #kapcsolat ul {
+    padding: 1.5em 0;
     justify-content: center;
     display: flex;
     flex-wrap: wrap; }
   #kapcsolat li {
-    padding: 1.5em; }
+    padding: .5em .5em; }
+    #kapcsolat li a:hover {
+      border-bottom: none; }
+    #kapcsolat li img {
+      box-sizing: border-box;
+      max-width: 72px;
+      background-color: transparent;
+      padding: .2em;
+      border-radius: 50%;
+      transition: .5s; }
+      #kapcsolat li img:hover {
+        background-color: #d3b098;
+        border: none; }
+
+#map, #mail, #tel, #fb {
+  display: flex;
+  align-items: center; }
+  #map a, #mail a, #tel a, #fb a {
+    background-image: linear-gradient(to right, white 33%, transparent 0%);
+    background-position: bottom;
+    background-size: 3px 1px;
+    background-repeat: repeat-x; }
+  #map::before, #mail::before, #tel::before, #fb::before {
+    content: '';
+    margin-right: .5em;
+    width: 24px;
+    height: 24px;
+    background-size: cover; }
+
+#map::before {
+  background-image: url(../img/icons/map.png); }
+
+#mail::before {
+  background-image: url(../img/icons/mail.png); }
+
+#tel::before {
+  background-image: url(../img/icons/tel.png); }
+
+#fb::before {
+  background-image: url(../img/icons/fb.png); }
+
+#galeria h2 {
+  padding-top: 0;
+  color: white; }
+
+#gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #gallery img {
+    width: 90vw;
+    height: 55vw; }
 
 main {
   color: white;
@@ -308,37 +360,63 @@ main {
   width: 100%; }
 
 #arak {
+  justify-content: flex-start;
   background-image: url(../img/price.jpg);
-  background-size: cover;
-  padding: 0 1.5em 4em 1.5em; }
+  background-size: cover; }
   #arak h2 {
-    padding-top: .5em; }
-  #arak #rooms ul {
-    margin: 1.5em;
+    padding-top: 1.5em; }
+  #arak p {
+    padding: 0 .5em; }
+    #arak p:last-of-type {
+      text-align: right;
+      font-size: .9em;
+      color: white; }
+
+#rooms {
+  padding-bottom: 2em; }
+  #rooms ul {
+    padding: 1.5em .5em 0;
     display: flex; }
-    #arak #rooms ul li {
-      display: flex;
-      flex-direction: column;
-      align-items: center; }
-    #arak #rooms ul h4 {
-      text-align: center; }
-  #arak #sorozo h3 {
+  #rooms li {
+    margin: .1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  #rooms h4 {
+    font-family: Cocogoose;
+    font-weight: normal;
+    text-align: center; }
+
+#sorozo {
+  padding: .5em; }
+  #sorozo h3 {
     text-align: right; }
-  #arak #sorozo ul {
+  #sorozo p {
+    font-size: .8em; }
+  #sorozo ul {
     display: flex;
     flex-direction: column;
     align-items: flex-end; }
-  #arak #sorozo span {
+  #sorozo span {
     margin-left: 1.5em; }
 
-#foglalas h3 {
-  text-align: center; }
-
-#galeria {
-  display: flex;
-  justify-content: center; }
-  #galeria h2 {
-    color: white; }
-  #galeria img {
-    width: 100%;
-    min-height: 200px; }
+#foglalas {
+  background-image: url(../img/reservation.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 70vh;
+  justify-content: flex-end; }
+  #foglalas h3 {
+    text-align: center;
+    padding-bottom: 2em; }
+  #foglalas a {
+    font-size: .9em;
+    color: #dd6565;
+    background-image: linear-gradient(to right, #dd6565 33%, transparent 0%);
+    background-position: bottom;
+    background-size: 3px 1px;
+    background-repeat: repeat-x; }
+    #foglalas a:hover {
+      background-image: linear-gradient(to right, white 33%, transparent 0%);
+      color: white;
+      border-bottom: none; }
