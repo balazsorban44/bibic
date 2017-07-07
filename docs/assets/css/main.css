@@ -214,15 +214,18 @@ main {
 
 #szolgaltatasok li:nth-child(1) {
   background-image: url(../img/services_1.jpg);
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
 
 #szolgaltatasok li:nth-child(2) {
   background-image: url(../img/services_2.jpg);
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
 
 #szolgaltatasok li:nth-child(3) {
   background-image: url(../img/services_3.jpg);
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
 
 #szolgaltatasok li a {
   display: flex;
@@ -249,12 +252,9 @@ main {
 
 #szobak li {
   position: relative;
-  min-height: 100vh;
-  max-height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden; }
+  flex-direction: column; }
   #szobak li:nth-child(1) {
     background-color: #321e1e; }
     #szobak li:nth-child(1) h4 {
@@ -285,6 +285,7 @@ main {
   z-index: 1; }
 
 #szobak h4 {
+  order: 1;
   font-family: Coolvetica;
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -295,18 +296,16 @@ main {
   font-size: 1.2em;
   width: 86px;
   height: 86px;
-  margin: 2em auto 0 auto;
+  margin: -43px auto 0 auto;
   border-radius: 50%; }
 
 #szobak p {
+  order: 2;
   font-family: serif;
   font-style: italic; }
 
 #szobak img {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  height: auto; }
+  width: 100%; }
 
 #arak {
   background-image: url(../img/price.jpg);
