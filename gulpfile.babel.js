@@ -8,7 +8,7 @@ import sass from 'gulp-sass'
 import babel from 'gulp-babel'
 
 // Media
-import imagemin from 'gulp-imagemin'
+import imageMin from 'gulp-image'
 import imageResize from 'gulp-image-resize'
 
 // Utilities
@@ -57,11 +57,12 @@ gulp.task('images', () => {
      width : 1920,
      upscale : false
    }))
-  .pipe(imagemin(
-    imagemin.jpegtran({progressive: true},
-    imagemin.optipng({optimizationLevel: 5})
-    )
-  ))
+  .pipe(imageMin({
+    jpegoptim: true,
+     mozjpeg: true,
+     guetzli: false,
+     optipng: true
+  }))
   .pipe(gulp.dest(path.join(build + 'assets/img')))
 })
 
