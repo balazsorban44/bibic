@@ -10,61 +10,101 @@ li {
 
 img {
   color: white;
-  background-color: #444;
-  text-align: center;
-  vertical-align: middle; }
+  background-color: #444; }
 
 @font-face {
   font-family: Cocogoose;
   src: url(../fonts/Cocogoose.otf); }
 
 @font-face {
+  font-family: ConeriaScript;
+  src: url(../fonts/ConeriaScript.ttf); }
+
+@font-face {
   font-family: Coolvetica;
   src: url(../fonts/Coolvetica.ttf); }
 
 @font-face {
-  font-family: Theano;
+  font-family: TheanoDidot;
   src: url(../fonts/TheanoDidot.ttf); }
 
-@font-face {
-  font-family: ConeriaScript;
-  src: url(../fonts/ConeriaScript.ttf); }
-
-section {
+h1 {
+  font-weight: lighter;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1em;
+  z-index: 2;
+  color: #fafafa;
   display: flex;
-  justify-content: center;
-  flex-direction: column; }
-  section h2 {
-    line-height: normal; }
+  flex-direction: column;
+  align-items: center; }
+  h1 span:first-child {
+    font-size: 2em; }
+  h1 span:last-child {
+    font-size: .9em; }
+  @media (min-width: 1024px) {
+    h1 {
+      margin-top: -30%;
+      position: static;
+      color: #482c29; }
+      h1 span:first-child {
+        font-size: 3rem; }
+      h1 span:last-child {
+        font-size: 1.9rem; } }
+
+h1, #landing h2 {
+  font-family: ConeriaScript; }
+
+#landing h2, #bemutatkozas h2 {
+  color: #d3b098; }
+
+#szolgaltatasok h3, #szobak h3 {
+  padding-bottom: 1.5rem;
+  text-transform: uppercase;
+  font-family: Cocogoose;
+  color: #38211e;
+  font-size: 0.75em;
+  letter-spacing: 0.50em; }
+
+#arak h2, #arak h3, #arak h4, #arak h5, #arak p {
+  font-family: Cocogoose; }
+
+h2, h3, p {
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.5; }
 
 h3, h4, p {
-  font-family: Theano;
+  font-family: TheanoDidot;
   color: #c7c7c7; }
 
 h2 {
-  font-size: 1.5em;
+  padding-top: 1.5rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  text-align: center;
-  line-height: 1.7;
-  font-family: Cocogoose;
-  padding-top: 1em; }
+  font-family: Cocogoose; }
 
-h3 {
-  text-align: center; }
+main, a {
+  color: #fafafa; }
 
 a {
-  color: white;
-  transition: .5s;
-  padding-bottom: .2em; }
+  transition: .5s; }
   a:hover {
     color: #d3b098;
     border-bottom: 1px solid #d3b098; }
 
 p {
-  font-size: 1.2em;
-  padding: 1.5em;
-  line-height: 1.2;
-  text-align: center; }
+  padding: 1rem 1.5rem;
+  line-height: 1.2; }
+
+main {
+  background-color: #482c29; }
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
 
 #hero {
   position: relative;
@@ -77,31 +117,6 @@ p {
   @media (min-width: 1024px) {
     #hero {
       height: 85vh; } }
-  #hero h1 {
-    font-family: ConeriaScript, monospace;
-    font-weight: lighter;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 1em;
-    z-index: 2;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-    #hero h1 span:first-child {
-      font-size: 2em; }
-    #hero h1 span:last-child {
-      font-size: .9em; }
-    @media (min-width: 1024px) {
-      #hero h1 {
-        margin-top: -30%;
-        position: static;
-        color: #482c29; }
-        #hero h1 span:first-child {
-          font-size: 3em; }
-        #hero h1 span:last-child {
-          font-size: 1.9em; } }
 
 #hero-img {
   align-self: flex-start; }
@@ -136,16 +151,16 @@ nav {
     display: flex;
     flex-wrap: wrap; }
   nav li {
-    margin: .5em;
-    padding: .5em; }
+    margin: .5rem;
+    padding: .5rem; }
   nav a {
-    padding: .1em; }
+    padding: .1rem; }
 
 #kapcsolat {
   background-image: url(../img/footer.jpg);
   background-size: cover; }
   #kapcsolat ul {
-    padding: 1.5em 0;
+    padding: 1.5em 0 0;
     justify-content: center;
     display: flex;
     flex-wrap: wrap; }
@@ -163,37 +178,17 @@ nav {
       #kapcsolat li img:hover {
         background-color: #d3b098;
         border: none; }
+  #kapcsolat span {
+    display: none; }
 
-#map, #mail, #tel, #fb {
-  display: flex;
-  align-items: center; }
-  #map a, #mail a, #tel a, #fb a {
-    background-image: linear-gradient(to right, white 33%, transparent 0%);
-    background-position: bottom;
-    background-size: 3px 1px;
-    background-repeat: repeat-x; }
-  #map::before, #mail::before, #tel::before, #fb::before {
-    content: '';
-    margin-right: .5em;
-    width: 24px;
-    height: 24px;
-    background-size: cover; }
-
-#map::before {
-  background-image: url(../img/icons/map.png); }
-
-#mail::before {
-  background-image: url(../img/icons/mail.png); }
-
-#tel::before {
-  background-image: url(../img/icons/tel.png); }
-
-#fb::before {
-  background-image: url(../img/icons/fb.png); }
+#reachout {
+  padding: 0 0 1.5em !important; }
+  #reachout li img {
+    max-width: 48px; }
 
 #galeria h2 {
   padding-top: 0;
-  color: white; }
+  color: #fafafa; }
 
 #gallery {
   display: flex;
@@ -203,52 +198,44 @@ nav {
     width: 90vw;
     height: 55vw; }
 
-main {
-  color: white;
-  background-color: #482c29; }
+#copyright {
+  text-align: center;
+  font-size: .6em;
+  padding: 2em; }
+  #copyright a {
+    color: #d3b098;
+    border-bottom: 1px solid #d3b098; }
 
 #landing {
   background-image: url(../img/bg.jpg); }
   #landing h2 {
-    line-height: 1.5;
-    padding: 1em 0;
-    color: #d3b098;
-    font-family: ConeriaScript;
     font-weight: lighter;
     text-transform: none; }
-  #landing h3 {
-    text-transform: uppercase;
-    font-size: 1.2em; }
-  #landing ul li {
+  #landing li {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 2em 0; }
-    #landing ul li img {
-      border-radius: 50%;
-      width: 128px;
-      height: 128px;
-      margin: 1em 0; }
-  #landing p {
-    padding: 1em 1.5em; }
-    #landing p:first-of-type {
-      text-align: left; }
-    #landing p:nth-of-type(2) {
-      padding: 0; }
-    #landing p:last-of-type {
-      text-align: right; }
+    align-items: center; }
+  #landing img {
+    border-radius: 50%;
+    width: 128px;
+    height: 128px;
+    margin: 1em 0; }
+  #landing p:first-of-type {
+    text-align: left; }
+  #landing p:nth-of-type(2) {
+    padding: 0; }
+  #landing p:last-of-type {
+    text-align: right; }
 
 #bemutatkozas {
   background-image: url(../img/intro.jpg);
   background-size: cover; }
-  #bemutatkozas h2 {
-    color: #d3b098; }
   #bemutatkozas p {
     text-align: left; }
   #bemutatkozas ul {
-    padding-bottom: 5vmin; }
+    padding-bottom: 1.5rem; }
   #bemutatkozas li {
-    padding: 3.5vmin; }
+    padding: 0 .75rem; }
   #bemutatkozas ul, #bemutatkozas li {
     display: flex;
     justify-content: center; }
@@ -256,149 +243,125 @@ main {
     height: 50vmin;
     align-self: flex-start; }
 
-#szolgaltatasok h3, #szobak h3 {
-  font-family: Cocogoose;
-  padding-bottom: 1em;
-  color: #38211e;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  letter-spacing: 0.50em; }
+#szolgaltatasok li {
+  transition: .5s; }
+  #szolgaltatasok li:nth-child(1) {
+    background-image: url(../img/services_1.jpg);
+    background-size: auto 100%;
+    background-position: center; }
+  #szolgaltatasok li:nth-child(2) {
+    background-image: url(../img/services_2.jpg);
+    background-size: auto 100%;
+    background-position: center; }
+  #szolgaltatasok li:nth-child(3) {
+    background-image: url(../img/services_3.jpg);
+    background-size: auto 100%;
+    background-position: center; }
+  #szolgaltatasok li:hover {
+    background-size: auto 110%; }
 
-#szolgaltatasok li:nth-child(1) {
-  background-image: url(../img/services_1.jpg);
-  background-size: cover;
-  background-position: center; }
-
-#szolgaltatasok li:nth-child(2) {
-  background-image: url(../img/services_2.jpg);
-  background-size: cover;
-  background-position: center; }
-
-#szolgaltatasok li:nth-child(3) {
-  background-image: url(../img/services_3.jpg);
-  background-size: cover;
-  background-position: center; }
-
-#szolgaltatasok li a {
+#szolgaltatasok a {
   display: flex;
   align-items: center;
-  padding: .5em; }
-  #szolgaltatasok li a p {
-    text-align: right;
-    max-width: 80%;
-    padding: .5em; }
-  #szolgaltatasok li a span {
-    width: 24px;
-    height: 24px;
-    background-image: url(../img/icons/arrow.png);
-    background-size: cover; }
-
-#szolgaltatasok li:hover {
-  transform: scale(1.1); }
-
-#szobak h2, #szobak h3 {
-  background-color: #d3b098; }
-
-#szobak h3 {
-  color: #594630; }
-
-#szobak li {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column; }
-  #szobak li:nth-child(1) {
-    background-color: #321e1e; }
-    #szobak li:nth-child(1) h4 {
-      background-color: #724444; }
-  #szobak li:nth-child(2) {
-    background-color: #37584c; }
-    #szobak li:nth-child(2) h4 {
-      background-color: #5e9782; }
-  #szobak li:nth-child(3) {
-    background-color: #683626; }
-    #szobak li:nth-child(3) h4 {
-      background-color: #b35d41; }
-  #szobak li:nth-child(4) {
-    background-color: #412221; }
-    #szobak li:nth-child(4) h4 {
-      background-color: #844644; }
-  #szobak li:nth-child(5) {
-    background-color: #1b2431; }
-    #szobak li:nth-child(5) h4 {
-      background-color: #405572; }
-  #szobak li:nth-child(6) {
-    background-color: #28311b; }
-    #szobak li:nth-child(6) h4 {
-      background-color: #5e7240; }
-
-#szobak h4, #szobak p {
-  position: relative;
-  z-index: 1; }
-
-#szobak h4 {
-  order: 1;
-  font-family: Coolvetica;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  color: white;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
-  width: 86px;
-  height: 86px;
-  margin: -43px auto 0 auto;
-  border-radius: 50%; }
+  padding: 2rem 0;
+  border: none; }
 
-#szobak p {
-  order: 2;
-  font-family: serif;
-  font-style: italic; }
+#szolgaltatasok p {
+  text-align: right;
+  max-width: 90%;
+  padding: 0; }
 
-#szobak img {
-  width: 100%; }
+#szolgaltatasok span {
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/icons/arrow.png);
+  background-size: cover; }
+
+#szobak {
+  background-color: #d3b098; }
+  #szobak h3 {
+    color: #594630; }
+  #szobak li {
+    display: flex;
+    flex-direction: column; }
+    #szobak li:nth-child(1) {
+      background-color: #321e1e; }
+      #szobak li:nth-child(1) h4 {
+        background-color: #724444; }
+    #szobak li:nth-child(2) {
+      background-color: #37584c; }
+      #szobak li:nth-child(2) h4 {
+        background-color: #5e9782; }
+    #szobak li:nth-child(3) {
+      background-color: #683626; }
+      #szobak li:nth-child(3) h4 {
+        background-color: #b35d41; }
+    #szobak li:nth-child(4) {
+      background-color: #412221; }
+      #szobak li:nth-child(4) h4 {
+        background-color: #844644; }
+    #szobak li:nth-child(5) {
+      background-color: #1b2431; }
+      #szobak li:nth-child(5) h4 {
+        background-color: #405572; }
+    #szobak li:nth-child(6) {
+      background-color: #28311b; }
+      #szobak li:nth-child(6) h4 {
+        background-color: #5e7240; }
+  #szobak h4 {
+    order: 1;
+    font-family: Coolvetica;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    width: 86px;
+    height: 86px;
+    margin: -43px auto 0;
+    border-radius: 50%; }
+  #szobak p {
+    order: 2;
+    font-style: italic;
+    padding: 1.5em; }
+  #szobak img {
+    width: 100%; }
 
 #arak {
-  justify-content: flex-start;
   background-image: url(../img/price.jpg);
   background-size: cover; }
-  #arak h2 {
-    padding-top: 1.5em; }
   #arak p {
-    padding: 0 .5em; }
-    #arak p:last-of-type {
-      text-align: right;
-      font-size: .9em;
-      color: white; }
-
-#rooms {
-  padding-bottom: 2em; }
-  #rooms ul {
-    padding: 1.5em .5em 0;
-    display: flex; }
-  #rooms li {
-    margin: .1em;
+    padding: .5em;
+    font-size: .75em;
+    color: #fafafa; }
+  #arak span {
+    color: #c77a7a; }
+  #arak ul {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; }
+    #arak ul:first-of-type {
+      margin-top: 2.5em; }
+  #arak li {
+    padding: 0 1em;
     display: flex;
     flex-direction: column;
     align-items: center; }
-  #rooms h4 {
-    font-family: Cocogoose;
+  #arak h3 {
+    margin-top: 1.5em; }
+  #arak h4 {
     font-weight: normal;
     text-align: center; }
-
-#sorozo {
-  padding: .5em; }
-  #sorozo h3 {
-    text-align: right; }
-  #sorozo p {
-    font-size: .8em; }
-  #sorozo ul {
+  #arak h5 {
+    margin: 0;
+    font-size: .8em;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end; }
-  #sorozo span {
-    margin-left: 1.5em; }
+    flex-direction: column; }
 
 #foglalas {
   background-image: url(../img/reservation.jpg);
@@ -417,6 +380,6 @@ main {
     background-size: 3px 1px;
     background-repeat: repeat-x; }
     #foglalas a:hover {
-      background-image: linear-gradient(to right, white 33%, transparent 0%);
-      color: white;
+      background-image: linear-gradient(to right, #fafafa 33%, transparent 0%);
+      color: #fafafa;
       border-bottom: none; }
