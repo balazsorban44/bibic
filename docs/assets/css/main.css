@@ -158,6 +158,7 @@ main {
 #landing {
   background-image: url(../img/bg.jpg); }
   #landing h2 {
+    line-height: 1.5;
     padding: 1em 0;
     color: #d3b098;
     font-family: ConeriaScript;
@@ -240,6 +241,12 @@ main {
 #szolgaltatasok li:hover {
   transform: scale(1.1); }
 
+#szobak h2, #szobak h3 {
+  background-color: #d3b098; }
+
+#szobak h3 {
+  color: #594630; }
+
 #szobak li {
   position: relative;
   min-height: 100vh;
@@ -248,24 +255,39 @@ main {
   flex-direction: column;
   justify-content: center;
   overflow: hidden; }
-  #szobak li:nth-child(1) h4 {
-    background-color: #724444; }
-  #szobak li:nth-child(2) h4 {
-    background-color: #5e9782; }
-  #szobak li:nth-child(3) h4 {
-    background-color: #b35d41; }
-  #szobak li:nth-child(4) h4 {
-    background-color: #844644; }
-  #szobak li:nth-child(5) h4 {
-    background-color: #405572; }
-  #szobak li:nth-child(6) h4 {
-    background-color: #5e7240; }
+  #szobak li:nth-child(1) {
+    background-color: #321e1e; }
+    #szobak li:nth-child(1) h4 {
+      background-color: #724444; }
+  #szobak li:nth-child(2) {
+    background-color: #37584c; }
+    #szobak li:nth-child(2) h4 {
+      background-color: #5e9782; }
+  #szobak li:nth-child(3) {
+    background-color: #683626; }
+    #szobak li:nth-child(3) h4 {
+      background-color: #b35d41; }
+  #szobak li:nth-child(4) {
+    background-color: #412221; }
+    #szobak li:nth-child(4) h4 {
+      background-color: #844644; }
+  #szobak li:nth-child(5) {
+    background-color: #1b2431; }
+    #szobak li:nth-child(5) h4 {
+      background-color: #405572; }
+  #szobak li:nth-child(6) {
+    background-color: #28311b; }
+    #szobak li:nth-child(6) h4 {
+      background-color: #5e7240; }
 
 #szobak h4, #szobak p {
   position: relative;
   z-index: 1; }
 
 #szobak h4 {
+  font-family: Coolvetica;
+  text-transform: uppercase;
+  letter-spacing: .05em;
   color: white;
   display: flex;
   justify-content: center;
@@ -275,6 +297,10 @@ main {
   height: 86px;
   margin: 2em auto 0 auto;
   border-radius: 50%; }
+
+#szobak p {
+  font-family: serif;
+  font-style: italic; }
 
 #szobak img {
   position: absolute;
