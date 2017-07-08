@@ -215,7 +215,7 @@ nav {
   #hero {
     height: 70vh; }
   #hero-img img {
-    margin-top: -20%; }
+    margin-top: -15%; }
   h1 {
     padding-bottom: 7em; } }
 
@@ -265,6 +265,10 @@ nav {
   text-align: center;
   font-size: .6em;
   padding: 2em; }
+  #copyright a {
+    border-bottom: none; }
+    #copyright a:hover {
+      border-bottom: 1px solid #d3b098; }
 
 @media (min-width: 480px) {
   #kapcsolat li {
@@ -278,6 +282,19 @@ nav {
   @media (min-width: 640px) and (orientation: landscape) {
     #gallery img {
       height: 70vh; } }
+
+@media (min-width: 1280px) {
+  #kapcsolat li {
+    margin: 1em 4em; }
+  #logos li {
+    margin: 1em 6em; }
+  #logos img {
+    max-width: 128px !important; }
+  #copyright {
+    display: flex;
+    justify-content: center; }
+    #copyright h4 {
+      padding: 1em; } }
 
 #bemutatkozas {
   background-image: url(../img/bg.png);
@@ -347,7 +364,11 @@ nav {
 @media (min-width: 1280px) {
   #bemutatkozas > ul {
     padding: 5% 0;
-    width: 60%; } }
+    width: 60%; }
+  #bemutatkozas p:nth-of-type(2), #bemutatkozas p:nth-of-type(4) {
+    display: none; }
+  #bemutatkozas p:last-of-type {
+    padding-bottom: 5%; } }
 
 #napraforgo {
   position: relative; }
@@ -460,7 +481,7 @@ nav {
     max-width: 25%; } }
 
 #szobak {
-  background-color: #d3b098; }
+  background-color: #af8a5e; }
   #szobak h3 {
     color: #594630; }
   #szobak li {
@@ -493,6 +514,7 @@ nav {
   #szobak h4 {
     order: 1;
     font-family: Coolvetica;
+    font-weight: lighter;
     text-transform: uppercase;
     letter-spacing: .05em;
     color: #fafafa;
@@ -505,6 +527,7 @@ nav {
     margin: -43px auto 0;
     border-radius: 50%; }
   #szobak p {
+    font-family: Times New Roman;
     order: 2;
     font-style: italic;
     padding: 1.5em; }
