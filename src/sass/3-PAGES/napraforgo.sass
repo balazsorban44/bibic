@@ -1,0 +1,37 @@
+#napraforgo
+  position: relative
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background:
+      image:  linear-gradient(transparentize($dark, .8), transparentize($dark, .8)), url(#{$images}/intro.jpg)
+      size: cover
+  h2, p, ul
+    position: relative
+    z-index: 1
+  p
+    padding-top: 1.5rem
+    text-align: left !important
+
+  li
+    padding: 0 .5rem
+  ul,li
+    display: flex
+    justify-content: center
+
+  img
+    margin: 0
+    border-radius: 0
+    height: 50vw
+    width: auto
+
+@media (min-width: 640px)
+  #napraforgo
+    &::after
+      background-image:  linear-gradient(transparentize($dark, .4), transparentize($dark, .4)), url(#{$images}/intro.jpg)
+    img
+      height: 33vw

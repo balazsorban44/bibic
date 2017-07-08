@@ -5,33 +5,11 @@
 @include import-font(Coolvetica)
 @include import-font(TheanoDidot)
 
-h1
-  font-weight: lighter
-  position: absolute
-  top: 0
-  left: 0
-  padding: 1em
-  z-index: 2
-  color: $light
-  display: flex
-  flex-direction: column
-  align-items: center
-  span:first-child
-    font-size: 2em
-  span:last-child
-    font-size: .9em
-  @media (min-width:1024px)
-    margin-top: -30%
-    position: static
-    color: $accent-color
-    span:first-child
-      font-size: 3rem
-    span:last-child
-      font-size: 1.9rem
-h1, #landing h2
+
+h1, #bemutatkozas h2
   font-family: ConeriaScript
 
-#landing, #bemutatkozas
+#bemutatkozas
   h2
     color: $accent-color-2
 
@@ -57,7 +35,10 @@ h2, h3, p
 h3, h4, p
   font-family: TheanoDidot
   color: $grey
-
+h4, p
+  a
+    color: $accent-color-2
+    border-bottom: 1px solid $accent-color-2
 h2
   padding-top: 1.5rem
   font-size: 1.5rem
@@ -72,9 +53,12 @@ a
     color: $accent-color-2
     border-bottom: 1px solid $accent-color-2
 p
-  padding: 1rem 1.5rem
+  padding: .5rem 1.5rem
   line-height: 1.2
 
+@media (min-width: 640px)
+  p
+    padding: .5rem 2.5rem
 
 // ------------------------------ MISC ------------------------------ //
 main

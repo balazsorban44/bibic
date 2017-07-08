@@ -1,6 +1,7 @@
 #arak
-  @include import-img(price)
-  background-size: cover
+  background:
+    image: linear-gradient(transparentize($dark, .7), transparentize($dark, .7)), url(#{$images}/price.jpg)
+    size: cover
   p
     padding: .5em
     font-size: .75em
@@ -22,6 +23,7 @@
     align-items: center
   h3
     margin-top: 1.5em
+    color: $light
   h4
     font-weight: normal
     text-align: center
@@ -31,3 +33,16 @@
     text-align: center
     display: flex
     flex-direction: column
+
+@media (min-width: 480px)
+  #arak
+    padding-bottom: 1em
+    ul
+      &:first-of-type
+        margin-top: 1.5em
+    p
+      padding: .5em 3.5rem
+
+@media (min-width: 640px)
+  #arak
+    background-image: linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$images}/price.jpg)
