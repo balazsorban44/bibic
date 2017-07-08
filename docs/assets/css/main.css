@@ -28,10 +28,10 @@ img {
   font-family: TheanoDidot;
   src: url(../fonts/TheanoDidot.ttf); }
 
-h1, #landing h2 {
+h1, #bemutatkozas h2 {
   font-family: ConeriaScript; }
 
-#landing h2, #bemutatkozas h2 {
+#bemutatkozas h2 {
   color: #d3b098; }
 
 #szolgaltatasok h3, #szobak h3 {
@@ -77,6 +77,10 @@ p {
   padding: .5rem 1.5rem;
   line-height: 1.2; }
 
+@media (min-width: 640px) {
+  p {
+    padding: .5rem 2.5rem; } }
+
 main {
   background-color: #482c29; }
 
@@ -93,7 +97,7 @@ section {
 
 #hero {
   position: relative;
-  height: 100vw;
+  height: 100vmin;
   display: flex;
   max-width: 100vw;
   overflow: hidden;
@@ -108,7 +112,7 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 17.5vw 10vw;
+  padding: 15vmin 10vmin;
   z-index: 2;
   color: #fafafa;
   display: flex;
@@ -161,10 +165,23 @@ nav {
     display: flex;
     flex-wrap: wrap; }
   nav li {
-    margin: .5rem;
-    padding: .5rem; }
+    margin: .4rem; }
   nav a {
-    padding: .1rem; }
+    padding: 1rem .5rem 0; }
+
+@media (min-width: 480px) {
+  #hero {
+    height: 75vmin; }
+  #hero-img img {
+    height: auto;
+    width: 100vw;
+    margin-left: -50%; } }
+
+@media (min-width: 640px) {
+  h1 {
+    margin-left: 20%; }
+  #hero-img img {
+    margin-top: -10%; } }
 
 #kapcsolat {
   background-image: url(../img/footer.jpg);
@@ -213,34 +230,61 @@ nav {
   font-size: .6em;
   padding: 2em; }
 
-#landing {
+@media (min-width: 480px) {
+  #kapcsolat li {
+    margin: 0 1rem; } }
+
+@media (min-width: 640px) {
+  #kapcsolat li {
+    margin: 0 2rem; }
+  #gallery img {
+    width: auto;
+    height: 60vh; } }
+
+#bemutatkozas {
   background-image: url(../img/bg.png);
   background-color: #1f1511; }
-  #landing h2 {
+  #bemutatkozas h2 {
     font-weight: lighter;
     text-transform: none; }
-  #landing ul {
-    padding-bottom: 1.5em; }
-  #landing li {
+  #bemutatkozas ul, #bemutatkozas h2 {
+    padding-bottom: 1.5rem; }
+  #bemutatkozas li {
     display: flex;
     flex-direction: column;
     align-items: center; }
-  #landing img {
+  #bemutatkozas img {
     border-radius: 50%;
     width: 128px;
     height: 128px;
     margin: 1em 0; }
-  #landing p:first-of-type {
+  #bemutatkozas p:first-of-type {
     text-align: left; }
-  #landing p:nth-of-type(2) {
+  #bemutatkozas p:nth-of-type(2) {
     padding: 0; }
-  #landing p:last-of-type {
+  #bemutatkozas p:last-of-type {
     text-align: right;
     padding-bottom: 1.5rem; }
+  #bemutatkozas a {
+    border-bottom: none; }
 
-#bemutatkozas {
+@media (min-width: 640px) {
+  #bemutatkozas > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 75%;
+    margin: 0 auto; }
+    #bemutatkozas > ul li {
+      margin-top: -20%; }
+      #bemutatkozas > ul li:first-child {
+        margin-top: 0; }
+      #bemutatkozas > ul li:nth-child(2) {
+        align-self: flex-end; } }
+
+#napraforgo {
   position: relative; }
-  #bemutatkozas::after {
+  #napraforgo::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -249,20 +293,28 @@ nav {
     left: 0;
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img//intro.jpg);
     background-size: cover; }
-  #bemutatkozas h2, #bemutatkozas p, #bemutatkozas ul {
+  #napraforgo h2, #napraforgo p, #napraforgo ul {
+    position: relative;
     z-index: 1; }
-  #bemutatkozas p {
-    text-align: left; }
-  #bemutatkozas ul {
-    padding: 1rem 0 1.5rem; }
-  #bemutatkozas li {
+  #napraforgo p {
+    padding-top: 1.5rem;
+    text-align: left !important; }
+  #napraforgo li {
     padding: 0 .5rem; }
-  #bemutatkozas ul, #bemutatkozas li {
+  #napraforgo ul, #napraforgo li {
     display: flex;
     justify-content: center; }
-  #bemutatkozas img {
-    width: 90%;
-    align-self: flex-start; }
+  #napraforgo img {
+    margin: 0;
+    border-radius: 0;
+    height: 50vw;
+    width: auto; }
+
+@media (min-width: 640px) {
+  #napraforgo::after {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img//intro.jpg); }
+  #napraforgo img {
+    height: 33vw; } }
 
 #szolgaltatasok li {
   transition: .5s; }
@@ -354,6 +406,23 @@ nav {
   #szobak img {
     width: 100%; }
 
+@media (min-width: 480px) {
+  #szobak li {
+    align-items: center; }
+  #szobak h4 {
+    font-size: .9em;
+    width: 64px;
+    height: 64px;
+    margin: -32px auto 0; }
+  #szobak p {
+    padding: .5em 15% 1.5em; }
+  #szobak img {
+    width: 65%; } }
+
+@media (min-width: 640px) {
+  #szobak img {
+    width: 60%; } }
+
 #arak {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../img//price.jpg);
   background-size: cover; }
@@ -388,6 +457,18 @@ nav {
     display: flex;
     flex-direction: column; }
 
+@media (min-width: 480px) {
+  #arak {
+    padding-bottom: 1em; }
+    #arak ul:first-of-type {
+      margin-top: 1.5em; }
+    #arak p {
+      padding: .5em 3.5rem; } }
+
+@media (min-width: 640px) {
+  #arak {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img//price.jpg); } }
+
 #foglalas {
   background-image: url(../img/reservation.jpg);
   background-size: cover;
@@ -408,3 +489,10 @@ nav {
       background-image: linear-gradient(to right, #fafafa 33%, transparent 0%);
       color: #fafafa;
       border-bottom: none; }
+
+@media (min-width: 480px) {
+  #foglalas {
+    min-height: 60vh;
+    padding: 4em 0; }
+    #foglalas h3 {
+      margin-bottom: -4em; } }
