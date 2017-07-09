@@ -1,36 +1,39 @@
 section#galeria
   h2 Galéria
   #gallery
-    img(src=assets+'img/gallery/1.jpg' alt='Kép 1.')
-ul
+    img(src=gallery+'0.jpg' alt='Kép 1.')
+      
+ul#logos
   li
-    a(href='http://www.bibicvendeghazak.hu')
-      img(src=assets+'img/icons/bibic.png' alt='Bíbic vendégházak')
+    a(href=baseurl)
+      img(src=icons+'bibic.png' alt='Bíbic vendégházak')
   li
-    a(href='')
-      img(src=assets+'img/icons/szallas.png' alt='Szallas.hu')
+    a(href=szallas target='_blank')
+      img(src=icons+'szallas.png' alt='Szallas.hu')
   li
-    a(href='')
-      img(src=assets+'img/icons/booking.png' alt='Booking.com')
+    a(href=booking target='_blank')
+      img(src=icons+'booking.png' alt='Booking.com')
+
 ul#reachout
   li
-    a(href=address)
+    a(href=address target='_blank')
       span #{addressString}
-      img(src=assets+'img/icons/map.png' alt='Cím')
+      img(src=icons+'map.png' alt='Cím')
   li
     a(href='mailto:'+email)
       span #{email}
-      img(src=assets+'img/icons/mail.png' alt='E-mail')
+      img(src=icons+'mail.png' alt='E-mail')
   li
     a(href='tel:'+tel)
       span #{telString}
-      img(src=assets+'img/icons/tel.png' alt='Telefon')
+      img(src=icons+'tel.png' alt='Telefon')
   li
-    a(href=facebook)
+    a(href=facebook target='_blank')
       span Facebook
-      img(src=assets+'img/icons/fb.png' alt='Facebook')
+      img(src=icons+'fb.png' alt='Facebook')
+        
 #copyright
   h4 Minden jog fenntartva. Képek, Design - © 
     a(href='') Boós Gergő
   h4 Design, Megvalósítás - © 
-    a(href='http://balazsorban.com') Orbán Balázs
+    a(href='http://balazsorban.com' target='_blank') Orbán Balázs

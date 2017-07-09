@@ -1,0 +1,16 @@
+section#szobak
+  h2 Szobák
+    //- each val, index in rooms
+    //-   li.room
+    //-     .room-text
+    //-       h4= index + '. Szoba'
+    //-       p= val[0]
+    //-       if val[2]
+    //-         h5 #{val[1]}.-/fő/éj pótágy+
+    //-       else
+    //-         h5 #{val[1]}.-/fő/éj
+    //-     .room-slider
+    //-       - var n = 0
+    //-       while n < val[3]
+    //-         img(src=assets+'img/rooms/'+index+'_'+n+'.jpg' alt='Szoba '+index+'., Kép '+(n+++1)+'.')
+    //-         
