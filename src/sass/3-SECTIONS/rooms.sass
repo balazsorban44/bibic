@@ -1,0 +1,115 @@
+#szobak
+  background-color: #af8a5e
+  h2
+    &::after
+      display: block
+      content: 'Flóra ház'
+      color: $accent-color-4
+      font-size: .5em
+      padding: 0 1em 1.5rem 1em
+      letter-spacing: .5em
+  li
+    display: flex
+    flex-direction: column
+    @for $i from 1 through length($rooms)
+      &:nth-child(#{$i})
+        background-color: darken(nth($rooms, $i), 20)
+        p
+          background-color: transparentize(darken(nth($rooms, $i), 20), .25)
+        h4
+          background-color: nth($rooms, $i)
+
+  h4
+    order: 1
+    font-family: Coolvetica
+    font-weight: lighter
+    text-transform: uppercase
+    letter-spacing: .05em
+    color: $light
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 1.2em
+    width: 86px
+    height: 86px
+    margin: -43px auto 0
+    border-radius: 50%
+
+  p
+
+    font-family: 'Times New Roman'
+    order: 2
+    font-style: italic
+    padding: 1.5em
+
+
+  img
+    width: 100%
+
+@media (min-width: 480px)
+  #szobak
+    li
+      align-items: center
+    h4
+      font-size: .9em
+      width: 64px
+      height: 64px
+      margin: -32px auto 0
+    p
+      padding: .5em 15% 1.5em
+    img
+      width: 65%
+
+@media (min-width: 640px)
+  #szobak
+    h2
+      padding-bottom: 1em
+      &::after
+        padding: 0 0 0 1em
+        display: inline
+    img
+      width: 60%
+
+@media (min-width: 1024px)
+  #szobak
+    ul
+      flex-grow: 1
+    li
+      background-color: transparent !important
+      flex-direction: row
+      position: relative
+      height: 88vmin
+      z-index: 1
+    img
+      position: absolute
+      top: 0
+      left: 0
+      z-index: -1
+      width: 100vw
+      height: auto
+    h4
+      margin: 0 5%
+      width: 86px
+      height: 86px
+      font-size: 1.2em
+    p
+      max-width: 30%
+      text-align: left
+      padding: 0
+
+@media (min-width: 1280px)
+  #szobak
+    overflow: hidden
+    h4
+      position: relative
+      z-index: 1
+      margin: 0 0 0 10%
+    p
+      margin-left: -48px
+      padding: 2em 2em 2em 4em
+      max-width: 20%
+    img
+      min-height: 100vh
+      min-width: 100vw
+    li
+      height: 100vh

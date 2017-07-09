@@ -1,0 +1,86 @@
+#arak
+  background:
+    image: linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$bg}/price.jpg)
+    size: auto 100%
+    repeat: repeat-x
+
+  span
+    color: #c77a7a
+    padding-left: .5em
+  h2
+    &:last-of-type
+      font-size: 1.2em
+  h3
+    padding: .4em
+    font-size: .8em
+  ul
+    display: flex
+    flex-direction: column
+    align-items: center
+  li
+    padding: .5%
+
+@media (min-width: 480px)
+  #arak
+    h3
+      padding: .4em 10%
+    ul
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: center
+    li
+      padding: 2%
+
+@media (min-width: 768px)
+  #arak
+    h3
+      padding: .5em 25%
+    li
+      padding: 2% 7.5%
+
+@media (min-width: 768px)
+  #arak
+    background-size: cover
+    h2
+      &:first-of-type
+        margin-top: 15%
+    h2,h3
+      &:last-of-type
+        text-align: right
+      padding: .5em 10%
+
+@media (min-width: 1024px)
+  #arak
+    padding-bottom: 10%
+    h2
+      margin-top: 15%
+    li
+      padding: .5em 1.5%
+
+@media (min-width: 1280px)
+  #arak
+    background-size: 100% auto
+    max-height: 100vh
+    display: block
+    ul
+      padding: 5%
+      &:last-of-type
+        flex-wrap: nowrap
+        flex-direction: column
+        align-items: flex-end
+    h2
+      &:first-of-type
+        margin-top: 0
+        padding-top: 15%
+    h3
+      font-size: 1.2em
+      &:first-of-type
+        margin-top: 5%
+    ul
+      padding: 2.5% 15%
+      &:first-of-type
+        h4
+          display: flex
+          flex-direction: column
+    h4, span
+      font-size: 1.1em

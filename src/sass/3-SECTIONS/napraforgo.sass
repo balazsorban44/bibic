@@ -1,0 +1,67 @@
+#napraforgo
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background:
+      image:  linear-gradient(transparentize($dark, .5), transparentize($dark, .5)), url(#{$bg}/intro.jpg)
+      size: cover
+  p,img
+    position: relative
+    z-index: 1
+  p
+    text-align: left
+    padding: 2.5rem 10% 0
+  div
+    display: flex
+  img
+    margin: 2.5vw 2.5vw 2.5rem
+    height: 50vw
+    width: auto
+@media (min-width: 640px)
+  #napraforgo
+    padding: 10% 5%
+    flex-direction: row
+    p
+      text-align: right
+      padding: 0
+      margin-right: .5rem
+    img
+      margin: 1vw
+      height: 25vw
+
+@media (min-width: 768px)
+  #napraforgo
+    padding: 20% 10%
+    img
+      height: 192px
+
+@media (min-width: 1024px)
+  #napraforgo
+    flex-direction: column
+    align-items: flex-start
+    padding: 10% 40% 10% 10%
+    p
+      text-align: left
+
+@media (min-width: 1280px)
+  #napraforgo
+    padding: 25% 10% 15% 55%
+    align-items: flex-end
+    &::after
+      background-position: right
+    p
+      text-align: right
+    img
+      height: 256px
+
+@media (min-width: 1280px)
+  #napraforgo
+    padding: 15% 10% 15% 60%
