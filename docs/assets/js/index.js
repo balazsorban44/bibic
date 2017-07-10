@@ -8,8 +8,8 @@ window.addEventListener('load', function load() {
 var init = function init() {
   if (window.matchMedia('(min-width: 1024px)').matches) {} else {
     mobile();
-    roomSlider();
   }
+  roomSlider();
 
   function mobile() {
     var hero = document.querySelector('#hero'),
@@ -61,6 +61,6 @@ var init = function init() {
       }
       current = current != slides.length - 1 ? current + 1 : 0;
       slides[current].style.opacity = 1;
-    }, 5000);
+    }, 3000);
   }
 };
