@@ -12,52 +12,45 @@ var init = function init() {
   roomSlider();
 
   function mobile() {
-    var hero = document.querySelector('#hero'),
-        heroNav = document.querySelector('nav'),
+    var nav = document.querySelector('nav'),
+        mobileNav = document.querySelector('.mobile-nav'),
+        mobileMenu = document.querySelector('#mobile-menu'),
         heroText = document.querySelector('h1'),
-        heroImg = document.querySelector('#hero-img'),
-        hamburger = document.querySelector('#hamburger-menu'),
-        intro = document.querySelector('#bemutatkozas'),
-        w = window.innerWidth;
+        hamburger = document.querySelector('#hamburger-icon');
 
     hamburger.addEventListener('click', function () {
-      heroNav.classList.toggle('hidden');
+      mobileNav.classList.toggle('mobile-nav-active');
     });
-    // Rx.Observable.fromEvent(window, 'scroll')
-    //   .debounceTime(100)
-    //   .subscribe(
-    //     () => scrolled()
-    //     // (event) => console.log(event)
-    //   )
+
+    mobileNav.addEventListener('click', function () {
+      mobileNav.classList.remove('mobile-nav-active');
+    });
+
+    nav.addEventListener('click', function () {
+      navBar();
+    });
 
     window.onscroll = scrolled;
     function scrolled() {
-      var fromTop = window.scrollY;
-      console.log(fromTop);
-      if (fromTop < 182) {
-        heroImg.style.marginTop = '-' + fromTop + 'px';
-        heroText.style.transform = 'scale(' + (1 - fromTop / w * .9) + ')';
-        hero.style.height = 300 - fromTop + 'px';
-        heroNav.style.top = 300 - fromTop + 'px';
-        hero.classList.remove('hero-fixed');
-      } else if (fromTop > 163 && fromTop < 240) {
-        hero.style.height = 300 - fromTop + 'px';
-        heroNav.style.top = 300 - fromTop + 'px';
-        heroText.style.transform = 'scale(' + (1 - fromTop / w * .9) + ')';
-        heroImg.classList.remove('hero-img-fixed');
-        hero.classList.add('hero-fixed');
-      } else if (fromTop > 240 && fromTop < 440) {
-        heroNav.style.top = 300 - fromTop + 'px';
-        heroNav.classList.remove('hero-nav-fixed');
-        if (!hamburger.classList.contains('hidden')) {
-          hamburger.classList.add('hidden');
-        }
-        heroNav.classList.remove('nav-mobile', 'hidden');
-      } else {
-        hamburger.classList.remove('hidden');
-        heroNav.classList.add('nav-mobile', 'hidden');
-        heroImg.classList.add('hero-img-fixed');
+      var fromTop = window.pageYOffset;
+      if (fromTop < 120) {
+        heroText.className = "";
+        mobileMenu.classList.add('hidden');
+      } else if (fromTop > 120 && fromTop < 200) {
+        heroText.classList.add('hero-text-fixed');
+      } else if (fromTop > 200 && fromTop < 480) {
+        mobileMenu.classList.remove('hidden');
+        hamburger.classList.add('hidden');
+      } else if (fromTop > 480) {
+        navBar();
       }
+    }
+
+    function navBar() {
+      heroText.classList.add('hero-text-fixed');
+      mobileMenu.classList.remove('hidden');
+      mobileNav.classList.remove('mobile-nav-active');
+      hamburger.classList.remove('hidden');
     }
   }
 
@@ -71,6 +64,6 @@ var init = function init() {
       }
       current = current != slides.length - 1 ? current + 1 : 0;
       slides[current].style.opacity = 1;
-    }, 3000);
+    }, 5000);
   }
 };
