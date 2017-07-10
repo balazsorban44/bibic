@@ -8,6 +8,7 @@ window.addEventListener('load', function load() {
 var init = function init() {
   if (window.matchMedia('(min-width: 1024px)').matches) {} else {
     mobile();
+    roomSlider();
   }
 
   function mobile() {
@@ -26,20 +27,19 @@ var init = function init() {
 
     function scrolled() {
       var fromTop = window.scrollY;
-      if (fromTop < w / 2) {
-        heroText.style.fontSize = 2 - fromTop / 130 + 'em';
+      if (fromTop < w * 0.9 - 60) {
+        heroText.style.fontSize = 2 - fromTop / 160 + 'em';
         hero.classList.remove('hero-fixed');
         heroNav.classList.remove('hero-nav-fixed');
         heroText.classList.remove('h1-fixed');
         heroImg.classList.remove('hero-img-fixed');
-        // heroText.style.transform = `scale(${1-fromTop/200})`
       } else {
         hero.classList.add('hero-fixed');
         heroNav.classList.add('hero-nav-fixed');
         heroText.classList.add('h1-fixed');
         heroImg.classList.add('hero-img-fixed');
       }
-      if (fromTop > 360) {
+      if (fromTop > w * 1.35) {
         heroNav.classList.add('nav-mobile', 'hidden');
         intro.classList.add('intro-fixed');
         hamburger.classList.remove('hidden');
@@ -49,5 +49,18 @@ var init = function init() {
         intro.classList.remove('intro-fixed');
       }
     }
+  }
+
+  function roomSlider() {
+    var current = 0,
+        slides = document.querySelectorAll('.room-slider img');
+
+    setInterval(function () {
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = 0;
+      }
+      current = current != slides.length - 1 ? current + 1 : 0;
+      slides[current].style.opacity = 1;
+    }, 5000);
   }
 };
