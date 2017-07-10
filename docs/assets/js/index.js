@@ -15,7 +15,7 @@ var init = function init() {
     var hero = document.querySelector('#hero'),
         heroNav = document.querySelector('nav'),
         heroText = document.querySelector('h1'),
-        heroImg = document.querySelector('#hero-img img'),
+        heroImg = document.querySelector('#hero-img'),
         hamburger = document.querySelector('#hamburger-menu'),
         intro = document.querySelector('#bemutatkozas'),
         w = window.innerWidth;
@@ -23,30 +23,40 @@ var init = function init() {
     hamburger.addEventListener('click', function () {
       heroNav.classList.toggle('hidden');
     });
-    window.onscroll = scrolled;
+    // Rx.Observable.fromEvent(window, 'scroll')
+    //   .debounceTime(100)
+    //   .subscribe(
+    //     () => scrolled()
+    //     // (event) => console.log(event)
+    //   )
 
+    window.onscroll = scrolled;
     function scrolled() {
       var fromTop = window.scrollY;
-      if (fromTop < w * 0.9 - 60) {
-        heroText.style.fontSize = 2 - fromTop / 160 + 'em';
+      console.log(fromTop);
+      if (fromTop < 182) {
+        heroImg.style.marginTop = '-' + fromTop + 'px';
+        heroText.style.transform = 'scale(' + (1 - fromTop / w * .9) + ')';
+        hero.style.height = 300 - fromTop + 'px';
+        heroNav.style.top = 300 - fromTop + 'px';
         hero.classList.remove('hero-fixed');
-        heroNav.classList.remove('hero-nav-fixed');
-        heroText.classList.remove('h1-fixed');
+      } else if (fromTop > 163 && fromTop < 240) {
+        hero.style.height = 300 - fromTop + 'px';
+        heroNav.style.top = 300 - fromTop + 'px';
+        heroText.style.transform = 'scale(' + (1 - fromTop / w * .9) + ')';
         heroImg.classList.remove('hero-img-fixed');
-      } else {
         hero.classList.add('hero-fixed');
-        heroNav.classList.add('hero-nav-fixed');
-        heroText.classList.add('h1-fixed');
-        heroImg.classList.add('hero-img-fixed');
-      }
-      if (fromTop > w * 1.35) {
-        heroNav.classList.add('nav-mobile', 'hidden');
-        intro.classList.add('intro-fixed');
-        hamburger.classList.remove('hidden');
-      } else {
-        hamburger.classList.add('hidden');
+      } else if (fromTop > 240 && fromTop < 440) {
+        heroNav.style.top = 300 - fromTop + 'px';
+        heroNav.classList.remove('hero-nav-fixed');
+        if (!hamburger.classList.contains('hidden')) {
+          hamburger.classList.add('hidden');
+        }
         heroNav.classList.remove('nav-mobile', 'hidden');
-        intro.classList.remove('intro-fixed');
+      } else {
+        hamburger.classList.remove('hidden');
+        heroNav.classList.add('nav-mobile', 'hidden');
+        heroImg.classList.add('hero-img-fixed');
       }
     }
   }
