@@ -25,7 +25,7 @@
     border: none
     &:hover
       .services-bg
-        background-size: auto 110%
+        background-size: auto 105%
         filter: none
         opacity: 1
   p
@@ -73,21 +73,38 @@
     li
       box-shadow: none
     a
-      padding: 3em 0
+      padding: 5% 0
     p
       max-width: 55%
 
 @media (min-width: 1024px)
   #szolgaltatasok
     p
-      max-width: 45%
+      max-width: 60%
       text-align: center
+    a
+      padding: 3% 0
+      &:hover
+        .services-bg
+          background-size: 105% auto
   .services-bg
+    background-size: 101%
     opacity: .5
     filter: none
+
+@media (min-width: 1280px)
+  #szolgaltatasok
+    a
+      &:hover
+        p
+          transform: scale(.9)
+    p
+      transition: .4s
 
 @media (min-width: 1440px)
   #szolgaltatasok
     p
-      max-width: 30%
+      max-width: 45%
       font-size: 1em
+    a
+      min-height: 7.5vh

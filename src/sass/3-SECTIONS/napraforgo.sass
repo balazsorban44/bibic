@@ -60,7 +60,13 @@
     p
       text-align: right
     img
+      transition: .3s
       height: 256px
+      cursor: pointer
+      transform-origin: bottom right
+      &:hover
+        box-shadow: 0 0 150px 40px black
+        transform: scale(2)
 
 @media (min-width: 1280px)
   #napraforgo
