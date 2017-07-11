@@ -17,6 +17,8 @@ import imageResize from 'gulp-image-resize'
 import jshint from 'gulp-jshint'
 import livereload from 'gulp-livereload'
 import webserver from 'gulp-webserver'
+import gutil from 'gulp-util'
+
 // Constants
 const src = 'src/',
       build = 'docs/'
@@ -27,7 +29,8 @@ const src = 'src/',
 // Preprocessors
 gulp.task('pug', () => {
   gulp.src(path.join(src + 'pug/index.pug'))
-  .pipe(pug())
+  .pipe(pug({pretty:true}))
+  .on('error', gutil.log)
   .pipe(gulp.dest(build))
   .pipe(livereload())
 })
@@ -48,6 +51,9 @@ gulp.task('es6', () => {
   }))
   .pipe(jshint.reporter('default'))
   .pipe(babel({presets: ['es2015']}))
+  .on('error', function(e) {
+      this.emit('end');
+    })
   .pipe(gulp.dest(path.join(build + 'assets/js')))
   .pipe(livereload())
 })

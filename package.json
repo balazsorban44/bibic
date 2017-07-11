@@ -8,7 +8,7 @@
     "gulpDev": "gulp",
     "gulpBuild": "gulp minify",
     "build": "gulp & npm run gulpBuild",
-    "deploy": "npm run gulpBuild & git add docs/**/* & git commit -m 'Deploying changes.' & git push",
+    "deploy": "npm run gulpBuild & git add docs & git commit -m 'Deploying changes.' & git push",
     "start": "npm run gulpDev & npm run serve"
   },
   "author": "Balázs Orbán",
@@ -26,6 +26,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8",
     "gulp-webserver": "^0.9.1",
     "jshint": "^2.9.5",
     "node-sass": "^4.5.3",
