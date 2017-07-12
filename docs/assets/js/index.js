@@ -13,14 +13,15 @@ var init = function init() {
       hamburger = document.querySelector('#hamburger-icon'),
       heroHeight = document.querySelector('#hero').clientHeight,
       headerHeight = document.querySelector('header').clientHeight,
-      roomSlider = function roomSlider() {
+      rooms = document.querySelectorAll('.room'),
+      roomSlider = function roomSlider(roomIndex) {
     var current = 0,
-        slides = document.querySelectorAll('.room-slider img');
-
+        slides = rooms[roomIndex].querySelectorAll('.room-slider img');
+    console.log(rooms[roomIndex].querySelector('.room-slider').style.maxHeight);
     setInterval(function () {
-      for (var i = 0; i < slides.length; i++) {
-        slides[i].style.opacity = 0;
-      }
+      slides.forEach(function (e) {
+        e.style.opacity = 0;
+      });
       current = current != slides.length - 1 ? current + 1 : 0;
       slides[current].style.opacity = 1;
     }, 5000);
@@ -87,5 +88,7 @@ var init = function init() {
     menu.mobile();
   }
 
-  roomSlider();
+  rooms.forEach(function (e, i) {
+    roomSlider(i);
+  });
 };
