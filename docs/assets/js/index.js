@@ -12,6 +12,15 @@ var init = function init() {
       rooms = document.querySelectorAll('.room'),
       heroTitle = document.querySelector('#hero-title'),
       navListFromTop = navList.offsetTop,
+      roomTitles = document.querySelectorAll('.room-text h4'),
+      roomBodies = document.querySelectorAll('.room-text-body'),
+      toggleRoomText = function toggleRoomText(elements) {
+    elements.forEach(function (element, index) {
+      element.addEventListener("click", function () {
+        roomBodies[index].classList.toggle('room-text-hidden');
+      });
+    });
+  },
       roomSlider = function roomSlider(roomIndex) {
     var current = 0,
         slides = rooms[roomIndex].querySelectorAll('.room-slider img');
@@ -77,7 +86,8 @@ var init = function init() {
       roomList.addEventListener('click', function () {
         roomList.classList.toggle('roomlist-hidden');
       });
-
+      toggleRoomText(roomTitles);
+      toggleRoomText(roomBodies);
       window.onscroll = menu.scrolled;
     }
   };
