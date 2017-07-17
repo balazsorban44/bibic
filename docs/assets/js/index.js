@@ -1,17 +1,84 @@
 'use strict';
 
+// const galleryItems = []
+//
+// class Gallery {
+//   constructor(rootDir, imgCount, width, height) {
+//     this.gallery = []
+//     this.imgCount = imgCount
+//     this.width = width
+//     this.height = height
+//     this.rootDir = rootDir
+//   }
+//
+//   init() {
+//     for (let i = 0; i < this.imgCount; i++) {
+//       galleryItems.push({
+//         src: `${this.rootDir}${i}.jpg`,
+//         w: this.width,
+//         h: this.height
+//       })
+//     }
+//     return this
+//   }
+//   getImgList() {
+//     return this.gallery
+//   }
+// }
+//
+// const pswpElement = document.querySelectorAll('.pwsp')[0]
+// const galleryRoot = '../img/gallery/'
+// const gallery = new Gallery(galleryRoot, 30, 2560, 1707)
+// gallery.init()
+// console.log(galleryItems);
+// const g = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, galleryItems)
+// g.init()
+
+
+var pswpElement = document.querySelectorAll('.pswp')[0];
+var rootDir = 'assets/img/gallery/';
+// build items array
+var items = [];
+for (var i = 0; i < 30; i++) {
+  items.push({
+    src: '' + rootDir + i + '.jpg',
+    w: 2560,
+    h: 1707
+  });
+}
+
+var options = {
+  history: false,
+  loop: false,
+  spacing: 0,
+  modal: false,
+  pinchToClose: false,
+  closeOnScroll: false,
+  closeOnVerticalDrag: false,
+  escKey: false,
+  closeEl: false,
+  captionEl: false,
+  zoomEl: false,
+  shareEl: false,
+  counterEl: false
+};
+
+var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+gallery.init();
+
 window.addEventListener('load', function load() {
   window.removeEventListener('load', load, false);
   init();
 }, false);
 
 var init = function init() {
+
   var nav = document.querySelector('nav'),
       navList = nav.querySelector('ul'),
+      navListFromTop = navList.offsetTop,
       hamburger = document.querySelector('#hamburger'),
       rooms = document.querySelectorAll('.room'),
       heroTitle = document.querySelector('#hero-title'),
-      navListFromTop = navList.offsetTop,
       roomTitles = document.querySelectorAll('.room-text h4'),
       roomBodies = document.querySelectorAll('.room-text-body'),
       toggleRoomText = function toggleRoomText(elements) {
