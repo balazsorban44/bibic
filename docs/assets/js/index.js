@@ -1,42 +1,7 @@
 'use strict';
 
-// const galleryItems = []
-//
-// class Gallery {
-//   constructor(rootDir, imgCount, width, height) {
-//     this.gallery = []
-//     this.imgCount = imgCount
-//     this.width = width
-//     this.height = height
-//     this.rootDir = rootDir
-//   }
-//
-//   init() {
-//     for (let i = 0; i < this.imgCount; i++) {
-//       galleryItems.push({
-//         src: `${this.rootDir}${i}.jpg`,
-//         w: this.width,
-//         h: this.height
-//       })
-//     }
-//     return this
-//   }
-//   getImgList() {
-//     return this.gallery
-//   }
-// }
-//
-// const pswpElement = document.querySelectorAll('.pwsp')[0]
-// const galleryRoot = '../img/gallery/'
-// const gallery = new Gallery(galleryRoot, 30, 2560, 1707)
-// gallery.init()
-// console.log(galleryItems);
-// const g = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, galleryItems)
-// g.init()
-
-
 var pswpElement = document.querySelectorAll('.pswp')[0];
-var rootDir = 'assets/img/gallery/';
+var rootDir = 'assets/images/gallery/';
 // build items array
 var items = [];
 for (var i = 0; i < 30; i++) {
@@ -50,7 +15,7 @@ for (var i = 0; i < 30; i++) {
 var options = {
   history: false,
   loop: false,
-  spacing: 0,
+  spacing: 0.01,
   modal: false,
   pinchToClose: false,
   closeOnScroll: false,
@@ -60,10 +25,13 @@ var options = {
   captionEl: false,
   zoomEl: false,
   shareEl: false,
-  counterEl: false
+  counterEl: false,
+  focus: false,
+  maxSpreadZoom: 1
 };
 
 var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+
 gallery.init();
 
 window.addEventListener('load', function load() {
@@ -143,7 +111,7 @@ var init = function init() {
     bigScreen: function bigScreen() {
       navList.classList.remove('hidden');
       var roomList = navList.querySelector('ul'),
-          roomListToggle = navList.querySelector('.szobak a');
+          roomListToggle = navList.querySelector('#rooms-menu a');
       roomList.classList.add('roomlist-hidden');
 
       roomListToggle.addEventListener('click', function (e) {
@@ -164,6 +132,9 @@ var init = function init() {
       menu.bigScreen();
     } else {
       menu.smallScreen();
+      window.addEventListener('hashchange', function () {
+        window.scrollTo(0, window.pageYOffset - 60);
+      });
     }
 
     rooms.forEach(function (e, i) {
