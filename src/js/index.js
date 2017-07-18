@@ -4,104 +4,118 @@ window.addEventListener('load', function load(){
 },false)
 
 const init = () => {
-  const nav = document.querySelector('nav'),
-        mobileNav = document.querySelector('.mobile-nav'),
-        mobileMenu = document.querySelector('#mobile-menu'),
-        heroText = document.querySelector('h1'),
-        hamburger = document.querySelector('#hamburger-icon'),
-        heroHeight = document.querySelector('#hero').clientHeight,
-        headerHeight = document.querySelector('header').clientHeight,
-  roomSlider = () => {
-    let current = 0,
-    slides = document.querySelectorAll('.room-slider img');
 
-    setInterval(function() {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.opacity = 0;
-      }
-      current = (current != slides.length - 1) ? current + 1 : 0;
-      slides[current].style.opacity = 1;
-    }, 5000);
+  const nav = document.querySelector('nav'),
+        navList = nav.querySelector('ul'),
+        navListFromTop = navList.offsetTop,
+        hamburger = document.querySelector('#hamburger'),
+        rooms = document.querySelectorAll('.room'),
+        heroTitle = document.querySelector('#hero-title'),
+        roomTitles = document.querySelectorAll('.room-text h4'),
+        roomBodies = document.querySelectorAll('.room-text-body'),
+
+
+  toggleRoomText = (elements) => {
+    elements.forEach( (element, index) => {
+    element.addEventListener("click", () => {
+      roomBodies[index].classList.toggle('room-text-hidden')
+    })
+  })},
+
+  roomSlider = (roomIndex) => {
+    let current = 0,
+        slides = rooms[roomIndex].querySelectorAll('.room-slider img')
+    setInterval( () => {
+      slides.forEach((e) => {
+        e.style.opacity = 0
+      })
+      current = (current != slides.length - 1) ? current + 1 : 0
+      slides[current].style.opacity = 1
+    }, 5000)
 
   },
   menu = {
-    mobile() {
+    smallScreen() {
       hamburger.addEventListener('click', () =>{
-        mobileNav.classList.toggle('mobile-nav-active')
+        navList.classList.toggle('hidden')
+        hamburger.classList.toggle('hamburger-active')
       })
 
-      mobileNav.addEventListener('click', () =>{
-        if (!window.matchMedia('(min-width: 1280px)').matches) {
-          mobileNav.classList.remove('mobile-nav-active')
-        }
-
+      navList.addEventListener('click', () =>{
+        hamburger.classList.toggle('hamburger-active')
+        navList.classList.add('hidden')
       })
-
-      nav.addEventListener('click', () =>{
-        menu.navBar()
-      })
-
-      window.onscroll = menu.scrolled
 
     },
     scrolled(){
-      let fromTop = window.pageYOffset
-      if (fromTop < heroHeight/4) {
-        heroText.className = ""
-        mobileMenu.classList.add('hidden')
-
-      } else if (fromTop > heroHeight/4 && fromTop < headerHeight/2 - 60) {
-        heroText.classList.add('hero-text-fixed')
-        mobileMenu.classList.remove('hidden')
-      }
-
-      if (window.matchMedia('(min-width: 1280px)').matches) {
-        if (fromTop > headerHeight/2 - 60 && fromTop < headerHeight*0.85) {
-          mobileNav.classList.remove('mobile-nav-active')
-        } else if (fromTop > headerHeight*0.85){
-          menu.navBar()
-          mobileMenu.classList.remove('hidden')
-          mobileNav.classList.add('mobile-nav-active')
+      let fromTop = window.pageYOffset,
+          w = window.innerWidth
+      if (!('ontouchstart' in window)) {
+        if (fromTop > navListFromTop - 60) {
+            heroTitle.classList.add('hero-title-fixed')
+        } else {
+          heroTitle.style.transition = 'background-color .2s'
+          heroTitle.style.top = `${w*0.15 - fromTop/3}px`
+          heroTitle.style.transform = `scale(${3.5 - fromTop/400})`
+          heroTitle.classList.remove('hero-title-fixed')
         }
-
       } else {
-        if (fromTop > headerHeight/2 - 60 && fromTop < headerHeight*0.825) {
-          mobileMenu.classList.remove('hidden')
-          hamburger.classList.add('hidden')
-        } else if (fromTop > headerHeight*0.825){
-          menu.navBar()
-          mobileNav.classList.remove('mobile-nav-active')
+        if (fromTop > navListFromTop/4) {
+            heroTitle.classList.add('hero-title-fixed')
+        } else {
+          heroTitle.classList.remove('hero-title-fixed')
         }
-
       }
+      if (fromTop > navListFromTop - 60) {
+        navList.classList.add('menu-fixed')
+        heroTitle.style.backgroundColor = '#1f1511'
+        heroTitle.querySelector('span').style.color = '#fafafa'
+      } else {
+        heroTitle.style.backgroundColor = ''
+        heroTitle.querySelector('span').style.color = '#1f1511'
+        navList.classList.remove('menu-fixed')
+      }
+
     },
 
-    navBar() {
-      mobileMenu.classList.remove('hidden')
-      heroText.classList.add('hero-text-fixed')
-      hamburger.classList.remove('hidden')
-    },
+    bigScreen() {
+      navList.classList.remove('hidden')
+      const roomList = navList.querySelector('ul'),
+            roomListToggle = navList.querySelector('#rooms-menu a')
+      roomList.classList.add('roomlist-hidden')
 
-    desktop() {
+      roomListToggle.addEventListener('click', (e) =>{
+          e.preventDefault()
+          roomList.classList.toggle('roomlist-hidden')
+      })
+      roomList.addEventListener('click', () =>{
+          roomList.classList.toggle('roomlist-hidden')
+      })
+      toggleRoomText(roomTitles)
+      toggleRoomText(roomBodies)
       window.onscroll = menu.scrolled
     }
 
   }
 
+  const resized = () => {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      menu.bigScreen()
+    } else {
+      menu.smallScreen()
+      window.addEventListener('hashchange', function() {
+        window.scrollTo(0, window.pageYOffset - 60)
+      });
+    }
 
-
-
-  if (window.matchMedia('(min-width: 1280px)').matches) {
-    menu.desktop()
-  } else {
-    menu.mobile()
+    rooms.forEach((e,i) => {
+      roomSlider(i)
+    })
   }
 
-  roomSlider()
-  
-
-
-
-
+  resized()
+  window.addEventListener('resize', () =>{
+    resized()
+  })
 
 }

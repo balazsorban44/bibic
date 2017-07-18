@@ -1,0 +1,8 @@
+@mixin import-font($font-name)
+  @font-face
+    font-family: #{$font-name}
+    src:  url(#{$fonts}#{$font-name}.woff)
+
+@mixin import-img($img-name, $url:#{$bg},$img-ext:jpg)
+  background:
+    image: url(#{$url}#{$img-name}.#{$img-ext})

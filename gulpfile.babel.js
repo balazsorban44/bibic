@@ -7,21 +7,23 @@ import pug from 'gulp-pug'
 import sass from 'gulp-sass'
 import babel from 'gulp-babel'
 
-// Minifiers
+// Minifiers, Optimizers
 import htmlMin from 'gulp-htmlmin'
-import cleanCSS from 'gulp-clean-css'
+import cssMin from 'gulp-clean-css'
+// TODO Add jsMin package
 import imageMin from 'gulp-image'
 import imageResize from 'gulp-image-resize'
 
 // Utilities
 import jshint from 'gulp-jshint'
-import livereload from 'gulp-livereload'
-import webserver from 'gulp-webserver'
-import gutil from 'gulp-util'
+import browserSync from 'browser-sync'
+import concat from 'gulp-concat'
 
 // Constants
 const src = 'src/',
-      build = 'docs/'
+      build = 'docs/',
+      reload = browserSync.reload
+
 
 // ----------------Tasks---------------- //
 
@@ -30,20 +32,21 @@ const src = 'src/',
 gulp.task('pug', () => {
   gulp.src(path.join(src + 'pug/index.pug'))
   .pipe(pug({pretty:true}))
-  .on('error', gutil.log)
   .pipe(gulp.dest(build))
-  .pipe(livereload())
+  .pipe(browserSync.stream())
 })
 
 gulp.task('sass', () => {
   gulp.src(path.join(src + 'sass/main.sass'))
-  .pipe(sass().on('error', sass.logError))
+  .pipe(sass())
+  .on('error', sass.logError)
   .pipe(gulp.dest(path.join(build + 'assets/css')))
-  .pipe(livereload())
+  .pipe(browserSync.stream())
 })
 
 gulp.task('es6', () => {
-  gulp.src(path.join(src + 'js/index.js'))
+  gulp.src(path.join(src + 'js/**/*.js'))
+  .pipe(concat('index.js'))
   .pipe(jshint({
     esversion: 6,
     asi: true,
@@ -55,70 +58,78 @@ gulp.task('es6', () => {
       this.emit('end');
     })
   .pipe(gulp.dest(path.join(build + 'assets/js')))
-  .pipe(livereload())
+  .pipe(browserSync.stream())
 })
 
-// Minifiers
-gulp.task('htmlMin', () => {
+// Minify, Optimize
+
+gulp.task('minifyHTML', () => {
   gulp.src(path.join(src + 'pug/index.pug'))
   .pipe(pug())
   .pipe(htmlMin({removeComments: true}))
   .pipe(gulp.dest(build))
 })
 
-gulp.task('cleanCSS', () => {
+gulp.task('minifyCSS', () => {
   gulp.src(path.join(src + 'sass/main.sass'))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(path.join(build + 'assets/css')))
-    .pipe(cleanCSS({debug: true}, (details) => {
-        console.log(details.name + ' before: ' + details.stats.originalSize/1000 +
-        'kb and after: ' + details.stats.minifiedSize/1000 + 'kb');
-      }))
-    .pipe(gulp.dest(path.join(build + 'assets/css')))
+  .pipe(sass().on('error', sass.logError))
+  .pipe(gulp.dest(path.join(build + 'assets/css')))
+  .pipe(cssMin({debug: true}, (details) => {
+    console.log(details.name + ' before: ' + details.stats.originalSize/1000 +
+    'kb and after: ' + details.stats.minifiedSize/1000 + 'kb');
+  }))
+  .pipe(gulp.dest(path.join(build + 'assets/css')))
 })
 
-gulp.task('images', () => {
-  gulp.src(path.join(src + 'media/images/**/*.{jpg,png,svg}'))
+// TODO Add minifyJS task
+
+gulp.task('optimizeImages', () => {
+  gulp.src(path.join(src + 'media/images/**/*.{jpg,png}'))
   .pipe(imageResize({
     imageMagick: true,
-    width:2560,
+    width: 2560,
     height: 2560,
     upscale : false
    }))
   .pipe(imageMin({
      guetzli: true,
-     optipng: true,
-     svgo: true
+     optipng: true
   }))
-  .pipe(gulp.dest(path.join(build + 'assets/img')))
+  .pipe(gulp.dest(path.join(build + 'assets/images')))
+})
+
+gulp.task('optimizeIcons', () => {
+  gulp.src(path.join(src + 'media/icons/*.svg'))
+  .pipe(imageMin({svgo: true}))
+  .pipe(gulp.dest(path.join(build + 'assets/icons')))
 })
 
 // Utilites
 
-gulp.task('webserver', () => {
-  gulp.src(build)
-    .pipe(webserver({
-      directoryListing: true,
-      open: true,
-      host: '0.0.0.0',
-      port: 8000
-    }));
-});
+gulp.task('serve', ['pug', 'sass', 'es6'], () => {
+  browserSync({
+    notify: false,
+    server: ['./docs']
+  })
+
+  gulp.watch(path.join(src + 'sass/**/*.sass'), ['sass'])
+  gulp.watch(path.join(src + 'pug/**/*.pug'), ['pug', reload])
+  gulp.watch(path.join(src + 'js/**/*.js'), ['es6', reload])
+
+})
+
 
 
 
 // ----------------Bundled tasks---------------- //
 
+// TODO Add minifyJS
+gulp.task('minify', ['minifyHTML','minifyCSS',])
 
-gulp.task('preprocess', ['sass','pug','es6'])
-gulp.task('watch', () => {
-  livereload.listen()
-  gulp.watch(path.join(src + 'sass/**/*.sass'), ['sass'])
-  gulp.watch(path.join(src + 'pug/**/*'), ['pug'])
-  gulp.watch(path.join(src + 'js/*.js'), ['es6'])
-  livereload.reload()
-})
-gulp.task('default', ['watch','preprocess'])
+gulp.task('optimize', ['optimizeImages', 'optimizeIcons'])
 
-gulp.task('minify', ['htmlMin','cleanCSS'])
+gulp.task('default', ['serve'])
+
+
+
 module.exports = gulp

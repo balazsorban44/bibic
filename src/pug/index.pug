@@ -1,18 +1,21 @@
-include 1-ESSENTIALS/vars
-<!DOCTYPE html>
-html(lang='hu')
-  head
-    include 2-MODULES/head
-  body
-    header
-      include 2-MODULES/header
-    main
-      include 3-SECTIONS/landing
-      include 3-SECTIONS/services
-      include 3-SECTIONS/rooms
-      include 3-SECTIONS/prices
-      include 3-SECTIONS/reservation
+include ESSENTIALS/_vars
 
+doctype html
+
+html(lang='hu')
+  
+  head
+    include ESSENTIALS/head
+    
+  body
+    
+    header
+      include SECTIONS/header
+      
+    main
+      include SECTIONS/main
+      
     footer
-      include 2-MODULES/footer
-    script(src=assets+'js/index.js')
+      include SECTIONS/footer
+      
+    include ESSENTIALS/_scripts

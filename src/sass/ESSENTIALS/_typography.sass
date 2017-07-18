@@ -1,0 +1,105 @@
+// ------------------------------ TYPOGRAPHY ------------------------------ //
+
+@include import-font(Cocogoose)
+@include import-font(ConeriaScript)
+@include import-font(Coolvetica)
+@include import-font(TheanoDidot)
+@include import-font(BebasKai)
+
+h1
+  font-weight: lighter
+  color: $light
+h1, #bemutatkozas h2
+  font-family: ConeriaScript
+
+#bemutatkozas
+  h2
+    color: $accent-color-2
+
+
+#szolgaltatasok, #szobak
+  h3
+    padding-bottom: 1.5rem
+    text-transform: uppercase
+    font-family: Cocogoose
+    color: $accent-color-3
+    font-size: 0.75em
+    letter-spacing: 0.50em
+
+#arak
+  h2, h3, h4, h5, p
+    font-family: Cocogoose
+
+h2, h3, h5, p
+  font-size: 1.2rem
+  text-align: center
+  line-height: 1.5
+
+h3, h4, p
+  font-family: TheanoDidot
+  color: $grey
+h4, p
+  a
+    color: $accent-color-2
+    border-bottom: 1px solid $accent-color-2
+h2
+  padding-top: 1.5rem
+  font-size: 1.5rem
+  text-transform: uppercase
+  font-family: Cocogoose
+
+h4
+  text-align: center
+main, a
+  color: $light
+
+a
+  transition: .5s
+  &:hover
+    color: $accent-color-2
+    border-bottom: 1px solid $accent-color-2
+p
+  padding: 0 1.5rem
+  line-height: 1.2
+
+@media (min-width: 640px)
+  p
+    padding: 0 5rem
+
+
+@media (min-width: 768px)
+  p
+    padding: .5rem 5rem
+
+@media (min-width: 1024px)
+  h2
+    font-size: 2em
+  h3, h4
+    font-weight: lighter
+  h3
+    font-size: 1.5em
+  p
+    font-size: 1.2em
+    padding: 2.5% 20%
+    line-height: 1.5
+
+@media (min-width: 1280px)
+
+  h2
+    padding: 2% 0
+@media (min-width: 1440px)
+  h2
+    font-size: 2.3em
+  h4
+    font-size: 1.2em
+  a
+    font-size: 1.5em
+  p
+    font-size: 1.4em
+// ------------------------------ MISC ------------------------------ //
+main
+  background-color: $accent-color
+section
+  display: flex
+  justify-content: center
+  flex-direction: column

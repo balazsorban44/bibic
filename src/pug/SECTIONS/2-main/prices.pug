@@ -1,0 +1,25 @@
+section#arak
+  h2 Árak
+  #room-prices
+    h3 KEDVEZMÉNYES ÁRAK: EGYEDI AJÁNLAT ALAPJÁN! <span>KÉRJEN KÜLÖN AJÁNLATOT!</span>
+    ul
+      each value in roomPrices
+        li
+          h4 #{value[0]}
+          unless value[0] == 'Teljes ház'
+            h5 #{value[1]}.-/fő/éj
+          else
+            h5 #{value[1]}.- max 19 fő
+
+  #pub-prices
+    h3 Az árak forintban értendők, tartalmazzák a reggeli árát és az Idegenforgalmi adót.               
+    h2 SÖRÖZŐ bérleti díjak
+    h3 (a teljes teremre értendő, kiszolgáló eszközökkel és személyzettel 65m<sup>2</sup>):
+    ul
+      each value in pubPrices
+        li
+          unless value[0] == 'Egész nap'
+            h4 #{value[0]} óra
+          else
+            h4 #{value[0]}
+          h5 #{value[1]}.-

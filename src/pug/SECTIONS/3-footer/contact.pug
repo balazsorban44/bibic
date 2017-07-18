@@ -1,0 +1,29 @@
+#kapcsolat
+  ul#logos
+    li
+      a(href=baseurl)
+        include ../../../media/icons/szallas.svg
+    li
+      a(href=szallas target='_blank')
+        include ../../../media/icons/szallas.svg
+    li
+      a(href=booking target='_blank')
+        include ../../../media/icons/booking.svg
+
+  ul#reachout
+    li
+      a(href=address target='_blank')
+        span #{addressString}
+        include ../../../media/icons/map.svg
+    li
+      a(href='mailto:'+email)
+        span #{email}
+        include ../../../media/icons/mail.svg
+    li
+      a(href='tel:'+tel)
+        span #{telString}
+        include ../../../media/icons/tel.svg
+    li
+      a(href=facebook target='_blank')
+        span Facebook
+        include ../../../media/icons/fb.svg

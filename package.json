@@ -4,18 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "cd docs && python3 -m http.server",
-    "gulpDev": "gulp",
-    "gulpBuild": "gulp minify",
-    "build": "gulp & npm run gulpBuild",
-    "deploy": "npm run gulpBuild & git add docs & git commit -m 'Deploying changes.' & git push",
-    "start": "npm run gulpDev & npm run serve"
+    "build": "gulp serve & gulp minify",
+    "deploy": "npm run build && git add docs && git commit -m 'Deploying changes.' && git push",
+    "start": "gulp serve"
   },
   "author": "Balázs Orbán",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.12",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^3.6.0",
@@ -31,5 +29,9 @@
     "jshint": "^2.9.5",
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.2"
+  },
+  "dependencies": {
+    "gulp-concat": "^2.6.1",
+    "photoswipe": "^4.1.2"
   }
 }

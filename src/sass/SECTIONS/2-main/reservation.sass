@@ -1,0 +1,61 @@
+#foglalas
+  @include import-img(reservation)
+  background:
+    size: cover
+    position: top center
+  min-height: 100vw
+  justify-content: flex-end
+  a
+    padding: 1.1em 0 .2em
+    color: $lightred
+    background:
+      image: linear-gradient(to right, $lightred 33%, transparent 0%)
+      position: bottom
+      size: 3px 1px
+      repeat: repeat-x
+    &:hover
+      background-image: linear-gradient(to right, $light 100%, transparent 0%)
+      border-bottom: none
+      color: $light
+
+@media (min-width: 480px)
+  #foglalas
+    min-height: 0
+    h2
+      margin-top: 45%
+
+@media (min-width: 640px)
+  #foglalas
+    h2
+      margin-top: 40%
+
+
+@media (min-width: 768px)
+  #foglalas
+    h2
+      margin-top: 40%
+    h3
+      padding-bottom: 5%
+
+@media (min-width: 1024px)
+  #foglalas
+    background-size: 100% auto
+    h2
+      margin-top: 30%
+    h3
+      padding-bottom: 0
+
+
+@media (min-width: 1280px)
+  #foglalas
+    h2
+      padding-bottom: 0
+    h3
+      transition: .3s
+      &:hover
+        transform: scale(1.1)
+
+@media (min-width: 1440px)
+  #foglalas
+    h3
+      font-size: 1em

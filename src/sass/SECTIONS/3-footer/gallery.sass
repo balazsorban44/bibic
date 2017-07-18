@@ -1,0 +1,19 @@
+@import 'photoswipe/_vars'
+@import 'photoswipe/main'
+
+#galeria
+  h2
+    color: $light
+
+#gallery
+  display: flex
+  justify-content: center
+  height: 100vw * 2/3
+
+@media (orientation: landscape)
+  #gallery
+    height: 70vw *2/3
+
+  @media (min-width:1440px)
+    #gallery
+      height: 70vh

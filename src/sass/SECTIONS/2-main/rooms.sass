@@ -1,0 +1,133 @@
+#szobak
+  h2
+    position: relative
+    z-index: length($rooms)
+    background-color: #af8a5e
+    &::after
+      display: block
+      content: 'Flóra ház'
+      color: $accent-color-4
+      font-size: .5em
+      padding: 0 1em 1.5rem 1em
+      letter-spacing: .5em
+  li
+    display: flex
+    flex-direction: column
+    padding-top: 60px
+    margin-top: -60px
+    padding-bottom: 1.5rem
+    position: relative
+    @for $i from 1 through length($rooms)
+      &:nth-child(#{$i})
+        z-index: length($rooms)-$i
+        background-color: darken(nth($rooms, $i), 20)
+        .room-text-body
+          background-color: transparentize(darken(nth($rooms, $i), 20), .25)
+          &:hover::after
+            color: transparentize(darken(nth($rooms, $i), 20), .25)
+        h4
+          background-color: nth($rooms, $i)
+          &:hover
+            color: nth($rooms, $i)
+            background-color: darken(nth($rooms, $i), 20)
+.room-text
+  order: 1
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: relative
+  z-index: 1
+  h4
+    font-family: BebasKai
+    color: $light
+    font-size: 2em
+    width: 64px
+    height: 64px
+    margin-top: -32px
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 50%
+    margin-left: -4px
+  p
+    font-style: italic
+    padding-top: 1em
+  h5
+    font-family: BebasKai
+    font-weight: lighter
+    letter-spacing: .4px
+.room-slider
+  position: relative
+  img
+    display: block
+    width: 100%
+    transition: opacity .5s ease-in
+  .rest
+    position: absolute
+    top: -1px
+    img
+      opacity: 0
+      &:nth-of-type(2)
+        margin-top: -100%
+        transform: translateY(50%)
+
+
+@media (orientation: landscape) and (max-width: 1023px)
+    .room-slider
+      img
+        width: 50%
+        margin-left: auto
+        margin-right: auto
+      .rest
+        img
+          &:nth-of-type(2)
+            transform: translateY(200%)
+
+@media (min-width: 1024px)
+  #szobak li
+    padding-bottom: 0
+  .room-text
+    position: absolute
+    top: 25%
+    left: 10%
+    flex-direction: row
+    .room-text-body
+      width: 20vw
+      padding: 2em
+      height: 20vw
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      margin-left: -36px
+      position: relative
+      transition: .5s
+      border-radius: 50%
+      &:hover
+        &::after
+          transform: scale(1.1)
+      &::after
+        transition: .3s
+        cursor: pointer
+        position: absolute
+        right: 4vw
+        top: 4vw
+        content: '•'
+        font-size: 3em
+    h4
+      z-index: 1
+      transition: .5s
+      cursor: pointer
+      margin-top: 0
+      width: 72px
+      height: 72px
+      box-shadow: 0 0 20px rgba(0,0,0,.4)
+
+    p
+      padding: 1.5%
+      max-width: 25vw
+
+  .room-text-hidden
+    opacity: 0
+    transform: scale(0)
+    transform-origin: left

@@ -1,0 +1,172 @@
+nav
+  position: fixed
+  top: 0
+  height: 60px
+  width: 100vw
+  z-index: 1000
+  background:
+    image: linear-gradient(transparentize($dark, .6), transparent 80%), url($bg + 'hero.jpg')
+    size: cover, auto 100vw
+    position: -25vw 0
+
+  >ul, #szoba-lista
+    height: 100vh
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    box-sizing: border-box
+  >ul
+    position: relative
+    margin-top: 60px
+    background-color: transparentize($accent-color-dark, .015)
+    transition: .3s
+  li
+    margin: 1rem 0
+  a
+    padding: 1rem 1rem 1rem 1.5rem
+    font-family: Cocogoose
+    text-transform: uppercase
+
+#rooms-menu
+  text-align: right
+  min-width: calc(60% - 8px)
+  border-left: 8px solid $light
+  padding:
+    left: 0
+#szoba-lista
+  position: absolute
+  top: 0
+  left: 0
+  width: 40vw
+  background-color: transparentize($accent-color, .6)
+  border-right: 1px solid $light
+  a
+    font-size: 95%
+    &::after
+      content: '. Szoba'
+
+@media (min-width: 360px)
+  nav
+    li
+      margin: 1.5rem 0
+    a
+      padding: 1.5rem 1rem
+
+@media (min-width: 480px)
+  nav
+    background:
+      size: cover
+      position: top,center -10vw
+    a
+      padding: 1rem .6rem
+
+    >ul,#szoba-lista
+      display: block
+      text-align: right
+      li
+        display: inline-block
+        margin: 1rem 0
+    >ul
+      padding-left: 40vw
+  #rooms-menu
+    min-width: 0
+    border-left: none
+@media (min-width: 640px)
+
+  nav
+    >ul,#szoba-lista
+      padding: 5% 0 15%
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-wrap: wrap
+      align-content: center
+      flex-direction: row
+    >ul
+      padding-left: 40vw
+@media (min-width: 732px)
+
+  nav
+    >ul, #szoba-lista
+      align-content: flex-start
+      padding: 5%
+      display: flex
+    >ul
+      padding: 5% 10% 0 calc(40vw + 10%)
+
+
+@media (min-width: 768px)
+  nav
+    position: absolute
+    background-image: none
+    height: 60px
+    z-index: 1001
+    >ul, #szoba-lista
+      height: auto
+      padding: 0
+    >ul
+      margin-top: 100vw * 9/16
+      background-color: $accent-color-dark
+      background-image: url($bg + 'bg.png')
+      transition: margin 0s, background-color .5s
+      li
+        a
+          padding-bottom: .5rem
+    #szoba-lista
+      li
+        margin: 0
+      a
+        &::after
+          display: none
+
+
+  #szoba-lista
+    margin-top: 3rem
+    width: 100%
+    border-right: none
+    background-color: transparent
+    transition: .5s
+    li
+      padding: 1rem .5rem
+      a
+        position: relative
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        height: 48px
+        width: 48px
+        padding: 0
+      @for $i from 1 through length($rooms)
+        &:nth-child(#{$i})
+          a
+            background-color: nth($rooms, $i)
+            &:hover
+              background-color: darken(nth($rooms, $i), 20)
+              color: nth($rooms, $i)
+              border: none
+
+  .roomlist-hidden
+    opacity: 0
+    transform: scale(0)
+    transform-origin: top
+  .menu-fixed
+    position: fixed
+    margin-top: 40px
+    width: 100%
+    background-image: none
+    box-shadow: 0 10px 10px rgba(0,0,0,.5)
+
+@media (min-width: 1024px)
+  nav>ul
+    margin-top: 100vw * 9/16 + 5vw
+
+@media (min-width: 1280px)
+  nav>ul
+    margin-top: 100vh
+
+
+
+@media (min-width: 1440px)
+  nav
+    background-position: center -20vh
