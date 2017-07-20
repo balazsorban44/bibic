@@ -10,7 +10,7 @@ import babel from 'gulp-babel'
 // Minifiers, Optimizers
 import htmlMin from 'gulp-htmlmin'
 import cssMin from 'gulp-clean-css'
-// TODO Add jsMin package
+import jsMin from 'gulp-minify'
 import imageMin from 'gulp-image'
 import imageResize from 'gulp-image-resize'
 
@@ -81,7 +81,17 @@ gulp.task('minifyCSS', () => {
   .pipe(gulp.dest(path.join(build + 'assets/css')))
 })
 
-// TODO Add minifyJS task
+gulp.task('minifyJS', () => {
+  gulp.src(path.join(src + 'js/**/*.js'))
+  .pipe(concat('index.js'))
+  .pipe(babel({presets: ['es2015']}))
+  .pipe(jsMin({
+    ext:{min: '.js'},
+    noSource: true
+  }))
+  .pipe(gulp.dest(path.join(build + 'assets/js')))
+})
+
 
 gulp.task('optimizeImages', () => {
   gulp.src(path.join(src + 'media/images/**/*.{jpg,png}'))
@@ -123,8 +133,7 @@ gulp.task('serve', ['pug', 'sass', 'es6'], () => {
 
 // ----------------Bundled tasks---------------- //
 
-// TODO Add minifyJS
-gulp.task('minify', ['minifyHTML','minifyCSS',])
+gulp.task('minify', ['minifyHTML','minifyCSS', 'minifyJS'])
 
 gulp.task('optimize', ['optimizeImages', 'optimizeIcons'])
 
