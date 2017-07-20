@@ -1,105 +1,79 @@
 // ------------------------------ TYPOGRAPHY ------------------------------ //
 
-@include import-font(Cocogoose)
 @include import-font(ConeriaScript)
 @include import-font(Coolvetica)
 @include import-font(TheanoDidot)
 @include import-font(BebasKai)
 
-h1
+nav
+  text-transform: uppercase
+
+h2, #jump-to-gallery, #szobak h4, .price, .food-title, a
+    color: white
+#bemutatkozas h2
+  color: $accent-color-2
+h3, h4, p
+  color: $grey
+h5
+  color: $accent-color-5
+
+#szobak
+  h5
+    color: $light
+
+h1, h2, h4, p
   font-weight: lighter
-  color: $light
+
+h2, h3, h4, p
+  font-family: TheanoDidot
+
 h1, #bemutatkozas h2
   font-family: ConeriaScript
 
-#bemutatkozas
-  h2
-    color: $accent-color-2
-
-
-#szolgaltatasok, #szobak
-  h3
-    padding-bottom: 1.5rem
-    text-transform: uppercase
-    font-family: Cocogoose
-    color: $accent-color-3
-    font-size: 0.75em
-    letter-spacing: 0.50em
-
-#arak
-  h2, h3, h4, h5, p
-    font-family: Cocogoose
-
-h2, h3, h5, p
-  font-size: 1.2rem
+h2, h3, h4, h5
   text-align: center
-  line-height: 1.5
 
-h3, h4, p
-  font-family: TheanoDidot
-  color: $grey
-h4, p
-  a
-    color: $accent-color-2
-    border-bottom: 1px solid $accent-color-2
 h2
-  padding-top: 1.5rem
-  font-size: 1.5rem
-  text-transform: uppercase
-  font-family: Cocogoose
-
-h4
+  line-height: 1.5
+  padding: 1.5em 0
+h1
+  padding: .5em .2em
   text-align: center
-main, a
-  color: $light
+  span
+    font-size: .8em
+h3
+  font-size: 1.3em
 
-a
-  transition: .5s
-  &:hover
-    color: $accent-color-2
-    border-bottom: 1px solid $accent-color-2
-p
-  padding: 0 1.5rem
-  line-height: 1.2
+h1 span:last-of-type
+  font-size: .35em
+h5, p
+  font-size: 1.2em
 
-@media (min-width: 640px)
+#szobak
   p
-    padding: 0 5rem
-
-
-@media (min-width: 768px)
-  p
-    padding: .5rem 5rem
+    font-style: italic
+    text-align: center
+    line-height: 1
+    padding: 1em 1.5em 0
+  h5
+    padding-bottom: 1em
 
 @media (min-width: 1024px)
   h2
     font-size: 2em
-  h3, h4
-    font-weight: lighter
   h3
-    font-size: 1.5em
-  p
-    font-size: 1.2em
-    padding: 2.5% 20%
-    line-height: 1.5
-
-@media (min-width: 1280px)
-
-  h2
-    padding: 2% 0
+    font-size: 1.4em
+  h4
+    font-size: 1.3em
+  #szobak
+    h5, p
+      line-height: 1.2
+      font-size: 1.5em
 @media (min-width: 1440px)
   h2
-    font-size: 2.3em
-  h4
-    font-size: 1.2em
-  a
+    font-size: 3em
+  h3
     font-size: 1.5em
   p
     font-size: 1.4em
 // ------------------------------ MISC ------------------------------ //
-main
-  background-color: $accent-color
-section
-  display: flex
-  justify-content: center
-  flex-direction: column

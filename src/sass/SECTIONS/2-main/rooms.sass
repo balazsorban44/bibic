@@ -1,22 +1,15 @@
 #szobak
   h2
-    position: relative
-    z-index: length($rooms)
     background-color: #af8a5e
     &::after
       display: block
       content: 'Flóra ház'
       color: $accent-color-4
       font-size: .5em
-      padding: 0 1em 1.5rem 1em
       letter-spacing: .5em
   li
     display: flex
     flex-direction: column
-    padding-top: 60px
-    margin-top: -60px
-    padding-bottom: 1.5rem
-    position: relative
     @for $i from 1 through length($rooms)
       &:nth-child(#{$i})
         z-index: length($rooms)-$i
@@ -24,12 +17,13 @@
         .room-text-body
           background-color: transparentize(darken(nth($rooms, $i), 20), .25)
           &:hover::after
-            color: transparentize(darken(nth($rooms, $i), 20), .25)
+            color: transparentize(darken(nth($rooms, $i), 30), .25)
         h4
           background-color: nth($rooms, $i)
           &:hover
-            color: nth($rooms, $i)
-            background-color: darken(nth($rooms, $i), 20)
+            color: darken(nth($rooms, $i), 20)
+          &::before
+            background-color: nth($rooms, $i)
 .room-text
   order: 1
   display: flex
@@ -48,84 +42,88 @@
     justify-content: center
     align-items: center
     border-radius: 50%
-    margin-left: -4px
-  p
-    font-style: italic
-    padding-top: 1em
+
   h5
     font-family: BebasKai
     font-weight: lighter
     letter-spacing: .4px
 .room-slider
   position: relative
+  height: calc(100vw * 9/16)
+  overflow: hidden
   img
+    position: absolute
+    top: 0
     display: block
     width: 100%
-    transition: opacity .5s ease-in
-  .rest
-    position: absolute
-    top: -1px
+    transition: 1.5s ease-in-out
+    will-change: opacity
+
+  img + img
+    opacity: 0
+
+
+@media (min-width: 640px) and (max-width: 1023px) and (orientation: landscape)
+  .room-slider
+    display: flex
+    justify-content: center
+    height: calc(50vw * 9/16)
     img
-      opacity: 0
-      &:nth-of-type(2)
-        margin-top: -100%
-        transform: translateY(50%)
-
-
-@media (orientation: landscape) and (max-width: 1023px)
-    .room-slider
-      img
-        width: 50%
-        margin-left: auto
-        margin-right: auto
-      .rest
-        img
-          &:nth-of-type(2)
-            transform: translateY(200%)
+      width: 50%
 
 @media (min-width: 1024px)
-  #szobak li
-    padding-bottom: 0
+  .room
+    position: relative
+
+  .room-text-body
+    margin-left: 32px
+    width: 20vw
+    height: 20vw
+    padding: 2em
+    display: flex
+    justify-content: center
+    flex-direction: column
+    transition: .5s
+    border-radius: 50%
+
+    &::after
+      color: $light
+      transition: .3s
+      cursor: pointer
+      position: absolute
+      right: 4vw
+      top: 4vw
+      content: '•'
+      font-size: 3em
   .room-text
     position: absolute
     top: 25%
-    left: 10%
+    left: 15%
     flex-direction: row
-    .room-text-body
-      width: 20vw
-      padding: 2em
-      height: 20vw
-      display: flex
-      justify-content: center
-      align-items: center
-      flex-direction: column
-      margin-left: -36px
-      position: relative
-      transition: .5s
-      border-radius: 50%
-      &:hover
-        &::after
-          transform: scale(1.1)
-      &::after
-        transition: .3s
-        cursor: pointer
-        position: absolute
-        right: 4vw
-        top: 4vw
-        content: '•'
-        font-size: 3em
+    align-items: center
     h4
+      position: absolute
       z-index: 1
-      transition: .5s
+      transition: .5s ease-in-out
       cursor: pointer
       margin-top: 0
       width: 72px
       height: 72px
       box-shadow: 0 0 20px rgba(0,0,0,.4)
+      &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: -1
+        border-radius: 50%
+        animation: pulsate 1.5s infinite
 
-    p
-      padding: 1.5%
-      max-width: 25vw
+    &:hover
+      h4::before
+        animation: none
 
   .room-text-hidden
     opacity: 0

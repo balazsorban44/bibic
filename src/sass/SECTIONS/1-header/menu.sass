@@ -2,12 +2,11 @@ nav
   position: fixed
   top: 0
   height: 60px
-  width: 100vw
+  width: 100%
   z-index: 1000
   background:
-    image: linear-gradient(transparentize($dark, .6), transparent 80%), url($bg + 'hero.jpg')
-    size: cover, auto 100vw
-    position: -25vw 0
+    image: linear-gradient(transparentize($dark, .6), transparent 80%)
+    color: transparentize($accent-color, .5)
 
   >ul, #szoba-lista
     height: 100vh
@@ -17,22 +16,20 @@ nav
     box-sizing: border-box
   >ul
     position: relative
-    margin-top: 60px
+    top: 60px
     background-color: transparentize($accent-color-dark, .015)
     transition: .3s
   li
     margin: 1rem 0
   a
     padding: 1rem 1rem 1rem 1.5rem
-    font-family: Cocogoose
-    text-transform: uppercase
 
 #rooms-menu
   text-align: right
   min-width: calc(60% - 8px)
   border-left: 8px solid $light
-  padding:
-    left: 0
+  padding-left: 0
+
 #szoba-lista
   position: absolute
   top: 0
@@ -40,10 +37,8 @@ nav
   width: 40vw
   background-color: transparentize($accent-color, .6)
   border-right: 1px solid $light
-  a
-    font-size: 95%
-    &::after
-      content: '. Szoba'
+  a::after
+    content: '. Szoba'
 
 @media (min-width: 360px)
   nav
@@ -72,7 +67,6 @@ nav
     min-width: 0
     border-left: none
 @media (min-width: 640px)
-
   nav
     >ul,#szoba-lista
       padding: 5% 0 15%
@@ -146,27 +140,19 @@ nav
               color: nth($rooms, $i)
               border: none
 
+  .menu-fixed
+    position: fixed
+    top: 0
+    margin-top: 0
+    width: 100%
+    background-image: none
+    height: 72px
+
   .roomlist-hidden
     opacity: 0
     transform: scale(0)
     transform-origin: top
-  .menu-fixed
-    position: fixed
-    margin-top: 40px
-    width: 100%
-    background-image: none
-    box-shadow: 0 10px 10px rgba(0,0,0,.5)
-
 @media (min-width: 1024px)
-  nav>ul
-    margin-top: 100vw * 9/16 + 5vw
-
-@media (min-width: 1280px)
-  nav>ul
-    margin-top: 100vh
-
-
-
-@media (min-width: 1440px)
   nav
-    background-position: center -20vh
+    >ul
+      margin-top: 100vh

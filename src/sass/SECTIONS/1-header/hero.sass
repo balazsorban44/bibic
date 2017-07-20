@@ -3,26 +3,18 @@
   top: 0
 
 #hero-title
-  padding: 1rem .5rem
   z-index: 1001
   a
     display: flex
     flex-direction: column
-    font-size: 1.5rem
-    &:hover
-      border-bottom: none
-      color: $light
-
-  span:last-child
-    font-size: 45%
 
 #hero-img
-  transform: translateX(-25vw)
+  transform: translate(-25vw, -5%)
   height: 100vw
   z-index: -1
 // Keep the main section under the header!!!!
 main
-  margin-top: 100vw
+  margin-top: 80vw
 
 @media (min-width: 480px)
   #hero-img
@@ -33,6 +25,8 @@ main
     margin-top: calc(100vw * 9/16 + 20vw - 60px)
 
 @media (min-width: 768px)
+  main
+    margin-top: calc(100vw * 9/16 + 5vmin)
   #hero-title
     width: 100%
     text-align: center
@@ -47,8 +41,13 @@ main
       color: $accent-color-dark
 
   .hero-title-fixed
+    width: 2.5vw !important
     top: 0 !important
     transform: scale(1) !important
+    z-index: 1002 !important
+    span
+      color: $light !important
+
 
 @media (min-width: 1024px)
   #hero-title
@@ -56,20 +55,26 @@ main
 
 @media (min-width: 1280px)
   #hero
-    max-height: 100vh
-    min-height: 100vh
+    height: 80vh
     overflow: hidden
+
   main
-    margin-top: 10vh
+    margin-top: 5vmin
   #hero-title
     top: 15vw
   .scroll-icon
     position: absolute
     width: 36px
     height: 36px
-    bottom: 30px
+    bottom: 25vh
     left: 50%
     @include import-img(arrow, $icons, svg)
     animation: scroll-arrow 1.3s infinite
     background-size: cover
     cursor: pointer
+
+  @media (orientation: landscape)
+    #hero
+      height: 100vh
+    .scroll-icon
+      bottom: 30px
