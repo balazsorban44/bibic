@@ -33,7 +33,6 @@ gulp.task('pug', () => {
   gulp.src(path.join(src + 'pug/index.pug'))
   .pipe(pug({pretty:true}))
   .pipe(gulp.dest(build))
-  .pipe(browserSync.stream())
 })
 
 gulp.task('sass', () => {
@@ -58,7 +57,6 @@ gulp.task('es6', () => {
       this.emit('end');
     })
   .pipe(gulp.dest(path.join(build + 'assets/js')))
-  .pipe(browserSync.stream())
 })
 
 // Minify, Optimize
@@ -123,7 +121,7 @@ gulp.task('serve', ['pug', 'sass', 'es6'], () => {
   })
 
   gulp.watch(path.join(src + 'sass/**/*.sass'), ['sass'])
-  gulp.watch(path.join(src + 'pug/**/*.pug'), ['pug', reload])
+  gulp.watch(path.join(src + '{pug,media/icons}/**/*.{pug,svg}'), ['pug', reload])
   gulp.watch(path.join(src + 'js/**/*.js'), ['es6', reload])
 
 })
