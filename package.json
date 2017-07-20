@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "gulp-concat": "^2.6.1",
+    "gulp-image": "^2.10.0",
     "photoswipe": "^4.1.2"
   }
 }
