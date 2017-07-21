@@ -1,18 +1,21 @@
 section#arak
   h2 Árak
-  #room-prices
-    h3 KEDVEZMÉNYES ÁRAK: EGYEDI AJÁNLAT ALAPJÁN! <span>KÉRJEN KÜLÖN AJÁNLATOT!</span>
-    ul
-      each value in roomPrices
-        li
-          h4 #{value[0]}
+  ul#room-prices
+    each value in roomPrices
+      li
+        h4 #{value[1]}.-
           unless value[0] == 'Teljes ház'
-            h5 #{value[1]}.-/fő/éj
+            span fő/éj
           else
-            h5 #{value[1]}.- max 19 fő
+            span max 19 fő
+        h5 #{value[0]}
+          span #{value[2]} fő részére
+        // TODO Add e-mail form ✉️
+        a(href='#') Foglalás
+  h3 KEDVEZMÉNYES ÁRAK: EGYEDI AJÁNLAT ALAPJÁN! <span>KÉRJEN KÜLÖN AJÁNLATOT!</span>
+  h3 Az árak forintban értendők, tartalmazzák a reggeli árát és az Idegenforgalmi adót.               
 
   #pub-prices
-    h3 Az árak forintban értendők, tartalmazzák a reggeli árát és az Idegenforgalmi adót.               
     h2 SÖRÖZŐ bérleti díjak
     h3 (a teljes teremre értendő, kiszolgáló eszközökkel és személyzettel 65m<sup>2</sup>):
     ul
