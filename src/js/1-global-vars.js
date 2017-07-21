@@ -1,3 +1,5 @@
+// Load JavaScript only after the page has loaded.
+
 window.addEventListener('load', function load(){
     window.removeEventListener('load', load, false)
     init()
@@ -7,17 +9,20 @@ window.addEventListener('load', function load(){
 // OPENING TAG OF init() (Ends in 5-index.js)
 const init = () => {
 
+const $ = document
 
 // Header section
-const nav = document.querySelector('nav'),
+const nav = $.querySelector('nav'),
       navList = nav.querySelector('ul'),
       navListFromTop = navList.offsetTop,
-      hamburger = document.querySelector('#hamburger'),
-      heroTitle = document.querySelector('#hero-title'),
+      hamburger = $.querySelector('#hamburger'),
+      heroTitle = $.querySelector('#hero-title'),
+      heroTitleFromTop = heroTitle.offsetTop,
+      heroTitleScale = new WebKitCSSMatrix(window.getComputedStyle(heroTitle).getPropertyValue('transform')).a,
       roomList = navList.querySelector('ul'),
-      roomListToggle = navList.querySelector('#rooms-menu a')
-
+      roomListToggle = navList.querySelector('#rooms-menu a'),
+      mainFromTop = $.querySelector('main').offsetTop
 // Rooms section
-const rooms = document.querySelectorAll('.room'),
-      roomTitles = document.querySelectorAll('.room-text h4'),
-      roomBodies = document.querySelectorAll('.room-text-body')
+const rooms = $.querySelectorAll('.room'),
+      roomNumber = $.querySelectorAll('.room-text h4'),
+      roomText = $.querySelectorAll('.room-text-body')
