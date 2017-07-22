@@ -26,3 +26,12 @@ const nav = $.querySelector('nav'),
 const rooms = $.querySelectorAll('.room'),
       roomNumber = $.querySelectorAll('.room-text h4'),
       roomText = $.querySelectorAll('.room-text-body')
+
+
+// Reserve form
+const form = $.querySelector('form'),
+      closeFormBtn = form.querySelector('span'),
+      formName = form.querySelector('.form-name'),
+      formTel = form.querySelector('.form-tel'),
+      formText = form.querySelector('textarea'),
+      reserveButtons = $.querySelectorAll('.reserve-btn')

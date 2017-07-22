@@ -1,5 +1,7 @@
 section#arak
-  h2 Árak
+  h2 Szobaárak
+  h3 KEDVEZMÉNYES ÁRAK: EGYEDI AJÁNLAT ALAPJÁN! 
+    a(href='mailto:'+reservationEmail) KÉRJEN KÜLÖN AJÁNLATOT
   ul#room-prices
     each value in roomPrices
       li
@@ -11,8 +13,8 @@ section#arak
         h5 #{value[0]}
           span #{value[2]} fő részére
         // TODO Add e-mail form ✉️
-        a(href='#') Foglalás
-  h3 KEDVEZMÉNYES ÁRAK: EGYEDI AJÁNLAT ALAPJÁN! <span>KÉRJEN KÜLÖN AJÁNLATOT!</span>
+        a.reserve-btn(href='mailto:' + reservationEmail data-price=value[1] data-room-size=value[2]) Foglalás
+    
   h3 Az árak forintban értendők, tartalmazzák a reggeli árát és az Idegenforgalmi adót.               
 
   #pub-prices
@@ -26,3 +28,14 @@ section#arak
           else
             h4 #{value[0]}
           h5 #{value[1]}.-
+
+  form(action='https://formspree.io/info@balazsorban.com' method='POST')#reserve-form
+      span
+      input.form-name(type='text' name='name' placeholder='Név' required)
+      input(type='email' name='_replyto' placeholder='E-mail cím' required)
+      input(type='tel' placeholder='Telefonszám' required)
+      textarea(name='message' placeholder='Üzenet' required)
+      input(type='hidden' name='_next' value='koszonjuk.html')
+      input(type='hidden' name='_subject' value='Új szobafoglalás az oldalon!')
+      input(type='hidden' name='_format' value='plain')
+      input.send-btn(type='submit' value='Küldés')

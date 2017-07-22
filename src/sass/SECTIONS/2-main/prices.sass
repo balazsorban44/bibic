@@ -1,8 +1,16 @@
 #arak
   background:
-    image: linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$bg}/price.jpg)
+    image: linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$bg}prices.jpg)
+    position: center
     size: cover
-
+  h2
+    padding-bottom: 0
+  h3
+    padding: .5em 5vw
+    font-size: 1em
+    a
+      display: block
+      color: $lightred
   h4,h5
     span
       display: block
@@ -13,21 +21,23 @@
   a
     display: block
     text-align: center
-
+  ul
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
 #room-prices
-  display: flex
-  flex-wrap: wrap
-  justify-content: center
-  margin-top: 10vw
+  padding-top: 64px
   li
     width: 40vw
     display: flex
     flex-direction: column
     align-items: center
     justify-content: space-between
-    margin: 0 1.5vw calc(3vw + 64px)
     padding: .5em
+    margin: 0 1.5vw
     background-color: $light
+    &:first-of-type, &:nth-last-of-type(3)
+      margin: 0 1.5vw calc(3vw + 64px)
     @for $i from 1 through length($prices)
       &:nth-of-type(#{$i})
         h4, a
@@ -42,8 +52,7 @@
     font-family: BebasKai
     font-size: 1.2em
     transition: .3s
-  h5
-    font-style: italic
+
   h4
     color: $light
     display: flex
@@ -54,7 +63,22 @@
     height: 112px
     border-radius: 50%
     margin-top: -64px
+  h5
+    font-style: italic
 
+#pub-prices
+  flex-wrap: wrap
+  ul
+    padding: 10vw 0 15vw
+  li
+    width: 40%
+    margin: 3vw 0
+  h5
+    color: $light
+@media (orientation: landscape)
+  #pub-prices
+    ul
+      padding: 5vw 20vw 7.5vw
 @media (min-width: 640px)
   #room-prices
     margin-top: 5vw
@@ -66,8 +90,8 @@
 @media (min-width: 1024px)
   #room-prices
     li
-      width: 10vw
-      padding: 1em
+      width: auto
+      padding-bottom: 1.5em
     h4
       font-size: 2em
       width: 164px
