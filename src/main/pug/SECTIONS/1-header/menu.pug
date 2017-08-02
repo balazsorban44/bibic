@@ -1,0 +1,24 @@
+#hamburger
+  span
+
+nav
+  ul#menu.hidden
+    li
+      a(href='#bemutatkozas') Bemutatkozás
+    li
+      a(href='#szolgaltatasok') Szolgáltatások
+    li#rooms-menu
+      a(href='#szobak') Szobák
+      ul#szoba-lista
+        - var n = 1
+        while n < 7
+          li
+            a(href='#szoba-'+ n) #{n++}
+    li
+      a(href='#specialitasok') Specialitások
+    li
+      a(href='#arak') Árak
+    li
+      a(href='#galeria') Galéria
+    li
+      a(href='#kapcsolat') Kapcsolat

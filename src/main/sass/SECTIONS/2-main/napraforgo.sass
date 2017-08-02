@@ -1,0 +1,99 @@
+#napraforgo
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background:
+      image:  linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$bg}/intro.jpg)
+      size: cover
+  p,img
+    position: relative
+    z-index: 1
+  p
+    text-align: left
+    width: 85vw
+    margin: 7.5vw 0
+  #certificates
+    display: flex
+  img
+    position: relative
+    height: 50vw
+    margin-bottom: 7.5vw
+    transform-origin: bottom right
+    transition: .3s
+    &:first-of-type
+      margin-right: 7.5vw
+      transform-origin: bottom left
+    &:hover
+      z-index: 10
+      box-shadow: 0 0 150px 40px black
+      transform: scale(2)
+
+@media (min-width: 640px)
+  #napraforgo
+    flex-direction: row-reverse
+    &::after
+      background-image:  linear-gradient(transparentize($dark, .5), transparentize($dark, .5)), url(#{$bg}/intro.jpg)
+    p
+      text-align: right
+      margin: 5vw 5vw 5vw 2.5vw
+  #certificates
+    margin-left: 5vw
+    img
+      margin-bottom: 0
+      height: 35vw
+      &:first-of-type
+        margin-right: 0
+
+@media (min-width: 768px)
+  #napraforgo
+    p
+      margin: 10vw 10vw 10vw 5vw
+  #certificates
+    margin-left: 10vw
+    img
+      height: 192px
+
+@media (min-width: 1024px)
+  #napraforgo
+    padding: 5vw
+    flex-direction: column
+    align-items: flex-end
+    &::after
+      background-image:  url(#{$bg}/intro.jpg)
+    p
+      margin: 0 0 5vw 0
+      width: 45%
+  #certificates
+    img
+      position: relative
+      border: 8px solid white
+      height: 256px
+      &:first-of-type
+        margin-right: 5vw
+
+
+@media (min-width: 1280px)
+  #napraforgo
+    img
+      cursor: pointer
+      &:first-of-type
+        transform-origin: bottom right
+
+
+@media (min-width: 1440px)
+  #napraforgo
+    padding: 10vw
+    p
+      width: 35%
+  #certificates
+    img
+      &:first-of-type
+        margin-right: 2vw

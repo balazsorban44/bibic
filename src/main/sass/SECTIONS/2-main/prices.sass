@@ -1,0 +1,139 @@
+#arak
+  background:
+    image: linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$bg}prices.jpg)
+    position: center
+    size: cover
+  h2
+    padding-bottom: 0
+  h3
+    padding: .5em 4vw
+    font-size: 1em
+    a
+      display: inline-block
+      color: $lightred
+      border-bottom: 1px dotted $lightred
+      transition: .3s
+      &:hover
+        color: $light
+        border-bottom: 1px solid $light
+  h4,h5
+    span
+      display: block
+      font-size: 80%
+  h5
+    span
+      text-transform: lowercase
+  a
+    display: block
+    text-align: center
+  ul
+    display: flex
+    padding-top: 64px
+    flex-wrap: wrap
+    justify-content: space-around
+  li
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    padding: 4px
+    margin: calc(32px + 1.5vw) 0
+    width: 45vw
+    background-color: $light
+    @for $i from 1 through length($prices)
+      &:nth-of-type(#{$i})
+        h4, a
+          background-color: nth($prices, $i)
+        a:hover
+          background-color: lighten(nth($prices, $i), 20)
+  a, h5
+    text-transform: uppercase
+    padding: .7em 0
+    align-self: stretch
+  a
+    font-family: BebasKai
+    font-size: 1.2em
+    transition: .3s
+
+
+  h4
+    color: $light
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    width: 112px
+    height: 112px
+    border-radius: 50%
+    margin-top: -64px
+
+  h5
+    font-family: TheanoDidot
+    font-style: italic
+
+#special, #special span
+  background: darken($lightred,10)
+  width: 112px
+  height: 112px
+  &::before, &::after
+      content: ""
+      position: absolute
+      height: 112px
+      width: 112px
+      background: darken($lightred,20)
+#special
+  background-color: transparent !important
+  display: flex
+  justify-content: center !important
+  align-items: center
+  position: relative
+  transform: rotate(15deg)
+  a
+    font-size: .9em
+  h4
+    width: auto
+    margin: 0
+    position: relative
+    z-index: 1
+  span
+    background: darken($lightred,30)
+    position: absolute
+    &::before
+      transform: rotate(18deg)
+    &::after
+      transform: rotate(36deg)
+
+
+  &::before
+    background: darken($lightred,40)
+    transform: rotate(54deg)
+  &::after
+    transform: rotate(72deg)
+
+@media(min-width: 768px)
+  #arak
+    ul
+      margin: 0 5%
+    li
+      width: 35vw
+@media(min-width: 1024px) and (orientation: landscape)
+  #arak
+    background:
+      image: url(#{$bg}prices.jpg)
+    position: relative
+    ul
+      padding-top: 32px
+      margin: 0 15%
+    li
+      transform: scale(1.2)
+      width: 12.5vw
+    >h3
+      margin-top: 20%
+      padding-bottom: 11%
+    h4
+      font-size: 2em
+  #special
+    transform: scale(1.2) rotate(15deg) !important
+    bottom: 30%
+    right: 20%
+    position: absolute

@@ -1,0 +1,87 @@
+#hero-title, #hero-img
+  position: fixed
+  top: 0
+
+#hero-title
+  z-index: 1001
+  a
+    display: flex
+    flex-direction: column
+
+#hero-img
+  transform: translate(-25vw, -5%)
+  height: 100vw
+  z-index: -1
+// Keep the main section under the header!!!!
+main
+  margin-top: 80vw
+
+@media (min-width: 480px)
+  #hero-img
+    height: auto
+    width: 100%
+    transform: none
+  main
+    margin-top: calc(100vw * 9/16 + 20vw - 60px)
+
+@media (min-width: 768px)
+  main
+    margin-top: calc(90vw * 9/16 + 100px)
+  #hero-title
+    width: 100%
+    text-align: center
+    top: 10vw
+    transform: scale(2.5)
+    transform-origin: top
+    a
+      max-width: 10vw
+      margin: 0 auto
+    span
+      color: $accent-color-dark
+
+  .hero-title-fixed
+    width: 3vw !important
+    left: 10px !important
+    top: 5px !important
+    transform: scale(1) !important
+    z-index: 1002 !important
+    opacity: 1 !important
+    span
+      color: $light !important
+
+
+@media (min-width: 1024px)
+  #hero-title
+    transform: scale(3.5)
+
+@media (min-width: 1280px)
+  #hero
+    height: 80vh
+    overflow: hidden
+
+  main
+    margin-top: 5vmin
+  #hero-title
+    top: 12.5vw
+  .scroll-icon
+    z-index: -1
+    position: fixed
+    width: 36px
+    height: 36px
+    bottom: 25vh
+    left: 50%
+    @include import-img(arrow, $icons, svg)
+    animation: scroll-arrow 1.3s infinite
+    background-size: cover
+    cursor: pointer
+
+  @media (orientation: landscape)
+    #hero
+      height: 100vh
+    .scroll-icon
+      bottom: 30px
+
+@media (min-width: 1440px)
+    #hero-title
+      top: 10vw
+      transform: scale(5.5)

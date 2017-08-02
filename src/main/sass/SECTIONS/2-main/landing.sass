@@ -1,0 +1,105 @@
+#bemutatkozas
+  @include import-img(bg,$bg,png)
+  background-color: $accent-color-dark
+  h2
+    text-transform: none
+  h4
+    font-size: 1.1em
+  >p
+    width: 85%
+    margin: 0 auto
+    &:first-of-type, &:nth-of-type(2)
+      &::after
+        display: flex
+        justify-content: center
+        padding: .5em
+        content: '~'
+    &:first-of-type
+      margin-top: 7.5%
+    &:nth-of-type(2)
+      text-align: center
+    &:last-of-type
+      text-align: right
+      margin-bottom: 7.5%
+
+.profiles
+  li:nth-of-type(2)
+    margin: 7.5% 0
+
+.profile-img
+  display: block
+  border-radius: 50%
+  width: 128px
+  height: 128px
+  margin: 0 auto
+
+
+@media (min-width: 640px)
+  #bemutatkozas
+    br
+      display: none
+    >p
+      width: 80%
+      &:last-of-type
+        margin-bottom: 10vw
+  .profiles
+    width: 90%
+    margin: 0 auto
+    li
+      display: flex
+      align-items: center
+      &:nth-child(odd)
+        h3,h4
+          text-align: left
+      &:nth-child(2)
+        margin: -2.5% 0
+        flex-direction: row-reverse
+        align-self: flex-end
+        h3,h4
+          text-align: right
+  .profile-img
+    margin: 0 5%
+
+@media (min-width: 768px)
+  #bemutatkozas
+    >p
+      width: 65%
+  .profiles
+    width: 75%
+
+
+@media (min-width: 1024px)
+  #bemutatkozas
+    >p
+      width: 50%
+      text-align: left !important
+      &:first-of-type, &:nth-of-type(2)
+        &::after
+          display: none
+      &:nth-of-type(2)
+        padding: 2.5vw 0
+
+  .profiles
+    width: 65%
+
+@media (min-width: 1280px)
+  #bemutatkozas
+    >p
+      width: 45%
+    li
+      img
+        transition: .2s ease-in-out
+        cursor: pointer
+        &:nth-of-type(2)
+          margin: -2.5% 0
+        &:hover
+          transform: scale(1.15)
+
+  .profiles
+    width: 55%
+
+@media (min-width: 1440px)
+  .profiles
+    img
+      width: 192px
+      height: 192px

@@ -1,0 +1,19 @@
+section#szobak
+  h2 Szobák
+  ul
+    each value, index in rooms
+      li( id='szoba-' + index class='room')
+        .room-text
+          h4= index
+          div.room-text-body.room-text-hidden
+            p #{value[0]}
+            if value[2]
+              h5 #{value[1]}.-/fő/éj pótágy+
+            else
+              h5 #{value[1]}.-/fő/éj
+            h3.isReserved
+        .room-slider
+          - var n = 0
+          while n < value[3]
+            img(src=images + 'rooms/' + index + '_' + n + '.jpg' alt='Szoba '+index+'., Kép '+(n+++1)+'.')
+            

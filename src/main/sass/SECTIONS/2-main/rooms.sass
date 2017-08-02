@@ -1,0 +1,139 @@
+#szobak
+  h2
+    background-color: #af8a5e
+    &::after
+      display: block
+      content: 'Flóra ház'
+      color: $accent-color-4
+      font-size: .5em
+      letter-spacing: .5em
+  li
+    display: flex
+    flex-direction: column
+    @for $i from 1 through length($rooms)
+      &:nth-child(#{$i})
+        z-index: length($rooms)-$i
+        background-color: darken(nth($rooms, $i), 20)
+        .room-text-body
+          background-color: transparentize(darken(nth($rooms, $i), 20), .25)
+          &:hover::after
+            color: transparentize(darken(nth($rooms, $i), 30), .25)
+        h4
+          background-color: nth($rooms, $i)
+          &:hover
+            color: darken(nth($rooms, $i), 20)
+          &::before
+            background-color: nth($rooms, $i)
+.room-text
+  order: 1
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: relative
+  z-index: 1
+  h4
+    width: 64px
+    height: 64px
+    margin-top: -32px
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 50%
+
+  h5
+    font-family: BebasKai
+    font-weight: lighter
+    letter-spacing: .4px
+.room-slider
+  position: relative
+  height: calc(100vw * 9/16)
+  overflow: hidden
+  img
+    position: absolute
+    top: 0
+    display: block
+    width: 100%
+    transition: 1.5s ease-in-out
+    will-change: opacity
+
+  img + img
+    opacity: 0
+
+@media (min-width: 640px)
+  #szobak
+    h2
+      &::after
+        display: inline
+        padding-left: .5em
+  @media (max-width: 1023px) and (orientation: landscape)
+    .room-slider
+      display: flex
+      justify-content: center
+      height: calc(50vw * 9/16)
+      img
+        width: 50%
+
+@media (min-width: 1024px)
+  .room
+    position: relative
+
+  .room-text-body
+    margin-left: 32px
+    width: 20vw
+    height: 20vw
+    padding: 2em
+    display: flex
+    justify-content: center
+    flex-direction: column
+    transition: .5s
+    border-radius: 50%
+
+    &::after
+      color: $light
+      transition: .3s
+      cursor: pointer
+      position: absolute
+      right: 4vw
+      top: 4vw
+      content: '•'
+      font-size: 3em
+  .room-text
+    position: absolute
+    top: 25%
+    left: 15%
+    flex-direction: row
+    align-items: center
+    h4
+      position: absolute
+      z-index: 1
+      transition: .5s ease-in-out
+      cursor: pointer
+      margin-top: 0
+      width: 72px
+      height: 72px
+      box-shadow: 0 0 20px rgba(0,0,0,.4)
+      &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: -1
+        border-radius: 50%
+        animation: pulsate 1.5s infinite
+
+    &:hover
+      h4::before
+        animation: none
+  .room-slider
+    max-height: calc(100vh - 48px)
+    overflow: hidden
+  .room-text-hidden
+    opacity: 0
+    transform: scale(0)
+    transform-origin: left
+
+@media (min-width: 1280px)
+  #szoba-lista
+    width: 60vw

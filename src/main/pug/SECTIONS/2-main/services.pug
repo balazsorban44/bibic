@@ -1,0 +1,9 @@
+section#szolgaltatasok
+  h2 Szolgáltatásaink
+  ul
+    each value in services
+      li
+        img(src=gallery + value[1] + '.jpg' alt='Szolgáltatás kép')
+        p #{value[0]}
+  p Az aktív pihenést kedvelőknek ping pong asztal és kerékpárok, a gyermekeknek játszótér áll rendelkezésére.
+  a(href='#galeria') Galériához

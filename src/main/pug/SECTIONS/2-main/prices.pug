@@ -1,0 +1,69 @@
+section#arak
+  h2 Árak
+  ul
+    each value in roomPrices
+      li
+        h4 #{value[1]}
+          unless value[0] == 'Teljes ház'
+            span Ft-tól*
+          else
+            span Forint*
+        h5 #{value[0]}
+          span #{value[2]} fő részére
+        // TODO Add e-mail form ✉️
+        a.reserve-btn(href='mailto:' + reservationEmail data-price=value[1] data-room-size=value[2]) Foglalás
+    li
+      h4 16.000
+        span Ft-tól*
+      h5 Söröző
+        span terembérlés
+      a(href='#') Részletek
+    li#special
+      a(href='#')
+        h4 Egyedi<br>ajánlat
+      span
+  h3 *Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót.               
+
+  //- #pub-prices
+  //-   h2 SÖRÖZŐ bérleti díjak
+  //-   h3 (a teljes teremre értendő, kiszolgáló eszközökkel és személyzettel 65m<sup>2</sup>):
+  //-   ul
+  //-     each value in pubPrices
+  //-       li
+  //-         unless value[0] == 'Egész nap'
+  //-           h4 #{value[0]} óra
+  //-         else
+  //-           h4 #{value[0]}
+  //-         h5 #{value[1]}.-
+
+  form(action='https://formspree.io/info@balazsorban.com' method='POST')#reserve-form
+      h1 Szobafoglalás
+      span.close-form-btn
+      fieldset
+        legend Személyi adatok
+        .field
+          label Név
+          input.form-name(data-name='name' type='text' name='name' placeholder='Kovács József' required)
+        .field
+          label E-mail
+          input.form-email(data-name='mail' type='email' name='_replyto' placeholder='kovacs.jozsef@email.hu' required)
+        .field
+          label Telefon
+          input.form-tel(data-name='tel' type='tel' placeholder='+36-30-123-4567' required)
+      fieldset#reservation-date
+        legend Dátumok
+        #arrival-date.field
+          label Érkezés
+          input(data-name='arrive' type='date' date-format='YYYY-MM-DD' required)
+        #departure-date.field
+          label Távozás
+          input(data-name='depart' type='date' required)
+      fieldset
+        legend Egyéb információ
+        .form-text.field
+          textarea(data-name='text' placeholder='Írjon nekünk...')
+      input(type='hidden' name='_next' value='koszonjuk.html')
+      input(type='hidden' name='_subject' value='Új szobafoglalás az oldalon!')
+      input(type='hidden' name='_format' value='plain')
+      textarea.form-message(name='message')
+      input.send-btn(type='submit' value='Küldés')
