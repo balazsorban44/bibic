@@ -18,9 +18,10 @@ import imageResize from 'gulp-image-resize'
 import jshint from 'gulp-jshint'
 import browserSync from 'browser-sync'
 import concat from 'gulp-concat'
+import rename from 'gulp-rename'
 
 // Constants
-const src = 'src/main/',
+const src = 'src/',
       build = 'docs/',
       reload = browserSync.reload
 
@@ -30,11 +31,18 @@ const src = 'src/main/',
 
 // Preprocessors
 gulp.task('pug', () => {
-  gulp.src(path.join(src + 'pug/*.pug'))
+  gulp.src(path.join(src + 'pug/index.pug'))
   .pipe(pug({pretty:true}))
   .pipe(gulp.dest(build))
   .pipe(browserSync.stream())
 
+})
+
+gulp.task('pugAdmin', () => {
+  gulp.src(path.join(src + 'pug/admin.pug'))
+  .pipe(pug({pretty:true}))
+  .pipe(rename('index.html'))
+  .pipe(gulp.dest('public'))
 })
 
 gulp.task('sass', () => {
@@ -44,6 +52,17 @@ gulp.task('sass', () => {
   .pipe(gulp.dest(path.join(build + 'assets/css')))
   .pipe(browserSync.stream())
 })
+
+
+gulp.task('sassAdmin', () => {
+  gulp.src(path.join(src + 'sass/admin.sass'))
+  .pipe(sass())
+  .on('error', sass.logError)
+  .pipe(gulp.dest(path.join(src + 'admin')))
+})
+
+
+
 
 gulp.task('es6', () => {
   gulp.src(path.join(src + 'js/**/*.js'))
@@ -126,6 +145,10 @@ gulp.task('serve', ['pug', 'sass', 'es6'], () => {
   gulp.watch(path.join(src + '{pug,media/icons}/**/*.{pug,svg}'), ['pug', reload])
   gulp.watch(path.join(src + 'js/**/*.js'), ['es6', reload])
 
+})
+gulp.task('serveAdmin', ['pugAdmin', 'sassAdmin'], () => {
+  gulp.watch(path.join(src + 'pug/**/*.pug'), ['pugAdmin'])
+  gulp.watch(path.join(src + 'sass/**/*.sass'), ['sassAdmin'])
 })
 
 
