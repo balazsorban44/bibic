@@ -25,6 +25,7 @@
     "gulp-minify": "^1.0.0",
     "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
+    "gulp-svg-sprites": "^4.1.2",
     "gulp-util": "^3.0.8",
     "gulp-webserver": "^0.9.1",
     "jshint": "^2.9.5",
@@ -33,7 +34,6 @@
   },
   "dependencies": {
     "gulp-concat": "^2.6.1",
-    "gulp-image": "^2.10.0",
-    "photoswipe": "^4.1.2"
+    "gulp-image": "^2.10.0"
   }
 }

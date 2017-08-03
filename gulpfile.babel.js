@@ -20,7 +20,7 @@ import browserSync from 'browser-sync'
 import concat from 'gulp-concat'
 
 // Constants
-const src = 'src/',
+const src = 'src/main/',
       build = 'docs/',
       reload = browserSync.reload
 
@@ -30,9 +30,11 @@ const src = 'src/',
 
 // Preprocessors
 gulp.task('pug', () => {
-  gulp.src(path.join(src + 'pug/index.pug'))
+  gulp.src(path.join(src + 'pug/*.pug'))
   .pipe(pug({pretty:true}))
   .pipe(gulp.dest(build))
+  .pipe(browserSync.stream())
+
 })
 
 gulp.task('sass', () => {
