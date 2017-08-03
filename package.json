@@ -1,12 +1,16 @@
 {
   "name": "bibic-vendeghazak",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bíbic vendégházak",
+  "repository": "https://github.com/balazsorban44/bibic-vendeghazak",
   "main": "index.js",
   "scripts": {
     "build": "gulp serve & gulp minify",
     "deploy": "npm run build && git add docs && git commit -m 'Deploying changes.' && git push",
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "startAdmin": "react-scripts start",
+    "buildAdmin": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "author": "Balázs Orbán",
   "license": "ISC",
@@ -17,8 +21,9 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^3.6.0",
+    "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^3.0.0",
-    "gulp-image": "^2.9.0",
+    "gulp-image": "^2.10.0",
     "gulp-image-resize": "^0.12.0",
     "gulp-jshint": "^2.0.4",
     "gulp-livereload": "^3.8.1",
@@ -30,10 +35,12 @@
     "gulp-webserver": "^0.9.1",
     "jshint": "^2.9.5",
     "node-sass": "^4.5.3",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.2",
+    "react-scripts": "1.0.10"
   },
   "dependencies": {
-    "gulp-concat": "^2.6.1",
-    "gulp-image": "^2.10.0"
+    "firebase": "^4.2.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
