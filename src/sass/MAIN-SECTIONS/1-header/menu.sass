@@ -1,0 +1,81 @@
+nav
+  position: fixed
+  top: 0
+  z-index: 10000
+  height: 60px
+  width: 100%
+  z-index: 1000
+  transition: .2s ease-in
+  background-image: linear-gradient(transparentize($accent-color-dark, .5), transparent 80%)
+
+#menu, #szoba-lista
+  height: 100vh
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+  will-change: transform
+#menu
+  display: none
+  align-items: flex-end
+  justify-content: center
+  position: relative
+  background-color: transparentize($accent-color-dark, .015)
+  transition: .3s
+  >li
+    cursor: pointer
+    margin: 1.5rem 0 .5rem
+
+#rooms-menu
+  text-align: right
+  min-width: calc(60% - 8px)
+  border-left: 8px solid $light
+  padding-left: 0
+
+#szoba-lista
+  justify-content: center
+  align-items: stretch
+  position: absolute
+  top: 0
+  left: 0
+  width: 40vw
+  background-color: transparentize($accent-color, .6)
+  border-right: 1px solid $light
+  li
+    display: flex
+    justify-content: center
+    align-items: center
+    border-bottom: 1px solid $accent-color-dark
+  a::after
+    content: '. Szoba'
+
+.nav-fixed
+  box-sizing: border-box
+  @include import-img(bg,$bg,png)
+  background-color: $accent-color-dark
+  box-shadow: 0 10px 10px rgba(0,0,0,.3)
+  border-bottom: 1px solid white
+
+@media (min-width: 360px)
+  #menu
+    >li
+      margin: 2rem 0 1rem
+  #szoba-lista
+    li
+      margin-top: .5rem
+    a
+      padding-bottom: 1.5rem
+
+@media (min-width: 786px)
+  #menu,
+  #szoba-lista
+    flex-direction: row
+    height: auto
+  #menu
+    font-family: WhiteFestive !important
+    a
+      padding: .25em
+  #rooms-menu
+    min-width: auto
+    border-left: none
+  #szoba-lista
+    display: none

@@ -1,0 +1,50 @@
+#kapcsolat
+  ul
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+  li
+    margin: 1em
+
+  a
+    transition: .3s
+    border-bottom: none
+    &:hover
+      color: $accent-color-2
+#logos
+  margin: 36px 17.5% 0
+  li:nth-of-type(2)
+    order: -1
+  img
+    width: 128px
+    height: 128px
+    margin-top: -72px
+#reachout
+  margin: -36px 10% 0
+  img
+    width: 48px
+    height: 48px
+  span
+    display: none
+
+
+@media (min-width: 1024px)
+  #reachout
+    margin: -36px 15% 0
+    span
+      display: block
+      margin-left: .5em
+    a
+      display: flex
+      flex-direction: row-reverse
+      align-items: center
+      justify-content: space-between
+
+
+@media (min-width: 1280px)
+  #kapcsolat
+    margin: 0 10% 5% 10%
+  #logos
+    img
+      width: 192px
+      height: 192px

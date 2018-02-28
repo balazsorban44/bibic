@@ -1,0 +1,101 @@
+#bemutatkozas
+  @include import-img(bg,$bg,png)
+  background-color: $accent-color-dark
+  padding: 7.5%
+  h2
+    text-transform: none
+  h4
+    font-size: 1.1em
+
+.history
+  margin-top: 7.5%
+
+.profiles
+  li:nth-of-type(2)
+    margin: 7.5% 0
+
+.profile-img
+  display: block
+  border-radius: 50%
+  width: 128px
+  height: 128px
+  margin: 0 auto
+
+
+@media (min-width: 560px)
+  .profiles
+    li
+      display: flex
+      align-items: center
+      &:nth-child(odd)
+        h3,h4
+          text-align: left
+      &:nth-child(2)
+        margin: -2.5% 0
+        flex-direction: row-reverse
+        align-self: flex-end
+        h3,h4
+          text-align: right
+  .profile-img
+    margin: 0 5%
+
+
+@media (min-width: 640px)
+  #bemutatkozas
+    padding: 5%
+
+  .history
+    p
+      &:nth-child(even)
+        margin: 5% 0
+        text-align: right
+
+
+@media (min-width: 768px)
+  #bemutatkozas
+    padding: 7.5% 12.5%
+  .profiles
+    max-width: 720px
+    margin: 0 auto
+  .history
+    max-width: 580px
+    margin: 12.5% auto 0 auto
+
+
+@media (min-width: 960px)
+  .history
+    p
+      &:nth-child(2)
+        margin: 7.5% 0
+        text-align: center
+      &:last-child
+        text-align: right
+
+
+@media (min-width: 1024px)
+  .history
+    margin-top: 10%
+    p
+      &:nth-child(2), &:last-child
+        text-align: left
+
+
+@media (min-width: 1280px)
+  #bemutatkozas
+    h2
+      padding-top: 2em
+    li
+      img
+        transition: .2s ease-in-out
+        cursor: pointer
+        &:nth-of-type(2)
+          margin: -2.5% 0
+        &:hover
+          transform: scale(1.15)
+
+
+@media (min-width: 1440px)
+  .profiles
+    img
+      width: 192px
+      height: 192px
