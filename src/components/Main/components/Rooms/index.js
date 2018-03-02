@@ -10,19 +10,7 @@ class Rooms extends Component {
 
   componentDidMount() {
     ROOMS_REF.on('value', snap => {
-      let rooms = snap.val()
-      snap.forEach(room => {
-        const {pictures} = room.val()
-        pictures && Object.keys(pictures).forEach((picture, index) => {
-          ROOMS_PHOTOS_REF.child(`${room.key}/${pictures[picture]}`)
-            .getDownloadURL()
-            .then(url => {
-              delete rooms[room.key].pictures[picture]
-              rooms[room.key].pictures[index] = url
-              this.setState({rooms})
-            })
-        })
-      })
+      this.setState({rooms: snap.val()})
     })
   }
 
@@ -55,7 +43,7 @@ class Rooms extends Component {
                   <img
                     width="100%"
                     key={index} 
-                    src={pictures[picture]}
+                    src={pictures[picture].resized}
                     alt={`Szoba ${id}, kép ${index}`}
                   />
                 ))}

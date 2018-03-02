@@ -4,13 +4,15 @@
   "private": true,
   "dependencies": {
     "firebase": "^4.10.1",
+    "lodash": "^4.17.5",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-fadethrough": "^2.0.0",
     "react-scripts": "1.1.1",
-    "react-scroll": "^1.7.7"
+    "react-scroll": "^1.7.7",
+    "sharp": "^0.19.1"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src/sass src/sass/main.sass src/main.css",

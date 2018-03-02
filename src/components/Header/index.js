@@ -17,21 +17,21 @@ export default class Header extends Component {
           <ul 
           // className="hidden"
            id="menu">
-            <li><Link smooth to="bemutatkozas">Bemutatkozás</Link></li>
-            <li><Link smooth to="szolgaltatasok">Szolgáltatások</Link></li>
-            <li><Link smooth to="szobak">Szobák</Link></li>
-            <li><Link smooth to="specialitasok">Specialitások</Link></li>
-            <li><Link smooth to="arak">Árak</Link></li>
-            <li><Link smooth to="galeria">Galéria</Link></li>
-            <li><Link smooth to="kapcsolat">Kapcsolat</Link></li>
+            <li><Link offset={-64} smooth to="bemutatkozas">Bemutatkozás</Link></li>
+            <li><Link offset={-64} smooth to="szolgaltatasok">Szolgáltatások</Link></li>
+            <li><Link offset={-64} smooth to="szobak">Szobák</Link></li>
+            <li><Link offset={-64} smooth to="specialitasok">Specialitások</Link></li>
+            <li><Link offset={-64} smooth to="arak">Árak</Link></li>
+            <li><Link offset={-64} smooth to="galeria">Galéria</Link></li>
+            <li><Link offset={-64} smooth to="kapcsolat">Kapcsolat</Link></li>
           </ul>
           <ul id="szoba-lista">
-            <Link smooth to="szoba-1">1</Link>
-            <Link smooth to="szoba-2">2</Link>
-            <Link smooth to="szoba-3">3</Link>
-            <Link smooth to="szoba-4">4</Link>
-            <Link smooth to="szoba-5">5</Link>
-            <Link smooth to="szoba-6">6</Link>
+            <Link offset={-64} smooth to="szoba-1">1</Link>
+            <Link offset={-64} smooth to="szoba-2">2</Link>
+            <Link offset={-64} smooth to="szoba-3">3</Link>
+            <Link offset={-64} smooth to="szoba-4">4</Link>
+            <Link offset={-64} smooth to="szoba-5">5</Link>
+            <Link offset={-64} smooth to="szoba-6">6</Link>
           </ul>
         </nav>
       </header>
