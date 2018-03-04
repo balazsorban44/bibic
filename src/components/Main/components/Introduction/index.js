@@ -1,11 +1,11 @@
 import React from 'react'
-
 import hegedus from '../../../../media/images/other/hegedus.jpg'
 import hegedusne from '../../../../media/images/other/hegedusne.jpg'
 import gombkoto from '../../../../media/images/other/gombkoto.jpg'
 
 const Introduction = () => (
   <section id="bemutatkozas">
+    <h2 className="welcome-title">Üdvözöljük</h2>
     <ul className="profiles">
       <li>
         <img className="profile-img" src={hegedus} alt="Hegedüs Péter"/>

@@ -23,15 +23,17 @@ export default class Main extends Component {
         <Element name="szolgaltatasok">
           <Services/>
         </Element>
+        {/* 
         <Element name="szobak">
           <Rooms/>
         </Element>
         <Element name="arak">
           <Prices/>
         </Element>
+      */}
         <Element name="galeria">
           <Gallery/>
-        </Element>
+        </Element> 
       </main>
     )
   }

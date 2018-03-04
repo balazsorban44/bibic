@@ -2,17 +2,18 @@
   @include import-img(bg,$bg,png)
   background-color: $accent-color-dark
   padding: 7.5%
-  h2
-    text-transform: none
-  h4
-    font-size: 1.1em
+
+.welcome-title
+  color: $accent-color-2
+  text-align: center
 
 .history
-  margin-top: 7.5%
+  margin: 7.5% auto 10%
 
 .profiles
   li:nth-of-type(2)
-    margin: 7.5% 0
+    margin: 15% 0
+
 
 .profile-img
   display: block
@@ -53,16 +54,23 @@
 
 @media (min-width: 768px)
   #bemutatkozas
-    padding: 7.5% 12.5%
+    padding: 5% 12.5%
+  .welcome-title
+    font-size: 70px
   .profiles
     max-width: 720px
     margin: 0 auto
+    li
+      &:last-child
+        margin-left: 15%
   .history
     max-width: 580px
-    margin: 12.5% auto 0 auto
+    margin: 12.5% auto 64px auto
 
 
 @media (min-width: 960px)
+  .profiles
+    max-width: 840px
   .history
     p
       &:nth-child(2)
@@ -82,8 +90,6 @@
 
 @media (min-width: 1280px)
   #bemutatkozas
-    h2
-      padding-top: 2em
     li
       img
         transition: .2s ease-in-out

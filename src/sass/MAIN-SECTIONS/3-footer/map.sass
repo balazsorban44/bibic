@@ -2,13 +2,24 @@
   padding: 5%
 #map-canvas
   min-height: 65vw
+  background: black
+  z-index: 1
+  position: relative
   margin-top: -40vw
   box-shadow: 0 0 20px 10px rgba(0,0,0,.5)
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px dashed white
+  &:after
+    content: "Térkép"
+    font-size: 3em
+    color: white
 
 @media(orientation: landscape)
   #map
-    padding: 20%
-    margin-bottom: -20vw
+    padding: 15% 10%
+    margin-bottom: -10vw
   #map-canvas
-    margin-top: -35vw
-    min-height: 30vw
+    margin-top: -20vw
+    min-height: 40vw

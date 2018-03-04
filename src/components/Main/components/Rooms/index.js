@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { ROOMS_REF, ROOMS_PHOTOS_REF } from '../../../../lib/firebase'
+import { ROOMS_REF } from '../../../../lib/firebase'
 import FadeThrough from 'react-fadethrough'
 
 class Rooms extends Component {
@@ -14,9 +14,14 @@ class Rooms extends Component {
     })
   }
 
-  renderRooms = () => {
+  render() {
     const {rooms} = this.state
-    return rooms && Object.keys(rooms).map(roomId => {
+    
+    return (
+      <section id="szobak">
+        <h2>Szobák</h2>
+        <ul>
+          {rooms && Object.keys(rooms).map(roomId => {
       const {id, description, pictures} = rooms[roomId]
       return (
         <li key={id} className="room" id={`szoba-${id}`}>
@@ -36,7 +41,7 @@ class Rooms extends Component {
               className="room-slider"
             >
               <FadeThrough 
-              interval={Object.keys(pictures).length*1500}
+              interval={1500}
               height="100%"
               >
                 {Object.keys(pictures).map((picture, index) => (
@@ -51,16 +56,7 @@ class Rooms extends Component {
             </div>
           }
         </li>
-    )})
-  }
-
-  render() {
-    
-    return (
-      <section id="szobak">
-        <h2>Szobák</h2>
-        <ul>
-          {this.renderRooms()}
+    )})}
         </ul>
       </section>
     )
