@@ -4,7 +4,8 @@ import Introduction from './components/Introduction'
 import Sunflower from './components/Sunflower'
 import Services from './components/Services'
 import Rooms from './components/Rooms'
-import Prices from './components/Prices'
+// import Prices from './components/Prices'
+import Slider from '../shared/Slider'
 import Foods from './components/Foods'
 
 import {Element} from 'react-scroll'
@@ -16,14 +17,13 @@ export default class Main extends Component {
       <main>
         <Element name="bemutatkozas">
           <Introduction/>
-        </Element>
+        </Element> 
         <Element name="napraforgo">
           <Sunflower/>
         </Element>
         <Element name="szolgaltatasok">
           <Services/>
-        </Element>
-        {/* 
+        </Element> 
         <Element name="szobak">
           <Rooms/>
         </Element>
@@ -33,6 +33,21 @@ export default class Main extends Component {
         <Element name="etelek">
           <Foods databaseRef="foods"/>
         </Element>
+        <Element name="rendezvenyek">
+          <Slider
+            title="Rendezvények"
+            sectionId="rendezvenyek"
+            databaseRef="events"
+          />
+        </Element>  
+        {/* <Element name="programok">
+          <Slider
+            title="Programok"
+            sectionId="programok"
+            databaseRef="programs"
+            alignRight
+          />
+        </Element>  */}
       </main>
     )
   }

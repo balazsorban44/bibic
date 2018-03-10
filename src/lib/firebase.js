@@ -10,11 +10,9 @@ firebase.initializeApp({
 })
 
 
-const DB = firebase.database()
+export const DB = firebase.database()
 export const ROOMS_REF = DB.ref("rooms")
-
-
-
+export const CERTS_REF = DB.ref("certificates")
 export const FS = firebase.storage()
 const PHOTOS_REF = FS.ref("photos")
 export const ROOMS_PHOTOS_REF = PHOTOS_REF.child("rooms")
