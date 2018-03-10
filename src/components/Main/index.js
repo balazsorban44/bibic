@@ -5,7 +5,6 @@ import Sunflower from './components/Sunflower'
 import Services from './components/Services'
 import Rooms from './components/Rooms'
 import Prices from './components/Prices'
-import Gallery from './components/Gallery'
 import Foods from './components/Foods'
 
 import {Element} from 'react-scroll'
@@ -34,10 +33,6 @@ export default class Main extends Component {
         <Element name="etelek">
           <Foods databaseRef="foods"/>
         </Element>
-      */}
-        <Element name="galeria">
-          <Gallery/>
-        </Element> 
       </main>
     )
   }
