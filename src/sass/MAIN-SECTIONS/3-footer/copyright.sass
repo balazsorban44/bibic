@@ -1,17 +1,20 @@
 #copyright
-  background-color: $dark
   text-align: center
-  padding: 2em 0
+  padding: 1em 0
   a
     padding: .2em
   h4
-    color: $light
     font-family: Coolvetica
     font-weight: lighter
-    font-size: .6em
 
 @media (min-width: 1024px)
   #copyright
+    display: flex
+    justify-content: center
+    background-color: $dark
     h4
+      &:first-child
+        margin-right: .5em
+      color: $light
       br
         display: none
