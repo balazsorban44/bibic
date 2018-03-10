@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-scroll'
-import service1 from '../../../../media/images/gallery/9.jpg'
-import service2 from '../../../../media/images/gallery/1.jpg'
-import service3 from '../../../../media/images/gallery/17.jpg'
+import service1 from '../../../media/images/gallery/9.jpg'
+import service2 from '../../../media/images/gallery/1.jpg'
+import service3 from '../../../media/images/gallery/17.jpg'
 
 const Services = () => (
   <section id="szolgaltatasok">
@@ -23,7 +23,7 @@ const Services = () => (
     </ul>
     <p>Az aktív pihenést kedvelőknek ping pong asztal és kerékpárok, a gyermekeknek játszótér áll rendelkezésére.</p>
     
-    <Link smooth to="galeria">Galériához</Link>
+    {/* <Link smooth to="galeria">Galériához</Link> */}
   </section>
 )
 
