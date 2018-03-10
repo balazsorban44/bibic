@@ -88,9 +88,12 @@ export default class Footer extends Component {
         </ul>
       </div>
       <div id="copyright">
+        <h4> © Minden jog fenntartva.</h4>
         <h4>
-          © Minden jog fenntartva. <br/> Képek & Design :  <a href="https://www.facebook.com/gergo.boos" target="_blank" rel="noopener noreferrer" >Boós Gergő</a> - 
-           Weblap & Design : <a href="https://balazsorban.com" target="_blank" rel="noopener noreferrer" >Orbán Balázs</a>
+          Képek & Design :  <a href="https://www.facebook.com/gergo.boos" target="_blank" rel="noopener noreferrer" >Boós Gergő</a>
+        </h4>
+        <h4>
+          Weblap & Design : <a href="https://balazsorban.com" target="_blank" rel="noopener noreferrer" >Orbán Balázs</a>
         </h4>
       </div>
     </footer>
