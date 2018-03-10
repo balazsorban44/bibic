@@ -1,61 +1,30 @@
 #szolgaltatasok
-  background-color: $accent-color-dark
-  @include import-img(bg,$bg,png)
   display: flex
   flex-direction: column
+  h2
+    padding-left: .5em
   img
     width: 100%
   li
     p
       background-color: $light
       color: $dark
-  p
-    padding: 5vw
-  a
-    align-self: flex-end
-    margin: 0 15vw 15vw 0
-    position: relative
-    display: flex
-    justify-content: center
-    align-items: center
-    text-transform: uppercase
-    background-color: $room-1
-    width: 144px
-    height: 144px
-    border-radius: 50%
-    font-size: 1.2em
-    &::before
-      font-size: 80%
-      position: absolute
-      content: 'Ugrás a'
-      left: 0
-      transform: translateX(-100%)
-      padding-right: .5em
 
 @media (orientation: landscape)
   #szolgaltatasok
-    p
-      margin: -5vw 7.5vw 7.5vw
-      padding: 7.5vw 2.5vw 2.5vw
     img
       position: relative
       margin: 0 auto
       width: 50%
       box-shadow: 0 0 10px rgba(0,0,0,.8)
 
-    a
-      margin-bottom: 7.5vw
-@media (min-width: 768px)
-  #szolgaltatasok
-    p
-      padding: 7.5vw 20vw 5vw
 @media (min-width: 1024px)
   #szolgaltatasok
+    position: relative
     h2
       text-align: left
       margin-left: 15vw
       padding-bottom: 0
-    position: relative
     ul
       display: flex
       justify-content: space-around
@@ -74,10 +43,7 @@
       box-shadow: none
       width: 100%
     >p
-      position: absolute
-      bottom: 0
-      left: 0
-      margin: 7.5vw 15vw
+      margin: 5vw auto
       padding: 0
       max-width: 30vw
 
@@ -87,14 +53,3 @@
       flex-wrap: nowrap
     li
       width: 30vw
-
-    a
-      margin: 1.5vw 20vw 2.5vw
-      font-size: 1.7em
-      width: 192px
-      height: 192px
-      transition: .3s ease-in-out
-      &:hover
-        background-color: $accent-color
-      &::before
-        font-size: 70%

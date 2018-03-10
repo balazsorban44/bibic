@@ -1,51 +1,83 @@
-//HELPER CLASSES
-.sidebar-hidden
-  display: none !important
+.slider
+  padding: .5em 1em
+  min-height: 0
+  h2
+    margin: 0
+    font-size: 2.5em
+    text-align: center
+  p
+    margin: .5em
+  .slider-arrow
+    width: 24px
+    height: 24px
+    top: -1em
+.slide-content
+  margin: 1px
+  display: flex
+  align-items: center
+  flex-direction: column
+  img
+    pointer-events: none
+    max-height: 60vh
+    
+@media (orientation: landscape) and (min-width: 1024px)
+  .slider
+    padding: 2.5% 10%
+    h2
+      text-align: left
+      font-size: 3em
+    .slider-arrow
+      top: 50%
+    .slider-arrow-prev
+      left: -10%
+    .slider-arrow-next
+      right: -10%
 
-  @media(min-width: 768px)
-    display: block !important
+    .slide-content
+      justify-content: space-between
+      flex-direction: row-reverse
+      img
+        max-height: none
+        max-width: 40vw
 
-.hidden
-  display: none !important
+  .slide-content-right
+    flex-direction: row !important
 
-.no-flex
-  flex-grow: 0 !important
+  .slide-title-right
+    text-align: right !important
 
-.rotated
-  transform: rotate(180deg)
 
-.active-menu-item
-  background-color: $room-1
+.swipe-icon
+  opacity: .5
+  z-index: 10
+  width: 36px
+  height: 36px
+  margin-top: 1em
+  left: 50%
+  transform: translateX(-100%)
+  animation: swipe 3.5s infinite alternate-reverse
+  animation-timing-function: ease-in-out
+  transition: opacity 1s ease-out
 
-.green-btn, .red-btn
-  +circle(36px)
-
-  font-weight: bolder
+.slider-arrow
+  position: absolute
+  top: 50%
+  z-index: 1000
+  width: 32px
+  height: 32px
+  padding: 6px
+  display: flex
+  align-items: center
+  justify-content: center
   cursor: pointer
+.slider-arrow-prev
+  transform: translate(50%, -100%) rotate(180deg)
 
-.green-btn
-  background-color: invert($lightred)
+.slider-arrow-next
+  right: 0
+  transform: translate(-50%, -100%) 
 
-.red-btn
-  background-color: $lightred
 
-.notification-counter
-  +circle(24px)
-
-  min-width: 24px
-  color: $light
-  background-color: $lightred
-  font-weight: bold
-  font-family: sans-serif
-  margin: 0 0.5em
-
-.step-month-btn
-  +circle(24px)
-
-  background-color: $accent-color
-  margin: 0.5em
-  cursor: pointer
-  transition: 0.3s
-
-  &:hover
-    background-color: lighten($accent-color, 10)
+@media (orientation: landscape)
+  .slider-arrow
+    margin: 0 1em
