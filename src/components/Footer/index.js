@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import szallas from '../../media/icons/szallas.svg'
 import bibic from '../../media/icons/bibic.svg'
+import bibicBird from '../../media/icons/bibic.png'
 import booking from '../../media/icons/booking.svg'
 import map from '../../media/icons/map.svg'
 import mail from '../../media/icons/mail.svg'
@@ -8,14 +9,32 @@ import phone from '../../media/icons/phone.svg'
 import facebook from '../../media/icons/fb.svg'
 import instagram from '../../media/icons/insta.svg'
 import youtube from '../../media/icons/youtube.svg'
+import GoogleMaps from 'google-map-react'
 
+const MAPS_API = 'AIzaSyDvnPguJofFhvUbJiNYkR2rlzSvIeZhco8'
+const Marker = ({ text }) => <img className="bibic-marker" alt="" src={bibicBird}/>
 
 export default class Footer extends Component {
   render() {
     return (
     <footer>
-      <div id="map">
-        <div id="map-canvas"></div>
+      <div className="map">
+        <GoogleMaps
+          options={{
+            styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
+          }}
+          bootstrapURLKeys={{ key: [MAPS_API] }}
+          center={{
+            lat: 46.3950025,
+            lng: 17.506616
+          }}
+          zoom={15}
+        >
+          <Marker
+            lat={46.3950025}
+            lng={17.506616}
+          />
+        </GoogleMaps>
       </div>
       <div id="kapcsolat">
         <ul id="logos">
