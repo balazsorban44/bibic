@@ -11,7 +11,7 @@
     "react-fadethrough": "^2.0.0",
     "react-scripts": "1.1.1",
     "react-scroll": "^1.7.7",
-    "react-slick": "^0.19.0",
+    "react-slick": "^0.20.0",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
