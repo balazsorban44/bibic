@@ -2,12 +2,27 @@
   overflow: hidden
   background-color: black
   min-height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+.hero-logo
+  position: relative
+  z-index: 1
+  width: 80vw
+  max-width: 480px
+  filter: invert(1)
 
-.hero-bg
+.hero-bg, .hero-bg-overlay
   position: absolute
+  left: 0
   height: 100%
   max-width: none
   transform: translateX(-40%)
+
+.hero-bg-overlay
+  transform: none
+  background: transparentize($dark, .8)
+  width: 100%
   
 .scroll-icon
   position: absolute
@@ -41,3 +56,6 @@
     bottom: 64px
     width: 36px
     height: 36px
+
+  .hero-logo
+    display: none
