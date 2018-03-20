@@ -1,30 +1,78 @@
 import React, {Component} from 'react'
 import {Link} from 'react-scroll'
 
+const w = window.innerWidth
 
 export default class Menu extends Component {
+  state = {
+    isMenuOpen: false,
+    isScrolled: false
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.isScrolled, false)
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.isScrolled, false)
+  }
+
+  isScrolled = () => {
+    this.setState({
+      isScrolled: window.pageYOffset >= 100
+    })
+  }
+
+  toggleMenu = () => 
+    this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
+  
+  getOffset = () => w >= 768 ? -64 : 0
+
+  isSmooth = () => w >= 1280
+
   render() {
+    const {isMenuOpen, isScrolled} = this.state
     return (
-      <header>
-        <nav className="hidden">
-          <ul className="hidden" id="menu">
-            <li><Link offset={-64} smooth to="bemutatkozas">Bemutatkozás</Link></li>
-            <li><Link offset={-64} smooth to="szolgaltatasok">Szolgáltatások</Link></li>
-            <li><Link offset={-64} smooth to="szobak">Szobák</Link></li>
-            <li><Link offset={-64} smooth to="specialitasok">Specialitások</Link></li>
-            <li><Link offset={-64} smooth to="arak">Árak</Link></li>
-            <li><Link offset={-64} smooth to="galeria">Galéria</Link></li>
-            <li><Link offset={-64} smooth to="kapcsolat">Kapcsolat</Link></li>
-          </ul>
-          <ul id="szoba-lista">
-            <Link offset={-64} smooth to="szoba-1">1</Link>
-            <Link offset={-64} smooth to="szoba-2">2</Link>
-            <Link offset={-64} smooth to="szoba-3">3</Link>
-            <Link offset={-64} smooth to="szoba-4">4</Link>
-            <Link offset={-64} smooth to="szoba-5">5</Link>
-            <Link offset={-64} smooth to="szoba-6">6</Link>
+      <header className={isScrolled ? "header-scrolled" : ""}>
+        <div 
+          onClick={this.toggleMenu}
+          className={`hamburger ${isMenuOpen ? "hamburger-clicked" : ""}`}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className="pc-logo">
+          <a href="/">
+            <img alt="" src={logo}/>
+          </a>
+        </div>
+        <nav onClick={this.toggleMenu} className={`menu ${isMenuOpen ? "" : "menu-hidden"}`}>
+          <ul>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="bemutatkozas">Bemutatkozás</Link></li>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="szolgaltatasok">Szolgáltatások</Link></li>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="szobak">Szobák</Link><span>►</span></li>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="arak">Árak</Link></li>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="etelek">Ételek</Link></li>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="rendezvenyek">Rendezvények</Link></li>
+            <li><Link onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="kapcsolat">Kapcsolat</Link></li>
           </ul>
         </nav>
+        <div className="tablet-header">
+          <div>
+            <a href="/">
+              <img alt="" src={bibic}/>
+            </a>
+          </div>
+          <Link className="tablet-reservation" offset={-64} to="kapcsolat">Foglalás</Link>
+        </div>
+        <ul onClick={this.toggleMenu} className={`room-menu ${isMenuOpen ? "" : "room-menu-hidden"}`}>
+          <li><Link onClick={this.toggleMenu} offset={this.getOffset()} to="szoba-1">1</Link></li>
+          <li><Link onClick={this.toggleMenu} offset={this.getOffset()} to="szoba-2">2</Link></li>
+          <li><Link onClick={this.toggleMenu} offset={this.getOffset()} to="szoba-3">3</Link></li>
+          <li><Link onClick={this.toggleMenu} offset={this.getOffset()} to="szoba-4">4</Link></li>
+          <li><Link onClick={this.toggleMenu} offset={this.getOffset()} to="szoba-5">5</Link></li>
+          <li><Link onClick={this.toggleMenu} offset={this.getOffset()} to="szoba-6">6</Link></li>
+        </ul>
       </header>
     )
   }
