@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-
 import Introduction from './components/Introduction'
 import Sunflower from './components/Sunflower'
 import Services from './components/Services'
 import Rooms from './components/Rooms'
-// import Prices from './components/Prices'
+import Prices from './components/Prices'
 import Slider from '../shared/Slider'
 import Foods from './components/Foods'
 
@@ -27,9 +26,9 @@ export default class Main extends Component {
         <Element name="szobak">
           <Rooms/>
         </Element>
-        {/* <Element name="arak">
+        <Element name="arak">
           <Prices/>
-        </Element>  */}
+        </Element> 
         <Element name="etelek">
           <Foods databaseRef="foods"/>
         </Element>
@@ -40,14 +39,14 @@ export default class Main extends Component {
             databaseRef="events"
           />
         </Element>  
-        {/* <Element name="programok">
+        <Element name="programok">
           <Slider
             title="Programok"
             sectionId="programok"
             databaseRef="programs"
             alignRight
           />
-        </Element>  */}
+        </Element> 
       </main>
     )
   }
