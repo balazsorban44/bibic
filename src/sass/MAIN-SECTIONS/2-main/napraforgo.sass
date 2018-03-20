@@ -3,6 +3,7 @@
   display: flex
   flex-direction: column
   align-items: center
+  background-color: #cc9900
   &::after
     content: ''
     position: absolute
@@ -10,9 +11,7 @@
     height: 100%
     top: 0
     left: 0
-    background:
-      image:  linear-gradient(transparentize($dark, .3), transparentize($dark, .3)), url(#{$bg}/intro.jpg)
-      size: cover
+    background-color: transparentize($dark, .4)
   p,img
     position: relative
     z-index: 1
@@ -31,8 +30,6 @@
 @media (min-width: 640px)
   #napraforgo
     flex-direction: row-reverse
-    &::after
-      background-image:  linear-gradient(transparentize($dark, .5), transparentize($dark, .5)), url(#{$bg}/intro.jpg)
     p
       text-align: right
       margin: 5vw 5vw 5vw 2.5vw
@@ -59,7 +56,8 @@
     flex-direction: column
     align-items: flex-end
     &::after
-      background-image:  url(#{$bg}/intro.jpg)
+      background-image:  linear-gradient(transparentize($dark, .8), transparentize($dark, .8)), url(#{$bg}/intro.jpg)
+      background-size: cover
     p
       margin: 0 0 5vw 0
       width: 45%

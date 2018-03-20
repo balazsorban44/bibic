@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import szallas from '../../media/icons/szallas.svg'
 import bibic from '../../media/icons/bibic.svg'
-import bibicBird from '../../media/icons/bibic.png'
+import bibicBird from '../../media/icons/bibic-white.png'
 import booking from '../../media/icons/booking.svg'
 import map from '../../media/icons/map.svg'
 import mail from '../../media/icons/mail.svg'

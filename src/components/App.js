@@ -7,8 +7,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <Menu/>
         <Header/>
-        {/* <Menu/> */}
         <Main/>
         <Footer/>
       </div>

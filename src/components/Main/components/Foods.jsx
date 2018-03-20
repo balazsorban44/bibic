@@ -44,7 +44,7 @@ export default class Foods extends Component {
         <SwipeIcon 
           style={{
             position: "absolute",
-            bottom: "10%"
+            bottom: "5%"
           }}/>
       </div>
     )

@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-scroll'
+import bibic from '../../media/icons/bibic.png'
+import logo from '../../media/icons/logo.png'
 
 const w = window.innerWidth
 
