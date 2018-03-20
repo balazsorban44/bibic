@@ -12,14 +12,27 @@ class Rooms extends Component {
     ROOMS_REF.on('value', snap => {
       this.setState({rooms: snap.val()})
     })
+    this.handleResize()
+    window.addEventListener("resize", this.handleResize, false)
   }
 
   handleRoomClick = id => {
     console.log(id);
   }
 
+  handleResize = () => {
+    this.setState({
+      isSmallScreen: window.innerWidth < 768
+    })
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize, false)
+  }
+
+
   render() {
-    const {rooms} = this.state
+    const {rooms, isSmallScreen} = this.state
     
     return (
       <section id="szobak">
@@ -35,6 +48,7 @@ class Rooms extends Component {
                 <Slider fade
                   className="room-slider"
                   arrows={false}
+                  lazyLoad={isSmallScreen}
                   autoplay autoplaySpeed={3000}
                   speed={1000}
                 >
