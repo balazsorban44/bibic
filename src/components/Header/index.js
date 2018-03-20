@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import hero from '../../media/images/hero/1.jpg'
+import logo from '../../media/icons/logo.png'
 import ScrollTo from '../shared/ScrollTo'
 
 import Slider from 'react-slick'
@@ -47,6 +48,10 @@ export default class Header extends Component {
     return (
       <section className="hero">
         <img className="hero-bg" src={hero} alt="Hero háttérkép"/>
+        <span className="hero-bg-overlay"/>
+        <a href="/">
+          <img className="hero-logo" src={logo} alt=""/>
+        </a>
         {/* {this.renderHeroSlider()} */}
         <ScrollTo to="bemutatkozas"/>
       </section>
