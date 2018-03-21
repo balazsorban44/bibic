@@ -24,7 +24,6 @@
 
 .room
   position: relative
-  height: calc(100vh - 64px)
   overflow: hidden
   button
     font-size: 1.2em
@@ -57,4 +56,4 @@
 @media (orientation: landscape)
   .room
     min-height: 0
-    max-height: 100vh
+    max-height: calc(100vh - 64px)

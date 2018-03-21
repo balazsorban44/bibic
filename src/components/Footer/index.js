@@ -17,7 +17,7 @@ const Marker = ({ text }) => <img className="bibic-marker" alt="" src={bibicBird
 export default class Footer extends Component {
   render() {
     return (
-    <footer>
+    <footer id="kapcsolat">
       <div className="map">
         <GoogleMaps
           options={{
@@ -36,7 +36,7 @@ export default class Footer extends Component {
           />
         </GoogleMaps>
       </div>
-      <div id="kapcsolat">
+      <div className="contact">
         <ul id="logos">
           <li>
             <a href="https://szallas.hu/bibic-vendeghazak-nagybajom" target="_blank" rel="noopener noreferrer" >
