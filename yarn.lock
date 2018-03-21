@@ -5649,9 +5649,9 @@ react-scroll@^1.7.7:
     lodash.throttle "^4.1.1"
     prop-types "^15.5.8"
 
-react-slick@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.20.0.tgz#43fcdba635eb31f0f88d871ff81fb17d309a2315"
+react-slick@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.21.0.tgz#677548bc6bcaf6916286d3682c8283feb26a2566"
   dependencies:
     can-use-dom "^0.1.0"
     classnames "^2.2.5"
