@@ -24,21 +24,28 @@
 
 
 @media (min-width: 640px)
+  #logos, #reachout a
+    img
+      transition: .2s
+
+  #logos img:hover, #reachout a:hover img
+    transform: scale(.9)
+
+  
+  #reachout
+    margin: 0
   #logos
     filter: invert(1)
     display: flex
     flex-wrap: wrap
     justify-content: center
-    margin: 36px 17.5% 0
     li
       margin: 1em
     li:nth-of-type(2)
       order: -1
     img
+      margin-bottom: 1em
       width: 128px
-      height: 128px
-      margin-top: -72px
-
 @media (min-width: 1024px)
   #reachout
     margin: -36px 15% 0
@@ -53,9 +60,8 @@
 
 
 @media (min-width: 1280px)
-  #kapcsolat
-    margin: 0 10% 5% 10%
+  .contact
+    margin: 0 10%
   #logos
     img
       width: 192px
-      height: 192px
