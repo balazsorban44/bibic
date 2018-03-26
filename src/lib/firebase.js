@@ -11,4 +11,6 @@ firebase.initializeApp({
 
 export const DB = firebase.database()
 export const ROOMS_REF = DB.ref("rooms")
+export const RESERVATIONS_REF = DB.ref("reservations")
+export const ROOM_SERVICES_REF = DB.ref("roomServices")
 export const CERTS_REF = DB.ref("certificates")
