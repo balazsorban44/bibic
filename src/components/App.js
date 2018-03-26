@@ -1,17 +1,16 @@
 import React, {Component} from 'react'
-import Header from './Header'
+import {Route} from 'react-router-dom'
+import Reservation from './Reservation'
 import Main from './Main'
-import Footer from './Footer'
 import Menu from './Menu'
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Menu/>
-        <Header/>
         <Main/>
-        <Footer/>
-      </div>
+        <Route path="/foglalas" component={Reservation}/>
+      </React.Fragment>
     )
   }
 }
