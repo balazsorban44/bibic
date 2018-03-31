@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Link as RouteLink} from 'react-router-dom'
 import {Link} from 'react-scroll'
-import bibic from '../media/icons/bibic.png'
-import logo from '../media/icons/logo.png'
+import bibic from '../assets/icons/bibic.png'
+import logo from '../assets/icons/logo.png'
 
 const w = window.innerWidth
 

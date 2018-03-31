@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import hero from '../../media/images/hero/1.jpg'
-import logo from '../../media/icons/logo.png'
+import hero from '../../assets/images/hero/1.jpg'
+import logo from '../../assets/icons/logo.png'
 import {Link} from 'react-scroll'
 
 import Slider from 'react-slick'

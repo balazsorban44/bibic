@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import hero from '../../media/images/hero/1.jpg'
-import logo from '../../media/icons/logo.png'
+import hero from '../../assets/images/hero/1.jpg'
+import logo from '../../assets/icons/logo.png'
 import ScrollTo from '../shared/ScrollTo'
 
 import Slider from 'react-slick'

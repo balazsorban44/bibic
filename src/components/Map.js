@@ -1,5 +1,5 @@
 import React from 'react'
-import bibicBird from '../media/icons/bibic-white.png'
+import bibicBird from '../assets/icons/bibic-white.png'
 import GoogleMaps from 'google-map-react'
 
 import {MAPS_API_KEY, MAPS_STYLE } from '../lib/google-maps'
