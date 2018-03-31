@@ -1,7 +1,7 @@
 import React from 'react'
-import service1 from '../../../media/images/gallery/9.jpg'
-import service2 from '../../../media/images/gallery/1.jpg'
-import service3 from '../../../media/images/gallery/17.jpg'
+import service1 from '../../../assets/images/gallery/9.jpg'
+import service2 from '../../../assets/images/gallery/1.jpg'
+import service3 from '../../../assets/images/gallery/17.jpg'
 
 const Services = () => (
   <section id="szolgaltatasok">
