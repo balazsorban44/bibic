@@ -3,6 +3,8 @@ import QueryString from 'query-string'
 import {Link} from 'react-router-dom'
 import Calendar from 'react-calendar'
 import ScrollLock from 'react-scrolllock'
+import {toast, ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 import moment from 'moment'
 import 'moment/locale/hu'
