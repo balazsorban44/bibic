@@ -1,19 +1,18 @@
 #logos
   display: none
 #reachout
-  filter: invert(1)
   display: flex
   flex-wrap: wrap
   justify-content: center
   margin: 7.5% 12.5%
   li
-    margin: 1em
+    margin: 1em 1.5em
 
   a
     font-family: "Coolvetica"
     transition: .3s
     border-bottom: none
-    color: $light
+    color: $dark
     &:hover
       color: $accent-color-2
   img
@@ -49,7 +48,10 @@
       width: 128px
 @media (min-width: 1024px)
   #reachout
-    margin: -36px 15% 0
+    margin: 1em 15%
+    justify-content: space-evenly
+    li
+      margin: 1em
     span
       display: block
       margin-left: .5em
