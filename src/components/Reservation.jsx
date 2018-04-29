@@ -3,6 +3,8 @@ import QueryString from 'query-string'
 import {Link} from 'react-router-dom'
 import Calendar from 'react-calendar'
 import ScrollLock from 'react-scrolllock'
+import {toast, ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 import moment from 'moment'
 import 'moment/locale/hu'
@@ -11,7 +13,6 @@ import {ROOM_SERVICES_REF, ROOMS_REF} from '../lib/firebase'
 
 import {FormSection, FormGroup} from './Form'
 import {PersonalDetail, Date, PeopleCount, Children, Service} from './Form/inputs'
-import {Loading, Notification} from './shared/Elements'
 import {nameRe, emailRe, telRe} from '../utils/validate'
 
 
@@ -28,6 +29,7 @@ const queryKeysTranslation = {
   tavozas: "to",
   activeService: "ellatas",
   ellatas: "activeService"
+import {Loading} from './shared/Elements'
 }
 
 
@@ -117,8 +119,17 @@ export default class Reservation extends Component {
       values.to = moment(to).toDate()
       values.adults = parseInt(adults, 10)
 
-      if (children === undefined) {
-        values.children = []
+    if (error) {
+      toast.error(
+        <p style={{padding: ".5rem", fontSize: "1.2rem"}}>{error}<br/>
+          <span style={{fontSize: "1rem"}}>
+            Úgy gondolja más a hiba oka? <br/> Kérjük jelezze itt: <br/>
+            <a style={{color: "white"}} href="mailto:hiba@bibicvedeghazak.hu">hiba@bibicvedeghazak.hu</a>
+          </span>
+        </p>, {
+          autoClose: 5000
+        })
+      return false
       } else {
         values.children = !Array.isArray(children) ? [children] : children
       }
@@ -130,6 +141,20 @@ export default class Reservation extends Component {
           ...values
         }
       })
+              toast.success(
+                <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Foglalását rögzítettük. <br/>
+                <span style={{fontSize: "1rem"}}>
+                  Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:<br/>
+                  <a style={{color: "white"}} href="mailto:info@bibicvendeghazak.hu">info@bibicvendeghazak.hu</a><br/>
+                  <a style={{color: "white"}} href="tel:+36305785730">+36 30 578 5730</a>
+                </span>
+              </p>, {autoClose: 7500})
+              toast.error(
+                <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Hiba: {code} - {message}<br/>
+                  <span style={{fontSize: "1rem"}}>
+                    Ha a probléma tartósan fennáll, <a href={`mailto:info@balazsorban.com?subject=Hibajelentés (${code})&body=${message}`}>ide kattintva</a> jelezheti.
+                  </span>
+                </p>, {autoClose: 10000})
     } else {
       this.setState({
         today, 
@@ -138,21 +163,17 @@ export default class Reservation extends Component {
           from: today,
           to: today
         }
+        toast.error( <p style={{padding: ".5rem", fontSize: "1.2rem"}}>
+          Sajnáljuk<br/>
+          <span style={{fontSize: "1rem"}}>
+            Adott intervallumban már van foglalásunk. Kérjük próbálkozzon másik dátumokkal, vagy másik szobával.
+          </span>
+           </p>, {autoClose: 10000})
       })
     }
   }
   
 
-  /**
-   * Shows a notification at the bottom of the page
-   * @param @enum {string} type the type of the notifications. Available: warning, error, success, default
-   * @param {jsx} message the message to show
-   * @param {number} [length] The length of the notification in ms. Default: 3000
-   */
-  showNotification = (type, message, length=3000) => {
-    this.setState({notification: {type, message}})
-    setTimeout(() => {this.setState({notification: null})}, length)
-  }
 
 
   // Calendar events
@@ -340,8 +361,11 @@ export default class Reservation extends Component {
 
     return (
       <Fragment>
-        {notification && <Notification {...{...notification}}/>}
-        <div className="reservation">
+        <ToastContainer 
+          closeOnClick
+          style={{position: "fixed", zIndex: 10001, bottom: 0}}
+          position="bottom-center"
+        />
           {!('ontouchstart' in document.documentElement) && <ScrollLock/>}
           <span className="close-reservation">
             <Link to="/">✕</Link>
@@ -403,7 +427,7 @@ export default class Reservation extends Component {
                   value={name}
                   placeholder="Kovács József"
                   errorMessage="Érvénytelen név!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
                 <PersonalDetail required
                   onChange={this.handleChange}
@@ -412,7 +436,7 @@ export default class Reservation extends Component {
                   value={email}
                   placeholder="kovacs.jozsef@email.hu"
                   errorMessage="Érvénytelen e-mail cím!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
                 <PersonalDetail required
                   onChange={this.handleChange}
@@ -421,7 +445,7 @@ export default class Reservation extends Component {
                   value={tel}
                   placeholder="+36-30-123-4567"
                   errorMessage="Érvénytelen telefonszám!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
                 <PersonalDetail required
                   onChange={this.handleChange}
@@ -430,7 +454,7 @@ export default class Reservation extends Component {
                   value={address}
                   placeholder="1234 Budapest, Fő utca 1."
                   errorMessage="Érvénytelen lakcím!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
               </FormGroup>
             </FormSection>
@@ -442,13 +466,13 @@ export default class Reservation extends Component {
               >
                 <Date 
                   required
-                  onClick={this.showNotification}
+                  onClick={toast.warning}
                   label="érkezés" name="from"
                   value={from}
                 />
                 <Date 
                   required
-                  onClick={this.showNotification}
+                  onClick={toast.warning}
                   label="távozás" name="to"
                   value={to}
                 />
