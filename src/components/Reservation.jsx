@@ -119,8 +119,17 @@ export default class Reservation extends Component {
       values.to = moment(to).toDate()
       values.adults = parseInt(adults, 10)
 
-      if (children === undefined) {
-        values.children = []
+    if (error) {
+      toast.error(
+        <p style={{padding: ".5rem", fontSize: "1.2rem"}}>{error}<br/>
+          <span style={{fontSize: "1rem"}}>
+            Úgy gondolja más a hiba oka? <br/> Kérjük jelezze itt: <br/>
+            <a style={{color: "white"}} href="mailto:hiba@bibicvedeghazak.hu">hiba@bibicvedeghazak.hu</a>
+          </span>
+        </p>, {
+          autoClose: 5000
+        })
+      return false
       } else {
         values.children = !Array.isArray(children) ? [children] : children
       }
@@ -132,6 +141,20 @@ export default class Reservation extends Component {
           ...values
         }
       })
+              toast.success(
+                <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Foglalását rögzítettük. <br/>
+                <span style={{fontSize: "1rem"}}>
+                  Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:<br/>
+                  <a style={{color: "white"}} href="mailto:info@bibicvendeghazak.hu">info@bibicvendeghazak.hu</a><br/>
+                  <a style={{color: "white"}} href="tel:+36305785730">+36 30 578 5730</a>
+                </span>
+              </p>, {autoClose: 7500})
+              toast.error(
+                <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Hiba: {code} - {message}<br/>
+                  <span style={{fontSize: "1rem"}}>
+                    Ha a probléma tartósan fennáll, <a href={`mailto:info@balazsorban.com?subject=Hibajelentés (${code})&body=${message}`}>ide kattintva</a> jelezheti.
+                  </span>
+                </p>, {autoClose: 10000})
     } else {
       this.setState({
         today, 
@@ -140,6 +163,12 @@ export default class Reservation extends Component {
           from: today,
           to: today
         }
+        toast.error( <p style={{padding: ".5rem", fontSize: "1.2rem"}}>
+          Sajnáljuk<br/>
+          <span style={{fontSize: "1rem"}}>
+            Adott intervallumban már van foglalásunk. Kérjük próbálkozzon másik dátumokkal, vagy másik szobával.
+          </span>
+           </p>, {autoClose: 10000})
       })
     }
   }
@@ -332,7 +361,11 @@ export default class Reservation extends Component {
 
     return (
       <Fragment>
-        <div className="reservation">
+        <ToastContainer 
+          closeOnClick
+          style={{position: "fixed", zIndex: 10001, bottom: 0}}
+          position="bottom-center"
+        />
           {!('ontouchstart' in document.documentElement) && <ScrollLock/>}
           <span className="close-reservation">
             <Link to="/">✕</Link>
