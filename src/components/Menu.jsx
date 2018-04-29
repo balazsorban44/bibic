@@ -57,6 +57,7 @@ export default class Menu extends Component {
             <li><Link  onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="arak">Árak</Link></li>
             <li><Link  onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="etelek">Ételek</Link></li>
             <li><Link  onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="rendezvenyek">Rendezvények</Link></li>
+            <li><Link  onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="visszajelzések">Visszajelzések</Link></li>
             <li><Link  onClick={this.toggleMenu} smooth={this.isSmooth()} offset={this.getOffset()} to="kapcsolat">Kapcsolat</Link></li>
           </ul>
         </nav>
