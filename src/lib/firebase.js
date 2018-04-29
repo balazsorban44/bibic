@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import "firebase/firestore"
 
 firebase.initializeApp({
   apiKey: "AIzaSyB4-Y2_RCdrOouJJxUJkBBXGyj4hNdjDs0",
@@ -8,6 +9,8 @@ firebase.initializeApp({
   storageBucket: "bibic-vendeghazak-api.appspot.com",
   messagingSenderId: "586582307718"
 })
+const firestore = firebase.firestore()
+firestore.settings({timestampsInSnapshots: true})
 
 export const DB = firebase.database()
 export const ROOMS_REF = DB.ref("rooms")
