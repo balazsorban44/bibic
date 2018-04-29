@@ -1,3 +1,20 @@
+.active-reserving
+  pointer-events: none
+  opacity: .8
+.is-reserving
+  &::after
+    z-index: 1
+    content: ""
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    width: 100%
+    height: 100vh
+    top: 0
+    left: 0
+    background: $light
+    opacity: .8
 .reservation
   position: fixed
   top: 50%
@@ -12,7 +29,7 @@
   justify-content: flex-end
   overflow-y: scroll
   h2
-    position: fixed
+    position: absolute
     top: 16px
     left: 50%
     transform: translateX(-50%)
@@ -26,7 +43,7 @@
     font-size: 1.2em
     font-family: "Coolvetica"
     font-weight: bolder
-    margin: 2em 2em 0
+    margin: 2em 1.5em 0
     align-self: flex-start
   
   h5
@@ -36,7 +53,7 @@
     font-weight: lighter
   
 
-.required-asterix
+.footnote-asterix
   &::after
     content: "*"
     
@@ -87,7 +104,7 @@
   justify-content: flex-end
   flex-wrap: wrap
 .child-age
-  max-width: 120px
+  max-width: 140px
   select
     padding: .5em
 
@@ -239,7 +256,7 @@
     padding: .5em
     width: calc(100% - 3em - 4px)
     border: 2px solid $dark
-    margin: 0 1em
+    margin: 1em 1em 0
     font-family: "Coolvetica"
     letter-spacing: .1em
 
@@ -248,6 +265,7 @@
   justify-content: center
   align-items: center
   margin: 2em
+  padding: 1em
   .spinner
     animation: pulsate 1s infinite
     background-color: $accent-color
@@ -264,19 +282,36 @@
   align-self: center
   font-style: italic
   margin-left: 1em
+  display: block
+  padding: .5em
   font-family: "Coolvetica"
   letter-spacing: .05em
   font-size: .9em
+  a, a:hover
+    color: $accent-color-dark
+  a
+    display: block
+
+    margin: .5em auto
+    text-align: center
   &::before
     content: "*"
 
   
+.react-calendar__tile:enabled:hover,
 .react-calendar__tile--active,
-.react-calendar__tile--active:enabled,
 .react-calendar__tile--hasActive
   background: $accent-color !important
-  color: $light
+  color: $light !important
 
+.react-calendar__month-view__days__day--weekend
+  color: orangered
+
+
+.react-calendar__tile:enabled:focus,
+.react-calendar--selectRange .react-calendar__tile--hover
+  background-color: transparentize($accent-color, .2)
+  color: $light
 
 .submit-reservation
   width: 128px
@@ -293,10 +328,15 @@
   font-weight: bolder
   border: none
   line-height: .9
-  margin: 1em auto
+  margin: .75em auto
   text-transform: uppercase
+  transition: .2s ease-out
   span
-    font-size: .5em
+    font-size: .65em
+  &:hover
+    background-color: $accent-color-dark
+    transform: scale(1.1)
+
 
 
 
@@ -333,6 +373,8 @@
   .footnote
     padding-top: 1em
     min-width: 90%
+    a, a:hover
+      color: $accent-color
   .form-group, .room-services
     margin-top: 1em
     display: flex
