@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import queryString from 'query-string'
+import QueryString from 'query-string'
 import {Link} from 'react-router-dom'
 import Calendar from 'react-calendar'
 import ScrollLock from 'react-scrolllock'
@@ -7,9 +7,7 @@ import ScrollLock from 'react-scrolllock'
 import moment from 'moment'
 import 'moment/locale/hu'
 
-import {database} from 'firebase'
-import {ROOM_SERVICES_REF, ROOMS_REF, RESERVATIONS_REF} from '../lib/firebase'
-
+import {ROOM_SERVICES_REF, ROOMS_REF} from '../lib/firebase'
 
 import {FormSection, FormGroup} from './Form'
 import {PersonalDetail, Date, PeopleCount, Children, Service} from './Form/inputs'

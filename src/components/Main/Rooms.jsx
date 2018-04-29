@@ -38,7 +38,7 @@ class Rooms extends Component {
             const {id, pictures} = rooms[roomId]
             return (
               <li key={id} className="room" id={`szoba-${id}`}>
-                <Link to={`foglalas?szoba=${id}&ellatas=reggeli&felnott=1&gyerek=0`}>
+                <Link to={`foglalas?szoba=${id}`}>
                   <button>
                     {id}
                   </button>

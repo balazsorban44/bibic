@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {isValid} from '../../utils/validate'
+import {valid} from '../../utils/validate'
 import moment from 'moment'
 
 class PersonalDetail extends Component {
@@ -10,21 +10,22 @@ class PersonalDetail extends Component {
     label: "",
     name: "",
     value: "",
-    required: false,
+    hasFootnote: false,
     error: false,
     errorMessage: ""
   }
 
   componentDidMount() {
-    const {type, label, name, placeholder, required, errorMessage} = this.props
-    this.setState({type, label, name, placeholder, required, errorMessage})
+    const {type, label, name, placeholder, hasFootnote, errorMessage} = this.props
+    this.setState({type, label, name, placeholder, hasFootnote, errorMessage})
   }
 
   handleChange = ({target: {name, value}}) => this.setState({name, value})
 
   handleBlur = ({target: {name, value}}) => {
     let error = false
-    if (isValid(name, value)) {
+    
+    if (valid[name](value)) {
       this.props.onChange(name, value)
     } else {
       this.props.onChange(name, "")
@@ -34,22 +35,22 @@ class PersonalDetail extends Component {
     this.setState({error})
     // do not fire notification, if the user did not fill in any info, or the info was corrected
     if (error && value !== "") {
-      this.props.notification("error", 
+      this.props.notification( 
         <p>
           {this.state.errorMessage}<br/>
           Kérjük próbálja újra.
           Ha úgy gondolja hiba történt, kérjük írjon:<br/>
           <a href="mailto:hiba@bibicvedeghazak.hu">hiba@bibicvedeghazak.hu</a>
-        </p>, 5000
+        </p>, {autoClose: 5000}
       )  
     }
   }
 
   render() {
-    const {type, label, name, placeholder, value, error, required} = this.state
+    const {type, label, name, placeholder, value, error, hasFootnote} = this.state
     return (
       <div className={`input-box personal-detail ${error ? "input-error" : ""}`}>
-        <label className={required ? "required-asterix" : ""} htmlFor={name}>{label}</label>
+        <label className={hasFootnote ? "footnote-asterix" : ""} htmlFor={name}>{label}</label>
         <input {...{name, value, placeholder}}
           type={type || "text"}
           onChange={this.handleChange}
@@ -63,13 +64,13 @@ class PersonalDetail extends Component {
 
 
 
-const Date = ({onClick, name, label, value, required}) => (
+const Date = ({onClick, name, label, value, hasFootnote}) => (
   <div 
     className="input-box"
-    onClick={() => onClick("warning", "Kérjük válasszon érkezési és távozási dátumot a naptáron!")} 
+    onClick={() => onClick("Kérjük válasszon érkezési és távozási dátumot a naptáron!")} 
   >
     <label 
-      className={required ? "required-asterix" : ""}
+      className={hasFootnote ? "footnote-asterix" : ""}
       htmlFor={name}
     >
       {label}
@@ -82,8 +83,9 @@ const Date = ({onClick, name, label, value, required}) => (
 class PeopleCount extends Component {
 
   state = {
-    required: false,
+    hasFootnote: false,
     min: 0,
+    max: 0,
     name: "",
     label: "",
     placeholder: "",
@@ -91,16 +93,16 @@ class PeopleCount extends Component {
   }
 
   componentDidMount() {
-    const {required, min, name, label, placeholder, value} = this.props
+    const {hasFootnote, min, max, name, label, placeholder, value} = this.props
     this.setState({
       value: parseInt(value, 10),
-      required, min, name, label, placeholder
+      hasFootnote, min, max, name, label, placeholder
     })
   }
   
-  componentWillReceiveProps = ({value}) => {
+  componentWillReceiveProps = ({value, max}) => {
     this.setState({
-      value: parseInt(value, 10)
+      value: parseInt(value, 10), max
     })
   }
 
@@ -108,24 +110,28 @@ class PeopleCount extends Component {
     e.preventDefault()
     let {target: {name, value}} = e
     value = parseInt(value, 10)
-    if (!isValid(name, value)) {
-      value = this.props.min
+    const {min, max} = this.state
+    if (value < min) {
+      value = min
+    } else if (value > max) {
+      value = max
     }
+    
     this.setState({value})
     this.props.onChange(name, value)
   }
 
   render() {
-    const {required, min, name, label, placeholder, value} = this.state
+    const {hasFootnote, min, max, name, label, placeholder, value} = this.state
     return (
       <div className="input-box people-count">
         <label 
-          className={required ? "required-asterix": ""}
+          className={hasFootnote ? "footnote-asterix": ""}
           htmlFor={name}
         >
           {label}
         </label>
-        <input {...{min, placeholder, name}}
+        <input {...{min, max, placeholder, name}}
           type="number"
           value={value + ""}
           readOnly
@@ -150,27 +156,30 @@ class PeopleCount extends Component {
 class Children extends Component {
 
   state = {
-    values: []
+    values: [],
+    max: 100
   }
 
-  componentWillReceiveProps = ({values}) => this.setState({values})
+  componentWillReceiveProps = ({values, max}) => this.setState({values, max})
   
   componentDidMount() {
-    this.setState({
-      values: this.props.values
-    })
+    const {values, max} = this.props
+    this.setState({values, max})
   }
 
 
   handleChange = (name, value) => {
-    let  {values} = this.state
+    let  {values, max} = this.state
+    value = parseInt(value, 10)
     
-    if (values.length < parseInt(value, 10)) {
+    if (values.length < value) {
       values.push("6-12")
+      values = values.slice(0, max)
     }
-    else {
+    if (values.length > value) {
       values.pop()
     }
+    
     this.props.onChange("children", values)
   }
 
@@ -184,12 +193,12 @@ class Children extends Component {
   }
 
   render() {
-    const {required, name, label} = this.props
+    const {hasFootnote, name, label, max} = this.props
     const {values} = this.state
     
     return (
       <Fragment>
-        <PeopleCount {...{required, name, label}}
+        <PeopleCount {...{hasFootnote, name, label, max}}
           min={0} placeholder={0}
           onChange={this.handleChange}
           value={values.length}
@@ -204,8 +213,8 @@ class Children extends Component {
                   name={index}
                   onChange={this.handleSelect}
                 >
-                  <option value="0-6" >0-6</option>
-                  <option value="6-12">6-12</option>
+                  <option value="0-6" >0-6 év</option>
+                  <option value="6-12">6-12 év</option>
                 </select>
               </div>
             )
