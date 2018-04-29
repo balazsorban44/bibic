@@ -13,7 +13,6 @@ import {ROOM_SERVICES_REF, ROOMS_REF} from '../lib/firebase'
 
 import {FormSection, FormGroup} from './Form'
 import {PersonalDetail, Date, PeopleCount, Children, Service} from './Form/inputs'
-import {Loading, Notification} from './shared/Elements'
 import {nameRe, emailRe, telRe} from '../utils/validate'
 
 
@@ -30,6 +29,7 @@ const queryKeysTranslation = {
   tavozas: "to",
   activeService: "ellatas",
   ellatas: "activeService"
+import {Loading} from './shared/Elements'
 }
 
 
@@ -145,16 +145,6 @@ export default class Reservation extends Component {
   }
   
 
-  /**
-   * Shows a notification at the bottom of the page
-   * @param @enum {string} type the type of the notifications. Available: warning, error, success, default
-   * @param {jsx} message the message to show
-   * @param {number} [length] The length of the notification in ms. Default: 3000
-   */
-  showNotification = (type, message, length=3000) => {
-    this.setState({notification: {type, message}})
-    setTimeout(() => {this.setState({notification: null})}, length)
-  }
 
 
   // Calendar events
@@ -342,7 +332,6 @@ export default class Reservation extends Component {
 
     return (
       <Fragment>
-        {notification && <Notification {...{...notification}}/>}
         <div className="reservation">
           {!('ontouchstart' in document.documentElement) && <ScrollLock/>}
           <span className="close-reservation">
@@ -405,7 +394,7 @@ export default class Reservation extends Component {
                   value={name}
                   placeholder="Kovács József"
                   errorMessage="Érvénytelen név!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
                 <PersonalDetail required
                   onChange={this.handleChange}
@@ -414,7 +403,7 @@ export default class Reservation extends Component {
                   value={email}
                   placeholder="kovacs.jozsef@email.hu"
                   errorMessage="Érvénytelen e-mail cím!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
                 <PersonalDetail required
                   onChange={this.handleChange}
@@ -423,7 +412,7 @@ export default class Reservation extends Component {
                   value={tel}
                   placeholder="+36-30-123-4567"
                   errorMessage="Érvénytelen telefonszám!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
                 <PersonalDetail required
                   onChange={this.handleChange}
@@ -432,7 +421,7 @@ export default class Reservation extends Component {
                   value={address}
                   placeholder="1234 Budapest, Fő utca 1."
                   errorMessage="Érvénytelen lakcím!"
-                  notification={this.showNotification}
+                  notification={toast.error}
                 />
               </FormGroup>
             </FormSection>
@@ -444,13 +433,13 @@ export default class Reservation extends Component {
               >
                 <Date 
                   required
-                  onClick={this.showNotification}
+                  onClick={toast.warning}
                   label="érkezés" name="from"
                   value={from}
                 />
                 <Date 
                   required
-                  onClick={this.showNotification}
+                  onClick={toast.warning}
                   label="távozás" name="to"
                   value={to}
                 />
