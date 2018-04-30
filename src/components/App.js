@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react'
-import {Route} from 'react-router-dom'
+import React, {Fragment} from 'react'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Reservation from './Reservation'
 import Main from './Main'
 import Menu from './Menu'
@@ -7,23 +7,20 @@ import chat from '../assets/icons/chat.svg'
 
 
 
-export default class App extends Component {
-  render() {
-    return (
-      <Fragment>
-        <Route exact path="/" render={
-          () => 
-            <Fragment>
-              <Menu/>
-              <Main/>
-              <ChatFAB/>
-            </Fragment>
-        }/>
-        <Route path="/foglalas" component={Reservation}/>
-      </Fragment>
-    )
-  }
-}
+const App = () => 
+  <Router>
+    <Fragment>
+      <Route exact path="/" render={
+        () => 
+          <Fragment>
+            <Menu/>
+            <Main/>
+            <ChatFAB/>
+          </Fragment>
+      }/>
+      <Route path="/foglalas" component={Reservation}/>
+    </Fragment>
+  </Router>
 
 const ChatFAB = () =>
   <div className="chat-fab">
@@ -35,3 +32,6 @@ const ChatFAB = () =>
       <img className="filled" src={chat} alt="" aria-hidden/>
     </a>
   </div>
+
+
+export default App

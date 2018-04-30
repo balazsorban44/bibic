@@ -5,12 +5,11 @@ import Hero from './components/Main/Hero'
 import App from './components/App'
 import Map from './components/Map'
 import './main.css'
-
-render( <Router>
-          <App/>
-        </Router>,
-  document.querySelector('.app'))
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 
+
+render(<App/>, document.querySelector('.app'))
 render(<Hero/>, document.querySelector(".hero"))
 render(<Map/>, document.querySelector(".map"))

@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import hero from '../../assets/images/hero/1.jpg'
 import logo from '../../assets/icons/logo.png'
 import ScrollTo from '../shared/ScrollTo'
-
 import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+
+
 
 export default class Header extends Component {
 
