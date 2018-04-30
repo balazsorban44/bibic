@@ -1,4 +1,5 @@
 #szobak
+  padding-bottom: 1em
   img
     pointer-events: none
   h2
@@ -15,45 +16,202 @@
       font-size: .5em
       margin-left: .2em
       text-shadow: none
-
+.button
+  cursor: pointer
 
 @for $i from 1 through length($rooms)
   #szoba-#{$i} 
-    button, button::before
-      background-color: darken(nth($rooms, $i), 10)
+    // background-color: darken(nth($rooms, $i), 25)
+    button, .button, .room-unavailable-reserve-btn:hover
+      background-color: darken(nth($rooms, $i), 10) !important
+    .room-reserve-btn:hover
+      background-color: darken(nth($rooms, $i), 20) !important
+    .room-slider-index
+      color: nth($rooms, $i)
+
 
 .room
-  position: relative
-  overflow: hidden
-  button
-    font-size: 1.2em
-    position: absolute
-    z-index: 1
-    top: 50%
-    left: 20%
+  display: grid
+  grid-template-areas: "title title" "slider slider" "desc res-btn"
+  align-items: center
+  padding: 1em
+  grid-column-gap: 1em
+  grid-row-gap: calc((100vw * 2/3) / 4)
+
+.room-title
+  font-family: "White Festive"
+  text-transform: uppercase
+  grid-area: title
+  margin-bottom: calc((-100vw * 2/3) / 3.5)
+  font-size: 5rem
+  justify-self: flex-end
+
+.room-description
+  grid-area: desc
+
+.room-reserve-btn
+  grid-area: res-btn
+  border-radius: 1.5em
+  font-family: "Coolvetica"
+  color: $light
+  letter-spacing: .05em
+  transition: .1s ease-out
+  padding: .8em 1em
+  p
+    pointer-events: none
+  a
+
     color: $light
-    border-radius: 50%
-    border: none
-    width: 48px
-    height: 48px
-    transform: translate(-50%, -50%)
-    &::before
-      content: ''
+  &:hover
+    transform: scale(1.05)
+    box-shadow: 0 0 10px black
+
+.room-unavailable-reserve-btn
+  opacity: .3
+  position: relative
+  &:hover
+    opacity: .8
+    &::after
+      font-family: monospace
+      bottom: -1em
+      left: -2em
       position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
-      z-index: -1
-      border-radius: 50%
-      animation: pulsate 2.5s infinite
+      content: "jelenleg nem elérhető"
+      font-size: .6em
+      padding: .75em .2em
+      width: calc(135%)
+      text-align: center
+      background: #444
+      border-radius: 1.5em
 
-@media (min-width: 768px)
-  .room button
-    width: 64px
-    height: 64px
+.room-slider-container
+  grid-area: slider
+  position: relative
+  max-width: 100vw
 
-@media (orientation: landscape)
+.room-slider
+  width: calc(100vw - 2em)
+  height: calc((100vw - 2em) * 2/3)
+  max-height: 80vh
+  position: relative
+  li
+    position: absolute
+    bottom: 0
+
+.room-first-slide
+  box-shadow: 0 0 30px 2px black
+  filter: brightness(1.45) contrast(1.05)
+
+.room-placeholder-slide
+  bottom: -30% !important
+  transform: scale(.8)
+  background-color: $accent-color-dark
+  img
+    filter: blur(1px)
+    border: 1px solid black
+    opacity: .2
+
+.room-slider-indexes
+  z-index: 100
+  position: absolute
+  bottom: 0
+  padding: .5em
+.room-slider-index
+  position: relative
+  margin: 3px
+  padding: 3px
+  width: 24px
+  height: 24px
+  transition: color .625s
+  color: $accent-color
+  text-shadow: 1px 2px 4px black
+
+.active-slide
+  color: $light !important
+
+.room-slider-next-btn
+  box-shadow: 0 0 10px black
+  position: absolute 
+  bottom: -24px
+  right: 12px
+  align-self: flex-end
+  width: 48px
+  height: 48px
+  border-radius: 50%
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 100
+  &:after
+    content: ''
+    width: 24px
+    height: 24px
+    position: relative
+    background:
+      image:  url("assets/icons/arrow_thick.svg")
+      repeat: no-repeat
+      size: cover
+
+@media (min-width: 640px)
   .room
-    min-height: 0
-    max-height: calc(100vh - 64px)
+    grid-template-areas: "res-btn slider" "title title"  ". desc"
+    grid-row-gap: 0
+    max-width: 90vw
+    margin: 0 auto -12.5vh
+    min-height: 100vh
+    align-items: flex-start
+
+  .room-title
+    margin-bottom: 0
+    margin-top: -40vh
+    margin-left: 30vmin
+    justify-self: flex-start
+    z-index: 100
+    text-shadow: 0 0 10px black
+
+  .room-slider-indexes
+    right: 0
+    
+  .room-description
+    justify-self: flex-end
+    margin-right: 15vw
+    max-width: 30vw
+    margin-top: -12.5vw
+
+  .room-reserve-btn
+    justify-self: flex-start
+  .room-slider-container
+    justify-self: flex-end
+    margin-right: 7.5vw
+  .room-slider
+    width: calc(60vh * 3/2)
+    height: 60vh
+
+  .room-slider-next-btn
+    bottom: calc(50% - 24px)
+    right: -24px
+
+  .room-first-slide
+    &:hover
+      transform: scale(1.01)
+      z-index: 100 !important
+
+  .room-placeholder-slide
+    left: -130%
+    bottom: -100% !important
+    transform: scale(.33) 
+
+@media (min-width: 1024px)
+  .room
+    padding: 5vw 
+    max-width: 75vw
+  .room-title
+    font-size: 10vw
+
+  .room-reserve-btn
+    font-size: 1.25vw
+    padding: .75vw 1.25vw
+  
+  .room-description
+    margin-right: 10vw
+    font-size: 1.75vw
