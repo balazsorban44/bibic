@@ -5,8 +5,7 @@
   display: flex
   width: 100vw
   height: 0
-  a
-    font-family: "Coolvetica"
+
 .tablet-header, .pc-logo
   display: none
 .menu-hidden
@@ -23,6 +22,9 @@
   align-items: center
   transition: .3s ease-in-out
   border-right: 1px solid $light
+  font-family: "White Festive"
+  font-weight: bolder
+  letter-spacing: .1em
   li
     position: relative
     transition: .2s
@@ -204,8 +206,8 @@
     flex-direction: column
     align-items: center
     min-height: 64px
-    box-shadow: 0 0 20px transparentize($dark, .5)
     padding-top: .5em
+    box-shadow: 0 0 20px transparentize($dark, .5)
     height: auto
   .header-scrolled
     padding-top: .5em
@@ -254,3 +256,20 @@
     background-color: transparent
     li a
       padding: .5em
+
+.back-menu ul
+  position: relative
+  height: 64px
+  margin: 0 1em
+  display: flex
+  align-items: center
+  justify-content: space-between
+  a
+    color: $accent-color
+    font-family: "White Festive"
+    font-weight: bolder
+    font-size: 1.3em
+    letter-spacing: .1em
+    transition: .2s
+    &:hover
+      font-size: 1.4em

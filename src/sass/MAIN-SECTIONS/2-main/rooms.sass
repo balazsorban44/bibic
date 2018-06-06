@@ -18,33 +18,35 @@
       text-shadow: none
 .button
   cursor: pointer
+  transition: .1s ease-out
 
 @for $i from 1 through length($rooms)
   #szoba-#{$i} 
     // background-color: darken(nth($rooms, $i), 25)
     button, .button, .room-unavailable-reserve-btn:hover
       background-color: darken(nth($rooms, $i), 10) !important
-    .room-reserve-btn:hover
+    .button:hover
       background-color: darken(nth($rooms, $i), 20) !important
-    .room-slider-index
+    .room-slider-dot
       color: nth($rooms, $i)
 
 
 .room
   display: grid
-  grid-template-areas: "title title" "slider slider" "desc res-btn"
-  align-items: center
+  grid-template-rows: repeat(6, 1fr)
+  grid-template-columns: repeat(6, 1fr)
+  grid-template: ". . . . title  title" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "desc   desc   desc   desc   desc res-btn"
+  grid-gap: 1em
+  // grid-template-areas: "title title" "slider slider" "desc res-btn"
   padding: 1em
-  grid-column-gap: 1em
-  grid-row-gap: calc((100vw * 2/3) / 4)
 
 .room-title
   font-family: "White Festive"
   text-transform: uppercase
   grid-area: title
-  margin-bottom: calc((-100vw * 2/3) / 3.5)
+  line-height: 5rem
+  margin-bottom: -1rem
   font-size: 5rem
-  justify-self: flex-end
 
 .room-description
   grid-area: desc
@@ -52,10 +54,11 @@
 .room-reserve-btn
   grid-area: res-btn
   border-radius: 1.5em
+  align-self: center
+  justify-self: center
   font-family: "Coolvetica"
   color: $light
   letter-spacing: .05em
-  transition: .1s ease-out
   padding: .8em 1em
   p
     pointer-events: none
@@ -86,38 +89,40 @@
 
 .room-slider-container
   grid-area: slider
-  position: relative
-  max-width: 100vw
+  display: grid
+  grid-template-areas: "slide slide slide" "dots . next"
+  margin-bottom: 24px
 
 .room-slider
-  width: calc(100vw - 2em)
-  height: calc((100vw - 2em) * 2/3)
-  max-height: 80vh
+  grid-area: slide
   position: relative
-  li
-    position: absolute
-    bottom: 0
+  margin-bottom: -24px
+  justify-self: flex-end
 
 .room-first-slide
+  position: relative
+  z-index: 1
   box-shadow: 0 0 30px 2px black
-  filter: brightness(1.45) contrast(1.05)
 
 .room-placeholder-slide
-  bottom: -30% !important
-  transform: scale(.8)
-  background-color: $accent-color-dark
-  img
-    filter: blur(1px)
-    border: 1px solid black
-    opacity: .2
-
-.room-slider-indexes
-  z-index: 100
   position: absolute
-  bottom: 0
-  padding: .5em
-.room-slider-index
+  width: 75%
+  left: 12.5%
+  background-color: $accent-color-dark
+  bottom: -20%
+  filter: blur(1px)
+  opacity: .8
+.room-slider-dots, .room-slider-next-btn
   position: relative
+  z-index: 100
+
+.room-slider-dots
+  grid-area: dots
+  align-self: flex-start
+  padding: 0 .5em
+  pointer-events: none
+
+.room-slider-dot
   margin: 3px
   padding: 3px
   width: 24px
@@ -130,18 +135,16 @@
   color: $light !important
 
 .room-slider-next-btn
+  grid-area: next
   box-shadow: 0 0 10px black
-  position: absolute 
-  bottom: -24px
-  right: 12px
-  align-self: flex-end
+  position: relative
   width: 48px
+  margin-right: 12px
   height: 48px
   border-radius: 50%
   display: flex
   justify-content: center
   align-items: center
-  z-index: 100
   &:after
     content: ''
     width: 24px
@@ -152,66 +155,31 @@
       repeat: no-repeat
       size: cover
 
-@media (min-width: 640px)
+@media (min-aspect-ratio: 9/6), (min-width: 768px)
   .room
-    grid-template-areas: "res-btn slider" "title title"  ". desc"
-    grid-row-gap: 0
-    max-width: 90vw
-    margin: 0 auto -12.5vh
-    min-height: 100vh
-    align-items: flex-start
+    max-width: 768px
+    margin: 5% auto
+    grid-template-areas: "res-btn slider slider slider slider slider" "title slider slider slider slider slider" "title slider slider slider slider slider" "title slider slider slider slider slider" "title slider slider slider slider slider" "desc   desc   desc   desc   desc desc"
 
-  .room-title
-    margin-bottom: 0
-    margin-top: -40vh
-    margin-left: 30vmin
-    justify-self: flex-start
-    z-index: 100
-    text-shadow: 0 0 10px black
-
-  .room-slider-indexes
-    right: 0
-    
-  .room-description
-    justify-self: flex-end
-    margin-right: 15vw
-    max-width: 30vw
-    margin-top: -12.5vw
-
-  .room-reserve-btn
-    justify-self: flex-start
-  .room-slider-container
-    justify-self: flex-end
-    margin-right: 7.5vw
   .room-slider
-    width: calc(60vh * 3/2)
-    height: 60vh
-
-  .room-slider-next-btn
-    bottom: calc(50% - 24px)
-    right: -24px
-
-  .room-first-slide
-    &:hover
-      transform: scale(1.01)
-      z-index: 100 !important
-
+    justify-self: flex-end
+    img
+      max-height: 60vh
+  .room-slider-container
+    justify-content: flex-end
   .room-placeholder-slide
-    left: -130%
-    bottom: -100% !important
-    transform: scale(.33) 
-
-@media (min-width: 1024px)
-  .room
-    padding: 5vw 
-    max-width: 75vw
-  .room-title
-    font-size: 10vw
+    left: -12.5%
 
   .room-reserve-btn
-    font-size: 1.25vw
-    padding: .75vw 1.25vw
-  
+    justify-self: flex-start
+    align-self: flex-start
+
+  .room-title
+    justify-self: flex-start
+    align-self: flex-end
   .room-description
-    margin-right: 10vw
-    font-size: 1.75vw
+    padding: 1em 0
+    
+@media (min-width: 768px)
+  .room-slider img
+    max-height: 320px

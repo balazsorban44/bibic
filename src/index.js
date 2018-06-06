@@ -1,15 +1,17 @@
 import React from 'react'
-import {render} from 'react-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
-import Hero from './components/Main/Hero'
+import {render} from 'react-dom'
 import App from './components/App'
 import Map from './components/Map'
 import './main.css'
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+import {Store} from './components/db'
 
 
-
-render(<App/>, document.querySelector('.app'))
-render(<Hero/>, document.querySelector(".hero"))
+render(
+  <Store>
+    <Router>
+      <App/>
+    </Router>
+  </Store>, document.querySelector('.app'))
+  
 render(<Map/>, document.querySelector(".map"))

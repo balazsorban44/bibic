@@ -141,6 +141,7 @@ export default class Reservation extends Component {
     reservation.to = moment(to).startOf("day").hours(10).valueOf()
     reservation.message = message !== "" ? message : "Nincs üzenet"
     this.isAvailable(roomId, from, to).then(available => {
+      console.log(available);
       
       if (available) {
         if (this.isValidReservation(reservation)) {
@@ -304,7 +305,6 @@ export default class Reservation extends Component {
     const url = "https://us-central1-bibic-vendeghazak-api.cloudfunctions.net/overlaps?"
     return fetch(`${url}roomId=r${roomId}&date=${from}_${to}`)
             .then(res => res.json())
-            .then(data => data)
             .catch(e => console.error(e))
   }
       
