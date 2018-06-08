@@ -45,7 +45,6 @@ export default class Slider extends Component {
   render() {
     const {slider} = this.state
     const {title, sectionId, alignRight} = this.props
-    console.log(slider)
     return (
       slider ?
         <section

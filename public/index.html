@@ -3,12 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name='description', content="Szeretettel üdvözöljük a Bíbic vendégházak honlapján!">
     <meta property='og:title', content="Bíbic vendégházak">
     <meta property='og:description', content="Szeretettel üdvözöljük a Bíbic vendégházak honlapján!">
-    <meta property='og:url', content="https://bibicvendeghazak.hu">
-    <meta property='og:image', content="%PUBLIC_URL%/thumbnail.png">
+    <meta property='og:url', content="https://bibic-vendeghazak-web.firebaseapp.com">
+    <meta property='og:image', content="https://bibic-vendeghazak-web.firebaseapp.com/thumbnail.png">
+    <meta property='og:image:alt', content="A Bíbic vendégházak logója">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="668">
+    <meta property="og:type" content="website" />
+    <meta property="fb:app_id" content="155316805134060" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel='shotcut icon', href='%PUBLIC_URL%/favicon.ico', type='image/x-icon'>
     <link rel='apple-touch-icon', sizes='180x180', href='%PUBLIC_URL%/apple-touch-icon.png'>
@@ -19,15 +23,62 @@
     <meta name='apple-mobile-web-app-title', content="Bíbic vendégházak">
     <meta name='application-name', content="Bíbic vendégházak">
     <meta name='theme-color', content='#ffffff'>
-
-
-
     <title>Bíbic vendégházak</title>
   </head>
   <body>
     <noscript>
       Az ön böngészője nem támogatja a Javascriptet. Ez az oldal Javascriptet futtat.
     </noscript>
+    <div class="app"></div>
+    <footer id="kapcsolat">
+      <div class="map">
+        <!-- Map will go here -->
+      </div>
+      <div class="contact">
+        <ul id="reachout">
+          <li>
+            <a href="https://www.google.com/maps/place/Bibic+vendégházak/@46.394617,17.505221,17z" target="_blank" rel="noopener noreferrer" ><span>7561 Nagybajom, Iskolaköz 3-5.</span>
+              <img alt="" src="%PUBLIC_URL%/assets/public_icons/map.svg"/>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@bibicvendeghazak.hu"><span>info@bibicvendeghazak.hu</span>
+              <img alt="" src="%PUBLIC_URL%/assets/public_icons/mail.svg"/>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+36305785730"><span>+36 30 578 5730</span>
+              <img alt="" src="%PUBLIC_URL%/assets/public_icons/tel.svg"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517" target="_blank" rel="noopener noreferrer" >
+              <img alt="" src="%PUBLIC_URL%/assets/public_icons/facebook.svg"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517" target="_blank" rel="noopener noreferrer" >
+              <img alt="" src="%PUBLIC_URL%/assets/public_icons/instagram.svg"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517" target="_blank" rel="noopener noreferrer" >
+              <img alt="" src="%PUBLIC_URL%/assets/public_icons/youtube.svg"/>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="copyright">
+        <h4> © Minden jog fenntartva.</h4>
+        <h4>
+          Képek & Design :  <a href="https://www.facebook.com/gergo.boos" target="_blank" rel="noopener noreferrer" >Boós Gergő</a>
+        </h4>
+        <h4>
+          Weblap & Design : <a href="https://balazsorban.com" target="_blank" rel="noopener noreferrer" >Orbán Balázs</a>
+        </h4>
+        <h6>verziószám: 1.0.0-beta1</h6>
+      </div>
+    </footer>
     <div id="root"></div>
   </body>
 </html>

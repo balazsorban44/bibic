@@ -5,5 +5,58 @@
 @import '2-main/foods'
 @import '2-main/events'
 @import '2-main/programs'
-// @import '2-main/prices'
-// @import '2-main/specialities'
+@import '2-main/prices'
+
+
+.chat-fab
+  position: fixed
+  bottom: 0
+  right: 0
+  z-index: 1000
+  margin: calc(2.5vmax + 1em) 2.5vmax
+  transition: .2s ease-out
+  width: 54px
+  height: 54px
+  a
+    display: flex
+    align-items: center
+    flex-direction: column
+    justify-content: center
+    width: 100%
+    height: 100%
+    background-color: $accent-color
+    border-radius: 50%
+    box-shadow: 0 0 10px black
+    &:hover, &:active
+      animation: none
+      transform: scale(1.1)
+    @media (min-width: 720px)
+      animation: chat 2.5s infinite
+    img
+      width: 32px
+  .filled
+    transition: opacity .3s
+    opacity: 1
+  .tooltip
+    margin-bottom: -1em
+    float: right
+    color: $light
+    background-color: #444
+    font-family: monospace
+    padding: .3em .5em
+    pointer-events: none
+    z-index: -1
+    position: relative
+    white-space: nowrap
+    margin-right: 3em
+    border-radius: 1em
+    transition: .3s
+    transform: scale(0)
+    transform-origin: right
+    opacity: 0
+  &:hover, &:active
+    .tooltip
+      position: relative
+      transform: none
+      opacity: 1
+  

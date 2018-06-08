@@ -1,80 +1,277 @@
-nav
-  position: fixed
+.menu-wrapper
   top: 0
+  position: fixed
   z-index: 10000
-  height: 60px
-  width: 100%
-  z-index: 1000
-  transition: .2s ease-in
-  background-image: linear-gradient(transparentize($accent-color-dark, .5), transparent 80%)
+  display: flex
+  width: 100vw
+  height: 0
 
-#menu, #szoba-lista
+.tablet-header, .pc-logo
+  display: none
+.menu-hidden
+  transform: translateX(-101%)
+.room-menu-hidden
+  transform: translateX(100%)
+.menu
+  position: relative
+  height: 100vh
+  background-color: $light
+  display: flex
+  width: 60%
+  justify-content: flex-end
+  align-items: center
+  transition: .3s ease-in-out
+  border-right: 1px solid $light
+  font-family: "White Festive"
+  font-weight: bolder
+  letter-spacing: .1em
+  li
+    position: relative
+    transition: .2s
+    margin: 2em 0
+    // text-align: right
+    padding-right: 2.5em
+    &:hover
+      transform: scale(1.2)
+      color: $accent-color
+    &:nth-child(3)
+      margin: -1em 0
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding-right: 0
+      span
+        color: $light
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 2em
+        transform: translateX(2px)
+        height: 3em
+        padding-left: .5em
+        border-top-left-radius: 1.5em
+        border-bottom-left-radius: 1.5em
+        background-color: $accent-color-dark
+    a
+      padding: 1em
+      font-size: 1.2em
+      color: $accent-color-dark
+    // &:after
+    //   content: ""
+    //   position: absolute
+    //   top: 50%
+    //   right: -2em
+    //   transform: translate(-50%, -50%) scale(0)
+    //   border-radius: 50%
+    //   width: 1em
+    //   height: 1em
+    //   background-color: $light
+    //   transition: .2s ease-out
+    // &:hover
+    //   &:after
+    //     transform: translate(-50%, -50%) scale(1)
+.room-menu
+  position: absolute
+  background-color: transparentize($accent-color-dark, .1)
+  top: 50%
+  width: 40%
+  right: 0
+  z-index: -1
   height: 100vh
   display: flex
   flex-direction: column
-  box-sizing: border-box
-  will-change: transform
-#menu
-  align-items: flex-end
   justify-content: center
-  position: relative
-  background-color: transparentize($accent-color-dark, .015)
-  transition: .3s
-  >li
-    cursor: pointer
-    margin: 1.5rem 0 .5rem
-
-#rooms-menu
-  text-align: right
-  min-width: calc(60% - 8px)
-  border-left: 8px solid $light
-  padding-left: 0
-
-#szoba-lista
-  justify-content: center
-  align-items: stretch
-  position: absolute
-  top: 0
-  left: 0
-  width: 40vw
-  background-color: transparentize($accent-color, .6)
-  border-right: 1px solid $light
+  align-items: center
+  transition: .3s ease-in
   li
+    margin: .5em 1em
+    border-radius: 50%
+    transition: .3s
+    @for $i from 1 through length($rooms)
+      &:nth-child(#{$i})
+        background-color: darken(nth($rooms, $i), 10)
+        &:hover
+          background-color: darken(nth($rooms, $i), 20)
+          a
+            color: $light !important
+
+  a
     display: flex
     justify-content: center
     align-items: center
-    border-bottom: 1px solid $accent-color-dark
-  a::after
-    content: '. Szoba'
+    position: relative
+    width: 1em
+    height: 1em
+    padding: 1em
+    color: $light
 
-.nav-fixed
-  box-sizing: border-box
-  @include import-img(bg,$bg,png)
-  background-color: $accent-color-dark
-  box-shadow: 0 10px 10px rgba(0,0,0,.3)
-  border-bottom: 1px solid white
+.hamburger
+  position: fixed
+  top: 0
+  left: 0
+  width: 48px
+  height: 28px
+  padding: 16px
+  z-index: 10001
+  cursor: pointer
+  display: flex
+  flex-direction: column
+  justify-content: space-evenly
+  span
+    background-color: $light
+    position: relative
+    width: 20px
+    height: 2px
+    border-radius: 2px
+    box-shadow: 0 0 4px black
+    transition: .3s
+    &:nth-of-type(2)
+      width: 14px
 
-@media (min-width: 360px)
-  #menu
-    >li
-      margin: 2rem 0 1rem
-  #szoba-lista
+.hamburger-clicked
+  span
+    box-shadow: none
+    &:first-child, &:last-child
+      position: absolute
+      background-color: $accent-color
+      z-index: 1
+    &:first-child
+      transform: rotate(45deg)
+    &:last-child
+      transform: rotate(-45deg)
+    &:nth-child(2)
+      opacity: 0
+
+@media (orientation: landscape) and (max-width: 768px)
+  .menu
+    align-items: stretch
+    ul
+      flex-grow: 1
+      display: flex
+      flex-direction: column
+      justify-content: space-evenly
     li
-      margin-top: .5rem
-    a
-      padding-bottom: 1.5rem
 
-@media (min-width: 786px)
-  #menu,
-  #szoba-lista
+      margin: 0
+  .room-menu
+    flex-wrap: wrap
+
+@media (min-width: 768px)
+  .menu-wrapper
+    height: 64px
+    background-color: $light
+    justify-content: center
+    a
+      font-family: "White Festive"
+      color: $accent-color-dark
+      font-size: 1.5em
+      font-weight: bolder
+      text-transform: uppercase
+      letter-spacing: .05em
+      &:hover
+        color: $accent-color
+  @media (max-width: 1279px)
+    .tablet-header
+      display: flex
+      flex-grow: 1
+      align-items: center
+      position: relative
+      >div
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-grow: 1
+      >a
+        position: absolute
+        right: 0
+        margin-right: 1em
+      img
+        width: 36px
+  .hamburger
+    padding: 20px 8px
+    position: absolute
+    span
+      background-color: $accent-color-dark
+      box-shadow: none
+  .menu
+    position: absolute
+    left: 0
+    top: 0
+    a
+      font-size: 2.5em !important
+  .room-menu
+    top: 0
+
+@media (min-width: 1280px)
+  .menu-wrapper
+    width: 100%
+    flex-direction: column
+    align-items: center
+    min-height: 64px
+    padding-top: .5em
+    box-shadow: 0 0 20px transparentize($dark, .5)
+    height: auto
+  .header-scrolled
+    padding-top: .5em
+    .pc-logo
+      img
+        height: 0
+        padding-top: -.5em
+        // transform: scale(0)
+    .menu
+      ul
+        margin-top: 0
+      li
+  .pc-logo
+    display: block
+    img
+      height: 96px
+      transition: .5s
+  .hamburger, .menu li span
+    display: none !important
+  .menu-hidden, .room-menu-hidden
+    transform: none
+  .menu
+    position: relative
+    width: 100%
+    display: block
+    height: auto
+    ul
+      margin-top: 1em
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: center
+    li
+      margin: .5em
+      padding: 0
+    a
+      font-size: 1.5em !important
+
+  .room-menu
+    display: none
     flex-direction: row
     height: auto
-  #menu
-    font-family: WhiteFestive !important
-    a
-      padding: .25em
-  #rooms-menu
-    min-width: auto
-    border-left: none
-  #szoba-lista
-    display: none
+    left: 50%
+    top: 100%
+    transform: translateX(-50%)
+    background-color: transparent
+    li a
+      padding: .5em
+
+.back-menu ul
+  position: relative
+  height: 64px
+  margin: 0 1em
+  display: flex
+  align-items: center
+  justify-content: space-between
+  a
+    color: $accent-color
+    font-family: "White Festive"
+    font-weight: bolder
+    font-size: 1.3em
+    letter-spacing: .1em
+    transition: .2s
+    &:hover
+      font-size: 1.4em

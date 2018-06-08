@@ -1,7 +1,6 @@
-#etelek
-  position: relative
 .food
-  height: 100vh  
+  cursor: pointer
+  min-height: 100vh  
   position: relative
   overflow: hidden
   display: flex !important
@@ -23,12 +22,12 @@
   h4
     font-size: 3.3em
     font-family: "White Festive"
-    text-align: center
     margin: 1em 1em 0
-    line-height: 1 
+    line-height: 1.1
+    letter-spacing: .05em 
   p
     font-family: "Coolvetica"
-    margin: 1em
+    margin: 1.5em
     font-size: 1.2em
   img
     position: absolute
@@ -54,10 +53,11 @@
 
 @media (min-width: 1024px)
   .food
+    max-height: calc(100vh - 64px)
     >div
       min-width: 768px
       display: flex
       align-items: center
       flex-direction: column
     p
-      margin: 1em 15%
+      padding: 1em 15%

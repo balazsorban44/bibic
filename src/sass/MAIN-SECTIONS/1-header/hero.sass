@@ -2,12 +2,27 @@
   overflow: hidden
   background-color: black
   min-height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+.hero-logo
+  position: relative
+  z-index: 1
+  width: 80vw
+  max-width: 480px
+  filter: invert(1)
 
-.hero-bg
+.hero-bg, .hero-bg-overlay
   position: absolute
+  left: 0
   height: 100%
   max-width: none
-  transform: translateX(-40%)
+  transform: translateX(-45%)
+
+.hero-bg-overlay
+  transform: none
+  background: transparentize($dark, .95)
+  width: 100%
   
 .scroll-icon
   position: absolute
@@ -17,7 +32,7 @@
   width: 24px
   height: 24px
   padding: 12px
-  background: url('./media/icons/arrow.svg')
+  background: url('./assets/icons/arrow.svg')
   background-size: 50%
   background-position: center
   background-repeat: no-repeat
@@ -30,14 +45,23 @@
     transform: none
     height: auto
     width: 115%
+  .hero-bg-overlay
+    display: none
 
 
 @media (min-width: 768px)
   .hero-bg
     top: 50%
     left: 50%
-    transform: translate(-50%, -50%)
+    transform: translate(-55%, -45%)
   .scroll-icon
     bottom: 64px
     width: 36px
     height: 36px
+
+  .hero-logo
+    display: none
+
+@media (min-width: 1280px)
+  .hero-bg
+    transform: translate(-55%, -35%)

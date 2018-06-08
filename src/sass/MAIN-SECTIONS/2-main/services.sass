@@ -4,12 +4,15 @@
   h2
     padding-left: .5em
   img
-    width: 100%
+    border-top-left-radius: 11px
+    border-top-right-radius: 11px
   li
+    border-radius: 12px
     p
       background-color: $light
       color: $dark
-
+  p
+    padding: 1em
 @media (orientation: landscape)
   #szolgaltatasok
     img
@@ -34,14 +37,21 @@
       margin: 1em
       box-shadow: 0 0 10px rgba(0,0,0,.8)
       width: 35vw
-      background-color: $light
+      display: flex
+      flex-direction: column
       p
-        background-color: transparent
+        display: flex
+        align-items: center
+        border-bottom-right-radius: 12px
+        border-bottom-left-radius: 12px
+        flex: 1
+        background-color: $light
         margin: 0
-        padding: 1.5em
+        padding: 1.5em 2.5em
     img
       box-shadow: none
       width: 100%
+      height: calc(100% * 2/3)
     >p
       margin: 5vw auto
       padding: 0
@@ -49,7 +59,12 @@
 
 @media (min-width: 1280px)
   #szolgaltatasok
+    h2
+      padding-top: 0
     ul
       flex-wrap: nowrap
     li
-      width: 30vw
+      transition: .3s
+      cursor: pointer
+      &:hover
+        transform: scale(1.05)

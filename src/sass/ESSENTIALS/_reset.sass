@@ -16,8 +16,7 @@ section
   background-color: $accent-color-dark
   min-height: 70vh
   @media (min-width: 768px)
-    @include import-img(bg,$bg,png)
-
+    background-image: url(./assets/images/bg/bg.png)
 textarea, input, fieldset
   border: none
 
@@ -26,6 +25,7 @@ textarea, input, button
     outline: none
 
 button
+  border: none
   cursor: pointer
 
 input[type=number]::-webkit-inner-spin-button,

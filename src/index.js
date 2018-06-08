@@ -1,9 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
+import {render} from 'react-dom'
 import App from './components/App'
+import Map from './components/Map'
 import './main.css'
+import {Store} from './components/db'
 
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 
-ReactDOM.render(<App />, document.getElementById('root'))
+render(
+  <Store>
+    <Router>
+      <App/>
+    </Router>
+  </Store>, document.querySelector('.app'))
+  
+render(<Map/>, document.querySelector(".map"))
