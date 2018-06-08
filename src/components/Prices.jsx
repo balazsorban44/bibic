@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 export default class Prices extends Component {
   componentDidMount() {
-    //TODO: Fetch prices and info    
+    //TODO: Fetch prices and info      
   } 
   render() {
     return (
@@ -26,9 +26,9 @@ export default class Prices extends Component {
               <h4>Rendezvényterem</h4>
               <h5>terembérlés</h5>
             </div>
-            <a  className="price-button" target="_black" href="mailto:szallasfoglalas@bibicvendeghazak.hu?subject=Rendezvényterem bérlés&body=Név:%0ATelefonszám:%0ACím(számla esetén):">
+            <Link className="price-button" to="uzenet?tema=rendezvenyterem">
               Részletek
-            </a>
+            </Link>
           </li>
           <li>
             <div className="price-content">
@@ -36,9 +36,9 @@ export default class Prices extends Component {
               <h4>Teljes ház</h4>
               <h5>maximum 21 fő</h5>
             </div>
-            <a className="price-button" target="_black" href="mailto:szallasfoglalas@bibicvendeghazak.hu?subject=Rendezvényterem bérlés&body=Név:%0ATelefonszám:%0ACím(számla esetén):">
-              E-mail
-            </a>
+            <Link className="price-button" to="uzenet?tema=teljeshaz">
+              Részletek
+            </Link>
           </li>
           {/* <li>
             <div className="price-content">
@@ -49,10 +49,10 @@ export default class Prices extends Component {
             </a>
           </li> */}
           <li className="special">
-            <a target="_black" href="mailto:szallasfoglalas@bibicvendeghazak.hu?subject=Külön ajánlat&body=Név:%0ATelefonszám:%0ACím(számla esetén):">
+            <Link to="uzenet?tema=kulonajanlat">
               <h4>KÜLÖN</h4>
               <h5>AJÁNLAT</h5>
-            </a>
+            </Link>
             <span></span>
           </li>
         </ul>

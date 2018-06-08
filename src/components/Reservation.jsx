@@ -12,6 +12,7 @@ import 'moment/locale/hu'
 import {ROOM_SERVICES_REF, ROOMS_REF} from '../lib/firebase'
 
 import {FormSection, FormGroup} from './Form'
+import {Send} from './Form/inputs'
 import {PersonalDetail, Date, PeopleCount, Children, Service} from './Form/inputs'
 import {Loading} from './shared/Elements'
 import {valid, valueToState} from '../utils/validate'
@@ -546,21 +547,15 @@ export default class Reservation extends Component {
                 />
               </FormGroup>
             </FormSection>
-
-              {isReserving ?
-                <div style={{padding: "24px 0 48px"}} >
-                  <Loading/>
-                </div> :
-                <button
-                  onClick={this.submitReservation} 
-                  type="submit"
-                  className={`submit-reservation ${isReserving ? "active-reserving": ""}`}
-                >Küldés
-                  <span className="footnote-asterix">
-                    {toPrice(price)}
-                  </span>
-                </button>
-              }
+            <Send 
+              disabled={isReserving}
+              onClick={this.submitReservation}
+              >
+              Küldés
+              <span className="footnote-asterix">
+                {toPrice(price)}
+              </span>
+            </Send>
           <span className="footnote">Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:
           <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
           </span>

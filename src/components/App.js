@@ -12,6 +12,7 @@ import chat from '../assets/icons/chat.svg'
 import Foods from './Foods'
 
 import Slider from './shared/Slider'
+import Message from './Message'
 
 
 const App = () => 
@@ -22,6 +23,7 @@ const App = () =>
       <Route exact path="/etelek" component={Foods}/>
       <Route exact path="/rendezvenyek" component={Events}/>
       <Route exact path="/foglalas" component={Reservation}/>
+      <Route path="/uzenet" component={Message}/>
       <Route component={NotFound}/>
     </Switch>
   </Fragment>

@@ -12,13 +12,15 @@ export const valid = {
   email: email => emailRe.test(email),
   tel: tel => telRe.test(tel),
   address: address => typeof address === "string" && address.length > 0,
-  message: message => typeof message === "string" ,
+  message: message => typeof message === "string",
+  messageMin: message => typeof message === "string" && message.length >= 60,
   from: from => from > moment().add(1, "day").startOf("day").valueOf(),
   to: to => to > moment().add(2, "day").startOf("day").valueOf(),
   period: (from, to) => moment(to).startOf("day").diff(moment(from).startOf("day"), "days") >= 1,
   adults: adults => typeof adults === "number" || adults >= 1,
   children: children => Array.isArray(children),
-  peopleCount: (adults, children, maxPeople) => adults + children.length <= maxPeople
+  peopleCount: (adults, children, maxPeople) => adults + children.length <= maxPeople,
+  subject: subject => ["eventHall", "fullHouse", "special", "other"].includes(subject)
 }
 
 
@@ -39,6 +41,8 @@ export const valueToState = (key, value) => {
       return date.isValid()  ? date.toDate() : moment().toDate()
     case "activeService":
       return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
+    case "subject":
+      return valid.subject(value) ? value : "other"
     default:
       return
   }
