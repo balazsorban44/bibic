@@ -13,7 +13,12 @@ export const translations = {
     halfBoard: ["felpanzio", false],
     fullBoard: ["teljes-ellatas", false],
     allInclusive: ["all-inclusive", false],
-    message: ["uzenet", false]
+    subject: ["tema", true],
+    message: ["uzenet", false],
+    eventHall: ["rendezvenyterem", false],
+    special: ["kulonajanlat", false],
+    fullHouse: ["teljeshaz", false],
+    other: ["egyeb", false]
 }
 
 /**
