@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import {valid} from '../../utils/validate'
 import moment from 'moment'
-
+import {Loading} from "../shared/Elements"
 class PersonalDetail extends Component {
 
   state = {
@@ -238,5 +238,20 @@ const Service = ({label, name, onChange, checked, value}) => (
 )
 
 
+const Send = ({disabled, onClick, children}) =>
+  <Fragment>
+    {disabled ?
+      <div style={{padding: "24px 0 48px"}} >
+        <Loading/>
+      </div> :
+      <button
+        {...{onClick}} 
+        type="submit"
+        className={`submit-reservation ${disabled ? "active-reserving": ""}`}
+      >{children}
+      </button>
+    }
+  </Fragment>
 
-export {PersonalDetail, Children, Date, PeopleCount, Service}
+
+export {PersonalDetail, Children, Date, PeopleCount, Service, Send}
