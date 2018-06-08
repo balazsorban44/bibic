@@ -18,9 +18,12 @@ export const RESERVATIONS_REF = DB.ref("reservations")
 export const ROOM_SERVICES_REF = DB.ref("roomServices")
 export const CERTS_REF = DB.ref("certificates")
 export const PARAGRAPHS_REF = DB.ref("paragraphs")
+export const MESSAGES_REF = DB.ref("messages")
 
 
 export const FS = firebase.firestore()
 export const RESERVATIONS_FS_REF = FS.collection("reservations")
 
+
+export const TIMESTAMP_DB = firebase.database.ServerValue.TIMESTAMP
 export const TIMESTAMP = firebase.firestore.FieldValue.serverTimestamp()
