@@ -121,8 +121,7 @@ export default class Reservation extends Component {
       toast.error(
         <p style={{padding: ".5rem", fontSize: "1.2rem"}}>{error}<br/>
           <span style={{fontSize: "1rem"}}>
-            Úgy gondolja más a hiba oka? <br/> Kérjük jelezze itt: <br/>
-            <a style={{color: "white"}} href="mailto:hiba@bibicvedeghazak.hu">hiba@bibicvedeghazak.hu</a>
+            Technikai hiba? <a style={{color: "white", borderBottom: "1px solid white"}} href="mailto:hiba@bibicvedeghazak.hu">hiba@bibicvedeghazak.hu</a>
           </span>
         </p>, {
           autoClose: 5000
@@ -171,8 +170,8 @@ export default class Reservation extends Component {
               toast.error(
                 <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Hiba: {code} - {message}<br/>
                   <span style={{fontSize: "1rem"}}>
-                    Ha a probléma tartósan fennáll, <a href={`mailto:info@balazsorban.com?subject=Hibajelentés (${code})&body=${message}`}>ide kattintva</a> jelezheti.
-                  </span>
+              Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés (${code})&body=${message}`}>hiba@bibicvedeghazak.hu</a>
+            </span>
                 </p>, {autoClose: 10000})
             })
         } else {
@@ -516,7 +515,11 @@ export default class Reservation extends Component {
               <FormGroup
                 title="ellátás"
                 className="services"
-                footnote="az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet"
+                footnote={
+                  <Fragment>
+                    az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet <Link to="etelek">főbb ételeinket ide kattintva találja →</Link>
+                  </Fragment>
+                }
               >
                 <Service 
                   label="reggeli" name="activeService"
