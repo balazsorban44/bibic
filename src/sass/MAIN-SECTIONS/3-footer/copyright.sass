@@ -3,15 +3,21 @@
   padding: .5em 0
   a
     padding: .2em
-  h4
+  h4, h6
     font-family: Coolvetica
     font-weight: lighter
-
+  h6
+    margin: 0 .5em
+    letter-spacing: .05em
 @media (min-width: 1024px)
   #copyright
+    align-items: baseline
     display: flex
     justify-content: center
     background-color: $dark
+    h6
+      color: $light
+
     h4
       &:first-child
         margin-right: .5em
