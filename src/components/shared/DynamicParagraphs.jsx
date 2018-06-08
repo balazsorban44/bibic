@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react'
-import { DB } from '../../lib/firebase'
 import {Loading} from './Elements'
 import Data from '../db'
 

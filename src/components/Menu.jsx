@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react'
-import {Route} from 'react-router-dom'
 import {Link as RouteLink} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
