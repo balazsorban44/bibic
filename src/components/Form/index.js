@@ -1,6 +1,8 @@
 import React, {Fragment} from 'react'
 
-const FormSection = ({title, children}) => (
+const FormSection = ({
+  title, children
+}) => (
   <Fragment>
     <h4>{title}</h4>
     {children}
@@ -8,7 +10,9 @@ const FormSection = ({title, children}) => (
 )
 
 
-const FormGroup = ({title, className, children, footnote}) => (
+const FormGroup = ({
+  title, className, children, footnote
+}) => (
   <Fragment>
     {title && <h5>{title}</h5>}
     <div className={`form-group ${className}`}>

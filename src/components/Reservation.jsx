@@ -1,7 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import QueryString from 'query-string'
+import Moment from 'moment'
+import {extendMoment} from 'moment-range'
+import 'moment/locale/hu'
+import React, {Fragment} from 'react'
+import Calendar from 'react-daterange-picker'
+import 'react-daterange-picker/dist/css/react-calendar.css'
 import {Link} from 'react-router-dom'
-import Calendar from 'react-calendar'
 import ScrollLock from 'react-scrolllock'
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,523 +18,222 @@ import {FormSection, FormGroup} from './Form'
 import {Send} from './Form/inputs'
 import {PersonalDetail, Date, PeopleCount, Children, Service} from './Form/inputs'
 import {Loading} from './shared/Elements'
-import {valid, valueToState} from '../utils/validate'
-import {translate, isQueryString, toPrice} from '../utils/language'
-import {RESERVATIONS_FS_REF, TIMESTAMP} from '../lib/firebase'
-
-const tomorrow = moment().add(1, "day").startOf("day").toDate()
-
-const initialState = {
-  month: moment().toDate(),
-  overlaps: {},
-  reservation: {
-    roomId: null,
-    from: tomorrow, to: tomorrow,
-    name: "", email: "", address: "", tel: "", message: "",
-    adults: 1, children: [],
-    activeService: "breakfast",
-    price: 0
-  },
-  rooms: null,
-  services: null,
-  tomorrow,
-  tempDate: null,
-  isReserving: false
-}
-
-export default class Reservation extends Component {
-
-  state = initialState
-  
 
 
-  // ----------------------------------------------------------------------------
-  // Lifecycle methods
-  
-  componentDidMount() {
-    ROOM_SERVICES_REF.on("value", snap => {
-      this.setState({services: snap.val()})
-    })
-    ROOMS_REF.once("value", snap => {
-      this.setState({rooms: snap.val()})
-    })
-    .then(() => this.updateByURL(this.props.location.search, true))
-  }
-        
-  componentWillReceiveProps({location: {search}}) {this.updateByURL(search)}
-
-  componentWillUnmount() {this.setState({initialState})}
+const moment = extendMoment(Moment)
 
 
-
-
-  // ----------------------------------------------------------------------------  
-  // Reservation
-
-  updatePrice = () => {
-    const {reservation, rooms} = this.state
-    let {roomId, activeService, adults, children, from, to} = reservation
-    roomId = roomId - 1
-    if (rooms[roomId]) {
-      const childrenCount = children.filter(i => i === "6-12").length
-      const prices = rooms[roomId].prices.table[activeService]
-      let price = 0
-      // NOTE: Add discount to database
-      const {discount=0} = prices
-      const adultPrices = prices[adults]
-      if (adultPrices) {
-        const childrenPrices = adultPrices[childrenCount]
-        if (childrenPrices) {
-          price = childrenPrices.price
-        }
+const Reservation = () =>
+  <Data.Consumer>
+    {({
+      state: {
+        reservation: {
+          name, address, tel, email, roomId, from, to,
+          activeService, message, adults, children, price
+        },
+        rooms, roomServices, isReserving,
+        overlaps, tomorrow, month
+      },
+      actions: {
+        handleRoomChange, updateReservation, submitReservation,
+        handleDateSelect, handleMonthChange
       }
-      const reservationLength = moment(to).diff(moment(from), "days")
-      price = price * reservationLength * (1-(discount/100))
-      this.setState(({reservation}) => ({reservation: {...reservation, price}}))
-    }
-  }
-
-  /**
-   * Validates the reservation before sending it to the server
-   * @param {object} reservation The reservation to be verified
-   * @return {boolean}
-   */
-  isValidReservation = ({roomId, from, to, address, name, email, tel, message, adults, children}) => {
-
-    const {rooms} = this.state
-    const roomLength = Object.keys(rooms).length
-    const maxPeople = roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople
-    
-    const error =
-      !valid.roomId(roomId, roomLength) ? "Érvénytelen szobaszám" :
-      !valid.name(name) ? "Érvénytelen név" :
-      !valid.email(email) ? "Érvénytelen e-mail cím" :
-      !valid.tel(tel) ? "Érvénytelen telefonszám" :
-      !valid.address(address) ? "Érvénytelen lakcím" :
-      !valid.from(from) ? "Legkorábbi érkezés holnap" :
-      !valid.to(to) ? "Legkorábbi távozás holnapután" :
-      !valid.period(from, to) ? "A foglalás legalább egy éjszakát kell, hogy tartalmazzon" :
-      !valid.message(message) ? "Érvénytelen üzenet" :
-      !valid.adults(adults) ? "Érvénytelen felnőtt" :
-      !valid.children(children) ? "Érvénytelen gyerek" :
-      !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
-      false
-    
-    if (error) {
-      toast.error(
-        <p style={{padding: ".5rem", fontSize: "1.2rem"}}>{error}<br/>
-          <span style={{fontSize: "1rem"}}>
-            Technikai hiba? <a style={{color: "white", borderBottom: "1px solid white"}} href="mailto:hiba@bibicvedeghazak.hu">hiba@bibicvedeghazak.hu</a>
-          </span>
-        </p>, {
-          autoClose: 5000
-        })
-      return false
-    } else {
-      return true
-    }
-  }     
-
-  submitReservation = e => {
-    e.preventDefault()
-    this.setState({isReserving: true})
-    const reservation = Object.assign({}, this.state.reservation)
-    const {from, to, message, roomId} = reservation
-    reservation.from = moment(from).startOf("day").hours(14).valueOf()
-    reservation.to = moment(to).startOf("day").hours(10).valueOf()
-    reservation.message = message !== "" ? message : "Nincs üzenet"
-    this.isAvailable(roomId, from, to).then(available => {
-      console.log(available);
-      
-      if (available) {
-        if (this.isValidReservation(reservation)) {
-          RESERVATIONS_FS_REF
-            .add({
-              ...reservation,
-              lastHandledBy: "",
-              timestamp: TIMESTAMP,
-              handled: false,
-            })
-            .then(() => {
-              this.setState({isReserving: false})
-              toast.success(
-                <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Foglalását rögzítettük. <br/>
-                <span style={{fontSize: "1rem"}}>
-                  Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:<br/>
-                  <a style={{color: "white"}} href="mailto:info@bibicvendeghazak.hu">info@bibicvendeghazak.hu</a><br/>
-                  <a style={{color: "white"}} href="tel:+36305785730">+36 30 578 5730</a>
-                </span>
-              </p>, {autoClose: 7500})
-              
-              setTimeout(() => this.props.history.push(""), 7500)
-            })
-            .catch(({code, message}) => {
-              this.setState({isReserving: false})
-              toast.error(
-                <p style={{padding: ".5rem", fontSize: "1.2rem"}}>Hiba: {code} - {message}<br/>
-                  <span style={{fontSize: "1rem"}}>
-              Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés (${code})&body=${message}`}>hiba@bibicvedeghazak.hu</a>
-            </span>
-                </p>, {autoClose: 10000})
-            })
-        } else {
-          this.setState({isReserving: false})
-        }
-      } else {
-        this.setState({isReserving: false})
-        toast.error( <p style={{padding: ".5rem", fontSize: "1.2rem"}}>
-          Sajnáljuk<br/>
-          <span style={{fontSize: "1rem"}}>
-            Adott intervallumban már van foglalásunk. Kérjük próbálkozzon másik dátumokkal, vagy másik szobával.
-          </span>
-           </p>, {autoClose: 10000})
-      }
-    })
-    
-  }
-
-
-
-  // ----------------------------------------------------------------------------  
-  // Routing
-
-  /**
-   * @param {Event} e
-   */
-  handleRoomChange = e => {
-    e.preventDefault()
-    const {value: roomId} = e.target
-    
-    this.setState({overlaps: {}},() =>
-    this.isOverlapping(roomId, this.state.month))
-    this.updateReservation("roomId", roomId)
-
-    /**
-     * Resetting the the dates
-     * also @see updateByURL
-     */
-    this.updateReservation("from", undefined)
-    this.updateReservation("to", undefined)
-  }
-
-
-  /**
-   * Updates the reservation either in the state or in the URL
-   * If the key is not private, it adds the key=value pair to the URL
-   * @param {string} key - reservation key
-   * @param value - reservation value
-   */
-  updateReservation = (key, value) => {
-    if (isQueryString(key)) {
-      const {history, match: {url}} = this.props
-      const search = QueryString.parse(history.location.search)
-      search[translate(key)] = key === "activeService" ? translate(value) : value
-      history.push(url + "?" + QueryString.stringify(search))
-    } else this.setState(({reservation}) => ({reservation: {...reservation, [key]: value}}))
-  }
-
-  /**
-   * Updates the state from the URL
-   * @param {object} values
-   * @param {boolean} [isInitial=false]
-   */
-  updateByURL = (queryString, isInitial=false) => {
-    if (queryString) {
-      const reservation = Object.assign({}, this.state.reservation)
-      queryString = QueryString.parse(queryString)
-      Object.entries(queryString).forEach(([key, value]) => {
-        key = translate(key)
-        value = key === "activeService" ? translate(value) : value
-        reservation[key] = valueToState(key, value)
-      })
-
-      /**
-       * The following resets the dates when room change occurs.
-       * @see handleRoomChange
-       */
-      if (!Object.keys(queryString).includes(translate("from"))) reservation.from = undefined
-      if (!Object.keys(queryString).includes(translate("to"))) reservation.to = undefined
-      
-      this.setState({reservation}, () => {
-        let {month, reservation: {roomId, from}} = this.state
-        if (isInitial) {
-          from = moment(from)
-          this.setState({month: from.clone().toDate()})
-          this.isOverlapping(roomId, from)
-        } else {
-          this.isOverlapping(roomId, month)
-        }
-        this.updatePrice()
-      })
-    }
-  }
-
-
-
-  // ----------------------------------------------------------------------------  
-  // Calendar events
-
-  /**
-   * Fetches the corresponding overlap data.
-   * The fetching returns a JSON Object with each day containing a boolean if the
-   * room is already taken. 
-   * @param {number} roomId The id of the room of interest
-   * @param {Moment} month The month of interest
-   */
-
-  isOverlapping = (roomId, month) => {
-    
-    const {reservation: {from}, overlaps} = this.state
-    const date = moment(month || from || undefined).format("YYYY-MM")
-    const isNewOverlaps = !Object.keys(overlaps).filter(overlap => overlap.includes(date)).length
-    
-    if (isNewOverlaps) {
-      const url = "https://us-central1-bibic-vendeghazak-api.cloudfunctions.net/overlaps?"
-      fetch(`${url}roomId=r${roomId}&date=${date}`)
-      .then(res => res.json())
-      .then(overlaps => this.setState(({overlaps: prevOverlaps}) => ({
-        overlaps: {
-          ...prevOverlaps,
-          ...overlaps
-        }
-      })))
-      .catch(e => console.error(e))
-    }
-  }
-
-  isAvailable = (roomId, from, to) => {
-    from = moment(from).format("YYYY-MM-DD")
-    to = moment(to).format("YYYY-MM-DD")
-    const url = "https://us-central1-bibic-vendeghazak-api.cloudfunctions.net/overlaps?"
-    return fetch(`${url}roomId=r${roomId}&date=${from}_${to}`)
-            .then(res => res.json())
-            .catch(e => console.error(e))
-  }
-      
-      
-
-
-  handleActiveDateChange = ({activeStartDate: month}) => {
-    this.setState({month})
-    this.isOverlapping(this.state.reservation.roomId, moment(month))
-  }
-
-  handleDayClick = date => {
-    const {tempDate} = this.state
-    this.setState(({tempDate: !tempDate ? date : null}))
-    toast.info(`${!tempDate ? "1." : "2."} dátum kiválasztva.`, {
-      autoClose: 1000,
-      hideProgressBar: true
-    })
-  }
-
-  handleDatesChange = dates => {
-    const [from, to] = dates
-    this.setState(({reservation}) => ({
-      reservation: {...reservation, from, to}
-    }))
-    const [fromFormatted, toFormatted] = dates
-      .map(date => moment(date).format("YYYY-MM-DD")) 
-    this.updateReservation("from", fromFormatted)
-    this.updateReservation("to", toFormatted)
-  }
-    /**
-   * Takes a 
-   * @param {date} date The date to check for disabling
-   * @return {boolean} true for disabling
-   */
-  tileDisabled = ({date}) =>  this.state.overlaps[moment(date).format("YYYY-MM-DD")]
-
-
-
-
-
-  render() {
-    const {
-      reservation: {roomId, name, email, tel, address, from, to, activeService, message, adults, children, price},
-      rooms, 
-      services,
-      tomorrow,  month,
-      tempDate,
-      isReserving
-    } = this.state
-
-    const maxPeople = (rooms && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
-    
-    return (
-      <Fragment>
-        <ToastContainer 
-          closeOnClick
-          style={{position: "fixed", zIndex: 10001, bottom: 0}}
-          position="bottom-center"
-        />
+    }) => {
+      const maxPeople = (rooms && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
+      return (
         <div className={`reservation ${isReserving ? "is-reserving" : ""}`}>
           {!('ontouchstart' in document.documentElement) && <ScrollLock/>}
           <span className="close-reservation">
             <Link to="/">✕</Link>
           </span>
-      
+
           <h2>Foglalás</h2>
-          <form className="reservation-form" action="">
+
+          <form
+            action=""
+            className="reservation-form"
+          >
             <h4>Válasszon szobát {roomId && `(${roomId}. Szoba kiválasztva)`}</h4>
-              {rooms ? 
-                <div className="room-picker">
-                  {Object.keys(rooms).map(room => {
-                    const {id} = rooms[room]
-                    return (
-                      <div 
-                        key={room}
-                        id={`szoba-${id}`}
-                        className={`room-picker-room ${parseInt(roomId, 10) === id ? "room-active": ""}`}
+            {rooms ?
+              <div className="room-picker">
+                {Object.keys(rooms).map(room => {
+                  const {id} = rooms[room]
+                  return (
+                    <div
+                      className={`room-picker-room ${parseInt(roomId, 10) === id ? "room-active": ""}`}
+                      id={`szoba-${id}`}
+                      key={room}
+                    >
+                      <button
+                        onClick={handleRoomChange}
+                        value={id}
                       >
-                        <button
-                          value={id}
-                          onClick={this.handleRoomChange}
-                        >
-                          {id}
-                        </button>
-                      </div>
-                    )
-                  })}
-                </div>:
-                <Loading/>
-              }
-            
+                        {id}
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>:
+              <Loading/>
+            }
+
             <h5>a szoba tulajdonságai</h5>
-            {services ?
+            {roomServices ?
               <div className="room-services">
-                {Object.keys(services).map(serviceId => {
-                  const {inRoom, name, icon} = services[serviceId]
+                {Object.values(roomServices).map(({
+                  inRoom, name, icon
+                }, serviceId) => {
                   const isInRoom = Object.values(inRoom).includes(parseInt(roomId, 10))
                   return (
                     <div
-                      key={serviceId}
                       className={`room-service ${isInRoom ? "service-in-room" : ""}`}
+                      key={serviceId}
                     >
-                      <img src={icon} alt={name}/>
+                      <img
+                        alt={name}
+                        src={icon}
+                      />
                       <span style={{fontSize: "1rem"}}>{name}</span>
                     </div>
                   )
-                })} 
+                })}
               </div> :
               <Loading/>
             }
 
             <FormSection title="Személyi adatok">
               <FormGroup footnote="kötelező">
-                <PersonalDetail hasFootnote
-                  onChange={this.updateReservation}
+                <PersonalDetail
+                  errorMessage="Érvénytelen név!"
+                  hasFootnote
                   label="teljes név"
                   name="name"
-                  value={name}
-                  placeholder="Kovács József"
-                  errorMessage="Érvénytelen név!"
                   notification={toast.error}
+                  onChange={updateReservation}
+                  value={name}
                 />
-                <PersonalDetail hasFootnote
-                  onChange={this.updateReservation}
+                <PersonalDetail
+                  errorMessage="Érvénytelen e-mail cím!"
+                  hasFootnote
                   label="e-mail cím"
                   name="email"
-                  value={email}
-                  placeholder="kovacs.jozsef@email.hu"
-                  errorMessage="Érvénytelen e-mail cím!"
                   notification={toast.error}
+                  onChange={updateReservation}
+                  value={email}
                 />
-                <PersonalDetail hasFootnote
-                  onChange={this.updateReservation}
+                <PersonalDetail
+                  errorMessage="Érvénytelen telefonszám!"
+                  hasFootnote
                   label="telefonszám"
                   name="tel"
-                  value={tel}
-                  placeholder="+36-30-123-4567"
-                  errorMessage="Érvénytelen telefonszám!"
                   notification={toast.error}
+                  onChange={updateReservation}
+                  value={tel}
                 />
-                <PersonalDetail hasFootnote
-                  onChange={this.updateReservation}
+                <PersonalDetail
+                  errorMessage="Érvénytelen lakcím!"
+                  hasFootnote
                   label="lakcím"
                   name="address"
-                  value={address}
-                  placeholder="1234 Budapest, Fő utca 1."
-                  errorMessage="Érvénytelen lakcím!"
                   notification={toast.error}
+                  onChange={updateReservation}
+                  value={address}
                 />
               </FormGroup>
-          </FormSection>
+            </FormSection>
 
             <FormSection title="Foglalás adatai">
-             
+
               <FormGroup
                 className="dates"
                 footnote="érkezés: 14:00-tól, távozás: 10:00-ig"
               >
-                <Date 
+                <DateLabel
                   hasFootnote
-                  onClick={toast.warning}
-                  label="érkezés" name="from"
+                  label="érkezés"
+                  name="from"
+                  notification={toast.warning}
                   value={from}
                 />
-                <Date 
+                <DateLabel
                   hasFootnote
-                  onClick={toast.warning}
-                  label="távozás" name="to"
+                  label="távozás"
+                  name="to"
+                  notification={toast.warning}
                   value={to}
                 />
                 <Calendar
-                  activeStartDate={month}
-                  showWeekNumbers
-                  showNeighboringMonth={false}
-                  className="date-picker"
-                  minDate={tomorrow}
-                  locale="hu-HU"
-                  tileDisabled={this.tileDisabled}
-                  selectRange
-                  returnValue={tempDate ? "start" : "range"}
-                  minDetail="month"
-                  value={tempDate || [from, to]}
-                  onClickDay={this.handleDayClick}
-                  onActiveDateChange={this.handleActiveDateChange}
-                  onChange={this.handleDatesChange}
+                  dateStates={Array.isArray(overlaps) ?
+                    overlaps
+                      .map(day => ({
+                        state: "unavailable",
+                        range: moment.range(moment(day), moment(day))
+                      })): []}
+                  firstOfWeek={1}
+                  min={moment(month).month() === moment().month() ? tomorrow : null}
+                  numberOfMonths={window.innerWidth < 640 ? 1 : 2}
+                  onSelect={handleDateSelect}
+                  paginationArrowComponent={props =>
+                    <PaginationArrow
+                      onMonthChange={handleMonthChange}
+                      {...props}
+                    />
+                  }
+                  selectedLabel="Kiválasztva"
+                  value={moment.range(from, to)}
                 />
+                <span className="calendar-legend">
+                  <ul>
+                    <li>Kiválasztva</li>
+                    <li>Nem elérhető</li>
+                  </ul>
+                </span>
+
               </FormGroup>
               <FormGroup
-                title={`személyek (maximum ${maxPeople} fő)`}
                 footnote="6 év alatt ingyenes"
+                title={`személyek (maximum ${maxPeople} fő)`}
               >
                 <PeopleCount
-                  min={1}
-                  placeholder={1}
+                  label="felnőtt"
                   max={maxPeople - children.length}
-                  onChange={this.updateReservation}
-                  label="felnőtt" name="adults"
+                  min={1}
+                  name="adults"
+                  onChange={updateReservation}
+                  placeholder={1}
                   value={adults}
                 />
-                <Children hasFootnote
+                <Children
+                  hasFootnote
+                  label="gyerek"
                   max={maxPeople - adults}
-                  onChange={this.updateReservation}
-                  label="gyerek" name="children"
+                  name="children"
+                  onChange={updateReservation}
                   values={children}
                 />
               </FormGroup>
               <FormGroup
-                title="ellátás"
                 className="services"
                 footnote={
                   <Fragment>
-                    az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet <Link to="etelek">főbb ételeinket ide kattintva találja →</Link>
+                      az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet <Link to="etelek">főbb ételeinket ide kattintva találja →</Link>
                   </Fragment>
                 }
+                title="ellátás"
               >
-                <Service 
-                  label="reggeli" name="activeService"
+                <Service
                   checked={activeService==="breakfast"}
+                  label="reggeli"
+                  name="activeService"
+                  onChange={updateReservation}
                   value="breakfast"
-                  onChange={this.updateReservation}
                 />
-                <Service 
-                  label="félpanzió" name="activeService"
+                <Service
                   checked={activeService==="halfBoard"}
+                  label="félpanzió"
+                  name="activeService"
+                  onChange={updateReservation}
                   value="halfBoard"
-                  onChange={this.updateReservation}
                 />
               </FormGroup>
             </FormSection>
@@ -540,21 +242,23 @@ export default class Reservation extends Component {
               <FormGroup
                 className="message"
               >
-                <textarea 
+                <textarea
                   name="message"
-                  rows="8"
-                  onChange={({target: {name, value}}) => this.updateReservation(name, value)}
-                  value={message}
+                  onChange={({target: {
+                    name, value
+                  }}) => updateReservation(name, value)}
                   placeholder="(pl.: étel egyeztetés, speciális kívánság, egyéb kérdés)"
+                  rows="8"
                   type="text"
+                  value={message}
                 />
               </FormGroup>
             </FormSection>
-            <Send 
+            <Send
               disabled={isReserving}
-              onClick={this.submitReservation}
-              >
-              Küldés
+              onClick={submitReservation}
+            >
+                Küldés
               <span className="footnote-asterix">
                 {toPrice(price)}
               </span>
@@ -563,9 +267,27 @@ export default class Reservation extends Component {
           <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
           </span>
           </form>
-
         </div>
-      </Fragment>
-    )
-  }
-}
+      )
+    }
+    }
+  </Data.Consumer>
+
+export default Reservation
+
+
+const PaginationArrow = ({
+  disabled, direction, onTrigger, onMonthChange
+}) =>
+
+  <span
+    className={`DateRangePicker__PaginationArrow DateRangePicker__PaginationArrow--${direction}`}
+    onClick={() => {
+      direction === "next" ?
+        onMonthChange(1) :
+        onMonthChange(-1, disabled)
+      onTrigger()
+    }}
+  >
+    {direction === "next" ? "►" : "◄"}
+  </span>
