@@ -35,6 +35,7 @@
     transform: translateX(-50%)
     text-align: center
     font-family: "White Festive"
+    letter-spacing: .1em
     font-size: 2em
     text-transform: uppercase
   h4
@@ -79,13 +80,16 @@
     font-family: "Coolvetica"
     text-align: right
     border: none
+    &::placeholder
+      color: transparentize(grey, .6)
     &:focus
       background-color: transparentize($dark, .95)
 
-.number-controls 
+.number-controls
   button
+    margin: 0 0 .5em .5em
     position: relative
-    background-color: $accent-color-dark
+    background-color: $accent-color
     border: none
     color: $light
     border-radius: 50%
@@ -108,21 +112,6 @@
   select
     padding: .5em
 
-
-.people-buttons
-  display: flex
-  button
-    margin-left: .5em
-    margin-bottom: .5em
-    font-size: 1.2em
-    background-color: $dark
-    color: $light
-    border: none
-    border-radius: 50%
-    width: 36px
-    height: 36px
-    padding: 0
-    line-height: 1.8
 
 .service
   label
@@ -297,22 +286,6 @@
   &::before
     content: "*"
 
-  
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile--active,
-.react-calendar__tile--hasActive
-  background: $accent-color !important
-  color: $light !important
-
-.react-calendar__month-view__days__day--weekend
-  color: orangered
-
-
-.react-calendar__tile:enabled:focus,
-.react-calendar--selectRange .react-calendar__tile--hover
-  background-color: transparentize($accent-color, .2)
-  color: $light
-
 .submit-reservation
   width: 128px
   height: 128px
@@ -388,3 +361,116 @@
   .input-box
     position: relative
     width: calc(50% - 2em)
+
+.dates .input-box
+  margin: 0
+  padding: 1em
+
+
+.DateRangePicker
+  border: 1px solid $dark
+  padding: 1em
+  margin: 1em auto 0
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  font-family: sans-serif
+    
+.DateRangePicker__Month
+  margin: 0 1em
+  td
+    padding: 1em
+    margin: 4px
+  @media (max-width: 640px)
+    width: 100%
+    margin: 0
+    td
+      padding: 1.5em
+
+  
+.DateRangePicker__PaginationArrow
+  margin-top: .5em
+  position: absolute
+  background-color: $accent-color
+  display: flex
+  justify-content: center
+  align-items: center
+  border-radius: 50%
+  color: $light
+  cursor: pointer
+  transition: .1s
+  &:hover
+    background-color: $accent-color-dark
+
+
+
+
+
+.DateRangePicker__Date
+  border: none
+
+.DateRangePicker__Date--today
+  background-color: transparentize($accent-color-dark, .7)
+  color: $light
+  &:after
+    content: "ma"
+    line-height: 0
+    position: absolute
+    bottom: 4px
+    right: 4px
+    font-size: .5em
+
+.DateRangePicker__Date--is-highlighted
+  >div
+    background-color: $accent-color
+    border: 1px solid $accent-color
+  .DateRangePicker__DateLabel 
+    color: white !important
+
+.DateRangePicker__CalendarSelection
+  background-color: $accent-color
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  border: none
+
+.DateRangePicker__CalendarSelection--end
+  border-top-right-radius: 1.75em
+  border-bottom-right-radius: 1.75em
+.DateRangePicker__CalendarSelection--start
+  border-top-left-radius: 1.75em
+  border-bottom-left-radius: 1.75em
+.DateRangePicker__FullDateStates
+  background-color: lightgrey
+  &:hover
+    background-color: lightgrey
+    border: none
+
+.calendar-legend
+  margin: 0 auto
+  ul
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    margin-top: 1em
+  li
+    margin-right: 2.5em
+    position: relative
+    &:before
+      content: ""
+      border-radius: 50%
+      position: absolute
+      top: -2px
+      left: -12px
+      width: 2px
+      height: 2px
+      padding: 4px
+    &:first-of-type:before
+      background-color: $accent-color
+    &:last-of-type:before
+      background-color: lightgrey
+  font-family: sans-serif
+  font-size: .5em
+  font-style: italic
+  font-weight: bolder
