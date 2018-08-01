@@ -5,6 +5,11 @@ import Calendar from 'react-calendar'
 import ScrollLock from 'react-scrolllock'
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import BANK from '../assets/icons/bank.png'
+import CASH from '../assets/icons/cash.png'
+import MASTERCARD from '../assets/icons/mastercard.png'
+import SZEP from '../assets/icons/szep.png'
+import VISA from '../assets/icons/visa.png'
 
 import moment from 'moment'
 import 'moment/locale/hu'
@@ -560,6 +565,46 @@ export default class Reservation extends Component {
               </span>
             </Send>
           <span className="footnote">Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:
+            <div className="payment-methods">
+              <h5>Elfogadott fizetési módok</h5>
+              <ul>
+                <li>
+                  <h6>Készpénz</h6>
+                  <img
+                    alt="Készpénzes fizetés"
+                    src={CASH}
+                  />
+                </li>
+                <li>
+                  <h6>Előreutalás</h6>
+                  <img
+                    alt="Előreutalás"
+                    src={BANK}
+                  />
+                </li>
+                <li>
+                  <h6>Visa</h6>
+                  <img
+                    alt="Visa elfogadóhely"
+                    src={VISA}
+                  />
+                </li>
+                <li>
+                  <h6>Mastercard</h6>
+                  <img
+                    alt="Mastercard elfogadóhely"
+                    src={MASTERCARD}
+                  />
+                </li>
+                <li>
+                  <h6>OTP SZÉP</h6>
+                  <img
+                    alt="OTP SZÉP Kártya elfogadóhely"
+                    src={SZEP}
+                  />
+                </li>
+              </ul>
+            </div>
           <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
           </span>
           </form>
