@@ -8,7 +8,6 @@ import {PARAGRAPHS_REF, RESERVATIONS_FS_REF, ROOMS_REF, ROOM_SERVICES_REF, SERVI
 import {isQueryString, translate} from '../../utils/language'
 import {valid, valueToState} from '../../utils/validate'
 
-import {PARAGRAPHS_REF} from '../../lib/firebase'
 
 const Data = createContext()
 const tomorrow = moment().add(1, "day").startOf("day")
@@ -33,25 +32,40 @@ const initialReservation = {
 class Store extends Component {
 
   state = {
-    paragraphs: {}
     isReserving: false,
     tomorrow,
+    paragraphs: {},
     month: moment(),
     overlaps: [],
     reservation: initialReservation,
+    rooms: null,
+    services: null,
     roomServices: null
   }
 
   componentDidMount() {
-
-    // Fetch paragraphs
+    /*
+     * Fetch paragraphs
+     * REVIEW: Hacky way to order paragraphs, and strip away the order property.
+     */
     PARAGRAPHS_REF
       .on("value", snap => {
-          this.setState({paragraphs: snap.val()})
+        const paragraphs = {}
+        Object.entries(snap.val()).forEach(([paragraphType, paragraphList]) => {
+          paragraphs[paragraphType] = Object.values(paragraphList)
+            .sort((a, b) => a.order - b.order)
+            .map(({text}) => text)
+        })
+        this.setState({paragraphs})
+      })
+
     ROOM_SERVICES_REF.on("value", snap => {
       this.setState({roomServices: snap.val()})
     })
 
+    SERVICES_REF.on("value", snap => {
+      this.setState({services: snap.val()})
+    })
 
     ROOMS_REF.once("value", snap => {
       this.setState({rooms: snap.val()})
