@@ -6,24 +6,20 @@ import Calendar from 'react-daterange-picker'
 import 'react-daterange-picker/dist/css/react-calendar.css'
 import {Link} from 'react-router-dom'
 import ScrollLock from 'react-scrolllock'
-import {toast, ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import BANK from '../assets/icons/bank.png'
 import CASH from '../assets/icons/cash.png'
 import MASTERCARD from '../assets/icons/mastercard.png'
 import SZEP from '../assets/icons/szep.png'
 import VISA from '../assets/icons/visa.png'
 
-import moment from 'moment'
-import 'moment/locale/hu'
 
-import {ROOM_SERVICES_REF, ROOMS_REF} from '../lib/firebase'
-
+import {Data} from './db'
 import {FormSection, FormGroup} from './Form'
-import {Send} from './Form/inputs'
-import {PersonalDetail, Date, PeopleCount, Children, Service} from './Form/inputs'
+import {PersonalDetail, PeopleCount, Children,Send, Service, Date as DateLabel} from './Form/inputs'
 import {Loading} from './shared/Elements'
-
+import {toPrice} from '../utils/language'
 
 const moment = extendMoment(Moment)
 
@@ -268,49 +264,49 @@ const Reservation = () =>
                 {toPrice(price)}
               </span>
             </Send>
-          <span className="footnote">Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:
-            <div className="payment-methods">
-              <h5>Elfogadott fizetési módok</h5>
-              <ul>
-                <li>
-                  <h6>Készpénz</h6>
-                  <img
-                    alt="Készpénzes fizetés"
-                    src={CASH}
-                  />
-                </li>
-                <li>
-                  <h6>Előreutalás</h6>
-                  <img
-                    alt="Előreutalás"
-                    src={BANK}
-                  />
-                </li>
-                <li>
-                  <h6>Visa</h6>
-                  <img
-                    alt="Visa elfogadóhely"
-                    src={VISA}
-                  />
-                </li>
-                <li>
-                  <h6>Mastercard</h6>
-                  <img
-                    alt="Mastercard elfogadóhely"
-                    src={MASTERCARD}
-                  />
-                </li>
-                <li>
-                  <h6>OTP SZÉP</h6>
-                  <img
-                    alt="OTP SZÉP Kártya elfogadóhely"
-                    src={SZEP}
-                  />
-                </li>
-              </ul>
-            </div>
-          <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
-          </span>
+            <span className="footnote">Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:
+              <div className="payment-methods">
+                <h5>Elfogadott fizetési módok</h5>
+                <ul>
+                  <li>
+                    <h6>Készpénz</h6>
+                    <img
+                      alt="Készpénzes fizetés"
+                      src={CASH}
+                    />
+                  </li>
+                  <li>
+                    <h6>Előreutalás</h6>
+                    <img
+                      alt="Előreutalás"
+                      src={BANK}
+                    />
+                  </li>
+                  <li>
+                    <h6>Visa</h6>
+                    <img
+                      alt="Visa elfogadóhely"
+                      src={VISA}
+                    />
+                  </li>
+                  <li>
+                    <h6>Mastercard</h6>
+                    <img
+                      alt="Mastercard elfogadóhely"
+                      src={MASTERCARD}
+                    />
+                  </li>
+                  <li>
+                    <h6>OTP SZÉP</h6>
+                    <img
+                      alt="OTP SZÉP Kártya elfogadóhely"
+                      src={SZEP}
+                    />
+                  </li>
+                </ul>
+              </div>
+              <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
+            </span>
           </form>
         </div>
       )
