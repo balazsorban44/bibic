@@ -5,6 +5,7 @@ import Introduction from './Introduction'
 import Sunflower from './Sunflower'
 import Hero from './Hero'
 import Services from './Services'
+import MoreServices from './MoreServices'
 import Rooms from './Rooms'
 import Prices from './Prices'
 import Menu, {BackMenu} from './Menu'
@@ -15,15 +16,43 @@ import Slider from './shared/Slider'
 import Message from './Message'
 
 
-const App = () => 
+const App = () =>
   <Fragment>
     <ChatFAB/>
     <Switch>
-      <Route exact path="/" render={Main}/>
-      <Route exact path="/etelek" component={Foods}/>
-      <Route exact path="/rendezvenyek" component={Events}/>
-      <Route exact path="/foglalas" component={Reservation}/>
-      <Route path="/uzenet" component={Message}/>
+      <Route
+        exact
+        path="/"
+        render={Main}
+      />
+      <Route
+        component={Foods}
+        exact
+        path="/etelek"
+      />
+      <Route
+        component={Events}
+        exact
+        path="/rendezvenyek"
+      />
+      <Route
+        component={Reservation}
+        exact
+        path="/foglalas"
+      />
+      <Route
+        component={Message}
+        path="/uzenet"
+      />
+      <Route
+        component={() =>
+          <Fragment>
+            <BackMenu/>
+            <MoreServices/>
+          </Fragment>
+        }
+        path="/szolgaltatasok"
+      />
       <Route component={NotFound}/>
     </Switch>
   </Fragment>
@@ -32,16 +61,21 @@ const ChatFAB = () =>
   <div className="chat-fab">
     <span className="tooltip">Megtalál minket a Messengeren is!</span>
     <a
-      href="https://www.messenger.com/t/200199203718517" 
+      href="https://www.messenger.com/t/200199203718517"
       rel="noopener noreferrer"
-      target="_blank">
-      <img className="filled" src={chat} alt="" aria-hidden/>
+      target="_blank"
+    >
+      <img
+        alt=""
+        aria-hidden
+        className="filled"
+        src={chat}
+      />
     </a>
   </div>
 
 
-
-const NotFound = () => 
+const NotFound = () =>
   <div className="not-found">
     <h2>
       404
@@ -64,9 +98,9 @@ class Events extends Component {
       <Fragment>
         <BackMenu/>
         <Slider
-          title="Rendezvények"
-          sectionId="rendezvenyek"
           databaseRef="events"
+          sectionId="rendezvenyek"
+          title="Rendezvények"
         />
       </Fragment>
     )

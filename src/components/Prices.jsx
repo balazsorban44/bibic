@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {Link} from "react-router-dom"
 
 export default class Prices extends Component {
   componentDidMount() {
-    //TODO: Fetch prices and info      
-  } 
+    //TODO: Fetch prices and info
+  }
+
   render() {
     return (
       <section id="arak">
@@ -16,17 +17,23 @@ export default class Prices extends Component {
               <h4>Többágyas szoba</h4>
               <h5>két- vagy több fő részére</h5>
             </div>
-            <Link className="price-button" to="foglalas">
+            <Link
+              className="price-button"
+              to="foglalas"
+            >
               Foglalás
             </Link>
           </li>
           <li>
             <div className="price-content">
-              <h3>6.000 <span>Forint/óra</span></h3>
+              <h3>6.000 <span>Forint/óra<sup>*</sup></span></h3>
               <h4>Rendezvényterem</h4>
               <h5>terembérlés</h5>
             </div>
-            <Link className="price-button" to="uzenet?tema=rendezvenyterem">
+            <Link
+              className="price-button"
+              to="uzenet?tema=rendezvenyterem"
+            >
               Részletek
             </Link>
           </li>
@@ -36,7 +43,10 @@ export default class Prices extends Component {
               <h4>Teljes ház</h4>
               <h5>maximum 21 fő</h5>
             </div>
-            <Link className="price-button" to="uzenet?tema=teljeshaz">
+            <Link
+              className="price-button"
+              to="uzenet?tema=teljeshaz"
+            >
               Részletek
             </Link>
           </li>
@@ -48,13 +58,13 @@ export default class Prices extends Component {
               Több
             </a>
           </li> */}
-          <li className="special">
-            <Link to="uzenet?tema=kulonajanlat">
+          <Link to="uzenet?tema=kulonajanlat">
+            <li className="special">
               <h4>KÜLÖN</h4>
               <h5>AJÁNLAT</h5>
-            </Link>
-            <span></span>
-          </li>
+              <span></span>
+            </li>
+          </Link>
         </ul>
         <p>*Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót.</p>
       </section>

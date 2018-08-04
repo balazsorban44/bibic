@@ -5,7 +5,8 @@
   display: flex
   width: 100vw
   height: 0
-
+.tablet-reservation
+  color: $accent-color-dark
 .tablet-header, .pc-logo
   display: none
 .menu-hidden
@@ -54,7 +55,7 @@
         background-color: $accent-color-dark
     a
       padding: 1em
-      font-size: 1.2em
+      font-size: 1.75em
       color: $accent-color-dark
     // &:after
     //   content: ""
@@ -96,19 +97,20 @@
             color: $light !important
 
   a
-    display: flex
+    display: grid
     justify-content: center
-    align-items: center
+    align-content: center
     position: relative
     width: 1em
     height: 1em
     padding: 1em
     color: $light
+    font-size: 1.25em
 
 .hamburger
   position: fixed
   top: 0
-  left: 0
+  right: 0
   width: 48px
   height: 28px
   padding: 16px
@@ -116,6 +118,7 @@
   cursor: pointer
   display: flex
   flex-direction: column
+  align-items: flex-end
   justify-content: space-evenly
   span
     background-color: $light
@@ -126,14 +129,14 @@
     box-shadow: 0 0 4px black
     transition: .3s
     &:nth-of-type(2)
-      width: 14px
+      width: 16px
 
 .hamburger-clicked
   span
     box-shadow: none
     &:first-child, &:last-child
       position: absolute
-      background-color: $accent-color
+      // background-color: $accent-color
       z-index: 1
     &:first-child
       transform: rotate(45deg)
@@ -153,8 +156,6 @@
     li
 
       margin: 0
-  .room-menu
-    flex-wrap: wrap
 
 @media (min-width: 768px)
   .menu-wrapper
@@ -163,7 +164,6 @@
     justify-content: center
     a
       font-family: "White Festive"
-      color: $accent-color-dark
       font-size: 1.5em
       font-weight: bolder
       text-transform: uppercase
@@ -183,16 +183,19 @@
         flex-grow: 1
       >a
         position: absolute
-        right: 0
-        margin-right: 1em
+        left: 0
+        margin-left: 1em
       img
         width: 36px
   .hamburger
     padding: 20px 8px
-    position: absolute
     span
       background-color: $accent-color-dark
       box-shadow: none
+  .hamburger-clicked
+    span
+      background-color: $light
+
   .menu
     position: absolute
     left: 0
@@ -200,6 +203,8 @@
     a
       font-size: 2.5em !important
   .room-menu
+    flex-direction: row
+    flex-wrap: wrap
     top: 0
 
 @media (min-width: 1280px)

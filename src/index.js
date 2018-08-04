@@ -4,14 +4,15 @@ import {render} from 'react-dom'
 import App from './components/App'
 import Map from './components/Map'
 import './main.css'
-import {Store} from './components/db'
+import Store from './components/db'
 
 
 render(
-  <Store>
-    <Router>
+  <Router>
+    <Store>
       <App/>
-    </Router>
-  </Store>, document.querySelector('.app'))
-  
+    </Store>
+  </Router>
+  , document.querySelector('.app'))
+
 render(<Map/>, document.querySelector(".map"))

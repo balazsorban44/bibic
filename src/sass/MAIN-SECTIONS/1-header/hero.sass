@@ -1,67 +1,56 @@
 .hero
-  overflow: hidden
-  background-color: black
-  min-height: 100vh
-  display: flex
-  justify-content: center
-  align-items: center
-.hero-logo
   position: relative
-  z-index: 1
-  width: 80vw
-  max-width: 480px
-  filter: invert(1)
+  overflow: hidden
+  display: grid
+  justify-items: center
+  height: 100vh
+  a
+    z-index: 1
+    position: relative
 
-.hero-bg, .hero-bg-overlay
+.hero-slider-overlay
   position: absolute
-  left: 0
-  height: 100%
-  max-width: none
-  transform: translateX(-45%)
-
-.hero-bg-overlay
-  transform: none
-  background: transparentize($dark, .95)
   width: 100%
-  
-.scroll-icon
-  position: absolute
-  bottom: 32px
-  left: 50%
-  cursor: pointer
-  width: 24px
-  height: 24px
-  padding: 12px
-  background: url('./assets/icons/arrow.svg')
-  background-size: 50%
-  background-position: center
-  background-repeat: no-repeat
-  transform: rotate(90deg)
-  animation: scroll-arrow 1.5s infinite
+  height: 100%
+  top: 0
+  background-image: radial-gradient(top left, transparentize($dark, .7), transparentize($dark, .8))
   z-index: 1
 
-@media (orientation: landscape)
-  .hero-bg
-    transform: none
-    height: auto
-    width: 115%
-  .hero-bg-overlay
-    display: none
+.hero-logo
+  filter: invert(1)
+  margin-left: 15%
+  align-self: center
+  margin-right: 15%
+  max-width: 320px
 
+.scroll-icon
+  width: 2em
+  height: 2em
+  align-self: end
+  margin-bottom: 32px
+  animation: scroll-arrow 1.5s infinite
+  background-image: url($icons + "/arrow.svg")
+  
+.hero-slider
+  width: 100%
+  position: absolute
+  height: 100vh
+  overflow: hidden
+  z-index: 1
+
+
+@media (orientation: portrait)
+  .hero-slider
+    position: absolute
+    width: calc(100vh * 16 / 9)
+    left: 25%
+    transform: translateX(-50%)
+    height: 100vh
+    overflow: hidden
+  .hero-logo
+    align-self: start
+    margin-top: 25%
 
 @media (min-width: 768px)
-  .hero-bg
-    top: 50%
-    left: 50%
-    transform: translate(-55%, -45%)
-  .scroll-icon
-    bottom: 64px
-    width: 36px
-    height: 36px
-
-  .hero-logo
+  .hero-slider-overlay, .hero-logo
     display: none
-
-@media (min-width: 1280px)
-  .hero-bg
-    transform: translate(-55%, -35%)

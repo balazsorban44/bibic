@@ -1,19 +1,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import { ROOMS_REF } from '../lib/firebase'
-import { Loading } from './shared/Elements';
+import {ROOMS_REF} from '../lib/firebase'
+import {Loading} from './shared/Elements'
 
 class Rooms extends Component {
 
-  state = {
-    rooms: []
-  }
+  state = {rooms: []}
 
   componentDidMount() {
     ROOMS_REF.on('value', snap => {this.setState({rooms: Object.values(snap.val())})})
     // ROOMS_REF.child("0").on('value', snap => {this.setState({rooms: [snap.val()]})})
   }
-
 
 
   render() {
@@ -23,7 +20,11 @@ class Rooms extends Component {
         <h2>Szobák</h2>
         <ul className="rooms">
           {rooms.length ? rooms.map((room, key) =>
-            <Room {...{key, ...room}}/>   
+            <Room {...{
+              key,
+              ...room
+            }}
+            />
           ) :
             <Loading/>
           }
@@ -31,26 +32,31 @@ class Rooms extends Component {
       </section>
     )
   }
-} 
+}
 
 export default Rooms
 
 class Room extends Component {
   render() {
-    const {available, id, name, description, pictures} = this.props
+    const {
+      available, id, name, description, pictures
+    } = this.props
     return (
-      <li id={`szoba-${id}`} className={`room szoba-${id}`}>
+      <li
+        className={`room szoba-${id}`}
+        id={`szoba-${id}`}
+      >
         <h3 className="room-title" >{name}</h3>
         <RoomSlider {...{pictures}} />
         <p className="room-description" >{description}</p>
         <div className={`button room-reserve-btn ${!available ? "room-unavailable-reserve-btn" : ""}`}>
-          {available ? 
+          {available ?
             <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link> :
             <p>Lefoglalom</p>
           }
         </div>
       </li>
-    ) 
+    )
   }
 }
 
@@ -69,14 +75,11 @@ class RoomSlider extends Component {
   componentWillUnmount() {this.clearTicker()}
 
 
-  ticker = () => this.nextSlide()
-  
-  setTicker = () => this.setState({
-    intervalId: setInterval(this.ticker, 10000)
-  })
+  ticker = () => this.handleSlide()
+
+  setTicker = () => this.setState({intervalId: setInterval(this.ticker, 10000)})
 
   clearTicker = () => clearInterval(this.state.intervalId)
-
 
 
   handleTouchStart = e => {
@@ -88,53 +91,53 @@ class RoomSlider extends Component {
       shouldSnap: false
     })
   }
-  
+
   handleTouchEnd = () => {
     const {positionX} = this.state
-    const width = window.innerWidth 
+    const width = window.innerWidth
     this.setState({
       positionX: positionX > width/3 ? width : 0,
       shouldSnap: true
-    }, () => this.state.positionX !== 0 && this.nextSlide())
+    }, () => this.state.positionX !== 0 && this.handleSlide())
     this.setTicker()
   }
-  
+
   handleTouch = e => {
     this.setState({positionX: this.state.startX-e.touches[0].pageX})
   }
 
-  nextSlide = e => {
+  handleSlide = e => {
     this.clearTicker()
-    this.setState(({activeSlideIndex: prevIndex}) => ({
-        activeSlideIndex: prevIndex+1 >= Object.keys(this.props.pictures).length ? 0 : prevIndex+1
-    }), this.setTicker)
+    this.setState(({activeSlideIndex: prevIndex}) => ({activeSlideIndex: prevIndex+1 >= Object.keys(this.props.pictures).length ? 0 : prevIndex+1}), this.setTicker)
   }
 
   render() {
     const {pictures} = this.props
-    const {positionX, shouldSnap, activeSlideIndex} = this.state
-    
+    const {
+      positionX, shouldSnap, activeSlideIndex
+    } = this.state
+
     return(
       <div className="room-slider-container">
-        <ul className="room-slider"
-            // onTouchStart={this.handleTouchStart}
-            // onTouchEnd={this.handleTouchEnd}
-            // onTouchMove={this.handleTouch}
-        >
+        <ul className="room-slider">
           {Object.entries(pictures).map(([key, picture], index) => {
             const isFirst = index === activeSlideIndex
             return (
-              <li {...{key}}
-                // onMouseEnter={this.clearTicker}
-                // onMouseLeave={this.setTicker}
+              <li
+                {...{key}}
+                /*
+                 * onMouseEnter={this.clearTicker}
+                 * onMouseLeave={this.setTicker}
+                 */
                 className={!isFirst ? "room-placeholder-slide" : "room-first-slide"}
                 style={{zIndex: isFirst ? 99 : 10-index}}
               >
-                <Slide {...{picture}}
+                <Slide
+                  {...{picture}}
                   style={{
                     transform: isFirst ? `translateX(${-positionX}px)` : "none",
                     transition: (isFirst && shouldSnap) ? ".625s" : "0s"
-                  }} 
+                  }}
                 />
               </li>
             )
@@ -142,21 +145,36 @@ class RoomSlider extends Component {
           )}
         </ul>
         <div className="room-slider-dots">
-          {Object.keys(pictures).map((key, index) => 
-            <span {...{key}} 
+          {Object.keys(pictures).map((key, index) =>
+            <span
+              {...{key}}
               className={`room-slider-dot ${activeSlideIndex===index ? "active-slide": ""}`}
             >•</span>
           )}
         </div>
-        <div onClick={this.nextSlide} className="button room-slider-next-btn"/>
+        <div
+          className="button room-slider-next-btn"
+          onClick={this.handleSlide}
+        />
       </div>
     )
   }
 }
 
-const Slide = ({picture: {fileName, SIZE_360, SIZE_640, SIZE_768, SIZE_1024, SIZE_1280, SIZE_1440, SIZE_ORIGINAL}}) =>
+const Slide = ({picture: {
+  fileName, SIZE_768, SIZE_1280, SIZE_1440
+}}) =>
   <picture>
-    <source media="(min-width: 768px)" srcSet={SIZE_1280}/>
-    <source media="(min-width: 1024px)" srcSet={SIZE_1440}/>
-    <img src={SIZE_768} alt={fileName}/>
+    <source
+      media="(min-width: 768px)"
+      srcSet={SIZE_1280}
+    />
+    <source
+      media="(min-width: 1024px)"
+      srcSet={SIZE_1440}
+    />
+    <img
+      alt={fileName}
+      src={SIZE_768}
+    />
   </picture>

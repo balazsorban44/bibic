@@ -1,69 +1,86 @@
 import React, {Component} from 'react'
 import ReactSlider from 'react-slick'
 import {Prev, Next} from '../shared/Elements'
-import { DB } from '../../lib/firebase'
+import {DB} from '../../lib/firebase'
 
 export default class Slider extends Component {
 
   state = {
-    slider: null
+    metadata: null,
+    pictures: null
   }
-  componentDidMount() {
-    DB.ref(this.props.databaseRef)
-    .orderByChild("picture/name")
-    .on("child_added", snap => {
-      this.setState({
-        slider: {
-          ...this.state.slider,
-          [snap.key]: snap.val()
-        }
-      })
-    })
 
-    // this.setState({
-    //   slider: {
-    //     test: {
-    //       desc: "Lorem ipsum dolor sit amet.",
-    //       picture: {
-    //         name: "Name",
-    //         resized: "https://fillmurray.com/1920/1090",
-    //         original: "https://fillmurray.com/1024/768"
-    //       }
-    //     },
-    //     test2: {
-    //       desc: "Lorem ipsum dolor sit amet.",
-    //       picture: {
-    //         name: "Name2",
-    //         resized: "https://fillmurray.com/1920/1080",
-    //         original: "https://fillmurray.com/1024/768"
-    //       }
-    //     }
-    //   }
-    // })
+  componentDidMount() {
+    DB.ref(`${this.props.databaseRef}/pictures`)
+      .orderByChild("order")
+      .once("child_added", snap => {
+        console.log(snap)
+        
+        this.setState(({pictures}) => ({pictures: [...pictures, [snap.key, snap.val()]]}))
+      })
+    DB.ref(`${this.props.databaseRef}/metadata`)
+      .once("value", snap => {
+        this.setState({metadata: snap.val() || {}})
+      })
+
   }
 
   render() {
-    const {slider} = this.state
-    const {title, sectionId, alignRight} = this.props
+    const {
+      metadata, pictures
+    } = this.state
+
+    const {
+      title, sectionId, alignRight
+    } = this.props
     return (
-      slider ?
+      (metadata && pictures) ?
         <section
-          id={sectionId}
           className="slider"
+          id={sectionId}
           onTouchStart={this.handleSwipe}
         >
           <h2 className={alignRight && "slide-title-right"}>{title}</h2>
           <ReactSlider
             className="slider-container"
-            prevArrow={<Prev/>}
             nextArrow={<Next/>}
+            prevArrow={<Prev/>}
           >
-            {Object.keys(slider).map(slideId => {
-              const {desc, picture: {name, resized}} = slider[slideId]
+            {pictures.map(([
+              key, {
+                SIZE_ORIGINAL, SIZE_640, SIZE_1280, SIZE_1440
+              }
+            ]) => {
+              let title = ""
+              let desc = ""
+              if (metadata[key]) {
+                title = metadata[key].title
+                desc = metadata[key].desc
+              }
               return (
-                <div key={slideId} className="slide">
+                <div
+                  {...{key}}
+                  className="slide"
+                >
                   <div className={`slide-content ${alignRight && "slide-content-right"}`}>
-                    <img alt={name} src={resized}/>
+                    <picture>
+                      <source
+                        media="(max-width: 640px)"
+                        srcSet={SIZE_640}
+                      />
+                      <source
+                        media="(max-width: 1280px)"
+                        srcSet={SIZE_1280}
+                      />
+                      <source
+                        media="(max-width: 1920px)"
+                        srcSet={SIZE_1440}
+                      />
+                      <img
+                        alt={title}
+                        src={SIZE_ORIGINAL}
+                      />
+                    </picture>
                     <p>{desc}</p>
                   </div>
                 </div>

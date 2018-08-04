@@ -15,8 +15,6 @@
   p,img
     position: relative
     z-index: 1
-  img
-    border-radius: 12px
   p
     text-align: left
     margin: 7.5vw 0
@@ -64,11 +62,15 @@
       margin: 0 0 5vw 0
       width: 45%
   .certificates
+    margin-right: 0
     img
       position: relative
       height: 256px
+      transition: .2s
       &:first-of-type
-        margin-right: 5vw
+        margin-right: 2.5vw
+      &:hover
+        transform: scale(1.15)
 
 
 

@@ -6,8 +6,6 @@
   h2
     margin-top: 0
     text-align: center
-    @media (max-width: 1024px)
-      font-size: 2em
     text-shadow: none
   p
     font-size: .8em
@@ -82,13 +80,14 @@
     background: darken($lightred, 20)
 
 .special
+  color: $light
   padding: 4em 0
   background-color: transparent !important
   display: flex
   justify-content: center !important
   align-items: center
   position: relative
-  transform: rotate(-15deg)
+  transform: rotate(15deg)
   a
     color: $light
     font-size: .9em
@@ -211,12 +210,16 @@
     p
       position: absolute
       bottom: 1.5em
-      right: 220px
+      left: 220px
       max-width: 280px
   .special
-    transform: scale(.8) rotate(-15deg)
-    transform-origin: right
-    right: 2vw
+    transform: scale(.8) rotate(15deg)
+    transform-origin: left
+    left: 2vw
     margin: 0
     padding: 0
+    cursor: pointer
+    transition: .2s ease-out
+    &:hover
+      transform: scale(.9) rotate(15deg)
 

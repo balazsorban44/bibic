@@ -31,7 +31,7 @@ export default class Introduction extends Component {
                   href="mailto:hegedusne@bibicvendeghazak.hu">hegedusne@bibicvendeghazak.hu
                 </a>
               </h5>
-              <h4>Fauna ház tulajdonosa</h4>
+              <h4>Tulajdonos</h4>
             </div>
           </li>
           <li>
@@ -43,7 +43,7 @@ export default class Introduction extends Component {
                   href="mailto:gombkoto@bibicvendeghazak.hu">gombkoto@bibicvendeghazak.hu
                 </a>
               </h5>
-              <h4>Flóra ház tulajdonosa</h4>
+              <h4>Tulajdonos</h4>
             </div>
           </li>
         </ul>
