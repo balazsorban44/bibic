@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import hegedus from '../assets/images/intro/hegedus.jpg'
 import hegedusne from '../assets/images/intro/hegedusne.jpg'
 import gombkoto from '../assets/images/intro/gombkoto.jpg'
-import DynamicParagraphs from './shared/DynamicParagraphs'
+import Paragraphs from './shared/Paragraphs'
 
 export default class Introduction extends Component {
   render() {
@@ -48,7 +48,7 @@ export default class Introduction extends Component {
           </li>
         </ul>
         <div className="history">
-          <DynamicParagraphs path="history"/>
+          <Paragraphs path="bemutatkozas"/>
         </div>
       </section>
     )

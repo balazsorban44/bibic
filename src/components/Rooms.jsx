@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
+import moment from "moment"
 import {Link} from 'react-router-dom'
 import {ROOMS_REF} from '../lib/firebase'
 import {Loading} from './shared/Elements'
+import {withStore} from "./db"
 
 class Rooms extends Component {
 
@@ -15,15 +17,18 @@ class Rooms extends Component {
 
   render() {
     const {rooms} = this.state
+    const {galleries} = this.props
     return (
       <section id="szobak">
         <h2>Szobák</h2>
         <ul className="rooms">
           {rooms.length ? rooms.map((room, key) =>
-            <Room {...{
-              key,
-              ...room
-            }}
+            <Room
+              pictures={galleries["szobak"] ? galleries["szobak"][key] : []}
+              {...{
+                key,
+                ...room
+              }}
             />
           ) :
             <Loading/>
@@ -34,13 +39,16 @@ class Rooms extends Component {
   }
 }
 
-export default Rooms
+export default withStore(Rooms)
 
 class Room extends Component {
   render() {
     const {
-      available, id, name, description, pictures
+      unavailable, id, name, description, pictures
     } = this.props
+
+    const available = !unavailable || unavailable > moment().format("YYYY-MM-DD")
+
     return (
       <li
         className={`room szoba-${id}`}
@@ -120,32 +128,35 @@ class RoomSlider extends Component {
     return(
       <div className="room-slider-container">
         <ul className="room-slider">
-          {Object.entries(pictures).map(([key, picture], index) => {
-            const isFirst = index === activeSlideIndex
-            return (
-              <li
-                {...{key}}
-                /*
-                 * onMouseEnter={this.clearTicker}
-                 * onMouseLeave={this.setTicker}
-                 */
-                className={!isFirst ? "room-placeholder-slide" : "room-first-slide"}
-                style={{zIndex: isFirst ? 99 : 10-index}}
-              >
-                <Slide
-                  {...{picture}}
-                  style={{
-                    transform: isFirst ? `translateX(${-positionX}px)` : "none",
-                    transition: (isFirst && shouldSnap) ? ".625s" : "0s"
-                  }}
-                />
-              </li>
-            )
-          }
-          )}
+          {pictures && Object
+            .entries(pictures)
+            .sort((a, b) => a[1].order - b[1].order)
+            .map(([key, picture], index) => {
+              const isFirst = index === activeSlideIndex
+              return (
+                <li
+                  {...{key}}
+                  /*
+                   * onMouseEnter={this.clearTicker}
+                   * onMouseLeave={this.setTicker}
+                   */
+                  className={!isFirst ? "room-placeholder-slide" : "room-first-slide"}
+                  style={{zIndex: isFirst ? 99 : 10-index}}
+                >
+                  <Slide
+                    {...{picture}}
+                    style={{
+                      transform: isFirst ? `translateX(${-positionX}px)` : "none",
+                      transition: (isFirst && shouldSnap) ? ".625s" : "0s"
+                    }}
+                  />
+                </li>
+              )
+            }
+            )}
         </ul>
         <div className="room-slider-dots">
-          {Object.keys(pictures).map((key, index) =>
+          {pictures && Object.keys(pictures).map((key, index) =>
             <span
               {...{key}}
               className={`room-slider-dot ${activeSlideIndex===index ? "active-slide": ""}`}

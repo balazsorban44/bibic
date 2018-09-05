@@ -3,7 +3,7 @@ import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
 import withRouter from 'react-router-dom/withRouter'
 import {toast} from 'react-toastify'
-import {PARAGRAPHS_REF, RESERVATIONS_FS_REF, ROOMS_REF, ROOM_SERVICES_REF, SERVICES_REF, TIMESTAMP} from '../../lib/firebase'
+import {PARAGRAPHS_REF, RESERVATIONS_FS_REF, ROOMS_REF, ROOM_SERVICES_REF, SERVICES_REF, TIMESTAMP, GALLERIES_REF} from '../../lib/firebase'
 import {isQueryString, translate} from '../../utils/language'
 import {valid, valueToState} from '../../utils/validate'
 
@@ -34,41 +34,42 @@ class Store extends Component {
     isReserving: false,
     tomorrow,
     paragraphs: {},
-    month: moment(),
+    galleries: {},
     overlaps: [],
     reservation: initialReservation,
     rooms: null,
-    services: null,
     roomServices: null
   }
 
+
+  // Fetch all initial data from Firebase.
   componentDidMount() {
-    /*
-     * Fetch paragraphs
-     * REVIEW: Hacky way to order paragraphs, and strip away the order property.
-     */
+
     PARAGRAPHS_REF
       .on("value", snap => {
         const paragraphs = {}
         Object.entries(snap.val()).forEach(([paragraphType, paragraphList]) => {
           paragraphs[paragraphType] = Object.values(paragraphList)
             .sort((a, b) => a.order - b.order)
-            .map(({text}) => text)
         })
         this.setState({paragraphs})
       })
 
-    ROOM_SERVICES_REF.on("value", snap => {
-      this.setState({roomServices: snap.val()})
-    })
+    GALLERIES_REF
+      .on("value", snap => {
+        const galleries = {}
+        Object.entries(snap.val()).forEach(([galleryType, galleryList]) => {
+          galleries[galleryType] = Object.values(galleryList)
+            .sort((a, b) => a.order - b.order)
+        })
+        this.setState({galleries})
+      })
 
-    SERVICES_REF.on("value", snap => {
-      this.setState({services: snap.val()})
-    })
 
-    ROOMS_REF.once("value", snap => {
-      this.setState({rooms: snap.val()})
-    })
+    ROOM_SERVICES_REF.once("value", snap => this.setState({roomServices: snap.val()}))
+
+
+    ROOMS_REF.once("value", snap => this.setState({rooms: snap.val()}))
       .then(() => this.updateByURL(this.props.location.search, true))
   }
 
