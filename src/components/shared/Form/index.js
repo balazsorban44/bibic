@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react'
+import {Date, Send, PeopleCount, Children, Service} from "./inputs"
+
 
 const FormSection = ({
   title, children
@@ -23,4 +25,4 @@ const FormGroup = ({
 )
 
 
-export {FormSection, FormGroup}
+export {FormSection, FormGroup, Date, Send, PeopleCount, Children, Service}
