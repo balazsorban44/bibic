@@ -26,24 +26,24 @@ export const valid = {
 
 export const valueToState = (key, value) => {
   switch (key) {
-    case "roomId":
-      return parseInt(value, 10) || null
-    case "adults":
-      return parseInt(value, 10) || 1
-    case "children":
-      const ageGroups = ["0-6", "6-12"]
-      return typeof value === "string" ?
-         ageGroups.includes(value) ? [value] : [] :
-         value.every(child => ageGroups.includes(child)) ? value : []
-    case "from":
-    case "to":
-      const date = moment(value, "YYYY-MM-DD", true)
-      return date.isValid()  ? date.toDate() : moment().toDate()
-    case "activeService":
-      return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
-    case "subject":
-      return valid.subject(value) ? value : "other"
-    default:
-      return
+  case "roomId":
+    return parseInt(value, 10) || null
+  case "adults":
+    return parseInt(value, 10) || 1
+  case "children":
+    const ageGroups = ["0-6", "6-12"]
+    return typeof value === "string" ?
+      ageGroups.includes(value) ? [value] : [] :
+      value.every(child => ageGroups.includes(child)) ? value : []
+  case "from":
+  case "to":
+    const date = moment(value, "YYYY-MM-DD", true)
+    return date.isValid() ? date.toDate() : moment().toDate()
+  case "activeService":
+    return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
+  case "subject":
+    return valid.subject(value) ? value : "other"
+  default:
+    return
   }
 }
