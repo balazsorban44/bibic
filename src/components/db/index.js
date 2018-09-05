@@ -1,5 +1,4 @@
 import moment from 'moment'
-import 'moment/locale/hu'
 import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
 import withRouter from 'react-router-dom/withRouter'
