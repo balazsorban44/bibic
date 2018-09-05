@@ -14,10 +14,20 @@ import Foods from './Foods'
 
 import Slider from './shared/Slider'
 import Message from './Message'
+import {ToastContainer} from 'react-toastify'
 
 
 const App = () =>
   <Fragment>
+    <ToastContainer
+      closeOnClick
+      position="bottom-center"
+      style={{
+        position: "fixed",
+        zIndex: 10001,
+        bottom: 0
+      }}
+    />
     <ChatFAB/>
     <Switch>
       <Route

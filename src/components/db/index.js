@@ -2,7 +2,7 @@ import moment from 'moment'
 import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
 import withRouter from 'react-router-dom/withRouter'
-import {toast, ToastContainer} from 'react-toastify'
+import {toast} from 'react-toastify'
 import {PARAGRAPHS_REF, RESERVATIONS_FS_REF, ROOMS_REF, ROOM_SERVICES_REF, SERVICES_REF, TIMESTAMP} from '../../lib/firebase'
 import {isQueryString, translate} from '../../utils/language'
 import {valid, valueToState} from '../../utils/validate'
@@ -434,15 +434,6 @@ class Store extends Component {
         }
       }}
       >
-        <ToastContainer
-          closeOnClick
-          position="bottom-center"
-          style={{
-            position: "fixed",
-            zIndex: 10001,
-            bottom: 0
-          }}
-        />
         {this.props.children}
       </Data.Provider>
     )
