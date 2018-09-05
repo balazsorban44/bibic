@@ -1,72 +1,19 @@
 #szolgaltatasok
-  display: flex
-  flex-direction: column
-  h2
-    padding-left: .5em
-  li
-    border-radius: 12px
-    p
-      background-color: $light
-      color: $dark
+  display: grid
+  padding: 0 1em 3em
+.service-item
+  position: relative
+  background-color: $light
+  max-width: 27.5%
+  margin: 1em
+  .img-wrapper
+    max-height: 160px
+    overflow: hidden
   p
+
     padding: 1em
+    color: $dark
+
 .services-footer
-  display: flex
-  align-items: center
-  justify-content: center
-  margin: 2em 2.5% 2.5em
-@media (orientation: portrait)
-  .services-footer
-    flex-direction: column
-@media (orientation: landscape)
-  #szolgaltatasok
-    img
-      position: relative
-      margin: 0 auto
-      width: 50%
-      box-shadow: 0 0 10px rgba(0,0,0,.8)
-
-@media (min-width: 1024px)
-  #szolgaltatasok
-    position: relative
-    h2
-      text-align: left
-      margin-left: 15vw
-      padding-bottom: 0
-    ul
-      display: flex
-      justify-content: space-around
-      flex-wrap: wrap
-      margin: 0 5vw
-    li
-      margin: 1em
-      box-shadow: 0 0 10px rgba(0,0,0,.8)
-      width: 35vw
-      display: flex
-      flex-direction: column
-      p
-        display: flex
-        align-items: center
-        flex: 1
-        background-color: $light
-        margin: 0
-        padding: 1.5em 2.5em
-    img
-      box-shadow: none
-      width: 100%
-      height: calc(100% * 2/3)
-    >p
-      margin: 5vw auto
-      padding: 0
-      max-width: 30vw
-
-@media (min-width: 1280px)
-  #szolgaltatasok
-    h2
-      padding-top: 0
-    ul
-      flex-wrap: nowrap
-    li
-      transition: .3s
-      // &:hover
-      //   transform: scale(1.05)
+  margin-top: 3em
+  text-align: right
