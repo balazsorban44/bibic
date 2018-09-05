@@ -6,11 +6,37 @@ import {toast} from 'react-toastify'
 import {PARAGRAPHS_REF, RESERVATIONS_FS_REF, ROOMS_REF, ROOM_SERVICES_REF, SERVICES_REF, TIMESTAMP, GALLERIES_REF} from '../../lib/firebase'
 import {isQueryString, translate} from '../../utils/language'
 import {valid, valueToState} from '../../utils/validate'
+import {isAvailable} from './reservation'
 
 
-const Data = createContext()
-const tomorrow = moment().add(1, "day").startOf("day")
-const currentMonth = moment().startOf("month")
+const Store = createContext()
+/**
+ * Makes the Store values available
+ * @param {Component} WrappedComponent The component to pass the store values to
+ * @returns {Component} Component with the Store values
+ */
+export const withStore = WrappedComponent =>
+  class extends Component {
+    render() {
+      return (
+        <Store.Consumer>
+          {values =>
+            <WrappedComponent
+              {...{
+                ...values,
+                ...this.props
+              }}
+            />
+          }
+        </Store.Consumer>
+      )
+    }
+  }
+
+
+const today = moment()
+const tomorrow = today.clone().add(1, "day").startOf("day")
+const currentMonth = today.clone().startOf("month")
 
 const initialReservation = {
   roomId: null,
@@ -20,7 +46,6 @@ const initialReservation = {
   email: "",
   address: "",
   tel: "",
-  month: currentMonth,
   message: "",
   adults: 1,
   children: [],
@@ -28,13 +53,14 @@ const initialReservation = {
   price: 0
 }
 
-class Store extends Component {
+class Database extends Component {
 
   state = {
     isReserving: false,
     tomorrow,
     paragraphs: {},
     galleries: {},
+    month: today,
     overlaps: [],
     reservation: initialReservation,
     rooms: null,
@@ -82,36 +108,7 @@ class Store extends Component {
    * Reservation
    */
 
-  updatePrice = () => {
-    const {
-      reservation, rooms
-    } = this.state
-    let {roomId} = reservation
-    const {
-      activeService, adults, children, from, to
-    } = reservation
-    roomId = roomId - 1
-    if (rooms[roomId]) {
-      const childrenCount = children.filter(i => i === "6-12").length
-      const prices = rooms[roomId].prices.table[activeService]
-      let price = 0
-      // NOTE: Add discount to database
-      const {discount=0} = prices
-      const adultPrices = prices[adults]
-      if (adultPrices) {
-        const childrenPrices = adultPrices[childrenCount]
-        if (childrenPrices) {
-          price = childrenPrices.price
-        }
-      }
-      const reservationLength = moment(to).diff(moment(from), "days")
-      price = price * reservationLength * (1-(discount/100))
-      this.setState(({reservation}) => ({reservation: {
-        ...reservation,
-        price
-      }}))
-    }
-  }
+  updatePrice = () => {}
 
   /**
    * Validates the reservation before sending it to the server
@@ -175,11 +172,12 @@ class Store extends Component {
     reservation.from = moment(from).startOf("day").hours(14).valueOf()
     reservation.to = moment(to).startOf("day").hours(10).valueOf()
     reservation.message = message !== "" ? message : "Nincs üzenet"
-    this.isAvailable(roomId, from, to).then(available => {
+    isAvailable(roomId, from, to).then(available => {
 
       if (available) {
         if (this.isValidReservation(reservation)) {
-          RESERVATIONS_FS_REF.doc(`${moment(from).format("YYYYMMDD")}-sz${roomId}`)
+          RESERVATIONS_FS_REF
+            .doc(`${moment(from).format("YYYYMMDD")}-sz${roomId}`)
             .set({
               ...reservation,
               lastHandledBy: "",
@@ -190,7 +188,7 @@ class Store extends Component {
               this.setState({
                 isReserving: false,
                 reservation: initialReservation,
-                month: moment().toDate()
+                month: today.clone().toDate()
               })
               toast.success(
                 <p style={{
@@ -345,15 +343,6 @@ class Store extends Component {
       ).length
   }
 
-  isAvailable = (roomId, from, to) => {
-    from = moment(from).format("YYYY-MM-DD")
-    to = moment(to).format("YYYY-MM-DD")
-    const url = "https://us-central1-bibic-vendeghazak-api.cloudfunctions.net/overlaps?"
-    return fetch(`${url}roomId=r${roomId}&date=${from}_${to}`)
-      .then(res => res.json())
-      .catch(console.error)
-  }
-
 
   /**
    * Updates the reservation either in the state or in the URL
@@ -423,24 +412,22 @@ class Store extends Component {
 
   render() {
     return (
-      <Data.Provider value={{
-        state: this.state,
-        actions: {
+      <Store.Provider
+        value={{
           updateReservation: this.updateReservation,
           handleRoomChange: this.handleRoomChange,
           tileDisabled: this.tileDisabled,
           submitReservation: this.submitReservation,
           handleDateSelect: this.handleDateSelect,
-          handleMonthChange: this.handleMonthChange
-        }
-      }}
+          handleMonthChange: this.handleMonthChange,
+          ...this.state
+        }}
       >
         {this.props.children}
-      </Data.Provider>
+      </Store.Provider>
     )
   }
 }
 
 
-export default withRouter(Store)
-export {Data}
+export default withRouter(Database)
