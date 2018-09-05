@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 // For the slider elements
 import arrow from '../../assets/icons/arrow.svg'
@@ -39,7 +39,25 @@ export const SwipeIcon = ({
   />
 
 
-export const Loading = () => <div className="loading"><div className="spinner"/></div>
+export class Loading extends Component {
+
+  state = {isTimedOut: false}
+
+  componentDidMount() {
+    setTimeout(() => this.setState({isTimedOut: true}), 10000)
+  }
+
+  render() {
+    return (
+      // TODO: Add better empty state
+      this.state.isTimedOut ?
+        <p className="not-available">
+          A tartalom nem elérhető
+        </p> :
+        <div className="loading"><div className="spinner"/></div>
+    )
+  }
+}
 
 export const Button = ({
   label, to
