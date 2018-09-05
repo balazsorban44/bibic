@@ -1,12 +1,13 @@
 import React, {Component, Fragment} from 'react'
 import QueryString from 'query-string'
-import {FormGroup, FormSection} from './Form'
-import {PersonalDetail, Send} from './Form/inputs'
+import {FormGroup, FormSection, Send} from './shared/Form'
 import {BackMenu} from './Menu'
 import {toast, ToastContainer} from 'react-toastify'
 import {translate, isQueryString} from "../utils/language"
 import {valid} from '../utils/validate'
 import {MESSAGES_REF, TIMESTAMP_DB} from '../lib/firebase'
+import PersonalDetails from './ReservationForm/PersonalDetails'
+import PersonalDetail from './ReservationForm/PersonalDetails/PersonalDetail'
 
 
 const updateByURL = search => {
@@ -172,7 +173,7 @@ export default class Message extends Component {
 
           <FormSection title="Személyi adatok">
             <FormGroup footnote="kötelező">
-              <PersonalDetail
+              <PersonalDetails
                 errorMessage="Érvénytelen név!"
                 hasFootnote
                 label="teljes név"

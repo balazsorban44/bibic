@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {Route, Link, Switch} from 'react-router-dom'
-import Reservation from './Reservation'
+import ReservationForm from './ReservationForm'
 import Introduction from './Introduction'
 import Sunflower from './Sunflower'
 import Hero from './Hero'
@@ -36,7 +36,7 @@ const App = () =>
         path="/rendezvenyek"
       />
       <Route
-        component={Reservation}
+        component={ReservationForm}
         exact
         path="/foglalas"
       />
