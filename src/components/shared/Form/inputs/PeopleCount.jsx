@@ -67,11 +67,11 @@ export default class PeopleCount extends Component {
             min,
             max,
             placeholder,
-            name
+            name,
+            value
           }}
           readOnly
           type="number"
-          value={`${value }`}
         />
         <div className="number-controls">
           <button

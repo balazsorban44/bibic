@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom'
 import arrow from '../../assets/icons/arrow.svg'
 import swipe from '../../assets/icons/swipe.svg'
 
-export const Prev = ({onClick}) =>
+export const Prev = ({previousSlide}) =>
   <div
     className="slider-arrow slider-arrow-prev"
-    onClick={onClick}
+    onClick={previousSlide}
   >
     <img
       alt=""
@@ -16,10 +16,10 @@ export const Prev = ({onClick}) =>
   </div>
 
 
-export const Next = ({onClick}) =>
+export const Next = ({nextSlide}) =>
   <div
     className="slider-arrow slider-arrow-next"
-    onClick={onClick}
+    onClick={nextSlide}
   >
     <img
       alt=""
@@ -44,8 +44,10 @@ export class Loading extends Component {
   state = {isTimedOut: false}
 
   componentDidMount() {
-    setTimeout(() => this.setState({isTimedOut: true}), 10000)
+    const timeout = setTimeout(() => this.setState({isTimedOut: true}), 10000)
+    clearTimeout(timeout)
   }
+
 
   render() {
     return (
@@ -63,3 +65,16 @@ export const Button = ({
   label, to
 }) =>
   <Link {...{to}} >{label}</Link>
+
+
+export const Tooltip = ({
+  title, children
+}) =>
+  title ?
+    <div className="tooltip-wrapper">
+      <span className="tooltip">
+        {title}
+      </span>
+      {children}
+    </div>
+    : children

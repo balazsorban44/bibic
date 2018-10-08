@@ -4,24 +4,12 @@ import PeopleCount from "./PeopleCount"
 
 export default class Children extends Component {
 
-  state = {
-    values: [],
-    max: 100
-  }
+  state = {ageGroups: ["0-6", "6-12"]}
 
-  static getDerivedStateFromProps = ({
-    values, max
-  }) => (
-    {
-      values,
-      max
-    }
-  )
 
   handleChange = (name, value) => {
-    const {max} = this.state
-    let {values} = this.state
-    value = parseInt(value, 10)
+    const {max} = this.props
+    let {values} = this.props
 
     if (values.length < value) {
       values.push("6-12")
@@ -30,24 +18,25 @@ export default class Children extends Component {
     if (values.length > value) {
       values.pop()
     }
-
-    this.props.onChange("children", values)
+    this.props.onChange(name, values)
   }
 
   handleSelect = ({target: {
-    name, value
+    name: index, value
   }}) => {
-    const {values} = this.state
-    values[name] = value
-    this.setState({values})
+    const values = [...this.props.values]
+    values[index] = value
+
     this.props.onChange("children", values)
   }
 
   render() {
     const {
-      hasFootnote, name, label, max
+      hasFootnote, name, label, max, values
     } = this.props
-    const {values} = this.state
+
+    const {ageGroups} = this.state
+    values.splice(max)
 
     return (
       <Fragment>
@@ -64,20 +53,27 @@ export default class Children extends Component {
           value={values.length}
         />
         <div className="children-age">
-          {values.length >= 1 && values.map((childAge, index) => {
+          {values.map((childAge, index) => {
             return (
               <div
                 className="input-box child-age"
                 key={index}
               >
-                <label htmlFor={index}>{index+1}. kor</label>
+                <label htmlFor={index}>{index+1}. gyerek</label>
                 <select
                   name={index}
                   onChange={this.handleSelect}
                   value={childAge}
                 >
-                  <option value="0-6" >0-6 év</option>
-                  <option value="6-12">6-12 év</option>
+                  {
+                    ageGroups.map(ageGroup =>
+                      <option
+                        key={ageGroup}
+                        value={ageGroup}
+                      >{ageGroup} év
+                      </option>
+                    )
+                  }
                 </select>
               </div>
             )
