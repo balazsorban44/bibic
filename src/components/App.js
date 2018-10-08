@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Fragment} from 'react'
 import {Route, Link, Switch} from 'react-router-dom'
 import ReservationForm from './ReservationForm'
 import Introduction from './Introduction'
@@ -10,9 +10,9 @@ import Rooms from './Rooms'
 import Prices from './Prices'
 import Menu, {BackMenu} from './Menu'
 import chat from '../assets/icons/chat.svg'
-import Foods from './Foods'
+import Carousel from './shared/Carousel'
 
-import Slider from './shared/Slider'
+
 import Message from './Message'
 import {ToastContainer} from 'react-toastify'
 
@@ -36,12 +36,23 @@ const App = () =>
         render={Main}
       />
       <Route
-        component={Foods}
+        component={() =>
+          <Carousel
+            className="foods"
+            itemClassName="food"
+            title="Ételeink"
+          />
+        }
         exact
         path="/etelek"
       />
       <Route
-        component={Events}
+        component={() =>
+          <Carousel
+            className="events"
+            itemClassName="event"
+            title="Korábbi rendezvények"
+          />}
         exact
         path="/rendezvenyek"
       />
@@ -95,27 +106,6 @@ const NotFound = () =>
     </p>
     <Link to ="/">Vissza a főoldalra</Link>
   </div>
-
-
-class Events extends Component {
-
-  componentDidMount() {
-    window.scrollTo(0, 0)
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <BackMenu/>
-        <Slider
-          databaseRef="events"
-          sectionId="rendezvenyek"
-          title="Rendezvények"
-        />
-      </Fragment>
-    )
-  }
-}
 
 
 const Main = () =>

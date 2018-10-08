@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
-import hero1 from '../assets/images/hero/1.jpg'
-import hero2 from '../assets/images/hero/2.jpg'
+import hero1 from '../assets/images/hero/2.jpg'
+import hero2 from '../assets/images/hero/1.jpg'
 import logo from '../assets/icons/logo.png'
 import {Link} from 'react-scroll'
-
-import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+import Carousel from "nuka-carousel"
 
 export default class Header extends Component {
 
@@ -31,14 +28,16 @@ export default class Header extends Component {
   render() {
     return (
       <section className="hero">
-        <Slider
-          accessibility={false}
-          arrows={false}
+        <Carousel
           autoplay
-          autoplaySpeed={4500}
+          autoplayInterval={7500}
           className="hero-slider"
-          fade
+          dragging={false}
+          heightMode="max"
           speed={750}
+          transitionMode="fade"
+          withoutControls
+          wrapAround
         >
           <img
             alt="Hero háttérkép"
@@ -50,7 +49,7 @@ export default class Header extends Component {
             className="hero-slide"
             src={hero2}
           />
-        </Slider>
+        </Carousel>
         <span className="hero-slider-overlay"/>
         <a
           className="hero-logo"

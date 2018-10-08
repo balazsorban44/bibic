@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import moment from "moment"
 import {Link} from 'react-router-dom'
 import {ROOMS_REF} from '../lib/firebase'
 import {Loading} from './shared/Elements'
@@ -44,10 +43,9 @@ export default withStore(Rooms)
 class Room extends Component {
   render() {
     const {
-      unavailable, id, name, description, pictures
+      id, name, description, pictures
     } = this.props
 
-    const available = !unavailable || unavailable > moment().format("YYYY-MM-DD")
 
     return (
       <li
@@ -57,11 +55,8 @@ class Room extends Component {
         <h3 className="room-title" >{name}</h3>
         <RoomSlider {...{pictures}} />
         <p className="room-description" >{description}</p>
-        <div className={`button room-reserve-btn ${!available ? "room-unavailable-reserve-btn" : ""}`}>
-          {available ?
-            <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link> :
-            <p>Lefoglalom</p>
-          }
+        <div className="button room-reserve-btn">
+          <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link>
         </div>
       </li>
     )
@@ -78,7 +73,7 @@ class RoomSlider extends Component {
   }
 
 
-  // componentDidMount() {this.setTicker()}
+  componentDidMount() {this.setTicker()}
 
   componentWillUnmount() {this.clearTicker()}
 
@@ -114,9 +109,12 @@ class RoomSlider extends Component {
     this.setState({positionX: this.state.startX-e.touches[0].pageX})
   }
 
-  handleSlide = e => {
+  handleSlide = _e => {
     this.clearTicker()
-    this.setState(({activeSlideIndex: prevIndex}) => ({activeSlideIndex: prevIndex+1 >= Object.keys(this.props.pictures).length ? 0 : prevIndex+1}), this.setTicker)
+    this.setState(({activeSlideIndex: prevIndex}) =>
+      ({activeSlideIndex: prevIndex+1 >= Object.keys(this.props.pictures).length ? 0 : prevIndex+1})
+      , this.setTicker
+    )
   }
 
   render() {
@@ -128,8 +126,7 @@ class RoomSlider extends Component {
     return(
       <div className="room-slider-container">
         <ul className="room-slider">
-          {pictures && Object
-            .entries(pictures)
+          {Object.entries(pictures)
             .sort((a, b) => a[1].order - b[1].order)
             .map(([key, picture], index) => {
               const isFirst = index === activeSlideIndex

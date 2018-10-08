@@ -1,10 +1,27 @@
 import React, {Component} from 'react'
 import {Link} from "react-router-dom"
+import {withStore} from './db'
 
-export default class Prices extends Component {
-  componentDidMount() {
-    //TODO: Fetch prices and info
+class Prices extends Component {
+
+  state = {minPrice: "Betöltés..."}
+
+  componentDidUpdate({rooms: prevRooms}, _prevState) {
+    const {rooms} = this.props
+    if (prevRooms !== rooms) {
+      let minPrice = Infinity
+      rooms.forEach(({prices: {table}}) => {
+        Object.values(table).flat().forEach(adult => {
+          adult.forEach(({price}) => {
+            minPrice = Math.min(minPrice, price)
+          })
+        })
+      })
+      this.setState({minPrice})
+    }
+
   }
+
 
   render() {
     return (
@@ -13,7 +30,7 @@ export default class Prices extends Component {
         <ul className="price-list">
           <li>
             <div className="price-content">
-              <h3>6.000<span>-Forinttól<sup>*</sup></span> </h3>
+              <h3>{this.state.minPrice}<span>-Forinttól<sup>*</sup></span> </h3>
               <h4>Többágyas szoba</h4>
               <h5>két- vagy több fő részére</h5>
             </div>
@@ -26,7 +43,7 @@ export default class Prices extends Component {
           </li>
           <li>
             <div className="price-content">
-              <h3>6.000 <span>Forint/óra<sup>*</sup></span></h3>
+              <h3>6000 <span>Forint/óra<sup>*</sup></span></h3>
               <h4>Rendezvényterem</h4>
               <h5>terembérlés</h5>
             </div>
@@ -34,12 +51,12 @@ export default class Prices extends Component {
               className="price-button"
               to="uzenet?tema=rendezvenyterem"
             >
-              Részletek
+              Írjon nekünk
             </Link>
           </li>
           <li>
             <div className="price-content">
-              <h3>90.000+ <span>Forint<sup>*</sup></span> </h3>
+              <h3>90000+ <span>Forint<sup>*</sup></span> </h3>
               <h4>Teljes ház</h4>
               <h5>maximum 21 fő</h5>
             </div>
@@ -47,7 +64,7 @@ export default class Prices extends Component {
               className="price-button"
               to="uzenet?tema=teljeshaz"
             >
-              Részletek
+              Írjon nekünk
             </Link>
           </li>
           {/* <li>
@@ -71,3 +88,6 @@ export default class Prices extends Component {
     )
   }
 }
+
+
+export default withStore(Prices)

@@ -4,63 +4,52 @@ import hegedusne from '../assets/images/intro/hegedusne.jpg'
 import gombkoto from '../assets/images/intro/gombkoto.jpg'
 import Paragraphs from './shared/Paragraphs'
 
+
+const profiles = [
+  {
+    name: "Hegedüs Péter",
+    src: hegedus,
+    email: "hegedus@bibicvendeghazak.hu",
+    position: "Bíbic Vendégházak házigazdája"
+  },
+  {
+    name: "Hegedüsné Kóró Ágnes",
+    src: hegedusne,
+    email: "hegedusne@bibicvendeghazak.hu",
+    position: "Tulajdonos"
+  },
+  {
+    name: "Gombkötő Gábor",
+    src: gombkoto,
+    email: "gombkoto@bibicvendeghazak.hu",
+    position: "Tulajdonos"
+  }
+]
+
 export default class Introduction extends Component {
   render() {
     return (
       <section id="bemutatkozas">
         <h2 className="welcome-title">Üdvözöljük</h2>
         <ul className="profiles">
-          <li>
-            <img
-              alt="Hegedüs Péter"
-              className="profile-img"
-              src={hegedus}
-            />
-            <div>
-              <h3>Hegedüs Péter</h3>
-              <h5>
-                <a
-                  href="mailto:hegedus@bibicvendeghazak.hu"
-                >hegedus@bibicvendeghazak.hu
-                </a>
-              </h5>
-              <h4>Bíbic Vendégházak házigazdája</h4>
-            </div>
-          </li>
-          <li>
-            <img
-              alt="Hegedüsné Kóró Ágnes"
-              className="profile-img"
-              src={hegedusne}
-            />
-            <div>
-              <h3>Hegedüsné Kóró Ágnes</h3>
-              <h5>
-                <a
-                  href="mailto:hegedusne@bibicvendeghazak.hu"
-                >hegedusne@bibicvendeghazak.hu
-                </a>
-              </h5>
-              <h4>Tulajdonos</h4>
-            </div>
-          </li>
-          <li>
-            <img
-              alt="Gombkötő Gábor"
-              className="profile-img"
-              src={gombkoto}
-            />
-            <div>
-              <h3>Gombkötő Gábor</h3>
-              <h5>
-                <a
-                  href="mailto:gombkoto@bibicvendeghazak.hu"
-                >gombkoto@bibicvendeghazak.hu
-                </a>
-              </h5>
-              <h4>Tulajdonos</h4>
-            </div>
-          </li>
+          {profiles.map(({
+            name, email, src, position
+          }) =>
+            <li key={name}>
+              <a href={`mailto:${email}`}>
+                <img
+                  alt={name}
+                  className="profile-img"
+                  src={src}
+                />
+              </a>
+              <div>
+                <h3>{name}</h3>
+                <h5><a href={`mailto:${email}`}>✉ {email} </a></h5>
+                <h4>{position}</h4>
+              </div>
+            </li>
+          )}
         </ul>
         <div className="history">
           <Paragraphs path="bemutatkozas"/>

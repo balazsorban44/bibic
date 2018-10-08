@@ -7,7 +7,6 @@ import {translate, isQueryString} from "../utils/language"
 import {valid} from '../utils/validate'
 import {MESSAGES_REF, TIMESTAMP_DB} from '../lib/firebase'
 import PersonalDetails from './ReservationForm/PersonalDetails'
-import PersonalDetail from './ReservationForm/PersonalDetails/PersonalDetail'
 
 
 const updateByURL = search => {
@@ -43,9 +42,7 @@ export default class Message extends Component {
 
   handleUpdate = (key, value) => {
     if (isQueryString(key)) {
-      const {
-        history, match: {url}
-      } = this.props
+      const {history, match: {url}} = this.props
       const search = QueryString.parse(history.location.search)
       search[translate(key)] = key === "subject" ? translate(value) : value
       history.push(`${url}?${QueryString.stringify(search)}`)
@@ -70,10 +67,8 @@ export default class Message extends Component {
 
     if (error) {
       toast.error(
-        <p style={{
-          padding: ".5rem",
-          fontSize: "1.2rem"
-        }}
+        <p style={{padding: ".5rem",
+          fontSize: "1.2rem"}}
         >{error}<br />
           <span
             style={{fontSize: "1rem"}}
@@ -81,10 +76,8 @@ export default class Message extends Component {
             Technikai hiba?
             <a
               href="mailto:hiba@bibicvedeghazak.hu"
-              style={{
-                color: "white",
-                borderBottom: "1px solid white"
-              }}
+              style={{color: "white",
+                borderBottom: "1px solid white"}}
             >hiba@bibicvedeghazak.hu</a>
           </span>
         </p>, {autoClose: 5000})
@@ -97,17 +90,13 @@ export default class Message extends Component {
   handleSend = e => {
     e.preventDefault()
     if (this.isValid(this.state)) {
-      const obj = {
-        ...this.state,
+      const obj = {...this.state,
         timestamp: TIMESTAMP_DB,
-        handled: false
-      }
+        handled: false}
       MESSAGES_REF.push(obj).then(() => {
         toast.success(
-          <p style={{
-            padding: ".5rem",
-            fontSize: "1.2rem"
-          }}
+          <p style={{padding: ".5rem",
+            fontSize: "1.2rem"}}
           >Üzenet elküldve. <br />
             <span
               style={{fontSize: "1rem"}}
@@ -127,14 +116,10 @@ export default class Message extends Component {
 
         setTimeout(() => this.props.history.push(""), 7500)
       })
-        .catch(({
-          code, message
-        }) => {
+        .catch(({code, message}) => {
           toast.error(
-            <p style={{
-              padding: ".5rem",
-              fontSize: "1.2rem"
-            }}
+            <p style={{padding: ".5rem",
+              fontSize: "1.2rem"}}
             >Hiba: {code} - {message}<br />
               <span style={{fontSize: "1rem"}}>
                 Ha a probléma tartósan fennáll, jelezze itt:
@@ -151,19 +136,15 @@ export default class Message extends Component {
   }
 
   render() {
-    const {
-      subject, message, name, email, tel
-    } = this.state
+    const {subject, message, name} = this.state
     return (
       <Fragment>
         <ToastContainer
           closeOnClick
           position="bottom-center"
-          style={{
-            position: "fixed",
+          style={{position: "fixed",
             zIndex: 10001,
-            bottom: 0
-          }}
+            bottom: 0}}
         />
         <BackMenu />
         <form
@@ -172,38 +153,16 @@ export default class Message extends Component {
         >
 
           <FormSection title="Személyi adatok">
-            <FormGroup footnote="kötelező">
-              <PersonalDetails
-                errorMessage="Érvénytelen név!"
-                hasFootnote
-                label="teljes név"
-                name="name"
-                notification={toast.error}
-                onChange={this.handleUpdate}
-                placeholder="Kovács József"
-                value={name}
-              />
-              <PersonalDetail
-                errorMessage="Érvénytelen e-mail cím!"
-                hasFootnote
-                label="e-mail cím"
-                name="email"
-                notification={toast.error}
-                onChange={this.handleUpdate}
-                placeholder="kovacs.jozsef@email.hu"
-                value={email}
-              />
-              <PersonalDetail
-                errorMessage="Érvénytelen telefonszám!"
-                hasFootnote
-                label="telefonszám"
-                name="tel"
-                notification={toast.error}
-                onChange={this.handleUpdate}
-                placeholder="+36-30-123-4567"
-                value={tel}
-              />
-            </FormGroup>
+            <PersonalDetails
+              errorMessage="Érvénytelen név!"
+              hasFootnote
+              label="teljes név"
+              name="name"
+              notification={toast.error}
+              onChange={this.handleUpdate}
+              placeholder="Kovács József"
+              value={name}
+            />
           </FormSection>
           <FormSection title="Az üzenet témája">
             <select

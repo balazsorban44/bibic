@@ -157,15 +157,7 @@ export default class Menu extends Component {
 }
 
 export const BackMenu = () =>
-  <nav className="back-menu">
-    <ul>
-      <li>
-        <RouteLink to="/">← Vissza a főoldalra</RouteLink>
-      </li>
-      <li>
-        <Link
-          smooth
-          to="kapcsolat"
-        >Kapcsolat</Link></li>
-    </ul>
-  </nav>
+  <RouteLink
+    className="back-to-home"
+    to="/"
+  >← Vissza a főoldalra</RouteLink>
