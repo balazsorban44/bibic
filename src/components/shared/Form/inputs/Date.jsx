@@ -7,18 +7,18 @@ const Date = ({
 }) => (
   <div
     className="input-box"
-    onClick={() => notification("Kérjük válasszon érkezési és távozási dátumot a naptáron!")}
+    onClick={() => notification("useCalendarAsInput")}
   >
     <label
       className={hasFootnote ? "footnote-asterix" : ""}
-      htmlFor={name}
     >
       {label}
     </label>
     <input
+      id={name}
       readOnly
       {...{name}}
-      value={moment(value).format("LL")}
+      value={value ? moment(value).format("LL") : "Nincs megadva"}
     />
   </div>
 )
