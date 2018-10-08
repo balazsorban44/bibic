@@ -3,12 +3,12 @@ export const translations = {
   name: ["nev", false],
   tel: ["telefon", false],
   email: ["email", false],
-  address: ["lakcím", false],
+  address: ["lakcim", false],
   from: ["tol", true],
   to: ["ig", true],
   adults: ["felnott", true],
   children: ["gyerek", true],
-  activeService: ["ellatas", true],
+  foodService: ["ellatas", true],
   breakfast: ["reggeli", false],
   halfBoard: ["felpanzio", false],
   fullBoard: ["teljes-ellatas", false],
@@ -40,7 +40,7 @@ export const translate = name => {
  * @param {string} name the name to be checked
  * @returns {boolean}
  */
-export const isQueryString = name => translations[name][1]
+export const isQueryString = name => translations[name] ? translations[name][1] : false
 
 /**
  * Pretty prints a price in Hungarian format
