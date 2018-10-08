@@ -11,18 +11,40 @@ export const valid = {
   name: name => nameRe.test(name),
   email: email => emailRe.test(email),
   tel: tel => telRe.test(tel),
-  address: address => typeof address === "string" && address.length > 0,
+  address: address => typeof address === "string" && address.length,
   message: message => typeof message === "string",
   messageMin: message => typeof message === "string" && message.length >= 40,
-  from: from => from > moment().add(1, "day").startOf("day").valueOf(),
-  to: to => to > moment().add(2, "day").startOf("day").valueOf(),
-  period: (from, to) => moment(to).startOf("day").diff(moment(from).startOf("day"), "days") >= 1,
-  adults: adults => typeof adults === "number" || adults >= 1,
-  children: children => Array.isArray(children),
-  peopleCount: (adults, children, maxPeople) => adults + children.length <= maxPeople,
+  from: from => moment(from).diff(moment().add(1, "day").startOf("day"), "day"),
+  to: to => moment(to).diff(moment().add(2, "day").startOf("day"), "day"),
+  period: (from, to) => moment.range(from, to).snapTo("day").diff("day") >= 1,
+  adults: adults => typeof adults === "number" && adults,
+  children: children =>
+    Array.isArray(children) &&
+    (children.length === 0 ||
+    children.every(child =>
+      Object.keys(child).length === 2 &&
+        child.name && child.count &&
+        ["0-6", "6-12"].includes(child.name) && child.count
+    )),
+  peopleCount: (adults, children, maxPeople) => adults + children.reduce((acc, {count}) => acc+count, 0) <= maxPeople,
   subject: subject => ["eventHall", "fullHouse", "special", "other"].includes(subject)
 }
 
+
+export const isError = (roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople) =>
+  !valid.roomId(roomId, roomLength) ? "Érvénytelen szobaszám" :
+    !valid.name(name) ? "Érvénytelen név" :
+      !valid.email(email) ? "Érvénytelen e-mail cím" :
+        !valid.tel(tel) ? "Érvénytelen telefonszám" :
+          !valid.address(address) ? "Érvénytelen lakcím" :
+            !valid.from(from) ? "Legkorábbi érkezés holnap" :
+              !valid.to(to) ? "Legkorábbi távozás holnapután" :
+                !valid.period(from, to) ? "A foglalás legalább egy éjszakát kell, hogy tartalmazzon" :
+                  !valid.message(message) ? "Érvénytelen üzenet" :
+                    !valid.adults(adults) ? "Érvénytelen felnőtt" :
+                      !valid.children(children) ? "Érvénytelen gyerek" :
+                        !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
+                          false
 
 export const valueToState = (key, value) => {
   switch (key) {
@@ -39,7 +61,7 @@ export const valueToState = (key, value) => {
   case "to":
     const date = moment(value, "YYYY-MM-DD", true)
     return date.isValid() ? date.toDate() : moment().toDate()
-  case "activeService":
+  case "foodService":
     return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
   case "subject":
     return valid.subject(value) ? value : "other"
