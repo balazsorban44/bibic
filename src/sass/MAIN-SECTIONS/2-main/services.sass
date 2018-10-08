@@ -1,19 +1,41 @@
-#szolgaltatasok
-  display: grid
-  padding: 0 1em 3em
+
+#szolgaltatasok .gallery, .services-footer, #szolgaltatasok h2
+  max-width: 1024px
+  margin-left: auto
+  margin-right: auto
+
+#szolgaltatasok 
+  padding: 2.5%
+  h2
+    margin-left: 5%
+    width: 100%
+    margin-top: 0
+  .gallery
+    display: grid
+    grid-gap: 3em
+    grid-template-columns: repeat(auto-fill, calc(1024px / 3 - 2em))
 .service-item
-  position: relative
-  background-color: $light
-  max-width: 27.5%
-  margin: 1em
+  img
+    user-select: none
   .img-wrapper
-    max-height: 160px
     overflow: hidden
+    max-height: calc(320px * 0.54)
+    display: flex
+    align-items: flex-end
+    img
+      width: 100%
+      margin: auto
   p
-
-    padding: 1em
+    background-color: $light
     color: $dark
-
+    padding: 1em 
+  
 .services-footer
+  width: 100%
   margin-top: 3em
   text-align: right
+
+@media(min-width: 1024px)
+  #szolgaltatasok
+    h2
+      margin-left: auto

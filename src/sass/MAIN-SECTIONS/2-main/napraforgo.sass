@@ -1,82 +1,65 @@
 #napraforgo
+  background-color: darken(#cc9900, 10)
   position: relative
-  display: flex
-  flex-direction: column
-  align-items: center
-  background-color: #cc9900
-  &::after
-    content: ''
+  overflow: hidden
+  
+  .gallery
+    margin: 2em 0
+    img
+      max-height: 240px
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      border-right: 1px solid $dark
+      box-sizing: border-box
+.cert-bg
+  display: none
+
+
+@media (min-width: 480px)
+  #napraforgo
+    p
+      margin: auto
+      max-width: 480px
+
+@media (min-width: 760px)
+  #napraforgo
+    background-color: #cc9900
+
+@media (min-aspect-ratio: 3/2)
+  #napraforgo
+    display: flex
+    align-items: flex-end
+    flex-direction: column
+    background-color: transparent
+    .gallery
+      justify-content: flex-end
+      img
+        transition: .2s
+        margin-right: 1em
+        &:hover
+          transform: scale(1.05)
+    p
+      padding: 1em
+      margin: 0
+      text-align: right
+  .cert-bg
+    display: block
     position: absolute
-    width: 100%
-    height: 100%
     top: 0
     left: 0
-    background-color: transparentize($dark, .4)
-  p,img
-    position: relative
-    z-index: 1
-  p
-    text-align: left
-    margin: 7.5vw 0
-    width: 85vw
-.certificates
-  display: flex
-  align-items: center
-  justify-content: space-evenly
-  margin-bottom: 7.5vw
-.certificate
-  width: 42.5%
-
-@media (min-width: 640px)
-  #napraforgo
-    flex-direction: row-reverse
-    p
-      text-align: right
-      margin: 5vw 5vw 5vw 2.5vw
-  .certificates
-    margin: 0 5vw
-  .certificate
-    height: 25vw
-    width: auto
-    &:first-of-type
-      margin-right: 0
-
-@media (min-width: 768px)
-  #napraforgo
-    p
-      margin: 10vw 10vw 10vw 5vw
-  .certificates
-    margin-left: 10vw
-    img
-      height: 192px
-
-@media (min-width: 1024px)
-  #napraforgo
-    padding: 5vw
-    flex-direction: column
-    align-items: flex-end
+    width: 100%
+    height: 100%
+    z-index: -1
     &::after
-      background-image:  linear-gradient(transparentize($dark, .8), transparentize($dark, .8)), url(#{$bg}/intro.jpg)
-      background-size: cover
-    p
-      margin: 0 0 5vw 0
-      width: 45%
-  .certificates
-    margin-right: 0
-    img
-      position: relative
-      height: 256px
-      transition: .2s
-      &:first-of-type
-        margin-right: 2.5vw
-      &:hover
-        transform: scale(1.15)
+      content: ''
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      background-color: transparentize($dark, .4)
 
-
-
-
-@media (min-width: 1440px)
+@media (min-width: 1280px)
   #napraforgo
-    padding: 10vw
-    p
-      width: 35%
+    padding-right: 7.5vw

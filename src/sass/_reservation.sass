@@ -147,7 +147,10 @@
   display: flex
   justify-content: space-evenly
   margin: 1em 0
-  button
+  .button
+    display: flex
+    justify-content: center
+    align-items: center
     opacity: .5
     color: $light
     border-radius: 50%
@@ -156,17 +159,16 @@
     height: 48px
     font-family: "Coolvetica"
     transition: .2s ease-out
-  span
-    font-size: .5em
 .room-picker-room
   display: flex
   flex-direction: column
   align-items: center
 
-.room-active button, .room-picker button:hover
+.room-active .button, .room-picker .button:hover
   opacity: 1
 
 .room-services
+  pointer-events: none
   display: grid
   grid-template-columns: repeat(5, 1fr)
   justify-items: center
@@ -176,7 +178,7 @@
   display: flex
   flex-direction: column
   align-items: center
-  opacity: .2
+  opacity: .05
   margin: .2em 0
   span
     font-size: .5em
@@ -223,6 +225,10 @@
       margin: 0 1em
 
 .input-error
+  box-sizing: border-box
+  border-bottom: 2px solid transparentize($error, .1)
+  label
+    color: transparentize($error, .1)
   &::after
     position: relative
     content: '!'
@@ -239,6 +245,7 @@
     align-items: center
     border-radius: 50%
     padding: 4px
+    margin-left: 4px
 
 .message 
   textarea
@@ -272,17 +279,18 @@
   font-style: italic
   margin-left: 1em
   display: block
-  padding: .5em
+  padding: .5em .5em 1.5em
   font-family: "Coolvetica"
   letter-spacing: .05em
   font-size: .9em
-  a, a:hover
-    color: $accent-color-dark
   a
+    text-decoration: underline
     display: block
-
-    margin: .5em auto
+    margin: 1em
     text-align: center
+    transition: .1s
+    &:hover
+      color: $accent-color-dark
   &::before
     content: "*"
 
@@ -312,28 +320,24 @@
 
 
 .payment-methods
-  margin: 1em 1em 0
-  h5
-    margin: 0 0 1em
-    text-align: center
-  ul
+  user-select: none
+  margin: .5em 0 .5em -1em
+  display: grid
+  grid-gap: 6px
+  grid-template-columns: repeat(5, 1fr)
+  li
     display: flex
-    flex-wrap: wrap
-    justify-content: space-evenly
-    li
-      display: flex
-      align-items: center
-      justify-content: center
-      flex-direction: column-reverse
-      margin-right: .5em
-      h6
-        opacity: .6
-        font-style: italic
-        font-family: sans-serif
-        margin: 4px 0 0
-    img
-      border-radius: 6px
-      width: 40px
+    align-items: center
+    justify-content: center
+    flex-direction: column-reverse
+    h6
+      opacity: .6
+      font-style: italic
+      font-family: sans-serif
+      margin: 4px 0 0
+  img
+    border-radius: 6px
+    width: 40px
 
 
 @media (min-width: 720px)
@@ -368,8 +372,6 @@
   .footnote
     padding-top: 1em
     min-width: 90%
-    a, a:hover
-      color: $accent-color
   .form-group, .room-services
     margin-top: 1em
     display: flex
@@ -382,18 +384,17 @@
     margin-left: 0
   .input-box
     position: relative
-    width: calc(50% - 2em)
+    min-width: calc(50% - 2em)
 
 .dates .input-box
   margin: 0
-  padding: 1em
 
 
 .DateRangePicker
   border: 1px solid $dark
   padding: 1em
   margin: 1em auto 0
-  display: flex
+  display: flex !important
   align-items: flex-start
   justify-content: center
   font-family: sans-serif
@@ -414,7 +415,7 @@
   margin-top: .5em
   position: absolute
   background-color: $accent-color
-  display: flex
+  display: flex !important
   justify-content: center
   align-items: center
   border-radius: 50%
@@ -450,12 +451,13 @@
     color: white !important
 
 .DateRangePicker__CalendarSelection
-  background-color: $accent-color
+  background-color: $accent-color !important
   top: 0
   bottom: 0
   left: 0
   right: 0
-  border: none
+  border: none !important
+
 
 .DateRangePicker__CalendarSelection--end
   border-top-right-radius: 1.75em
@@ -463,11 +465,11 @@
 .DateRangePicker__CalendarSelection--start
   border-top-left-radius: 1.75em
   border-bottom-left-radius: 1.75em
-.DateRangePicker__FullDateStates
-  background-color: lightgrey
-  &:hover
-    background-color: lightgrey
-    border: none
+// .DateRangePicker__FullDateStates
+//   background-color: lightgrey
+//   &:hover
+//     background-color: lightgrey
+//     border: none
 
 .calendar-legend
   margin: 0 auto
