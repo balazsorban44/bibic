@@ -1,21 +1,19 @@
 import React from 'react'
 import {withStore} from '../../db'
-import {toast} from "react-toastify"
 import PersonalDetail from './PersonalDetail'
 import {FormGroup} from '../../shared/Form'
+import {sendNotification} from '../../db/notification'
 
-const PersonalDetails = ({
-  reservation: {
-    name, email, tel, address
-  }, updateReservation
-}) =>
+const PersonalDetails = ({reservation: {
+  name, email, tel, address
+}, updateReservation}) =>
   <FormGroup footnote="kötelező">
     <PersonalDetail
       errorMessage="Érvénytelen név!"
       hasFootnote
       label="teljes név"
       name="name"
-      notification={toast.error}
+      notification={sendNotification}
       onChange={updateReservation}
       value={name}
     />
@@ -24,7 +22,7 @@ const PersonalDetails = ({
       hasFootnote
       label="e-mail cím"
       name="email"
-      notification={toast.error}
+      notification={sendNotification}
       onChange={updateReservation}
       value={email}
     />
@@ -33,8 +31,9 @@ const PersonalDetails = ({
       hasFootnote
       label="telefonszám"
       name="tel"
-      notification={toast.error}
+      notification={sendNotification}
       onChange={updateReservation}
+      type="phone"
       value={tel}
     />
     <PersonalDetail
@@ -42,7 +41,7 @@ const PersonalDetails = ({
       hasFootnote
       label="lakcím"
       name="address"
-      notification={toast.error}
+      notification={sendNotification}
       onChange={updateReservation}
       value={address}
     />

@@ -2,22 +2,23 @@ import React, {Fragment} from 'react'
 import {Link} from "react-router-dom"
 import {withStore} from '../../db'
 import People from './People'
-import Calendar from './Calendar'
 import FoodService from './FoodService'
 import {FormGroup} from '../../shared/Form'
+import DateRangePicker from './DateRangePicker'
 
 
 const ReservationDetails = ({
   rooms, reservation: {roomId}
 }) => {
   const maxPeople = (rooms && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
+
   return (
     <Fragment>
       <FormGroup
         className="dates"
         footnote="érkezés: 14:00-tól, távozás: 10:00-ig"
       >
-        <Calendar/>
+        <DateRangePicker/>
       </FormGroup>
       <FormGroup
         footnote="6 év alatt ingyenes"

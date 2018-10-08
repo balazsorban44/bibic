@@ -2,30 +2,27 @@ import React, {Fragment} from 'react'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
 
-const RoomServices = ({
-  roomServices, reservation: {roomId}
-}) =>
+const RoomServices = ({roomServices, reservation: {roomId}}) =>
   <Fragment>
-    <h5>a szoba tulajdonságai</h5>
-    {roomServices ?
+    <h5>a szoba szolgáltatásai</h5>
+    {roomServices.length ?
       <div className="room-services">
-        {Object.values(roomServices).map(({
-          inRoom, name, icon
-        }, serviceId) => {
-          const isInRoom = Object.values(inRoom).includes(parseInt(roomId, 10))
-          return (
-            <div
-              className={`room-service ${isInRoom ? "service-in-room" : ""}`}
-              key={serviceId}
-            >
-              <img
-                alt={name}
-                src={icon}
-              />
-              <span style={{fontSize: "1rem"}}>{name}</span>
-            </div>
-          )
-        })}
+        {roomServices.map(([key, {inRoom, name, icon}]) =>
+          <div
+            className={`room-service ${
+              Object.values(inRoom).includes(roomId) ?
+                "service-in-room" :
+                ""
+            }`}
+            key={key}
+          >
+            <img
+              alt={name}
+              src={icon}
+            />
+            <span>{name}</span>
+          </div>
+        )}
       </div> :
       <Loading/>
     }

@@ -17,7 +17,7 @@ import ReservationMessage from './ReservationMessage'
 
 
 const ReservationForm = ({
-  reservation: {price}, isReserving, submitReservation
+reservation: {price}, isReserving, submitReservation
 }) =>
   <div className={`reservation ${isReserving ? "is-reserving" : ""}`}>
     <span className="close-reservation">
@@ -27,7 +27,6 @@ const ReservationForm = ({
     {!('ontouchstart' in document.documentElement) && <ScrollLock/>}
 
     <h2>Foglalás</h2>
-
     <form
       action=""
       className="reservation-form"
@@ -47,7 +46,7 @@ const ReservationForm = ({
         disabled={isReserving}
         onClick={submitReservation}
       >
-          Küldés
+        Küldés
         <span className="footnote-asterix">
           {toPrice(price)}
         </span>

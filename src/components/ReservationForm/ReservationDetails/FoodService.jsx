@@ -4,20 +4,20 @@ import {withStore} from '../../db'
 
 
 const FoodService = ({
-  reservation: {activeService}, updateReservation
+  reservation: {foodService}, updateReservation
 }) =>
   <Fragment>
     <Service
-      checked={activeService==="breakfast"}
+      checked={foodService==="breakfast"}
       label="reggeli"
-      name="activeService"
+      name="foodService"
       onChange={updateReservation}
       value="breakfast"
     />
     <Service
-      checked={activeService==="halfBoard"}
+      checked={foodService==="halfBoard"}
       label="félpanzió"
-      name="activeService"
+      name="foodService"
       onChange={updateReservation}
       value="halfBoard"
     />

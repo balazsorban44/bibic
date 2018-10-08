@@ -2,31 +2,30 @@ import React, {Fragment} from 'react'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
 
-const RoomSelector = ({
-  rooms, reservation: {roomId},
-  handleRoomChange
-}) =>
+const RoomSelector = ({rooms, reservation: {roomId},
+  updateReservation}) =>
   <Fragment>
     <h4>Válasszon szobát {roomId && `(${roomId}. Szoba kiválasztva)`}</h4>
-    {rooms ?
+    {rooms.length ?
       <div className="room-picker">
-        {Object.keys(rooms).map(room => {
-          const {id} = rooms[room]
-          return (
-            <div
-              className={`room-picker-room ${parseInt(roomId, 10) === id ? "room-active": ""}`}
-              id={`szoba-${id}`}
-              key={room}
+        {Object.values(rooms).map(({id}) =>
+          <div
+            className={`room-picker-room ${
+              parseInt(roomId, 10) === id ?
+                "room-active":
+                ""
+            }`}
+            id={`szoba-${id}`}
+            key={id}
+          >
+            <span
+              className="button"
+              onClick={() => updateReservation("roomId", id)}
             >
-              <button
-                onClick={handleRoomChange}
-                value={id}
-              >
-                {id}
-              </button>
-            </div>
-          )
-        })}
+              {id}
+            </span>
+          </div>
+        )}
       </div> :
       <Loading/>
     }
