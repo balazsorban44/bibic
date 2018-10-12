@@ -7,6 +7,7 @@ import {submitReservation, getPrice} from './reservation'
 import {valueToState} from '../../utils/validate'
 import {isEquivalent} from '../../utils/compare'
 
+import {sendNotification} from "./notification"
 
 const Store = createContext()
 /**
