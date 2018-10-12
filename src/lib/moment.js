@@ -1,7 +1,7 @@
 import moment from "moment"
 import "moment/locale/hu"
 import {extendMoment} from "moment-range"
-extendMoment(moment)
+export default extendMoment(moment)
 
 /*
  * This file is related to moment.js
