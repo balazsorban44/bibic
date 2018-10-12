@@ -6,6 +6,9 @@ import {isQueryString, translate} from '../../utils/language'
 import {submitReservation, getPrice} from './reservation'
 import {valueToState} from '../../utils/validate'
 import {isEquivalent} from '../../utils/compare'
+import {
+  CLOUD_FUNCTION_BASE_URL, TODAY, TOMORROW
+} from '../../utils/constants'
 
 import {sendNotification} from "./notification"
 
@@ -32,13 +35,10 @@ export const withStore = WrappedComponent =>
   }
 
 
-const today = moment()
-const tomorrow = today.clone().add(1, "day").startOf("day")
-
 const initialReservation = {
   roomId: null,
-  from: null,
-  to: null,
+  from: TOMORROW,
+  to: TOMORROW,
   name: "",
   email: "",
   address: "",
@@ -54,10 +54,10 @@ class Database extends Component {
 
   state = {
     isReserving: false,
-    tomorrow,
+    tomorrow: TOMORROW,
     paragraphs: {},
     galleries: {},
-    month: today,
+    month: TODAY,
     reservation: initialReservation,
     rooms: [],
     roomServices: [],
