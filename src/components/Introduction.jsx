@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import hegedus from '../assets/images/intro/hegedus.jpg'
 import hegedusne from '../assets/images/intro/hegedusne.jpg'
 import gombkoto from '../assets/images/intro/gombkoto.jpg'
-import Paragraphs from './shared/Paragraphs'
+import asyncComponent from './AsyncComponent'
 
+const Paragraphs = asyncComponent(() => import("./shared/Paragraphs"))
 
 const profiles = [
   {

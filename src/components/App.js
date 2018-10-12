@@ -1,21 +1,25 @@
 import React from 'react'
-import {Route, Link, Switch} from 'react-router-dom'
-import ReservationForm from './ReservationForm'
-import Introduction from './Introduction'
-import Sunflower from './Sunflower'
-import Hero from './Hero'
-import Services from './Services'
-import MoreServices from './MoreServices'
-import Rooms from './Rooms'
-import Prices from './Prices'
+import {
+  Route, Link, Switch
+} from 'react-router-dom'
 import Menu, {BackMenu} from './Menu'
 import chat from '../assets/icons/chat.svg'
-import Carousel from './shared/Carousel'
 
+import asyncComponent from "./AsyncComponent"
+import Introduction from './Introduction'
+import Hero from './Hero'
 
-import Message from './Message'
 import {ToastContainer} from 'react-toastify'
 
+// NOTE: Asynchronously fetching Components that do not need to load at startup
+const ReservationForm = asyncComponent(() => import("./ReservationForm"))
+const Sunflower = asyncComponent(() => import('./Sunflower'))
+const Services = asyncComponent(() => import('./Services'))
+const Prices = asyncComponent(() => import('./Prices'))
+const Message = asyncComponent(() => import("./Message"))
+const Rooms = asyncComponent(() => import("./Rooms"))
+const Carousel = asyncComponent(() => import("./shared/Carousel"))
+const MoreServices = asyncComponent(() => import("./MoreServices"))
 
 const App = () =>
   <>

@@ -2,7 +2,6 @@ import moment from 'moment'
 import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
 import withRouter from 'react-router-dom/withRouter'
-import {PARAGRAPHS_REF, ROOMS_REF, ROOM_SERVICES_REF, GALLERIES_REF} from '../../lib/firebase'
 import {isQueryString, translate} from '../../utils/language'
 import {valueToState} from '../../utils/validate'
 import {submitReservation, getPrice} from './reservation'
@@ -62,42 +61,49 @@ class Database extends Component {
     month: today,
     reservation: initialReservation,
     rooms: [],
-    roomServices: []
+    roomServices: [],
+    overlaps: []
   }
 
 
   // Fetch all initial data from Firebase.
   componentDidMount() {
 
-    PARAGRAPHS_REF
-      .on("value", snap => {
-        const paragraphs = {}
-        Object.entries(snap.val()).forEach(([paragraphType, paragraphList]) => {
-          paragraphs[paragraphType] = Object.values(paragraphList)
-            .sort((a, b) => a.order - b.order)
+    import("../../lib/firebase").then(({
+      PARAGRAPHS_REF, ROOMS_REF, ROOM_SERVICES_REF, GALLERIES_REF
+    }) => {
+
+      PARAGRAPHS_REF
+        .on("value", snap => {
+          const paragraphs = {}
+          Object.entries(snap.val()).forEach(([paragraphType, paragraphList]) => {
+            paragraphs[paragraphType] = Object.values(paragraphList)
+              .sort((a, b) => a.order - b.order)
+          })
+          this.setState({paragraphs})
         })
-        this.setState({paragraphs})
-      })
 
-    GALLERIES_REF
-      .on("value", snap => {
-        const galleries = {}
-        Object.entries(snap.val()).forEach(([galleryType, galleryList]) => {
-          galleries[galleryType] = Object.values(galleryList)
-            .sort((a, b) => a.order - b.order)
+      GALLERIES_REF
+        .on("value", snap => {
+          const galleries = {}
+          Object.entries(snap.val()).forEach(([galleryType, galleryList]) => {
+            galleries[galleryType] = Object.values(galleryList)
+              .sort((a, b) => a.order - b.order)
+          })
+          this.setState({galleries})
         })
-        this.setState({galleries})
-      })
 
 
-    ROOM_SERVICES_REF
-      .on("value", snap =>
-        this.setState({roomServices: Object.entries(snap.val())})
-      )
+      ROOM_SERVICES_REF
+        .on("value", snap =>
+          this.setState({roomServices: Object.entries(snap.val())})
+        )
 
 
-    ROOMS_REF.once("value", snap => this.setState({rooms: snap.val()}))
-      .then(() => this.updateByURL(this.props.location.search, true))
+      ROOMS_REF.once("value", snap => this.setState({rooms: snap.val()}))
+        .then(() => this.updateByURL(this.props.location.search, true))
+    })
+
   }
 
 
@@ -187,6 +193,15 @@ class Database extends Component {
       [key]: value}}))
   }
 
+  fetchOverlaps = async () => {
+    try {
+      let overlaps = await fetch(`${CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${this.state.reservation.roomId}`)
+      overlaps = await overlaps.json()
+      this.setState({overlaps: overlaps.map(({start, end}) => moment.range(start, end))})
+    } catch (error) {
+      sendNotification("error", error.message)
+    }
+  }
 
   render() {
     return (
@@ -194,6 +209,7 @@ class Database extends Component {
         value={{
           submitReservation: this.handleSubmitReservation,
           updateReservation: this.updateReservation,
+          fetchOverlaps: this.fetchOverlaps,
           ...this.state
         }}
       >
