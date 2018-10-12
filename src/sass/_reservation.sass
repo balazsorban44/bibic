@@ -271,8 +271,6 @@
     height: 12px
     margin-right: .5em
 
-.date-picker
-  margin: 1em auto
 
 .footnote
   align-self: center
@@ -367,8 +365,6 @@
     span
       margin-left: 1em
       font-size: 1em
-  .date-picker
-    margin: 0
   .footnote
     padding-top: 1em
     min-width: 90%
@@ -386,115 +382,5 @@
     position: relative
     min-width: calc(50% - 2em)
 
-.dates .input-box
-  margin: 0
 
-
-.DateRangePicker
-  border: 1px solid $dark
-  padding: 1em
-  margin: 1em auto 0
-  display: flex !important
-  align-items: flex-start
-  justify-content: center
-  font-family: sans-serif
-    
-.DateRangePicker__Month
-  margin: 0 1em
-  td
-    padding: 1em
-    margin: 4px
-  @media (max-width: 640px)
-    width: 100%
-    margin: 0
-    td
-      padding: 1.5em
-
-  
-.DateRangePicker__PaginationArrow
-  margin-top: .5em
-  position: absolute
-  background-color: $accent-color
-  display: flex !important
-  justify-content: center
-  align-items: center
-  border-radius: 50%
-  color: $light
-  cursor: pointer
-  transition: .1s
-  &:hover
-    background-color: $accent-color-dark
-
-
-
-
-
-.DateRangePicker__Date
-  border: none
-
-.DateRangePicker__Date--today
-  background-color: transparentize($accent-color-dark, .7)
-  color: $light
-  &:after
-    content: "ma"
-    line-height: 0
-    position: absolute
-    bottom: 4px
-    right: 4px
-    font-size: .5em
-
-.DateRangePicker__Date--is-highlighted
-  >div
-    background-color: $accent-color
-    border: 1px solid $accent-color
-  .DateRangePicker__DateLabel 
-    color: white !important
-
-.DateRangePicker__CalendarSelection
-  background-color: $accent-color !important
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  border: none !important
-
-
-.DateRangePicker__CalendarSelection--end
-  border-top-right-radius: 1.75em
-  border-bottom-right-radius: 1.75em
-.DateRangePicker__CalendarSelection--start
-  border-top-left-radius: 1.75em
-  border-bottom-left-radius: 1.75em
-// .DateRangePicker__FullDateStates
-//   background-color: lightgrey
-//   &:hover
-//     background-color: lightgrey
-//     border: none
-
-.calendar-legend
-  margin: 0 auto
-  ul
-    display: flex
-    justify-content: flex-end
-    align-items: center
-    margin-top: 1em
-  li
-    margin-right: 2.5em
-    position: relative
-    &:before
-      content: ""
-      border-radius: 50%
-      position: absolute
-      top: -2px
-      left: -12px
-      width: 2px
-      height: 2px
-      padding: 4px
-    &:first-of-type:before
-      background-color: $accent-color
-    &:last-of-type:before
-      background-color: lightgrey
-  font-family: sans-serif
-  font-size: .5em
-  font-style: italic
-  font-weight: bolder
+@import calendar
