@@ -19,6 +19,8 @@ class Calendar extends Component {
   state = {DateRangePicker: null}
 
   async componentDidMount() {
+    const {fetchOverlaps, reservation: {roomId}} = this.props
+    fetchOverlaps(roomId)
     try {
       const {DateRangePicker} = await import("react-date-range")
       await import('react-date-range/dist/theme/default.css')
@@ -33,7 +35,6 @@ class Calendar extends Component {
     if (prevRoomId !== roomId)
       fetchOverlaps(roomId)
   }
-
 
   handleSelect = ({selection: {startDate, endDate}}) => {
     const {updateReservation} = this.props
