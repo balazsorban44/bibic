@@ -1,10 +1,10 @@
 import moment from 'moment'
 import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
-import withRouter from 'react-router-dom/withRouter'
+import {withRouter} from 'react-router-dom'
 import {isQueryString, translate} from '../../utils/language'
-import {valueToState} from '../../utils/validate'
 import {submitReservation, getPrice} from './reservation'
+import {valueToState} from '../../utils/validate'
 import {isEquivalent} from '../../utils/compare'
 
 
@@ -21,10 +21,8 @@ export const withStore = WrappedComponent =>
         <Store.Consumer>
           {values =>
             <WrappedComponent
-              {...{
-                ...values,
-                ...this.props
-              }}
+              {...{...values,
+                ...this.props}}
             />
           }
         </Store.Consumer>

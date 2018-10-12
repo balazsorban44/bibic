@@ -16,7 +16,7 @@ import ReservationMessage from './ReservationMessage'
 
 
 const ReservationForm = ({
-reservation: {price}, isReserving, submitReservation
+  reservation: {price}, isReserving, submitReservation
 }) =>
   <div className={`reservation ${isReserving ? "is-reserving" : ""}`}>
     <span className="close-reservation">
