@@ -1,5 +1,4 @@
 import React from 'react'
-import 'react-daterange-picker/dist/css/react-calendar.css'
 import {Link} from 'react-router-dom'
 import ScrollLock from 'react-scrolllock'
 import 'react-toastify/dist/ReactToastify.css'
