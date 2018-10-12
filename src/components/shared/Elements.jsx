@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 // For the slider elements
 import arrow from '../../assets/icons/arrow.svg'
 import swipe from '../../assets/icons/swipe.svg'
+import {colors} from '../../utils/colors'
 
 export const Prev = ({previousSlide}) =>
   <div
@@ -48,13 +49,24 @@ export class Loading extends Component {
 
 
   render() {
+    const style = this.props.fullPage ? {
+      width: "100vw",
+      height: "100vh",
+      display: "grid",
+      justifyItems: "center",
+      alignItems: "center",
+      backgroundColor: colors.light
+    } : null
+
     return (
       // TODO: Add better empty state
       this.state.isTimedOut ?
         <p className="not-available">
           A tartalom nem elérhető
         </p> :
-        <div className="loading"><div className="spinner"/></div>
+        <div style={style}>
+          <div className="loading"><div className="spinner"/></div>
+        </div>
     )
   }
 }
