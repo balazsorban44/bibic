@@ -122,19 +122,20 @@ export const submitReservation = (reservation, setReserving, resetReservation, h
                 </span>
               </p>, {autoClose: 7500})
 
-            setTimeout(() => history.push(""), 7500)
-          })
-          .catch(({code, message}) => {
-            setReserving(false)
-            toast.error(
-              <p style={{padding: ".5rem",
-                fontSize: "1.2rem"}}
-              >Hiba: {code} - {message}<br/>
-                <span style={{fontSize: "1rem"}}>
-              Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés (${code})&body=${message}`}>hiba@bibicvedeghazak.hu</a>
-                </span>
-              </p>, {autoClose: 10000})
-          })
+              setTimeout(() => history.push(""), 7500)
+            })
+            .catch(({code, message}) => {
+              setReserving(false)
+              toast.error(
+                <p style={{padding: ".5rem",
+                  fontSize: "1.2rem"}}
+                >Hiba: {code} - {message}<br/>
+                  <span style={{fontSize: "1rem"}}>
+                Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés (${code})&body=${message}`}>hiba@bibicvedeghazak.hu</a>
+                  </span>
+                </p>, {autoClose: 10000})
+            })
+        })
 
       } else {
         setReserving(false)

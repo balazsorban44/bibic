@@ -28,9 +28,7 @@ export const Next = ({nextSlide}) =>
   </div>
 
 
-export const SwipeIcon = ({
-  isShowingSwipe = true, ...rest
-}) =>
+export const SwipeIcon = ({isShowingSwipe = true, ...rest}) =>
   <img
     {...rest}
     alt=""
@@ -61,15 +59,11 @@ export class Loading extends Component {
   }
 }
 
-export const Button = ({
-  label, to
-}) =>
+export const Button = ({label, to}) =>
   <Link {...{to}} >{label}</Link>
 
 
-export const Tooltip = ({
-  title, children
-}) =>
+export const Tooltip = ({title, children}) =>
   title ?
     <div className="tooltip-wrapper">
       <span className="tooltip">

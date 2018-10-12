@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {Route, Link, Switch} from 'react-router-dom'
 import ReservationForm from './ReservationForm'
 import Introduction from './Introduction'
@@ -18,7 +18,7 @@ import {ToastContainer} from 'react-toastify'
 
 
 const App = () =>
-  <Fragment>
+  <>
     <ToastContainer
       closeOnClick
       position="bottom-center"
@@ -67,16 +67,16 @@ const App = () =>
       />
       <Route
         component={() =>
-          <Fragment>
+          <>
             <BackMenu/>
             <MoreServices/>
-          </Fragment>
+          </>
         }
         path="/szolgaltatasok"
       />
       <Route component={NotFound}/>
     </Switch>
-  </Fragment>
+  </>
 
 const ChatFAB = () =>
   <div className="chat-fab">
@@ -109,7 +109,7 @@ const NotFound = () =>
 
 
 const Main = () =>
-  <Fragment>
+  <>
     <Menu/>
     <Hero/>
     <Introduction/>
@@ -117,7 +117,7 @@ const Main = () =>
     <Services/>
     <Rooms/>
     <Prices/>
-  </Fragment>
+  </>
 
 
 export default App

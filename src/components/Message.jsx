@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import QueryString from 'query-string'
-import {FormGroup, FormSection, Send} from './shared/Form'
+import {
+  FormGroup, FormSection, Send
+} from './shared/Form'
 import {BackMenu} from './Menu'
 import {toast, ToastContainer} from 'react-toastify'
 import {translate, isQueryString} from "../utils/language"
@@ -90,9 +92,11 @@ export default class Message extends Component {
   handleSend = e => {
     e.preventDefault()
     if (this.isValid(this.state)) {
-      const obj = {...this.state,
+      const obj = {
+        ...this.state,
         timestamp: TIMESTAMP_DB,
-        handled: false}
+        handled: false
+      }
       MESSAGES_REF.push(obj).then(() => {
         toast.success(
           <p style={{padding: ".5rem",
@@ -136,15 +140,19 @@ export default class Message extends Component {
   }
 
   render() {
-    const {subject, message, name} = this.state
+    const {
+      subject, message, name
+    } = this.state
     return (
       <Fragment>
         <ToastContainer
           closeOnClick
           position="bottom-center"
-          style={{position: "fixed",
+          style={{
+            position: "fixed",
             zIndex: 10001,
-            bottom: 0}}
+            bottom: 0
+          }}
         />
         <BackMenu />
         <form

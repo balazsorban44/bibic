@@ -164,15 +164,11 @@ class Database extends Component {
 
 
   updatePrice = () => {
-    const {
-      rooms, reservation:{roomId}
-    } = this.state
+    const {rooms, reservation:{roomId}} = this.state
     const room = rooms.find(room => room.id === roomId)
 
-    this.setState(({reservation}) => ({reservation: {
-      ...reservation,
-      price: room ? getPrice(room, reservation) : 0
-    }}))
+    this.setState(({reservation}) => ({reservation: {...reservation,
+      price: room ? getPrice(room, reservation) : 0}}))
   }
 
   /**
@@ -187,10 +183,8 @@ class Database extends Component {
       const search = QueryString.parse(history.location.search)
       search[translate(key)] = key === "foodService" ? translate(value) : value
       history.push(`foglalas?${ QueryString.stringify(search)}`)
-    } else this.setState(({reservation}) => ({reservation: {
-      ...reservation,
-      [key]: value
-    }}))
+    } else this.setState(({reservation}) => ({reservation: {...reservation,
+      [key]: value}}))
   }
 
 
