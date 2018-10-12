@@ -4,12 +4,10 @@ import {withStore} from '../../db'
 import People from './People'
 import FoodService from './FoodService'
 import {FormGroup} from '../../shared/Form'
-import DateRangePicker from './DateRangePicker'
+import Calendar from './Calendar'
 
 
-const ReservationDetails = ({
-  rooms, reservation: {roomId}
-}) => {
+const ReservationDetails = ({rooms, reservation: {roomId}}) => {
   const maxPeople = (rooms && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
 
   return (
@@ -17,8 +15,9 @@ const ReservationDetails = ({
       <FormGroup
         className="dates"
         footnote="érkezés: 14:00-tól, távozás: 10:00-ig"
+        title={"érkezés/távozás"}
       >
-        <DateRangePicker/>
+        <Calendar/>
       </FormGroup>
       <FormGroup
         footnote="6 év alatt ingyenes"
