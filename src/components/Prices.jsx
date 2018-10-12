@@ -11,11 +11,13 @@ class Prices extends Component {
     if (prevRooms !== rooms) {
       let minPrice = Infinity
       rooms.forEach(({prices: {table}}) => {
-        Object.values(table).flat().forEach(adult => {
-          adult.forEach(({price}) => {
-            minPrice = Math.min(minPrice, price)
+        Object.values(table)
+          .reduce((acc, val) => acc.concat(val), [])
+          .forEach(adult => {
+            adult.forEach(({price}) => {
+              minPrice = Math.min(minPrice, price)
+            })
           })
-        })
       })
       this.setState({minPrice})
     }
