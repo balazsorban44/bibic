@@ -19,6 +19,8 @@
     "react-toastify": "^4.4.0"
   },
   "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
@@ -33,6 +35,6 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "deploy": "npm run build && firebase deploy",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "test": "react-scripts test"
 }
