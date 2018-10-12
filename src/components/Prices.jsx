@@ -77,6 +77,8 @@ class Prices extends Component {
               Több
             </a>
           </li> */}
+          {/* NOTE: Lists do not contain only <li> elements and script supporting elements (<script> and <template>).
+ */}
           <Link to="uzenet?tema=kulonajanlat">
             <li className="special">
               <h4>KÜLÖN</h4>
