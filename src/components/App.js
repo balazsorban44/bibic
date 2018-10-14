@@ -32,6 +32,7 @@ const App = () =>
         bottom: 0
       }}
     />
+    <Route render={({location: {pathname}}) => pathname !== '/' && <BackMenu/>} />
     <ChatFAB/>
     <Switch>
       <Route

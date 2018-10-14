@@ -1,7 +1,6 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import Gallery from './Gallery'
 import withRouter from 'react-router/withRouter'
-import {BackMenu} from '../Menu'
 import {Next, Prev} from './Elements'
 import NukaCarousel from 'nuka-carousel'
 
@@ -19,34 +18,31 @@ class Carousel extends Component {
     } = this.props
     path = path.replace("/", "")
     return(
-      <Fragment>
-        <BackMenu/>
-        <section
-          className="carousel-section"
-          id={path}
-        >
-          <h2>{title}</h2>
-          <Gallery
-            className={`${className} carousel`}
-            component={NukaCarousel}
-            componentProps={{
-              // autoplay: true,
-              wrapAround: true,
-              // slidesToShow: 2,
-              cellAlign: "center",
-              heightMode: "max",
-              cellSpacing: 40,
-              renderCenterRightControls: Next,
-              renderCenterLeftControls: Prev,
-              renderTopRightControls: Next,
-              renderTopLeftControls: Prev
-            }}
-            {...itemClassName}
-            item={CarouselItem}
-            path={path}
-          />
-        </section>
-      </Fragment>
+      <section
+        className="carousel-section"
+        id={path}
+      >
+        <h2>{title}</h2>
+        <Gallery
+          className={`${className} carousel`}
+          component={NukaCarousel}
+          componentProps={{
+            // autoplay: true,
+            wrapAround: true,
+            // slidesToShow: 2,
+            cellAlign: "center",
+            heightMode: "max",
+            cellSpacing: 40,
+            renderCenterRightControls: Next,
+            renderCenterLeftControls: Prev,
+            renderTopRightControls: Next,
+            renderTopLeftControls: Prev
+          }}
+          {...itemClassName}
+          item={CarouselItem}
+          path={path}
+        />
+      </section>
     )}
 }
 

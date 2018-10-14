@@ -144,39 +144,6 @@ class Database extends Component {
       this.state.rooms
     )
 
-
-  /*
-   * ----------------------------------------------------------------------------
-   * Routing
-   */
-
-
-  /**
-   * Updates the state from the URL
-   * @param {object} values
-   * @param {boolean} [isInitial=false]
-   */
-  updateByURL = (queryString, isInitial=false) => {
-    if (queryString) {
-      const reservation = {...this.state.reservation}
-      queryString = QueryString.parse(queryString)
-      Object.entries(queryString).forEach(([key, value]) => {
-        key = translate(key)
-        value = key === "foodService" ? translate(value) : value
-        reservation[key] = valueToState(key, value)
-      })
-
-      this.setState({reservation}, () => {
-        let {reservation: {from}} = this.state
-        if (isInitial) {
-          from = moment(from)
-          this.setState({month: from})
-        }
-      })
-    }
-  }
-
-
   updatePrice = () => {
     const {rooms, reservation:{roomId}} = this.state
     const room = rooms.find(room => room.id === roomId)
@@ -234,6 +201,45 @@ class Database extends Component {
     } else this.setState(({message}) => ({message: {...message,
       [key]: value}}))
   }
+
+
+  /*
+   * ----------------------------------------------------------------------------
+   * Routing
+   */
+
+
+  /**
+   * Updates the state from the URL
+   * @param {object} values
+   * @param {boolean} [isInitial=false]
+   */
+  updateByURL = (queryString, isInitial=false) => {
+    if (queryString) {
+      const reservation = {...this.state.reservation}
+      const message = {...this.state.message}
+      queryString = QueryString.parse(queryString)
+      Object.entries(queryString).forEach(([key, value]) => {
+        key = translate(key)
+        value = key === "foodService" || key === "subject" ? translate(value) : value
+        if (this.props.location.pathname.replace("/", "") === "uzenet") {
+          message[key] = valueToState(key, value)
+        } else {
+          reservation[key] = valueToState(key, value)
+        }
+      })
+
+      this.setState({reservation, message}, () => {
+        let {reservation: {from}} = this.state
+        if (isInitial) {
+          from = moment(from)
+          this.setState({month: from})
+        }
+      })
+    }
+  }
+
+
   render() {
     return (
       <Store.Provider
