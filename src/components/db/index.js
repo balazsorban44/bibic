@@ -135,17 +135,14 @@ class Database extends Component {
    * Reservation
    */
 
-
-  handleSubmitReservation = e => {
-    e.preventDefault()
+  handleSubmitReservation = () =>
     submitReservation(
-      this.state.reservation,
+      {...this.state.reservation},
       isReserving => this.setState({isReserving}),
       () => this.setState({reservation: initialReservation}),
-      this.props.history,
+      () => this.props.history.push(""),
       this.state.rooms
     )
-  }
 
 
   /*

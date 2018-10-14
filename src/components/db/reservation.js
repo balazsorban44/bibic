@@ -1,7 +1,8 @@
 import React from 'react'
 import moment from "moment"
 import {toast} from 'react-toastify'
-import {isError} from '../../utils/validate'
+import {validateReservation} from '../../utils/validate'
+import {sendNotification} from './notification'
 
 
 export const getPrice = (room, {
@@ -39,28 +40,17 @@ export const isAvailable = (roomId, from, to) =>
  * @param {object} reservation The reservation to be verified
  * @return {boolean}
  */
-const isValidReservation = ({
-  roomId, from, to, address, name, email, tel, message, adults, children
-}, rooms) => {
+const isValidReservation = (reservation, rooms) => {
 
+  const {roomId} = reservation
   const roomLength = Object.keys(rooms).length
   const maxPeople = roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople
 
-  const error = isError(roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople)
+  const error = validateReservation({
+    roomLength, maxPeople, ...reservation
+  })
   if (error) {
-    toast.error(
-      <p style={{padding: ".5rem",
-        fontSize: "1.2rem"}}
-      >{error}<br/>
-        <span style={{fontSize: "1rem"}}>
-              Technikai hiba?
-          <a
-            href="mailto:hiba@bibicvedeghazak.hu"
-            style={{color: "white",
-              borderBottom: "1px solid white"}}
-          >hiba@bibicvedeghazak.hu</a>
-        </span>
-      </p>, {autoClose: 5000})
+    sendNotification("error", error)
     return false
   } else {
     return true
@@ -68,8 +58,7 @@ const isValidReservation = ({
 }
 
 
-export const submitReservation = (reservation, setReserving, resetReservation, history, rooms) => {
-  reservation = {...reservation}
+export const submitReservation = (reservation, setReserving, reset, goToMain, rooms) => {
   setReserving(true)
   const {
     from, to, message, roomId, children
@@ -105,7 +94,6 @@ export const submitReservation = (reservation, setReserving, resetReservation, h
             })
             .then(() => {
               setReserving(false)
-              resetReservation()
               toast.success(
                 <p style={{padding: ".5rem",
                   fontSize: "1.2rem"}}
@@ -123,7 +111,10 @@ export const submitReservation = (reservation, setReserving, resetReservation, h
                   </span>
                 </p>, {autoClose: 7500})
 
-              setTimeout(() => history.push(""), 7500)
+              setTimeout(() => {
+                goToMain()
+                reset()
+              }, 7500)
             })
             .catch(({code, message}) => {
               setReserving(false)

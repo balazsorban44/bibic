@@ -1,4 +1,5 @@
 import moment from 'moment'
+import {TOMORROW} from './constants'
 
 
 const nameRe = new RegExp(/[\s.áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z-]/)
@@ -14,8 +15,8 @@ export const valid = {
   address: address => typeof address === "string" && address.length,
   message: message => typeof message === "string",
   messageMin: message => typeof message === "string" && message.length >= 40,
-  from: from => moment(from).diff(moment().add(1, "day").startOf("day"), "day"),
-  to: to => moment(to).diff(moment().add(2, "day").startOf("day"), "day"),
+  from: from => moment(from).isAfter(TOMORROW),
+  to: to => moment(to).isAfter(TOMORROW.clone().add(2, "day")),
   period: (from, to) => moment.range(from, to).snapTo("day").diff("day") >= 1,
   adults: adults => typeof adults === "number" && adults,
   children: children =>
@@ -31,7 +32,9 @@ export const valid = {
 }
 
 
-export const isError = (roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople) =>
+export const validateReservation = ({
+  roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople
+}) =>
   !valid.roomId(roomId, roomLength) ? "Érvénytelen szobaszám" :
     !valid.name(name) ? "Érvénytelen név" :
       !valid.email(email) ? "Érvénytelen e-mail cím" :
