@@ -23,6 +23,7 @@ export const MESSAGES_REF = DB.ref("messages")
 
 
 export const RESERVATIONS_FS_REF = FS.collection("reservations")
+export const MESSAGES_FS_REF = FS.collection("messages")
 
 
 export const TIMESTAMP_DB = firebase.database.ServerValue.TIMESTAMP

@@ -227,6 +227,16 @@ class Database extends Component {
       () => this.setState({message: initialMessage}),
       () => this.props.history.push("")
     )
+
+  updateMessage = (key, value) => {
+    if (isQueryString(key)) {
+      const {history} = this.props
+      const search = QueryString.parse(history.location.search)
+      search[translate(key)] = key === "subject" ? translate(value) : value
+      history.push(`uzenet?${ QueryString.stringify(search)}`)
+    } else this.setState(({message}) => ({message: {...message,
+      [key]: value}}))
+  }
   render() {
     return (
       <Store.Provider
@@ -234,6 +244,7 @@ class Database extends Component {
           submitReservation: this.handleSubmitReservation,
           submitMessage: this.handleSubmitMessage,
           updateReservation: this.updateReservation,
+          updateMessage: this.updateMessage,
           fetchOverlaps: this.fetchOverlaps,
           ...this.state
         }}
