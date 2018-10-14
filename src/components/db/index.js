@@ -11,6 +11,7 @@ import {
 } from '../../utils/constants'
 
 import {sendNotification} from "./notification"
+import {submitMessage} from './message'
 
 const Store = createContext()
 /**
@@ -50,15 +51,26 @@ const initialReservation = {
   price: 0
 }
 
+const initialMessage = {
+  content: "",
+  subject: "other",
+  address: "",
+  name: "",
+  email: "",
+  tel: ""
+}
+
 class Database extends Component {
 
   state = {
     isReserving: false,
+    isMessageLoading: false,
     tomorrow: TOMORROW,
     paragraphs: {},
     galleries: {},
     month: TODAY,
     reservation: initialReservation,
+    message: initialMessage,
     rooms: [],
     roomServices: [],
     overlaps: []
@@ -202,12 +214,37 @@ class Database extends Component {
     }
   }
 
+
+  /*
+   * ----------------------------------------------------------------------------
+   * Message
+   */
+
+  handleSubmitMessage = () =>
+    submitMessage(
+      {...this.state.message},
+      isMessageLoading => this.setState({isMessageLoading}),
+      () => this.setState({message: initialMessage}),
+      () => this.props.history.push("")
+    )
+
+  updateMessage = (key, value) => {
+    if (isQueryString(key)) {
+      const {history} = this.props
+      const search = QueryString.parse(history.location.search)
+      search[translate(key)] = key === "subject" ? translate(value) : value
+      history.push(`uzenet?${ QueryString.stringify(search)}`)
+    } else this.setState(({message}) => ({message: {...message,
+      [key]: value}}))
+  }
   render() {
     return (
       <Store.Provider
         value={{
           submitReservation: this.handleSubmitReservation,
+          submitMessage: this.handleSubmitMessage,
           updateReservation: this.updateReservation,
+          updateMessage: this.updateMessage,
           fetchOverlaps: this.fetchOverlaps,
           ...this.state
         }}

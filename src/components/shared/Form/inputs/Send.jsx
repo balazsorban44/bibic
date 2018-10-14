@@ -2,16 +2,16 @@ import React, {Fragment} from 'react'
 import {Loading} from "../../Elements"
 
 const Send = ({
-  disabled, onClick, children
+  isLoading, onClick, children
 }) =>
   <Fragment>
-    {disabled ?
+    {isLoading ?
       <div style={{padding: "24px 0 48px"}} >
         <Loading/>
       </div> :
       <button
         {...{onClick}}
-        className={`submit-reservation ${disabled ? "active-reserving": ""}`}
+        className={`submit ${isLoading ? "submit-loading": ""}`}
         type="submit"
       >{children}
       </button>

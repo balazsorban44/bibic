@@ -1,20 +1,21 @@
 import React, {Component} from 'react'
 import {valid} from '../../../utils/validate'
+import {sendNotification} from '../../db/notification'
 
 export default class PersonalDetail extends Component {
 
-  state = {value: "",
-    error: false}
+  constructor(props) {
+    super(props)
+    this.state = {value: props.value, error: false}
+  }
+
 
   componentDidUpdate() {
     const {value} = this.props
     if (this.state.value === "" && value !== "") this.setState({value})
   }
 
-  handleChange = ({target: {name, value}}) => {
-    this.setState({name,
-      value})
-  }
+  handleChange = ({target: {name, value}}) => this.setState({name,value})
 
   handleBlur = ({target: {name, value}}) => {
     let error = false
@@ -28,13 +29,13 @@ export default class PersonalDetail extends Component {
 
     this.setState({error})
     // do not fire notification, if the user did not fill in any info, or the info was corrected
-    if (error && value !== "") this.props.notification("wrongInput", this.props.errorMessage)
+    if (error && value !== "") sendNotification("error", this.props.errorMessage)
   }
 
   render() {
     const {value, error} = this.state
     const {
-      type, label, name, placeholder, hasFootnote
+      type, label, name, placeholder, hasFootnote, disabled
     } = this.props
     return (
       <div className={`input-box personal-detail ${error ? "input-error" : ""}`}>
@@ -43,8 +44,11 @@ export default class PersonalDetail extends Component {
           htmlFor={name}
         >{label}</label>
         <input
-          {...{name,
-            value}}
+          {...{
+            name,
+            value,
+            disabled
+          }}
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           placeholder={label || placeholder}
