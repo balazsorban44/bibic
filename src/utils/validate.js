@@ -46,6 +46,18 @@ export const isError = (roomId, roomLength, name, email, tel, address, from, to,
                         !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
                           false
 
+export const validateMessage = ({
+  subject, name, email, tel, content, address
+}) =>
+  !valid.name(name) ? "Érvénytelen név" :
+    !valid.subject(subject) ? "Érvénytelen téma" :
+      !valid.email(email) ? "Érvénytelen e-mail cím" :
+        !valid.tel(tel) ? "Érvénytelen telefonszám" :
+          !valid.tel(address) ? "Érvénytelen lakcím" :
+            !valid.messageMin(content) ? "A gyorsabb/pontosabb kommunikáció érdekében az üzenet legalább 40 karaktert kell hogy tartalmazzon." :
+              false
+
+
 export const valueToState = (key, value) => {
   switch (key) {
   case "roomId":

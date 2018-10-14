@@ -4,10 +4,7 @@ import {
   FormGroup, FormSection, Send
 } from './shared/Form'
 import {BackMenu} from './Menu'
-import {toast, ToastContainer} from 'react-toastify'
-import {translate, isQueryString} from "../utils/language"
-import {valid} from '../utils/validate'
-import {MESSAGES_REF, TIMESTAMP_DB} from '../lib/firebase'
+import {withStore} from './db'
 import PersonalDetails from './ReservationForm/PersonalDetails'
 
 
@@ -91,58 +88,13 @@ export default class Message extends Component {
 
   handleSend = e => {
     e.preventDefault()
-    if (this.isValid(this.state)) {
-      const obj = {
-        ...this.state,
-        timestamp: TIMESTAMP_DB,
-        handled: false
-      }
-      MESSAGES_REF.push(obj).then(() => {
-        toast.success(
-          <p style={{padding: ".5rem",
-            fontSize: "1.2rem"}}
-          >Üzenet elküldve. <br />
-            <span
-              style={{fontSize: "1rem"}}
-            >
-              Néhány másodperc múlva visszakerül a főoldalra.
-              További kérdésével fordulhat:<br/>
-              <a
-                href="mailto:info@bibicvendeghazak.hu"
-                style={{color: "white"}}
-              >info@bibicvendeghazak.hu</a><br />
-              <a
-                href="tel:+36305785730"
-                style={{color: "white"}}
-              >+36 30 578 5730</a>
-            </span>
-          </p>, {autoClose: 7500})
-
-        setTimeout(() => this.props.history.push(""), 7500)
-      })
-        .catch(({code, message}) => {
-          toast.error(
-            <p style={{padding: ".5rem",
-              fontSize: "1.2rem"}}
-            >Hiba: {code} - {message}<br />
-              <span style={{fontSize: "1rem"}}>
-                Ha a probléma tartósan fennáll, jelezze itt:
-                <a
-                  href={
-                    `mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés (${code})&body=${message}`
-                  }
-                >hiba@bibicvedeghazak.hu</a>
-              </span>
-            </p>, {autoClose: 10000})
-        })
-
-    }
+    this.props.submitMessage()
   }
 
   render() {
-    const {
-      subject, message, name
-    } = this.state
+    const {message, isMessageLoading} = this.props
+    const {subject, content} = message
+
     return (
       <Fragment>
         <ToastContainer
@@ -195,11 +147,13 @@ export default class Message extends Component {
               />
             </FormGroup>
           </FormSection>
-          <Send onClick={this.handleSend}>
-            Küldés
-          </Send>
-        </form>
+        <Send
+          isMessageLoading={isMessageLoading}
+          onClick={this.handleSend}
+        >Küldés</Send>
+      </form>
       </Fragment>
     )
   }
 }
+export default withStore(Message)
