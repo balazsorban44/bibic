@@ -1,9 +1,4 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import ScrollLock from 'react-scrolllock'
-import 'react-toastify/dist/ReactToastify.css'
-
-
+import React, {Component} from 'react'
 import {withStore} from '../db'
 import {FormSection, Send} from '../shared/Form'
 import {toPrice} from '../../utils/language'
@@ -12,46 +7,55 @@ import RoomServices from './RoomServices'
 import PersonalDetails from '../shared/PersonalDetails'
 import ReservationDetails from './ReservationDetails'
 import Footnote from './Footnote'
-import ReservationMessage from './ReservationMessage'
 
 
-const ReservationForm = ({
-  reservation: {price}, isReserving, submitReservation
-}) =>
-  <div className={`reservation ${isReserving ? "is-reserving" : ""}`}>
-    <span className="close-reservation">
-      <Link to="/">✕</Link>
-    </span>
+class ReservationForm extends Component {
 
-    {!('ontouchstart' in document.documentElement) && <ScrollLock/>}
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
 
-    <h2>Foglalás</h2>
-    <form
-      action=""
-      className="reservation-form"
-    >
-      <RoomSelector/>
-      <RoomServices/>
-      <FormSection title="Személyi adatok">
-        <PersonalDetails/>
-      </FormSection>
-      <FormSection title="Foglalás adatai">
-        <ReservationDetails/>
-      </FormSection>
-      <FormSection title="Megjegyzés">
-        <ReservationMessage/>
-      </FormSection>
-      <Send
-        disabled={isReserving}
-        onClick={submitReservation}
+  handleSubmitReservation = e => {
+    e.preventDefault()
+    this.props.submitReservation()
+  }
+
+  render() {
+    const {
+      reservation: {price, ...reservation}, isReserving, updateReservation
+    } = this.props
+    return(
+
+      <form
+        action=""
+        className="form"
       >
-        Küldés
-        <span className="footnote-asterix">
-          {toPrice(price)}
-        </span>
-      </Send>
-      <Footnote/>
-    </form>
-  </div>
+        <h2>Foglalás</h2>
+        <RoomSelector/>
+        <RoomServices/>
+        <FormSection title="Személyi adatok">
+          <PersonalDetails
+            footnote="(számla kiállításához szükséges adatok)"
+            onChange={updateReservation}
+            personalDetails={reservation}
+          />
+        </FormSection>
+        <FormSection title="Foglalás adatai">
+          <ReservationDetails/>
+        </FormSection>
+        <Send
+          isLoading={isReserving}
+          onClick={this.handleSubmitReservation}
+        >
+            Küldés
+          <span className="footnote-asterix">
+            {toPrice(price)}
+          </span>
+        </Send>
+        <Footnote/>
+      </form>
+    )
+  }
+}
 
 export default withStore(ReservationForm)
