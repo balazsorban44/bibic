@@ -9,9 +9,10 @@ branches:
   - master
   - develop
   - feature/tests
-build:
-- yarn test
-- yarn build
+script:
+  - yarn test
+before_deploy:
+  - yarn build
 deploy:
   provider: firebase
   on:
