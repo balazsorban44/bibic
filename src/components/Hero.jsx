@@ -71,14 +71,14 @@ class Carousel extends Component {
   state = {active: 0, isBigScreen: false}
 
   componentDidMount(){
-    this.handleResize()
     window.addEventListener("resize", this.handleResize, false)
-    setInterval(this.update, this.props.interval)
+    this.handleResize()
+    this.setState({ticker: setInterval(this.update, this.props.interval)})
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize, false)
-    clearInterval(this.update, this.props.interval)
+    clearInterval(this.state.ticker)
   }
 
 
