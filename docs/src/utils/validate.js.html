@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/utils/validate.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> validate.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">19.44% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/77</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/35</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import moment from 'moment'
+import {TOMORROW} from './constants'
+&nbsp;
+&nbsp;
+const nameRe = new RegExp(/[\s.áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z-]/)
+const emailRe = new RegExp(/[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)
+const telRe = new RegExp(/[0-9-+\s]/)
+&nbsp;
+&nbsp;
+export const valid = {
+  roomId: <span class="fstat-no" title="function not covered" >(r</span>oomId=<span class="branch-0 cbranch-no" title="branch not covered" >0,</span> roomsLength) =&gt; <span class="cstat-no" title="statement not covered" >(0 &lt; roomId) &amp;&amp; (roomId &lt;= roomsLength),</span>
+  name: <span class="fstat-no" title="function not covered" >na</span>me =&gt; <span class="cstat-no" title="statement not covered" >nameRe.test(name),</span>
+  email: <span class="fstat-no" title="function not covered" >em</span>ail =&gt; <span class="cstat-no" title="statement not covered" >emailRe.test(email),</span>
+  tel: <span class="fstat-no" title="function not covered" >te</span>l =&gt; <span class="cstat-no" title="statement not covered" >telRe.test(tel),</span>
+  address: <span class="fstat-no" title="function not covered" >ad</span>dress =&gt; <span class="cstat-no" title="statement not covered" >typeof address === "string" &amp;&amp; address.length,</span>
+  message: <span class="fstat-no" title="function not covered" >me</span>ssage =&gt; <span class="cstat-no" title="statement not covered" >typeof message === "string",</span>
+  messageMin: <span class="fstat-no" title="function not covered" >me</span>ssage =&gt; <span class="cstat-no" title="statement not covered" >typeof message === "string" &amp;&amp; message.length &gt;= 40,</span>
+  from: <span class="fstat-no" title="function not covered" >fr</span>om =&gt; <span class="cstat-no" title="statement not covered" >moment(from).isAfter(TOMORROW),</span>
+  to: <span class="fstat-no" title="function not covered" >to</span> =&gt; <span class="cstat-no" title="statement not covered" >moment(to).isAfter(TOMORROW.clone().add(2, "day")),</span>
+  period: <span class="fstat-no" title="function not covered" >(f</span>rom, to) =&gt; <span class="cstat-no" title="statement not covered" >moment.range(from, to).snapTo("day").diff("day") &gt;= 1,</span>
+  adults: <span class="fstat-no" title="function not covered" >ad</span>ults =&gt; <span class="cstat-no" title="statement not covered" >typeof adults === "number" &amp;&amp; adults,</span>
+  children: <span class="fstat-no" title="function not covered" >ch</span>ildren =&gt;
+<span class="cstat-no" title="statement not covered" >    Array.isArray(children) &amp;&amp;</span>
+    (children.length === 0 ||
+    children.every(<span class="fstat-no" title="function not covered" >ch</span>ild =&gt;
+<span class="cstat-no" title="statement not covered" >      Object.keys(child).length === 2 &amp;&amp;</span>
+        child.name &amp;&amp; child.count &amp;&amp;
+        ["0-6", "6-12"].includes(child.name) &amp;&amp; child.count
+    )),
+  peopleCount: <span class="fstat-no" title="function not covered" >(a</span>dults, children, maxPeople) =&gt; <span class="cstat-no" title="statement not covered" >adults + children.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, {count}) =&gt; <span class="cstat-no" title="statement not covered" >acc+count,</span> 0) &lt;= maxPeople,</span>
+  subject: <span class="fstat-no" title="function not covered" >su</span>bject =&gt; <span class="cstat-no" title="statement not covered" >["eventHall", "fullHouse", "special", "other"].includes(subject)</span>
+}
+&nbsp;
+&nbsp;
+export const validateReservation = <span class="fstat-no" title="function not covered" >({</span>
+  roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople
+}) =&gt;
+<span class="cstat-no" title="statement not covered" >  !valid.roomId(roomId, roomLength) ? "Érvénytelen szobaszám" :</span>
+    !valid.name(name) ? "Érvénytelen név" :
+      !valid.email(email) ? "Érvénytelen e-mail cím" :
+        !valid.tel(tel) ? "Érvénytelen telefonszám" :
+          !valid.address(address) ? "Érvénytelen lakcím" :
+            !valid.from(from) ? "Legkorábbi érkezés holnap" :
+              !valid.to(to) ? "Legkorábbi távozás holnapután" :
+                !valid.period(from, to) ? "A foglalás legalább egy éjszakát kell, hogy tartalmazzon" :
+                  !valid.message(message) ? "Érvénytelen üzenet" :
+                    !valid.adults(adults) ? "Érvénytelen felnőtt" :
+                      !valid.children(children) ? "Érvénytelen gyerek" :
+                        !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
+                          false
+&nbsp;
+export const validateMessage = <span class="fstat-no" title="function not covered" >({</span>
+  subject, name, email, tel, content, address
+}) =&gt;
+<span class="cstat-no" title="statement not covered" >  !valid.name(name) ? "Érvénytelen név" :</span>
+    !valid.subject(subject) ? "Érvénytelen téma" :
+      !valid.email(email) ? "Érvénytelen e-mail cím" :
+        !valid.tel(tel) ? "Érvénytelen telefonszám" :
+          !valid.tel(address) ? "Érvénytelen lakcím" :
+            !valid.messageMin(content) ? "A gyorsabb/pontosabb kommunikáció érdekében az üzenet legalább 40 karaktert kell hogy tartalmazzon." :
+              false
+&nbsp;
+&nbsp;
+export const valueToState = <span class="fstat-no" title="function not covered" >(k</span>ey, value) =&gt; {
+<span class="cstat-no" title="statement not covered" >  switch (key) {</span>
+  case "roomId":
+<span class="cstat-no" title="statement not covered" >    return parseInt(value, 10) || null</span>
+  case "adults":
+<span class="cstat-no" title="statement not covered" >    return parseInt(value, 10) || 1</span>
+  case "children":
+    const ageGroups = <span class="cstat-no" title="statement not covered" >["0-6", "6-12"]</span>
+<span class="cstat-no" title="statement not covered" >    return typeof value === "string" ?</span>
+      ageGroups.includes(value) ? [value] : [] :
+      value.every(<span class="fstat-no" title="function not covered" >ch</span>ild =&gt; <span class="cstat-no" title="statement not covered" >ageGroups.includes(child))</span> ? value : []
+  case "from":
+  case "to":
+    const date = <span class="cstat-no" title="statement not covered" >moment(value, "YYYY-MM-DD", true)</span>
+<span class="cstat-no" title="statement not covered" >    return date.isValid() ? date.toDate() : moment().toDate()</span>
+  case "foodService":
+<span class="cstat-no" title="statement not covered" >    return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"</span>
+  case "subject":
+<span class="cstat-no" title="statement not covered" >    return valid.subject(value) ? value : "other"</span>
+  default:
+<span class="cstat-no" title="statement not covered" >    return</span>
+  }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 17 2018 23:06:20 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
