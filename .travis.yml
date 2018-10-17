@@ -8,7 +8,7 @@ branches:
   only:
   - master
   - develop
-  - test
+  - feature/tests
 build:
 - yarn test
 - yarn build
