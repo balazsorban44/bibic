@@ -38,12 +38,17 @@
     "build": "npm run build-css && react-scripts build",
     "deploy": "npm run build && firebase deploy",
     "eject": "react-scripts eject",
-    "test": "react-scripts test"
+    "test": "CI=true react-scripts test",
+    "test:watch": "react-scripts test --watch",
+    "test:coverage": "react-scripts test --coverage"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "coverageReporters": ["json", "html"]
+  }
 }
