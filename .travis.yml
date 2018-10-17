@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '8'
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+  - develop
+  - test
+build:
+- yarn test
+- yarn build
+deploy:
+  provider: firebase
+  token:
+    secure: Yyz+mpD4CseoxQS9viDyO1L0xPbS/iwhFp+QYWNCN0xtLMnaVh0H0r5tATS8U+BoM521knZ2PwpC4h0CTNmEWlYNancaTbKa8Gd/2v6M3iN+E+xZuAG8EVmmO/W2ysI6A933p4zHwJBKm6eq2ZIHhQQDh4r6Nf9AFpy7RujHIENeq1BcsBpnEuuiv7gX2L+cvVOTNNKrpmpeD9b6ZxLIl1xT+mgsjYfN9GhZ+PGwqMEyvm5m7mOkziO3s2zi4cSKm2UsBN9WmD+HFHC4lNPd/ltCAjqkeR387cgMCXqFZBA1KzlDabKthxYfGB/xIyn8Y3Ka+aNN12ljT5f9EpVBfLLgQV/Bq3dfpjjCd4lEOSFhx80yAqAFtmfRETOkR34SUk6P62JCZwLWdKLvZCslYoPDBIGjfAcA6C2YqBSjRhHyRSNaxrgm11Fw0AgqyXbd4NjFRn070nLpuYp/aBzAnw1fh6/GdC4ZHy0Hr3WbUXqb1BqJ0DjJgJzzFs+R7VlbKiaG+GLd6CgZbGDukJdVD9/QfqJL3ixfhuGz6qMhsguYqx9jFrK2YeilGXKhMLx/Frio9qKYmZqh6zQe6x0aqAVDcrWWuvhs66InUay6AaWLy5TnTFP0hJqqUvceFazUjvxqh/MFkcUvw7Aod81l+KWPjjMMvvfggxmnDLm3C18=
