@@ -2,20 +2,17 @@ import React, {Component} from 'react'
 import logo from '../assets/icons/logo.png'
 import {Link} from 'react-scroll'
 import {Loading} from './shared/Elements'
+import {withStore} from './db'
 
-export default class Header extends Component {
+class Header extends Component {
 
-  state = {isBigScreen: false, images: []}
+  state = {isBigScreen: false}
 
   async componentDidMount() {
-    const images = await Promise.all([
-      import("../assets/images/hero/1.jpg"),
-      import("../assets/images/hero/2.jpg")
-    ])
-    this.setState({images: images.map(({default: img}) => img)})
     this.handleResize()
     window.addEventListener("resize", this.handleResize, false)
   }
+
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize, false)
@@ -30,7 +27,8 @@ export default class Header extends Component {
 
 
   render() {
-    const {images, isBigScreen} = this.state
+    const {isBigScreen} = this.state
+    const {hero: images} = this.props
     return (
       <section className="hero">
         {images.length ?
@@ -62,6 +60,7 @@ export default class Header extends Component {
   }
 }
 
+export default withStore(Header)
 
 class Carousel extends Component {
 

@@ -63,6 +63,7 @@ const initialMessage = {
 class Database extends Component {
 
   state = {
+    hero: [],
     isReserving: false,
     isMessageLoading: false,
     tomorrow: TOMORROW,
@@ -79,6 +80,13 @@ class Database extends Component {
 
   // Fetch all initial data from Firebase.
   componentDidMount() {
+
+    Promise.all([
+      import("../../assets/images/hero/1.jpg"),
+      import("../../assets/images/hero/2.jpg")
+    ]).then(images => {
+      this.setState({hero: images.map(({default: img}) => img)})
+    })
 
     import("../../lib/firebase").then(({
       PARAGRAPHS_REF, ROOMS_REF, ROOM_SERVICES_REF, GALLERIES_REF
