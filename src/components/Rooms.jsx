@@ -23,28 +23,37 @@ const Rooms = ({
 
 export default withStore(Rooms)
 
-class Room extends Component {
-  render() {
-    const {
-      id, name, description, pictures
-    } = this.props
+const Room = ({
+  id, name, description, pictures, services
+}) =>
+  <li
+    className={`room szoba-${id}`}
+    id={`szoba-${id}`}
+  >
+    <h3 className="room-title" >{name}</h3>
+    <RoomSlider {...{pictures}} />
+    <p className="room-description" >{description}</p>
+    <div className="button room-reserve-btn">
+      <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link>
+    </div>
+    <div className="room-services">
+      {services.length ?
+        services
+          .filter(([_key, {inRoom}]) => Object.values(inRoom).includes(id))
+          .map(([key, {name, icon}]) =>
+            <img
+              alt={name}
+              className="room-service service-in-room"
+              key={key}
+              src={icon}
+              title={name}
+            />
+          ) :
+        <Loading/>
+      }
+    </div>
+  </li>
 
-
-    return (
-      <li
-        className={`room szoba-${id}`}
-        id={`szoba-${id}`}
-      >
-        <h3 className="room-title" >{name}</h3>
-        <RoomSlider {...{pictures}} />
-        <p className="room-description" >{description}</p>
-        <div className="button room-reserve-btn">
-          <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link>
-        </div>
-      </li>
-    )
-  }
-}
 
 class RoomSlider extends Component {
 
