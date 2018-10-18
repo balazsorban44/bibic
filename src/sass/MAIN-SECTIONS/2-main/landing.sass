@@ -26,6 +26,8 @@
     li
       display: flex
       align-items: center
+      >div
+        margin: 0 2.5%
       &:nth-child(odd)
         h3,h4
           text-align: left
@@ -35,8 +37,6 @@
         align-self: flex-end
         h3,h4, h5
           text-align: right
-  .profile-img
-    padding: 0 5%
 
 
 @media (min-width: 640px)
@@ -98,8 +98,6 @@
         transition: .2s ease-in-out
         &:nth-of-type(2)
           margin: -2.5% 0
-        &:hover
-          transform: scale(1.15)
 
 
 @media (min-width: 1440px)
