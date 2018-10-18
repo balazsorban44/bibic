@@ -6,22 +6,27 @@ class Prices extends Component {
 
   state = {minPrice: "Betöltés..."}
 
-  componentDidUpdate({rooms: prevRooms}, _prevState) {
-    const {rooms} = this.props
-    if (prevRooms !== rooms) {
-      let minPrice = Infinity
-      rooms.forEach(({prices: {table}}) => {
-        Object.values(table)
-          .reduce((acc, val) => acc.concat(val), [])
-          .forEach(adult => {
-            adult.forEach(({price}) => {
-              minPrice = Math.min(minPrice, price)
-            })
-          })
-      })
-      this.setState({minPrice})
-    }
+  componentDidMount() {
+    this.updateMinPrice(this.props.rooms)
+  }
 
+  componentDidUpdate({rooms: prevRooms}) {
+    const {rooms} = this.props
+    if (prevRooms !== rooms) this.updateMinPrice(rooms)
+  }
+
+  updateMinPrice = (rooms) => {
+    let minPrice = Infinity
+    rooms.forEach(({prices: {table}}) => {
+      Object.values(table)
+        .reduce((acc, val) => acc.concat(val), [])
+        .forEach(adult => {
+          adult.forEach(({price}) => {
+            minPrice = Math.min(minPrice, price)
+          })
+        })
+    })
+    this.setState({minPrice})
   }
 
 
@@ -87,7 +92,7 @@ class Prices extends Component {
             </li>
           </Link>
         </ul>
-        <p>*Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót.</p>
+        <p>*Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót. Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.</p>
       </section>
     )
   }
