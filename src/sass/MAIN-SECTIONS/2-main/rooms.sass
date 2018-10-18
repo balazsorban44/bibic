@@ -37,10 +37,25 @@
   display: grid
   grid-template-rows: repeat(6, 1fr)
   grid-template-columns: repeat(6, 1fr)
-  grid-template: ". . . . title  title" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "desc   desc   desc   desc   desc res-btn"
+  grid-template: ". . . . title title" "slider slider slider slider slider slider"  "slider slider slider slider slider slider" "slider slider slider slider slider slider" "slider slider slider slider slider slider" "desc   desc   desc   desc   desc desc" "services services services services services services" ". . . . . res-btn"
   grid-gap: 1em
   // grid-template-areas: "title title" "slider slider" "desc res-btn"
-  padding: 1em 7.5%
+  margin: 1em 7.5%
+  padding-bottom: 1em
+  border-bottom: 1px solid $light
+
+  .room-services
+    display: grid
+    position: relative
+    z-index: 100
+    max-width: 320px
+    grid-area: services
+    grid-gap: 1em
+    grid-template-columns: repeat(10, 1fr)
+    margin: 0
+  .room-service
+    width: 100% 
+    filter: invert(1)
 
 .room-title
   position: relative
@@ -65,17 +80,20 @@
   grid-area: res-btn
   border-radius: 1.5em
   align-self: center
-  justify-self: center
   font-family: "Coolvetica"
   color: $light
   letter-spacing: .05em
   min-height: 48px
   display: flex
+  justify-content: center
+  grid-column: 1/-1
   p
     pointer-events: none
   a
+    text-align: center
     padding: .8em 1em
     color: $light
+    letter-spacing: .2em
   &:hover
     transform: scale(1.05)
     box-shadow: 0 0 10px black
@@ -149,7 +167,7 @@
   box-shadow: 0 0 10px black
   position: relative
   width: 48px
-  margin-right: 12px
+  margin-right: -6px
   height: 48px
   border-radius: 50%
   display: flex
@@ -169,7 +187,13 @@
   .room
     max-width: 768px
     margin: 5% auto
-    grid-template-areas:  "title res-btn slider slider slider slider" "desc desc slider slider slider slider" "desc desc slider slider slider slider" ". . slider slider slider slider" ". . slider slider slider slider"
+    grid-template-areas:  "title res-btn slider slider slider slider" "desc desc slider slider slider slider" "desc desc slider slider slider slider" "services services slider slider slider slider" "services services slider slider slider slider"
+    border-bottom: none
+    .room-services
+      max-width: 240px
+      grid-gap: 0 .5em
+      margin-left: -1em
+      grid-template-columns: repeat(10, 1fr)
 
   .room-slider
     justify-self: flex-end
@@ -183,6 +207,9 @@
   .room-reserve-btn
     justify-self: flex-start
     align-self: start
+    grid-column: auto
+    a
+      letter-spacing: .05em
 
   .room-title
     justify-self: flex-start
