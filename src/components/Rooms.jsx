@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Loading} from './shared/Elements'
 import {withStore} from "./db"
+import Fade from "react-reveal/Fade"
 
 const Rooms = ({
   galleries, rooms, roomServices
@@ -10,11 +11,16 @@ const Rooms = ({
     <h2>Szobák</h2>
     <ul className="rooms">
       {rooms.length ? rooms.map((room, key) =>
-        <Room
-          pictures={galleries["szobak"] ? galleries["szobak"][key] : []}
-          services={roomServices}
-          {...{key, ...room}}
-        />
+        <Fade
+          key={key}
+          up
+        >
+          <Room
+            pictures={galleries["szobak"] ? galleries["szobak"][key] : []}
+            services={roomServices}
+            {...room}
+          />
+        </Fade>
       ) :
         <Loading fullPage/>
       }

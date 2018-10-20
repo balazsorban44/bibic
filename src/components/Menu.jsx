@@ -1,43 +1,70 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {Link as RouteLink} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
+import {withStore} from './db'
+import Fade from "react-reveal/Fade"
 
-export default class Menu extends Component {
-  state = {
-    isMenuOpen: false,
-    isScrolled: false
-  }
+const menu = [
+  {to:"bemutatkozas", name: "Bemutatkozás"},
+  {to:"szolgaltatasok", name: "Szolgáltatások"},
+  {to:"szobak", name: "Szobák"},
+  {to:"arak", name: "Árak"},
+  {
+    to:"etelek", name: "Ételek", component: RouteLink
+  },
+  {
+    to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+  },
+  //{to:"visszajelzesek", name: "Visszajelzések", component: RouteLink},
+  {to:"kapcsolat", name: "Kapcsolat"}
+]
+
+class Menu extends Component {
+  state = {isMenuOpen: false,
+    isScrolled: false}
 
   componentDidMount() {
     window.addEventListener("scroll", this.isScrolled, false)
   }
 
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.isScrolled, false)
   }
 
-  isScrolled = () => {
-    this.setState({isScrolled: window.pageYOffset >= 100})
-  }
+
+  isScrolled = () => this.setState({isScrolled: window.pageYOffset >= 100})
+
+  handleHideRoomMenu = () => this.setState({isMenuOpen: false})
+
+  handleShowRoomMenu = () => this.setState({isMenuOpen: true})
 
   handleMenuToggle = () =>
     this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
 
   render() {
+    const {isMenuOpen, isScrolled} = this.state
     const {
-      isMenuOpen, isScrolled
-    } = this.state
+      className, hero, rooms
+    } = this.props
     return (
-      <Fragment>
-        <div className={`menu-wrapper ${isScrolled ? "header-scrolled" : ""}`}>
-          <div
-            className={`hamburger ${isMenuOpen ? "hamburger-clicked" : ""}`}
-            onClick={this.handleMenuToggle}
-          >
-            <span/><span/><span/>
-          </div>
+      <Fade
+        down
+        when={hero.length}
+      >
+        <div
+          className={`${className} menu-wrapper ${isScrolled ? "header-scrolled" : ""}`}
+        >
+          <Fade right>
+            <div
+              className={`hamburger ${isMenuOpen ? "hamburger-clicked" : ""}`}
+              onClick={this.handleMenuToggle}
+            >
+              <span/><span/><span/>
+            </div>
+          </Fade>
           <div className="pc-logo">
             <a href="/">
               <img
@@ -47,60 +74,29 @@ export default class Menu extends Component {
             </a>
           </div>
           <nav className={`menu ${isMenuOpen ? "" : "menu-hidden"}`}>
-            <ul
-              onClick={this.handleMenuToggle}
+            <Fade
+              cascade
+              down
+              when={hero.length}
             >
-              <li>
-                <Link
-                  offset={-64}
-                  onClick={this.handleMenuToggle}
-                  smooth
-                  to="bemutatkozas"
-                >
-                  Bemutatkozás</Link></li>
-              <li>
-                <Link
-                  offset={-64}
-                  onClick={this.handleMenuToggle}
-                  smooth
-                  to="szolgaltatasok"
-                >
-                  Szolgáltatások</Link></li>
-              <li>
-                <Link
-                  offset={-64}
-                  onClick={this.handleMenuToggle}
-                  smooth
-                  to="szobak"
-                >
-              Szobák</Link><span>►</span></li>
-              <li>
-                <Link
-                  offset={-64}
-                  onClick={this.handleMenuToggle}
-                  smooth
-                  to="arak"
-                >
-              Árak</Link></li>
-              <li><RouteLink
-                onClick={this.handleMenuToggle}
-                to="etelek"
-              >
-              Ételek</RouteLink></li>
-              <li><RouteLink
-                onClick={this.handleMenuToggle}
-                to="rendezvenyek"
-              >              Rendezvények</RouteLink></li>
-              {/* <li><RouteLink onClick={this.handleMenuToggle} to="visszajelzesek">Visszajelzések</RouteLink></li> */}
-              <li>
-                <Link
-                  offset={-64}
-                  onClick={this.handleMenuToggle}
-                  smooth
-                  to="kapcsolat"
-                >
-                  Kapcsolat</Link></li>
-            </ul>
+              <ul>
+                {menu.map(({
+                  name, to, component: Component=Link, offset
+                }) =>
+                  <li key={to}>
+                    <Component
+                      offset={offset!==undefined ? offset : -64}
+                      onClick={this.handleHideRoomMenu}
+                      onMouseEnter={() => to==="szobak" && this.handleShowRoomMenu()}
+                      smooth={Component===Link ? true : undefined}
+                      to={to}
+                    >
+                      {name}
+                    </Component>
+                  </li>
+                )}
+              </ul>
+            </Fade>
           </nav>
           <div className="tablet-header">
             <RouteLink
@@ -117,47 +113,39 @@ export default class Menu extends Component {
               </a>
             </div>
           </div>
-          <ul className={`room-menu ${isMenuOpen ? "" : "room-menu-hidden"}`}>
-            <li>
-              <Link
-                onClick={this.handleMenuToggle}
-                to="szoba-1"
-              >1</Link></li>
-            <li>
-              <Link
-                onClick={this.handleMenuToggle}
-                to="szoba-2"
-              >2</Link></li>
-            <li>
-              <Link
-                onClick={this.handleMenuToggle}
-                to="szoba-3"
-              >3</Link></li>
-            <li>
-              <Link
-                onClick={this.handleMenuToggle}
-                to="szoba-4"
-              >4</Link></li>
-            <li>
-              <Link
-                onClick={this.handleMenuToggle}
-                to="szoba-5"
-              >5</Link></li>
-            <li>
-              <Link
-                onClick={this.handleMenuToggle}
-                to="szoba-6"
-              >6</Link></li>
-          </ul>
+          <Fade
+            down
+            duration={300}
+            when={isMenuOpen}
+          >
+            <ul className="room-menu">
+              {rooms.map(({id}) =>
+                <li key={id}>
+                  <Link
+                    offset={-106}
+                    onClick={this.handleHideRoomMenu}
+                    to={`szoba-${id}`}
+                  >{id}</Link></li>
+              )}
+            </ul>
+          </Fade>
         </div>
-      </Fragment>
-
+      </Fade>
     )
   }
 }
 
+export default withStore(Menu)
+
 export const BackMenu = () =>
+  /**
+   * REVIEW: Not working with react-reveal
+   * <Fade up>
+   */
   <RouteLink
     className="back-to-home"
     to="/"
-  >← Vissza a főoldalra</RouteLink>
+  >
+      ← Vissza a főoldalra
+  </RouteLink>
+  // </Fade>

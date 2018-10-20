@@ -3,13 +3,13 @@ import {
   Route, Link, Switch
 } from 'react-router-dom'
 import Menu, {BackMenu} from './Menu'
-import chat from '../assets/icons/chat.svg'
 
 import asyncComponent from "./AsyncComponent"
 import Introduction from './Introduction'
 import Hero from './Hero'
 
 import {ToastContainer} from 'react-toastify'
+import ChatFAB from './ChatFAB'
 
 // NOTE: Asynchronously fetching Components that do not need to load at startup
 const ReservationForm = asyncComponent(() => import("./ReservationForm"))
@@ -82,23 +82,6 @@ const App = () =>
       <Route component={NotFound}/>
     </Switch>
   </>
-
-const ChatFAB = () =>
-  <div className="chat-fab">
-    <span className="tooltip">Megtalál minket a Messengeren is!</span>
-    <a
-      href="https://www.messenger.com/t/200199203718517"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <img
-        alt=""
-        aria-hidden
-        className="filled"
-        src={chat}
-      />
-    </a>
-  </div>
 
 
 const NotFound = () =>
