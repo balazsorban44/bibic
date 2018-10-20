@@ -3,8 +3,16 @@ import logo from '../assets/icons/logo.png'
 import {Link} from 'react-scroll'
 import {Loading} from './shared/Elements'
 import {withStore} from './db'
+import Fade from "react-reveal/Fade"
+import Zoom from "react-reveal/Zoom"
+import makeCarousel from 'react-reveal/makeCarousel'
 
-class Header extends Component {
+
+const CarouselUI = ({children}) => <div className="hero-slider">{children}</div>
+const Carousel = makeCarousel(CarouselUI)
+
+
+class Hero extends Component {
 
   state = {isBigScreen: false}
 
@@ -27,28 +35,38 @@ class Header extends Component {
 
 
   render() {
-    const {isBigScreen} = this.state
-    const {hero: images} = this.props
+    const {hero} = this.props
     return (
       <section className="hero">
-        {images.length ?
-          <Carousel
-            images={images}
-            isBigScreen={isBigScreen}
-          /> :
+        {hero.length ?
+          <Carousel maxTurns={Infinity}>
+            {hero.map(src =>
+              <Fade key={src}>
+                <div className="hero-slide">
+                  <img
+                    alt="Hero kép"
+                    src={src}
+                  />
+                </div>
+              </Fade>
+            )}
+          </Carousel> :
           <Loading fullPage/>
         }
         <span className="hero-slider-overlay"/>
-        <a
-          className="hero-logo"
-          href="/"
+        <Zoom
+          when={hero.length}
         >
-          <img
-            alt=""
-            src={logo}
-          />
-        </a>
-
+          <a
+            className="hero-logo"
+            href="/"
+          >
+            <img
+              alt=""
+              src={logo}
+            />
+          </a>
+        </Zoom>
         <Link
           className="scroll-icon"
           offset={this.getOffset()}
@@ -60,48 +78,6 @@ class Header extends Component {
   }
 }
 
-export default withStore(Header)
 
-class Carousel extends Component {
+export default withStore(Hero)
 
-  static defaultProps = {
-    interval: 5000, transition: 1000, images: []
-  }
-
-  state = {active: 0, isBigScreen: false}
-
-  componentDidMount(){
-    window.addEventListener("resize", this.handleResize, false)
-    this.handleResize()
-    this.setState({ticker: setInterval(this.update, this.props.interval)})
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize, false)
-    clearInterval(this.state.ticker)
-  }
-
-
-  handleResize = () => this.setState({isBigScreen: window.innerWidth > 768})
-
-
-  update = () =>
-    this.setState(({active}) => ({active: active+1 < this.props.images.length ? active+1 : 0}))
-
-  render() {
-    const {images, transition} = this.props
-    const {active} = this.state
-    return(
-      <div className="hero-slider">
-        {images.map((src, index) =>
-          <div
-            className={`hero-slide ${active === index ? "hero-slide-active" : ""}`}
-            key={src}
-            style={{transition: `${transition/1000}s opacity`,
-              backgroundImage: `url(${src})`}}
-          />
-        )}
-      </div>
-    )
-  }
-}

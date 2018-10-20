@@ -3,6 +3,8 @@ import hegedus from '../assets/images/intro/hegedus.jpg'
 import hegedusne from '../assets/images/intro/hegedusne.jpg'
 import gombkoto from '../assets/images/intro/gombkoto.jpg'
 import asyncComponent from './AsyncComponent'
+import Zoom from "react-reveal/Zoom"
+import Fade from "react-reveal/Fade"
 
 const Paragraphs = asyncComponent(() => import("./shared/Paragraphs"))
 
@@ -31,25 +33,32 @@ export default class Introduction extends Component {
   render() {
     return (
       <section id="bemutatkozas">
-        <h2 className="welcome-title">Üdvözöljük</h2>
+        <Fade>
+          <h2 className="welcome-title">Üdvözöljük</h2>
+        </Fade>
         <ul className="profiles">
           {profiles.map(({
             name, email, src, position
           }) =>
-            <li key={name}>
-              <a href={`mailto:${email}`}>
-                <img
-                  alt={name}
-                  className="profile-img"
-                  src={src}
-                />
-              </a>
-              <div>
-                <h3>{name}</h3>
-                <h5><a href={`mailto:${email}`}>✉ {email} </a></h5>
-                <h4>{position}</h4>
-              </div>
-            </li>
+            <Zoom
+              duration={600}
+              key={name}
+            >
+              <li >
+                <a href={`mailto:${email}`}>
+                  <img
+                    alt={name}
+                    className="profile-img"
+                    src={src}
+                  />
+                </a>
+                <div>
+                  <h3>{name}</h3>
+                  <h5><a href={`mailto:${email}`}>✉ {email} </a></h5>
+                  <h4>{position}</h4>
+                </div>
+              </li>
+            </Zoom>
           )}
         </ul>
         <div className="history">
