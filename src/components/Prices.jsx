@@ -88,17 +88,20 @@ class Prices extends Component {
               Több
             </a>
           </li> */}
-          {/* NOTE: Lists do not contain only <li> elements and script supporting elements (<script> and <template>).
+            {/* NOTE: Lists do not contain only <li> elements and script supporting elements (<script> and <template>).
  */}
           </ul>
         </Fade>
-              <h4>KÜLÖN</h4>
-              <h5>AJÁNLAT</h5>
-              <span></span>
-            </li>
-          </Link>
-        </ul>
-        <p>*Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót. Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.</p>
+        {/* <Link to="uzenet?tema=kulonajanlat">
+          <div className="special">
+            <h4>KÜLÖN</h4>
+            <h5>AJÁNLAT</h5>
+            <span></span>
+          </div>
+        </Link> */}
+        <p>
+          *Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót. Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
+        </p>
       </section>
     )
   }

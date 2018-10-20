@@ -39,9 +39,6 @@ const Room = ({
     <h3 className="room-title" >{name}</h3>
     <RoomSlider {...{pictures}} />
     <p className="room-description" >{description}</p>
-    <div className="button room-reserve-btn">
-      <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link>
-    </div>
     <div className="room-services">
       {services.length ?
         services
@@ -57,6 +54,9 @@ const Room = ({
           ) :
         <Loading/>
       }
+    </div>
+    <div className="button room-reserve-btn">
+      <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link>
     </div>
   </li>
 
