@@ -1,0 +1,134 @@
+.room
+  margin: 10% 5%
+
+  .room-services
+    position: relative
+    align-self: center
+    z-index: 100
+    max-width: none
+    margin: 1em 2em
+    display: flex
+    background-color: transparent
+    flex-wrap: wrap
+
+  .room-service
+    margin: .5em
+    width: 18px
+    height: 18px
+    filter: invert(1)
+    min-width: 0
+
+.room-title
+  position: relative
+  z-index: 100
+  font-family: "White Festive", sans-serif
+  text-transform: uppercase
+  line-height: 3rem
+  font-size: 3rem
+  text-align: right
+
+.room-description
+  position: relative
+  z-index: 100
+  text-align: center
+
+.room-reserve-btn
+  position: relative
+  z-index: 100
+  text-transform: uppercase
+  border-radius: 1.5em
+  align-self: center
+  font-family: "Coolvetica", sans-serif
+  color: $light
+  letter-spacing: .05em
+  min-height: 48px
+  display: flex
+  grid-column: 1/-1
+  margin: 0 2em
+  p
+    pointer-events: none
+  a
+    flex: 1
+    text-align: center
+    padding: 1em
+    color: $light
+    letter-spacing: .2em
+  &:hover
+    transform: scale(1.05)
+    box-shadow: 0 0 10px black
+
+.room-unavailable-reserve-btn
+  opacity: .3
+  position: relative
+  &:hover
+    opacity: .8
+    &::after
+      font-family: monospace
+      bottom: -1em
+      left: -2em
+      position: absolute
+      content: "jelenleg nem elérhető"
+      font-size: .6em
+      padding: .75em .2em
+      width: calc(135%)
+      text-align: center
+      background: #444
+      border-radius: 1.5em
+
+
+
+  
+@media (min-aspect-ratio: 9/6), (min-width: 640px)
+  .room
+    display: grid
+    grid-gap: 1em
+    max-width: 90%
+    margin: 10% auto
+    grid-template-rows: 64px auto 1fr
+    grid-template-columns: 1fr 1fr 50%
+    grid-template-areas: "title res-btn slider" "desc desc slider" "services services slider"
+
+    .room-services
+      margin: 0
+      padding: 0
+      align-self: start
+      grid-area: services
+
+  .room-reserve-btn
+    justify-self: end
+    align-self: start
+    grid-column: auto
+    margin: 0 1em 0 0
+    grid-area: res-btn
+    a
+      letter-spacing: .05em
+
+  .room-title
+    justify-self: flex-start
+    align-self: start
+    grid-area: title
+
+
+  .room-description
+    padding: 0
+    text-align: left
+    align-self: start
+    margin-right: 1em
+    grid-area: desc
+    
+@media (min-width: 1280px)
+  .room
+    max-width: 1024px
+    grid-template-columns: 1fr 1fr 60%
+  .room-reserve-btn
+    margin-right: 2.5em
+//   .rooms
+//     margin: 2.5%
+//     display: grid
+//     grid-gap: 2.5%
+//     grid-template-columns: repeat(2, 1fr)
+//   .room
+//     margin: 0
+
+
+@import 'room-slider'
