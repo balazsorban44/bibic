@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/components/Sunflower.jsx</title>
+    <title>Code coverage report for src/components/ChatFAB.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">src/components</a> Sunflower.jsx
+      <a href="../../index.html">All files</a> / <a href="index.html">src/components</a> ChatFAB.jsx
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -60,12 +60,34 @@
 15
 16
 17
-18</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -78,23 +100,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React from 'react'</span>
-<span class="cstat-no" title="statement not covered" >import Paragraphs from './shared/Paragraphs'</span>
-<span class="cstat-no" title="statement not covered" >import Gallery from './shared/Gallery'</span>
-<span class="cstat-no" title="statement not covered" >import CERTIFICATES_BG from "../assets/images/bg/intro.jpg"</span>
-const Sunflower = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt;</span></span>
-<span class="cstat-no" title="statement not covered" >  &lt;section id="napraforgo"&gt;</span>
-    &lt;Paragraphs path="tanusitvanyok"/&gt;
-    &lt;Gallery path="tanusitvanyok"/&gt;
-    &lt;div className="cert-bg"&gt;
-      &lt;img
-        alt="certificates background"
-        src={CERTIFICATES_BG}
-      /&gt;
+<span class="cstat-no" title="statement not covered" >import chat from '../assets/icons/chat.svg'</span>
+<span class="cstat-no" title="statement not covered" >import {withStore} from './db'</span>
+<span class="cstat-no" title="statement not covered" >import Fade from "react-reveal/Fade"</span>
+&nbsp;
+const ChatFAB = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span>hero}) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >  &lt;Fade</span>
+    up
+    when={hero.length}
+  &gt;
+    &lt;div className="chat-fab"&gt;
+      &lt;span className="tooltip"&gt;Megtalál minket a Messengeren is!&lt;/span&gt;
+      &lt;a
+        href="https://www.messenger.com/t/200199203718517"
+        rel="noopener noreferrer"
+        target="_blank"
+      &gt;
+        &lt;img
+          alt=""
+          aria-hidden
+          className="filled"
+          src={chat}
+        /&gt;
+      &lt;/a&gt;
     &lt;/div&gt;
-  &lt;/section&gt;
+  &lt;/Fade&gt;
 &nbsp;
 &nbsp;
-export default Sunflower</pre></td></tr>
+export default withStore(ChatFAB)</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
