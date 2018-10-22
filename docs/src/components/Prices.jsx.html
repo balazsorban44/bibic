@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>0/9</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>0/16</span>
       </div>
     </div>
   </div>
@@ -139,35 +139,63 @@
 94
 95
 96
-97</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,27 +266,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React, {Component} from 'react'</span>
 <span class="cstat-no" title="statement not covered" >import {Link} from "react-router-dom"</span>
 <span class="cstat-no" title="statement not covered" >import {withStore} from './db'</span>
+<span class="cstat-no" title="statement not covered" >import Fade from "react-reveal/Fade"</span>
 &nbsp;
 class Prices extends Component <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
 &nbsp;
   state = {minPrice: "Betöltés..."}
 &nbsp;
-<span class="fstat-no" title="function not covered" >  componentDidUpdate</span>({rooms: prevRooms}, _prevState) {
-    const {rooms} = <span class="cstat-no" title="statement not covered" >this.props</span>
-<span class="cstat-no" title="statement not covered" >    if (prevRooms !== rooms) {</span>
-      let minPrice = <span class="cstat-no" title="statement not covered" >Infinity</span>
-<span class="cstat-no" title="statement not covered" >      rooms.forEach(<span class="fstat-no" title="function not covered" >({</span>prices: {table}}) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        Object.values(table)</span>
-          .reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, val) =&gt; <span class="cstat-no" title="statement not covered" >acc.concat(val), [])</span>
-          .forEach(<span class="fstat-no" title="function not covered" >adult</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >            adult.forEach(<span class="fstat-no" title="function not covered" >({</span>price}) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >              minPrice = Math.min(minPrice, price)</span>
-            })
-          })
-      })
-<span class="cstat-no" title="statement not covered" >      this.setState({minPrice})</span>
-    }
+<span class="fstat-no" title="function not covered" >  componentDidMount</span>() {
+<span class="cstat-no" title="statement not covered" >    this.updateMinPrice(this.props.rooms)</span>
+  }
 &nbsp;
+<span class="fstat-no" title="function not covered" >  componentDidUpdate</span>({rooms: prevRooms}) {
+    const {rooms} = <span class="cstat-no" title="statement not covered" >this.props</span>
+<span class="cstat-no" title="statement not covered" >    if (prevRooms !== rooms) <span class="cstat-no" title="statement not covered" >t</span>his.updateMinPrice(rooms)</span>
+  }
+&nbsp;
+  updateMinPrice = (<span class="fstat-no" title="function not covered" >rooms) =&gt; {</span>
+    let minPrice = <span class="cstat-no" title="statement not covered" >Infinity</span>
+<span class="cstat-no" title="statement not covered" >    rooms.forEach(<span class="fstat-no" title="function not covered" >({</span>prices: {table}}) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      Object.values(table)</span>
+        .reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, val) =&gt; <span class="cstat-no" title="statement not covered" >acc.concat(val), [])</span>
+        .forEach(<span class="fstat-no" title="function not covered" >adult</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          adult.forEach(<span class="fstat-no" title="function not covered" >({</span>price}) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            minPrice = Math.min(minPrice, price)</span>
+          })
+        })
+    })
+<span class="cstat-no" title="statement not covered" >    this.setState({minPrice})</span>
   }
 &nbsp;
 &nbsp;
@@ -266,47 +300,52 @@ class Prices extends Component <span class="cstat-no" title="statement not cover
 <span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;section id="arak"&gt;
         &lt;h2&gt;Árak&lt;/h2&gt;
-        &lt;ul className="price-list"&gt;
-          &lt;li&gt;
-            &lt;div className="price-content"&gt;
-              &lt;h3&gt;{this.state.minPrice}&lt;span&gt;-Forinttól&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt; &lt;/h3&gt;
-              &lt;h4&gt;Többágyas szoba&lt;/h4&gt;
-              &lt;h5&gt;két- vagy több fő részére&lt;/h5&gt;
-            &lt;/div&gt;
-            &lt;Link
-              className="price-button"
-              to="foglalas"
-            &gt;
+        &lt;Fade
+          cascade
+          up
+        &gt;
+&nbsp;
+          &lt;ul className="price-list"&gt;
+            &lt;li&gt;
+              &lt;div className="price-content"&gt;
+                &lt;h3&gt;{this.state.minPrice}&lt;span&gt;-Forinttól&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt; &lt;/h3&gt;
+                &lt;h4&gt;Többágyas szoba&lt;/h4&gt;
+                &lt;h5&gt;két- vagy több fő részére&lt;/h5&gt;
+              &lt;/div&gt;
+              &lt;Link
+                className="price-button"
+                to="foglalas"
+              &gt;
               Foglalás
-            &lt;/Link&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;div className="price-content"&gt;
-              &lt;h3&gt;6000 &lt;span&gt;Forint/óra&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt;&lt;/h3&gt;
-              &lt;h4&gt;Rendezvényterem&lt;/h4&gt;
-              &lt;h5&gt;terembérlés&lt;/h5&gt;
-            &lt;/div&gt;
-            &lt;Link
-              className="price-button"
-              to="uzenet?tema=rendezvenyterem"
-            &gt;
+              &lt;/Link&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;div className="price-content"&gt;
+                &lt;h3&gt;6000 &lt;span&gt;Forint/óra&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt;&lt;/h3&gt;
+                &lt;h4&gt;Rendezvényterem&lt;/h4&gt;
+                &lt;h5&gt;terembérlés&lt;/h5&gt;
+              &lt;/div&gt;
+              &lt;Link
+                className="price-button"
+                to="uzenet?tema=rendezvenyterem"
+              &gt;
               Írjon nekünk
-            &lt;/Link&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;div className="price-content"&gt;
-              &lt;h3&gt;90000+ &lt;span&gt;Forint&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt; &lt;/h3&gt;
-              &lt;h4&gt;Teljes ház&lt;/h4&gt;
-              &lt;h5&gt;maximum 21 fő&lt;/h5&gt;
-            &lt;/div&gt;
-            &lt;Link
-              className="price-button"
-              to="uzenet?tema=teljeshaz"
-            &gt;
+              &lt;/Link&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;div className="price-content"&gt;
+                &lt;h3&gt;90000+ &lt;span&gt;Forint&lt;sup&gt;*&lt;/sup&gt;&lt;/span&gt; &lt;/h3&gt;
+                &lt;h4&gt;Teljes ház&lt;/h4&gt;
+                &lt;h5&gt;maximum 21 fő&lt;/h5&gt;
+              &lt;/div&gt;
+              &lt;Link
+                className="price-button"
+                to="uzenet?tema=teljeshaz"
+              &gt;
               Írjon nekünk
-            &lt;/Link&gt;
-          &lt;/li&gt;
-          {/* &lt;li&gt;
+              &lt;/Link&gt;
+            &lt;/li&gt;
+            {/* &lt;li&gt;
             &lt;div className="price-content"&gt;
               &lt;h3&gt;Csomag&lt;span className="word-break"&gt;ajánlatok&lt;/span&gt;&lt;/h3&gt;
             &lt;/div&gt;
@@ -314,17 +353,20 @@ class Prices extends Component <span class="cstat-no" title="statement not cover
               Több
             &lt;/a&gt;
           &lt;/li&gt; */}
-          {/* NOTE: Lists do not contain only &lt;li&gt; elements and script supporting elements (&lt;script&gt; and &lt;template&gt;).
+            {/* NOTE: Lists do not contain only &lt;li&gt; elements and script supporting elements (&lt;script&gt; and &lt;template&gt;).
  */}
-          &lt;Link to="uzenet?tema=kulonajanlat"&gt;
-            &lt;li className="special"&gt;
-              &lt;h4&gt;KÜLÖN&lt;/h4&gt;
-              &lt;h5&gt;AJÁNLAT&lt;/h5&gt;
-              &lt;span&gt;&lt;/span&gt;
-            &lt;/li&gt;
-          &lt;/Link&gt;
-        &lt;/ul&gt;
-        &lt;p&gt;*Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót.&lt;/p&gt;
+          &lt;/ul&gt;
+        &lt;/Fade&gt;
+        {/* &lt;Link to="uzenet?tema=kulonajanlat"&gt;
+          &lt;div className="special"&gt;
+            &lt;h4&gt;KÜLÖN&lt;/h4&gt;
+            &lt;h5&gt;AJÁNLAT&lt;/h5&gt;
+            &lt;span&gt;&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/Link&gt; */}
+        &lt;p&gt;
+          *Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót. Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
+        &lt;/p&gt;
       &lt;/section&gt;
     )
   }
@@ -337,7 +379,7 @@ export default withStore(Prices)</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Oct 18 2018 12:25:54 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 01:09:41 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/44</span>
+        <span class='fraction'>0/42</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/15</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/28</span>
+        <span class='fraction'>0/26</span>
       </div>
     </div>
   </div>
@@ -154,34 +154,17 @@
 109
 110
 111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+112</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -246,23 +229,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -304,13 +270,13 @@
   Route, Link, Switch
 } from 'react-router-dom'
 <span class="cstat-no" title="statement not covered" >import Menu, {BackMenu} from './Menu'</span>
-<span class="cstat-no" title="statement not covered" >import chat from '../assets/icons/chat.svg'</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >import asyncComponent from "./AsyncComponent"</span>
 <span class="cstat-no" title="statement not covered" >import Introduction from './Introduction'</span>
 <span class="cstat-no" title="statement not covered" >import Hero from './Hero'</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >import {ToastContainer} from 'react-toastify'</span>
+<span class="cstat-no" title="statement not covered" >import ChatFAB from './ChatFAB'</span>
 &nbsp;
 // NOTE: Asynchronously fetching Components that do not need to load at startup
 const ReservationForm = <span class="cstat-no" title="statement not covered" >asyncComponent(<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; import(</span>"./ReservationForm"))</span></span></span>
@@ -384,23 +350,6 @@ const App = <span class="cstat-no" title="statement not covered" ><span class="f
     &lt;/Switch&gt;
   &lt;/&gt;
 &nbsp;
-const ChatFAB = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt;</span></span>
-<span class="cstat-no" title="statement not covered" >  &lt;div className="chat-fab"&gt;</span>
-    &lt;span className="tooltip"&gt;Megtalál minket a Messengeren is!&lt;/span&gt;
-    &lt;a
-      href="https://www.messenger.com/t/200199203718517"
-      rel="noopener noreferrer"
-      target="_blank"
-    &gt;
-      &lt;img
-        alt=""
-        aria-hidden
-        className="filled"
-        src={chat}
-      /&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-&nbsp;
 &nbsp;
 const NotFound = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt;</span></span>
 <span class="cstat-no" title="statement not covered" >  &lt;div className="not-found"&gt;</span>
@@ -433,7 +382,7 @@ export default App
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Oct 18 2018 12:25:54 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 01:09:41 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
