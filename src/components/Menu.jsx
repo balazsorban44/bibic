@@ -5,6 +5,7 @@ import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
 import {withStore} from './db'
 import Fade from "react-reveal/Fade"
+import {BASE_URL} from '../utils/constants'
 
 const menu = [
   {to:"bemutatkozas", name: "Bemutatkozás"},
@@ -22,58 +23,75 @@ const menu = [
 ]
 
 class Menu extends Component {
-  state = {isMenuOpen: false,
-    isScrolled: false}
+
+  state = {
+    isMenuOpen: false,
+    isScrolled: false,
+    isRoomMenuOpen: true
+  }
 
   componentDidMount() {
     window.addEventListener("scroll", this.isScrolled, false)
+    window.addEventListener("resize", this.isResized, false)
+    this.isScrolled()
+    this.isResized()
+    if (window.innerWidth > 768) this.setState({isRoomMenuOpen: false})
   }
-
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.isScrolled, false)
+    window.removeEventListener("resize", this.isResized, false)
   }
-
 
   isScrolled = () => this.setState({isScrolled: window.pageYOffset >= 100})
 
-  handleHideRoomMenu = () => this.setState({isMenuOpen: false})
+  isResized = () => this.setState({width: window.innerWidth})
 
-  handleShowRoomMenu = () => this.setState({isMenuOpen: true})
+  handleShowRoomMenu = () => this.setState({isRoomMenuOpen: true})
 
-  handleMenuToggle = () =>
-    this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
+  handleHideRoomMenu = () => this.setState({isRoomMenuOpen: false})
+
+  handleMenuToggle = () => this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
+
+
+  handleHideMenu = () => this.setState({isMenuOpen: false, isRoomMenuOpen: false})
 
   render() {
-    const {isMenuOpen, isScrolled} = this.state
     const {
-      className, hero, rooms
-    } = this.props
+      isMenuOpen, isScrolled, isRoomMenuOpen, width
+    } = this.state
+    const isBigScreen = width > 768
+    const {hero, rooms} = this.props
     return (
       <Fade
         down
         when={hero.length}
       >
         <div
-          className={`${className} menu-wrapper ${isScrolled ? "header-scrolled" : ""}`}
+          className={`menu ${isScrolled ? "menu-scrolled" : ""} ${isMenuOpen ? "" : "menu-hidden"}`}
         >
           <Fade right>
             <div
               className={`hamburger ${isMenuOpen ? "hamburger-clicked" : ""}`}
               onClick={this.handleMenuToggle}
-            >
-              <span/><span/><span/>
-            </div>
+            ><span/><span/><span/></div>
           </Fade>
-          <div className="pc-logo">
-            <a href="/">
-              <img
-                alt=""
-                src={logo}
+          <a
+            className={`menu-logo ${isScrolled ? "menu-logo-scrolled" : ""}`}
+            href={BASE_URL}
+          >
+            <picture>
+              <source
+                media="(min-aspect-ratio: 7/6) and (min-width: 1024px)"
+                srcSet={logo}
               />
-            </a>
-          </div>
-          <nav className={`menu ${isMenuOpen ? "" : "menu-hidden"}`}>
+              <img
+                alt="logo"
+                src={bibic}
+              />
+            </picture>
+          </a>
+          <nav>
             <Fade
               cascade
               down
@@ -85,8 +103,8 @@ class Menu extends Component {
                 }) =>
                   <li key={to}>
                     <Component
-                      offset={offset!==undefined ? offset : -64}
-                      onClick={this.handleHideRoomMenu}
+                      offset={isBigScreen ? offset!==undefined ? offset : -64 : 0}
+                      onClick={this.handleHideMenu}
                       onMouseEnter={() => to==="szobak" && this.handleShowRoomMenu()}
                       smooth={Component===Link ? true : undefined}
                       to={to}
@@ -98,37 +116,21 @@ class Menu extends Component {
               </ul>
             </Fade>
           </nav>
-          <div className="tablet-header">
-            <RouteLink
-              className="tablet-reservation"
-              offset={-64}
-              to="foglalas"
-            >Foglalás</RouteLink>
-            <div>
-              <a href="/">
-                <img
-                  alt=""
-                  src={bibic}
-                />
-              </a>
-            </div>
-          </div>
-          <Fade
-            down
-            duration={300}
-            when={isMenuOpen}
-          >
-            <ul className="room-menu">
-              {rooms.map(({id}) =>
-                <li key={id}>
-                  <Link
-                    offset={-106}
-                    onClick={this.handleHideRoomMenu}
-                    to={`szoba-${id}`}
-                  >{id}</Link></li>
-              )}
-            </ul>
-          </Fade>
+          <ul className={`room-menu ${isRoomMenuOpen ? "room-menu-show" : ""}`}>
+            {rooms.map(({id}) =>
+              <li
+                key={id}
+              >
+                <Link
+                  offset={isBigScreen ? -106 : 0}
+                  onClick={this.handleHideMenu}
+                  to={`szoba-${id}`}
+                >
+                  {id}
+                </Link>
+              </li>
+            )}
+          </ul>
         </div>
       </Fade>
     )
