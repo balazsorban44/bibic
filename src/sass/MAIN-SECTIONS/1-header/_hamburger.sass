@@ -1,0 +1,45 @@
+
+.hamburger
+  position: fixed
+  top: 0
+  right: 0
+  width: 48px
+  height: 28px
+  padding: 16px
+  z-index: 10001
+  cursor: pointer
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  justify-content: space-evenly
+  span
+    background-color: $light
+    position: relative
+    width: 20px
+    height: 2px
+    border-radius: 2px
+    box-shadow: 0 0 4px black
+    transition: .3s
+    &:nth-of-type(2)
+      width: 16px
+
+.hamburger-clicked span
+  box-shadow: none
+  &:first-child, &:last-child
+    position: absolute
+    z-index: 1
+  &:first-child
+    transform: rotate(45deg)
+  &:last-child
+    transform: rotate(-45deg)
+  &:nth-child(2)
+    opacity: 0
+
+
+@media (min-aspect-ratio: 7/6)
+  .hamburger-clicked span
+    background-color: $accent-color
+
+@media (min-width: 768px)
+  .hamburger
+    display: none

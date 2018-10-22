@@ -1,83 +1,62 @@
-.menu-wrapper
-  display: flex
-  height: 0
+.menu
+  display: grid
   position: fixed
   top: 0
   width: 100vw
+  height: 100vh
   z-index: 10000
+  grid-template-areas: "main-nav room-nav"
+  grid-template-columns: 3fr 2fr
+  grid-template-rows: 1fr
 
-.tablet-reservation
-  color: $accent-color-dark
-
-.tablet-header, .pc-logo
+.menu-logo
   display: none
 
-.menu-hidden
-  transform: translateX(-101%)
+nav, .room-menu
+  transition: .5s
 
-.room-menu-hidden
-  transform: translateX(100%)
-
-.menu
-  align-items: center
+nav
+  grid-area: main-nav
   background-color: $light
-  border-right: 1px solid $light
   display: flex
-  font-family: 'White Festive'
-  font-weight: bolder
-  height: 100vh
-  justify-content: flex-end
-  letter-spacing: .1em
-  position: relative
-  transition: .3s ease-in-out
-  width: 60%
-
-  li
-    margin: 2em 0
-    // text-align: right
-    padding-right: 2.5em
-    position: relative
-    transition: .2s
-
+  justify-content: center
+  ul, li, a
+    display: flex
+    flex: 1
+  ul
+    margin: 10vh 0
+    flex-direction: column
+    justify-content: space-evenly
+  a
+    text-transform: uppercase
+    letter-spacing: .05em
+    align-items: center
+    padding: 1rem 0 1rem 2rem
+    color: $accent-color-dark
+    font-family: "White Festive", sans-serif
+    font-weight: bolder
+    font-size: 2rem
     &:hover
       color: $accent-color
-      transform: scale(1.2)
-
-    a
-      color: $accent-color-dark
-      font-size: 1.75em
-      padding: 1em
-
-    // &:after
-    //   content: ""
-    //   position: absolute
-    //   top: 50%
-    //   right: -2em
-    //   transform: translate(-50%, -50%) scale(0)
-    //   border-radius: 50%
-    //   width: 1em
-    //   height: 1em
-    //   background-color: $light
-    //   transition: .2s ease-out
-    // &:hover
-    //   &:after
-    //     transform: translate(-50%, -50%) scale(1)
 
 .room-menu
-  position: absolute
-  background-color: transparentize($accent-color-dark, .1)
-  top: 50%
-  width: 40%
-  right: 0
-  z-index: -1
-  height: 100vh
+  grid-area: room-nav
+  background-color: transparentize($accent-color-dark, .2)
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
-  transition: .3s ease-in
+  a
+    color: $light
+    position: relative
+    width: 48px
+    height: 48px
+    display: grid
+    place-items: center
+    font-size: 1.5em
+
   li
-    margin: .5em 1em
+    margin: .5em
     border-radius: 50%
     transition: .3s
     @for $i from 1 through length($rooms)
@@ -85,183 +64,83 @@
         background-color: darken(nth($rooms, $i), 10)
         &:hover
           background-color: darken(nth($rooms, $i), 20)
-          a
-            color: $light !important
-
-  a
-    display: grid
-    justify-content: center
-    align-content: center
-    position: relative
-    width: 1em
-    height: 1em
-    padding: 1em
-    color: $light
-    font-size: 1.25em
-
-.hamburger
-  position: fixed
-  top: 0
-  right: 0
-  width: 48px
-  height: 28px
-  padding: 16px
-  z-index: 10001
-  cursor: pointer
-  display: flex
-  flex-direction: column
-  align-items: flex-end
-  justify-content: space-evenly
-  span
-    background-color: $light
-    position: relative
-    width: 20px
-    height: 2px
-    border-radius: 2px
-    box-shadow: 0 0 4px black
-    transition: .3s
-    &:nth-of-type(2)
-      width: 16px
-
-.hamburger-clicked
-  span
-    box-shadow: none
-    &:first-child, &:last-child
-      position: absolute
-      // background-color: $accent-color
-      z-index: 1
-    &:first-child
-      transform: rotate(45deg)
-    &:last-child
-      transform: rotate(-45deg)
-    &:nth-child(2)
-      opacity: 0
-
-@media (orientation: landscape) and (max-width: 768px)
-  .hamburger-clicked
-    span
-      background-color: $dark
-  .menu
-    width: 100%
-    height: 80vh
-    justify-content: center
-    ul
-      width: auto
-      display: grid
-      grid-template-columns: repeat(4, 1fr)
-    li
-      margin: 1em 1em .5em
-      padding-right: 0
-      a
-        padding: 0
+        a
+          color: $light !important
+.menu-hidden
+  nav
+    transform: translateX(-100%)
   .room-menu
-    position: fixed
-    z-index: 1
-    top: 80vh
-    left: 0
-    width: auto
-    height: 20vh
-    flex-direction: row
+    transform: translateX(100%)
+  
+@import hamburger
+
+@media (min-aspect-ratio: 7/6), (min-width: 768px)
+  .menu
+    grid-template-areas: "main-nav" "room-nav"
+    grid-template-rows: 96px 80px
+    grid-template-columns: auto
+    nav ul, .room-menu
+      flex-direction: row
+      flex-wrap: wrap
+    nav
+      ul
+        justify-content: center
+        align-items: flex-end
+        margin: 0
+      li
+        flex: none
+      a
+        font-size: 3.5vw
+        padding: 0 .5em
+  .room-menu
+    a
+      font-size: 3vw
 
 @media (min-width: 768px)
-  .menu-wrapper
-    height: 64px
-    background-color: $light
-    justify-content: center
-    a
-      font-family: "White Festive"
-      font-size: 1.5em
-      font-weight: bolder
-      text-transform: uppercase
-      letter-spacing: .05em
-      &:hover
-        color: $accent-color
-  @media (max-width: 1279px)
-    .tablet-header
-      display: flex
-      flex-grow: 1
-      align-items: center
-      position: relative
-      >div
-        display: flex
-        justify-content: center
-        align-items: center
-        flex-grow: 1
-      >a
-        position: absolute
-        left: 0
-        margin-left: 1em
-      img
-        width: 36px
-  .hamburger
-    padding: 20px 8px
-    span
-      background-color: $accent-color-dark
-      box-shadow: none
-  .hamburger-clicked
-    span
-      background-color: $light
-
   .menu
-    position: absolute
-    left: 0
-    top: 0
-    a
-      font-size: 2.5em !important
-  .room-menu
-    flex-direction: row
-    flex-wrap: wrap
-    top: 0
-
-@media (min-width: 1280px)
-  .menu-wrapper
-    padding-top: .5em
-    width: 100%
-    flex-direction: column
-    align-items: center
-    min-height: 64px
-    box-shadow: 0 0 20px transparentize($dark, .5)
+    grid-template-areas: "menu-logo" "main-nav" "room-nav"
     height: auto
-  .header-scrolled
-    .pc-logo
-      img
-        height: 0
-        padding-top: -.5em
-        // transform: scale(0)
-  .pc-logo
-    display: block
-    img
-      height: 96px
-      transition: .5s
-  .hamburger, .menu li span
-    display: none !important
-  .menu-hidden, .room-menu-hidden
-    transform: none
-  .menu
-    position: relative
-    width: 100%
-    height: 64px
-    justify-content: center
-    overflow: hidden
-    ul
-      margin-top: .5em
-      display: flex
-      flex-direction: row
-      align-items: center
-      justify-content: center
-    li
-      margin: .5em
-      padding: 0
-    a
-      font-size: 1.5em !important
+    grid-template-rows: auto
+    nav
+      padding: 1em 7.5vw
+      a
+        padding: 0 .3em
+        font-size: 1.75em
+       
 
-  .room-menu-hidden
-    display: none
   .room-menu
-    flex-direction: row
-    height: auto
-    width: 100%
-    top: 100%
     background-color: transparent
-    li a
-      padding: .5em
+    transform: translateY(-100%) !important
+    z-index: -1
+    a
+      font-size: 1.25em
+
+  .room-menu-show
+    transform: none !important
+
+  .menu-hidden
+    nav, .room-menu
+      transform: none
+
+  .menu-logo
+    background-color: $light
+    grid-area: menu-logo
+    display: block
+    text-align: center
+    position: relative
+    z-index: -1
+    height: 48px
+    img
+      height: 80%
+      transform: translate(-50%, -50%)
+      left: 50%
+      top: 50%
+      position: absolute
+
+@media (min-width: 1024px)
+  .menu nav a
+    padding: 0 1em
+  .menu-logo
+    height: 116px
+  .menu-logo-scrolled
+    height: 0
