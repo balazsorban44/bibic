@@ -10,6 +10,7 @@
     //   "ignoreTemplateLiterals": true,
     //   "ignoreStrings": true
     //   }],
+    "no-useless-escape":"error",
     "block-spacing":["warn", "never"],
     "semi": [2, "never"],
     "no-trailing-spaces":"error",

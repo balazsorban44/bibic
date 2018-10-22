@@ -5,7 +5,7 @@ import {TOMORROW} from './constants'
 const nameRe = new RegExp(/[\s.áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z-]+/)
 const emailRe = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)
 const telRe = new RegExp(/^\+?[0-9-\s]+/)
-const addressRe = new RegExp(/[\s.\-\,/áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z0-9]+/)
+const addressRe = new RegExp(/[\s.\-,/áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z0-9]+/)
 
 export const valid = {
   roomId: (roomId=0, roomsLength) => (0 < roomId) && (roomId <= roomsLength),
