@@ -11,10 +11,7 @@ const Rooms = ({
     <h2>Szobák</h2>
     <ul className="rooms">
       {rooms.length ? rooms.map((room, key) =>
-        <Fade
-          key={key}
-          up
-        >
+        <Fade key={key}>
           <Room
             pictures={galleries["szobak"] ? galleries["szobak"][key] : []}
             services={roomServices}
