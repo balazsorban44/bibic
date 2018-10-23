@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/10</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>8/8</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -99,7 +99,7 @@
 54
 55
 56
-57</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+57</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,12 +128,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,15 +140,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,11 +184,11 @@
  * @param {name} name the name to be translated
  * @returns {string}
  */
-export const translate = <span class="fstat-no" title="function not covered" >na</span>me =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (translations[name]) {</span>
-<span class="cstat-no" title="statement not covered" >    return translations[name][0]</span>
+export const translate = name =&gt; {
+  if (translations[name]) {
+    return translations[name][0]
   } else {
-<span class="cstat-no" title="statement not covered" >    return Object.keys(translations).find(<span class="fstat-no" title="function not covered" >ke</span>y =&gt; <span class="cstat-no" title="statement not covered" >translations[key][0] === name)</span></span>
+    return Object.keys(translations).find(key =&gt; translations[key][0] === name)
   }
 }
 &nbsp;
@@ -197,15 +197,15 @@ export const translate = <span class="fstat-no" title="function not covered" >na
  * @param {string} name the name to be checked
  * @returns {boolean}
  */
-export const isQueryString = <span class="fstat-no" title="function not covered" >na</span>me =&gt; <span class="cstat-no" title="statement not covered" >translations[name] ? translations[name][1] : false</span>
+export const isQueryString = name =&gt; translations[name] ? translations[name][1] : false
 &nbsp;
 /**
  * Pretty prints a price in Hungarian format
  * @param {number} value the price
  * @returns {string}
  */
-export const toPrice = <span class="fstat-no" title="function not covered" >va</span>lue =&gt; (
-<span class="cstat-no" title="statement not covered" >  (value || 0).toLocaleString('hu-HU', {</span>
+export const toPrice = value =&gt; (
+  (value || 0).toLocaleString('hu-HU', {
     style: 'currency',
     currency: 'HUF',
     minimumFractionDigits: 0,
@@ -217,7 +217,7 @@ export const toPrice = <span class="fstat-no" title="function not covered" >va</
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 01:09:41 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 14:06:14 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
