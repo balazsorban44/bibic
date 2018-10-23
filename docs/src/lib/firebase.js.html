@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/17</span>
+        <span class='fraction'>14/14</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/17</span>
+        <span class='fraction'>14/14</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -72,40 +72,40 @@
 27
 28
 29
-30</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import firebase from 'firebase/app'</span>
-<span class="cstat-no" title="statement not covered" >import "firebase/database"</span>
-<span class="cstat-no" title="statement not covered" >import "firebase/firestore"</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import firebase from 'firebase/app'
+import "firebase/database"
+import "firebase/firestore"
 &nbsp;
-<span class="cstat-no" title="statement not covered" >firebase.initializeApp({</span>
+firebase.initializeApp({
   apiKey: "AIzaSyB4-Y2_RCdrOouJJxUJkBBXGyj4hNdjDs0",
   authDomain: "bibic-vendeghazak-api.firebaseapp.com",
   databaseURL: "https://bibic-vendeghazak-api.firebaseio.com",
@@ -113,30 +113,30 @@
   storageBucket: "bibic-vendeghazak-api.appspot.com",
   messagingSenderId: "586582307718"
 })
-export const FS = <span class="cstat-no" title="statement not covered" >firebase.firestore()</span>
-<span class="cstat-no" title="statement not covered" >FS.settings({timestampsInSnapshots: true})</span>
+export const FS = firebase.firestore()
+FS.settings({timestampsInSnapshots: true})
 &nbsp;
-export const DB = <span class="cstat-no" title="statement not covered" >firebase.database()</span>
-export const ROOMS_REF = <span class="cstat-no" title="statement not covered" >DB.ref("rooms")</span>
-export const ROOM_SERVICES_REF = <span class="cstat-no" title="statement not covered" >DB.ref("roomServices")</span>
-export const CERTS_REF = <span class="cstat-no" title="statement not covered" >DB.ref("certificates")</span>
-export const PARAGRAPHS_REF = <span class="cstat-no" title="statement not covered" >DB.ref("paragraphs")</span>
-export const GALLERIES_REF = <span class="cstat-no" title="statement not covered" >DB.ref("galleries")</span>
-export const MESSAGES_REF = <span class="cstat-no" title="statement not covered" >DB.ref("messages")</span>
-&nbsp;
-&nbsp;
-export const RESERVATIONS_FS_REF = <span class="cstat-no" title="statement not covered" >FS.collection("reservations")</span>
-export const MESSAGES_FS_REF = <span class="cstat-no" title="statement not covered" >FS.collection("messages")</span>
+export const DB = firebase.database()
+export const ROOMS_REF = DB.ref("rooms")
+export const ROOM_SERVICES_REF = DB.ref("roomServices")
+export const CERTS_REF = DB.ref("certificates")
+export const PARAGRAPHS_REF = DB.ref("paragraphs")
+export const GALLERIES_REF = DB.ref("galleries")
+export const MESSAGES_REF = DB.ref("messages")
 &nbsp;
 &nbsp;
-export const TIMESTAMP_DB = <span class="cstat-no" title="statement not covered" >firebase.database.ServerValue.TIMESTAMP</span>
-export const TIMESTAMP = <span class="cstat-no" title="statement not covered" >firebase.firestore.FieldValue.serverTimestamp()</span></pre></td></tr>
+export const RESERVATIONS_FS_REF = FS.collection("reservations")
+export const MESSAGES_FS_REF = FS.collection("messages")
+&nbsp;
+&nbsp;
+export const TIMESTAMP_DB = firebase.database.ServerValue.TIMESTAMP
+export const TIMESTAMP = firebase.firestore.FieldValue.serverTimestamp()</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 14:06:14 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 16:49:47 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
