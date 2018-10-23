@@ -150,6 +150,11 @@ describe("validateReservation", () => {
     test("people count is higher than max people", () =>
       expect(validateReservation({...res, adults: 4})).toContain("száma"))
 
+    test("people count is higher than max people 2", () =>
+      expect(validateReservation({
+        ...res, adults: 1, children: [{name: "0-6", count: 3}]
+      })).toContain("száma"))
+
   })
 
   test("passed", () =>
@@ -193,18 +198,43 @@ describe("validateReservation", () => {
 
 
 describe("valueToState", () => {
+  describe("roomId", () => {
+    test("valid roomId is number", () => expect(valueToState("roomId", "3")).toBe(3))
+    test("invalid roomId is null", () => expect(valueToState("roomId", "d")).toBe(null))
+  })
 
-  const date = moment()
-  test("valid roomId is number", () => expect(valueToState("roomId", "3")).toBe(3))
-  test("invalid roomId is null", () => expect(valueToState("roomId", "d")).toBe(null))
-  test("minimum adult is 1", () => expect(valueToState("adults", undefined)).toBe(1))
-  test("minimum child was string", () => expect(valueToState("children", "child=1")).toEqual([]))
-  test("arrival is date", () => expect(valueToState("from", date)).toEqual(date.clone().toDate()))
-  test("departure is date", () => expect(valueToState("to", date)).toEqual(date.clone().toDate()))
-  test("invalid food service is breakfast", () => expect(valueToState("foodService", "test")).toBe("breakfast"))
-  test("invalid subject is other", () => expect(valueToState("subject", "test")).toBe("other"))
-  test("valid subject is returned", () => expect(valueToState("subject", "fullHouse")).toBe("fullHouse"))
-  test("valid children  is returned", () => expect(valueToState("subject", "fullHouse")).toBe("fullHouse"))
-  test("not existing key returns", () => expect(valueToState("test", "test")).toBe(undefined))
+  describe("people", () => {
+    test("minimum adult is 1", () => expect(valueToState("adults", undefined)).toBe(1))
+  })
 
+  describe("dates", () => {
+    const date = moment()
+    test("arrival is date", () => expect(valueToState("from", date)).toEqual(date.clone().toDate()))
+    test("departure is date", () => expect(valueToState("to", date)).toEqual(date.clone().toDate()))
+    test("invalid date", () => expect(valueToState("to", "invalid date")).toBeInstanceOf(Date))
+  })
+
+  describe("subject", () => {
+    const key = "subject"
+    const validValues = ["eventHall", "fullHouse", "special", "other"]
+
+    test("invalid returns other", () => expect(valueToState(key, "test")).toBe("other"))
+
+    validValues
+      .map(validValue => test(`${validValue} returns ${validValue}`, () => expect(valueToState(key, validValue)).toBe(validValue)))
+  })
+
+  describe("food service", () => {
+    const key = "foodService"
+    const validValues = ["halfBoard", "breakfast"]
+
+    test("invalid returns breakfast", () => expect(valueToState(key, "test")).toBe("breakfast"))
+
+    validValues
+      .map(validValue => test(`${validValue} returns ${validValue}`, () => expect(valueToState(key, validValue)).toBe(validValue)))
+  })
+
+  describe("default", () => {
+    test("not existing key returns undefined", () => expect(valueToState("test", "test")).toBe(undefined))
+  })
 })
