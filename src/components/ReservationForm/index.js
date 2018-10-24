@@ -20,8 +20,11 @@ class ReservationForm extends Component {
 
   render() {
     const {
-      reservation: {price, ...reservation}, isReserving, updateReservation
+      rooms, reservation: {price, ...reservation}, isReserving, updateReservation
     } = this.props
+    const roomId = reservation.roomId
+    const maxPeople = (rooms.length && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
+
     return(
 
       <form
@@ -39,7 +42,7 @@ class ReservationForm extends Component {
           />
         </FormSection>
         <FormSection title="Foglalás adatai">
-          <ReservationDetails/>
+          <ReservationDetails maxPeople={maxPeople}/>
         </FormSection>
         <Send
           isLoading={isReserving}

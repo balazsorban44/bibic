@@ -69,14 +69,12 @@ export const valueToState = (key, value) => {
   case "adults":
     return parseInt(value, 10) || 1
 
-  /*
-   * NOTE: Rewrite ♻, and add TEST 🔬
-   * case "children":
-   *   const ageGroups = ["0-6", "6-12"]
-   *   return typeof value === "string" ?
-   *     ageGroups.includes(value) ? [value] : [] :
-   *     value.every(child => ageGroups.includes(child)) ? value : []
-   */
+  // NOTE: add TEST 🔬
+  case "children":
+    const ageGroups = ["0-6", "6-12"]
+    return (typeof value === "string" && ageGroups.includes(value)) ? [value] :
+      Array.isArray(value) ?
+        value.filter(child => ageGroups.includes(child)) : []
   case "from":
   case "to":
     const date = moment(value, "YYYY-MM-DD", true)
