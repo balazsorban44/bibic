@@ -7,11 +7,12 @@ import {Loading} from '../../shared/Elements'
 import {Date as DateLabel} from '../../shared/Form'
 import {TODAY} from '../../../utils/constants'
 
-/**
- *  NOTE: Awating implementation
+/*
+ *  NOTE: Implemented locally
  * @see https://github.com/Adphorus/react-date-range/pull/246
- * import hu from "react-date-range/dist/locale/hu"
  */
+
+import hu from "../../../lib/react-date-range/locale/hu"
 
 
 class Calendar extends Component {
@@ -93,10 +94,10 @@ class Calendar extends Component {
         </div>
         {DateRangePicker ?
           <DateRangePicker
-            //locale={hu}
             direction="vertical"
             disabledDates={overlaps}
             inputRanges={[]}
+            locale={hu}
             minDate={moment().add(1, "day").startOf("day").toDate()}
             onChange={this.handleSelect}
             ranges={[selected]}
