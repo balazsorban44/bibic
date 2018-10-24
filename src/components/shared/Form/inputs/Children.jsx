@@ -21,9 +21,7 @@ export default class Children extends Component {
     this.props.onChange(name, values)
   }
 
-  handleSelect = ({target: {
-    name: index, value
-  }}) => {
+  handleSelect = ({target: {name: index, value}}) => {
     const values = [...this.props.values]
     values[index] = value
 

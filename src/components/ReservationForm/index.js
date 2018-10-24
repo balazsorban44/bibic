@@ -11,9 +11,7 @@ import Footnote from './Footnote'
 
 class ReservationForm extends Component {
 
-  componentDidMount() {
-    window.scrollTo(0, 0)
-  }
+  componentDidMount() {window.scrollTo(0, 0)}
 
   handleSubmitReservation = e => {
     e.preventDefault()
