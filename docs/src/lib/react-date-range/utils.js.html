@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/lib/react-date-range/utils.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/lib/react-date-range</a> utils.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>52/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">51.43% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>18/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.72% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>50/57</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">153x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.calcFocusDate = calcFocusDate;
+exports.findNextRangeIndex = findNextRangeIndex;
+exports.getMonthDisplayRange = getMonthDisplayRange;
+exports.generateStyles = generateStyles;
+&nbsp;
+var _classnames = require('classnames');
+&nbsp;
+var _classnames2 = _interopRequireDefault(_classnames);
+&nbsp;
+var _endOfWeek = require('date-fns/endOfWeek');
+&nbsp;
+var _endOfWeek2 = _interopRequireDefault(_endOfWeek);
+&nbsp;
+var _startOfWeek = require('date-fns/startOfWeek');
+&nbsp;
+var _startOfWeek2 = _interopRequireDefault(_startOfWeek);
+&nbsp;
+var _endOfMonth = require('date-fns/endOfMonth');
+&nbsp;
+var _endOfMonth2 = _interopRequireDefault(_endOfMonth);
+&nbsp;
+var _startOfMonth = require('date-fns/startOfMonth');
+&nbsp;
+var _startOfMonth2 = _interopRequireDefault(_startOfMonth);
+&nbsp;
+var _areIntervalsOverlapping = require('date-fns/areIntervalsOverlapping');
+&nbsp;
+var _areIntervalsOverlapping2 = _interopRequireDefault(_areIntervalsOverlapping);
+&nbsp;
+var _addMonths = require('date-fns/addMonths');
+&nbsp;
+var _addMonths2 = _interopRequireDefault(_addMonths);
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj </span>: { default: obj }; }
+&nbsp;
+function calcFocusDate(currentFocusedDate, props) {
+  var shownDate = props.shownDate,
+      date = props.date,
+      months = props.months,
+      ranges = props.ranges,
+      focusedRange = props.focusedRange,
+      displayMode = props.displayMode;
+  // find primary date according the props
+&nbsp;
+  var targetInterval = void 0;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (displayMode === 'dateRange') {
+    var range = ranges[focusedRange[0]] || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    targetInterval = {
+      start: range.startDate,
+      end: range.endDate
+    };
+  } else {
+<span class="cstat-no" title="statement not covered" >    targetInterval = {</span>
+      start: date,
+      end: date
+    };
+  }
+  targetInterval.start = (0, _startOfMonth2.default)(targetInterval.start || <span class="branch-1 cbranch-no" title="branch not covered" >new Date())</span>;
+  targetInterval.end = (0, _endOfMonth2.default)(targetInterval.end || <span class="branch-1 cbranch-no" title="branch not covered" >targetInterval.start)</span>;
+  var targetDate = targetInterval.start || <span class="branch-1 cbranch-no" title="branch not covered" >targetInterval.end </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >shownDate </span>|| <span class="branch-3 cbranch-no" title="branch not covered" >new Date();</span>
+&nbsp;
+  // initial focus
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!currentFocusedDate) return shownDate || targetDate;
+&nbsp;
+  // // just return targetDate for native scrolled calendars
+  // if (props.scroll.enabled) return targetDate;
+  var currentFocusInterval = <span class="cstat-no" title="statement not covered" >{</span>
+    start: (0, _startOfMonth2.default)(currentFocusedDate),
+    end: (0, _endOfMonth2.default)((0, _addMonths2.default)(currentFocusedDate, months - 1))
+  };
+<span class="cstat-no" title="statement not covered" >  if ((0, _areIntervalsOverlapping2.default)(targetInterval, currentFocusInterval)) {</span>
+    // don't change focused if new selection in view area
+<span class="cstat-no" title="statement not covered" >    return currentFocusedDate;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return targetDate;</span>
+}
+&nbsp;
+function findNextRangeIndex(ranges) {
+  var currentRangeIndex = arguments.length &gt; 1 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >arguments[1] !== undefined </span>? <span class="branch-0 cbranch-no" title="branch not covered" >arguments[1] </span>: -1;
+&nbsp;
+  var nextIndex = ranges.findIndex(function (range, i) {
+    return i &gt; currentRangeIndex &amp;&amp; range.autoFocus !== false &amp;&amp; !range.disabled;
+  });
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (nextIndex !== -1) return nextIndex;
+<span class="cstat-no" title="statement not covered" >  return ranges.findIndex(<span class="fstat-no" title="function not covered" >fu</span>nction (range) {</span>
+<span class="cstat-no" title="statement not covered" >    return range.autoFocus !== false &amp;&amp; !range.disabled;</span>
+  });
+}
+&nbsp;
+function getMonthDisplayRange(date, dateOptions) {
+  var startDateOfMonth = (0, _startOfMonth2.default)(date, dateOptions);
+  var endDateOfMonth = (0, _endOfMonth2.default)(date, dateOptions);
+  var startDateOfCalendar = (0, _startOfWeek2.default)(startDateOfMonth, dateOptions);
+  var endDateOfCalendar = (0, _endOfWeek2.default)(endDateOfMonth, dateOptions);
+  return {
+    start: startDateOfCalendar,
+    end: endDateOfCalendar,
+    startDateOfMonth: startDateOfMonth,
+    endDateOfMonth: endDateOfMonth
+  };
+}
+&nbsp;
+function generateStyles(sources) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!sources.length) <span class="cstat-no" title="statement not covered" >return {};</span>
+  var generatedStyles = sources.filter(function (source) {
+    return Boolean(source);
+  }).reduce(function (styles, styleSource) {
+    Object.keys(styleSource).forEach(function (key) {
+      styles[key] = (0, _classnames2.default)(styles[key], styleSource[key]);
+    });
+    return styles;
+  }, {});
+  return generatedStyles;
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 24 2018 23:15:44 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
