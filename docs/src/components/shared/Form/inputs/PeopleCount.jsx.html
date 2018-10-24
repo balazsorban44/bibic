@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>14/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>14/14</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -131,9 +131,7 @@
 86
 87
 88
-89
-90
-91</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+89</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,7 +154,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,28 +166,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,7 +233,7 @@ export default class PeopleCount extends Component {
     value: 0
   }
 &nbsp;
-  static getDerivedStateFromProps = <span class="fstat-no" title="function not covered" >({</span>
+  static getDerivedStateFromProps = ({
     value,
     hasFootnote,
     min,
@@ -246,7 +242,7 @@ export default class PeopleCount extends Component {
     label,
     placeholder
   }) =&gt; (
-<span class="cstat-no" title="statement not covered" >    {</span>
+    {
       value: parseInt(value, 10),
       hasFootnote,
       min,
@@ -257,29 +253,27 @@ export default class PeopleCount extends Component {
     }
   )
 &nbsp;
-  handleChange = <span class="fstat-no" title="function not covered" >e </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >    e.preventDefault()</span>
-    const {name} = <span class="cstat-no" title="statement not covered" >e.target</span>
-    let {target: {value}} = <span class="cstat-no" title="statement not covered" >e</span>
-<span class="cstat-no" title="statement not covered" >    value = parseInt(value, 10)</span>
-    const {
-      min, max
-    } = <span class="cstat-no" title="statement not covered" >this.state</span>
-<span class="cstat-no" title="statement not covered" >    if (value &lt; min) {</span>
-<span class="cstat-no" title="statement not covered" >      value = min</span>
-    } else <span class="cstat-no" title="statement not covered" >if (value &gt; max) {</span>
-<span class="cstat-no" title="statement not covered" >      value = max</span>
+  handleChange = e =&gt; {
+    e.preventDefault()
+    const {name} = e.target
+    let {target: {value}} = e
+    value = parseInt(value, 10)
+    const {min, max} = this.state
+    if (value &lt; min) {
+      value = min
+    } else if (value &gt; max) {
+      value = max
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.setState({value})</span>
-<span class="cstat-no" title="statement not covered" >    this.props.onChange(name, value)</span>
+    this.setState({value})
+    this.props.onChange(name, value)
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
+  render() {
     const {
       hasFootnote, min, max, name, label, placeholder, value
-    } = <span class="cstat-no" title="statement not covered" >this.state</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    } = this.state
+    return (
       &lt;div className="input-box people-count"&gt;
         &lt;label
           className={hasFootnote ? "footnote-asterix": ""}
@@ -319,7 +313,7 @@ export default class PeopleCount extends Component {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 23 2018 16:49:47 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 24 2018 16:48:57 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>
