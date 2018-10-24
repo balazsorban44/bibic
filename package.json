@@ -10,7 +10,7 @@
     "nuka-carousel": "^4.4.1",
     "query-string": "5.1.1",
     "react": "^16.5.2",
-    "react-date-range": "^1.0.0-beta",
+    "react-date-range": "balazsorban44/react-date-range#patch-1",
     "react-dom": "^16.5.2",
     "react-reveal": "^1.2.2",
     "react-router": "^4.3.1",

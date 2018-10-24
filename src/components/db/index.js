@@ -38,8 +38,8 @@ export const withStore = WrappedComponent =>
 
 const initialReservation = {
   roomId: null,
-  from: TOMORROW,
-  to: TOMORROW,
+  from: TOMORROW.toDate(),
+  to: TOMORROW.toDate(),
   name: "",
   email: "",
   address: "",
