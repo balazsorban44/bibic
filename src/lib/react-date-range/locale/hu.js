@@ -1,13 +1,9 @@
-'use strict';
+Object.defineProperty(exports, "__esModule", {value: true})
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _hu = require('date-fns/locale/hu')
 
-var _hu = require('date-fns/locale/hu');
+var _hu2 = _interopRequireDefault(_hu)
 
-var _hu2 = _interopRequireDefault(_hu);
+function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : {default: obj} }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _hu2.default;
+exports.default = _hu2.default
