@@ -10,9 +10,9 @@ branches:
   - develop
   - feature/tests
 script:
-  - yarn test
-before_deploy:
   - yarn build
+before_deploy:
+  - yarn test
 deploy:
   skip_cleanup: true
   provider: firebase
