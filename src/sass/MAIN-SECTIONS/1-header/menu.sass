@@ -67,6 +67,9 @@ nav
         a
           color: $light !important
 .menu-hidden
+  pointer-events: none
+  .hamburger
+    pointer-events: all
   nav
     transform: translateX(-100%)
   .room-menu
@@ -119,6 +122,7 @@ nav
     transform: none !important
 
   .menu-hidden
+    pointer-events: all
     nav, .room-menu
       transform: none
 
