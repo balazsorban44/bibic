@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 // For the slider elements
 import arrow from '../../assets/icons/arrow.svg'
-import swipe from '../../assets/icons/swipe.svg'
 import {colors} from '../../utils/colors'
 
 export const Prev = ({previousSlide}) =>
@@ -27,16 +26,6 @@ export const Next = ({nextSlide}) =>
       src={arrow}
     />
   </div>
-
-
-export const SwipeIcon = ({isShowingSwipe = true, ...rest}) =>
-  <img
-    {...rest}
-    alt=""
-    className={`swipe-icon ${!isShowingSwipe ? "is-touched": ""}`}
-    src={swipe}
-  />
-
 
 export class Loading extends Component {
 
@@ -71,16 +60,4 @@ export class Loading extends Component {
   }
 }
 
-export const Button = ({label, to}) =>
-  <Link {...{to}} >{label}</Link>
-
-
-export const Tooltip = ({title, children}) =>
-  title ?
-    <div className="tooltip-wrapper">
-      <span className="tooltip">
-        {title}
-      </span>
-      {children}
-    </div>
-    : children
+export const Button = ({label, to}) => <Link {...{to}} >{label}</Link>

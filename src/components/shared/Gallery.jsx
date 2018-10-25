@@ -2,6 +2,7 @@ import React from 'react'
 import {Loading} from './Elements'
 import {withStore} from '../db'
 import {withRouter} from 'react-router-dom/'
+
 const Gallery = ({
   path, galleries, count,
   item: Item, itemClassName,
@@ -15,10 +16,8 @@ const Gallery = ({
         Item ?
           <Item
             key={key}
-            {...{
-              ...itemProps,
-              itemClassName
-            }}
+            {...{...itemProps,
+              itemClassName}}
           /> :
           <GalleryItem
             key={key}
