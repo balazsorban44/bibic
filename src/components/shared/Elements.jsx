@@ -32,9 +32,14 @@ export class Loading extends Component {
   state = {isTimedOut: false}
 
   componentDidMount() {
-    const timeout = setTimeout(() => this.setState({isTimedOut: true}), 10000)
-    clearTimeout(timeout)
+    this.timeout = setTimeout(this.tick, 10000)
   }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
+  }
+
+  tick = () => this.setState({isTimedOut: true})
 
 
   render() {
