@@ -122,7 +122,7 @@ class Menu extends Component {
                 key={id}
               >
                 <Link
-                  offset={isBigScreen ? -106 : 0}
+                  offset={isBigScreen ? -106 : -40}
                   onClick={this.handleHideMenu}
                   to={`szoba-${id}`}
                 >
