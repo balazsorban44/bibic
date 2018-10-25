@@ -10,7 +10,7 @@ branches:
   - develop
   - feature/tests
 script:
-  - cd node_modules/react-date-range;yarn;yarn build || true;cd ../..
+  - cd node_modules/react-date-range;yarn
   - yarn build
 before_deploy:
   - yarn test
