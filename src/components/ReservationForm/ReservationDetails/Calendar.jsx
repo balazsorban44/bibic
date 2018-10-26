@@ -50,9 +50,8 @@ class Calendar extends Component {
       roomId, from, to
     }, rooms} = this.props
     let {overlaps} = this.props
-    const unavailable = rooms && rooms[roomId-1] && rooms[roomId-1].unavailable
-    const disabled = overlaps
-    if (unavailable) disabled.push(moment.range(TODAY, moment(new Date(unavailable))))
+    const unavailable = rooms[roomId-1] && rooms[roomId-1].unavailable
+    if (unavailable) overlaps.push(moment.range(TODAY, moment(new Date(unavailable))))
 
     const selected = {
       startDate: from,
