@@ -47,7 +47,7 @@
     "test:badge": "npx make-coverage-badge",
     "test:coverage": "react-scripts test --coverage;yarn test:badge",
     "coverage": "rm -rf docs; rm -rf coverage; yarn test:coverage; mv coverage docs",
-    "test:coverage:watch": "yarn test:coverage --watch"
+    "test:coverage:watch": "react-scripts test --coverage --watch"
   },
   "browserslist": [
     ">0.2%",
@@ -61,9 +61,9 @@
       "html"
     ],
     "collectCoverageFrom": [
-      "src/**/*js",
+      "src/**/*{js,jsx}",
       "!/node_modules/",
-      "!src/lib/react-date-range/**/*js"
+      "!src/lib/react-date-range/**/*{js,jsx}"
     ]
   }
 }
