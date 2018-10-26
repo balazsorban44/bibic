@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>4/4</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -76,29 +76,22 @@
 31
 32
 33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+34
+35
+36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,18 +102,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React, {Fragment} from 'react'</span>
-<span class="cstat-no" title="statement not covered" >import {withStore} from '../db'</span>
-<span class="cstat-no" title="statement not covered" >import {Loading} from '../shared/Elements'</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
+import {withStore} from '../db'
+import {Loading} from '../shared/Elements'
 &nbsp;
-const RoomSelector = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span>rooms, reservation: {roomId},</span>
-  updateReservation}) =&gt;
-<span class="cstat-no" title="statement not covered" >  &lt;Fragment&gt;</span>
+export const RoomSelector = ({
+  rooms, reservation: {roomId},
+  updateReservation
+}) =&gt;
+  &lt;&gt;
     &lt;h4&gt;Válasszon szobát {roomId &amp;&amp; `(${roomId}. Szoba kiválasztva)`}&lt;/h4&gt;
     {rooms.length ?
       &lt;div className="room-picker"&gt;
-        {Object.values(rooms).map(<span class="fstat-no" title="function not covered" >({</span>id}) =&gt;
-<span class="cstat-no" title="statement not covered" >          &lt;div</span>
+        {Object.values(rooms).map(({id}) =&gt;
+          &lt;div
             className={`room-picker-room ${
               parseInt(roomId, 10) === id ?
                 "room-active":
@@ -131,7 +137,7 @@ const RoomSelector = <span class="cstat-no" title="statement not covered" ><span
           &gt;
             &lt;span
               className="button"
-              onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>updateReservation("roomId", id)}</span>
+              onClick={() =&gt; updateReservation("roomId", id)}
             &gt;
               {id}
             &lt;/span&gt;
@@ -140,7 +146,7 @@ const RoomSelector = <span class="cstat-no" title="statement not covered" ><span
       &lt;/div&gt; :
       &lt;Loading/&gt;
     }
-  &lt;/Fragment&gt;
+  &lt;/&gt;
 &nbsp;
 export default withStore(RoomSelector)</pre></td></tr>
 </table></pre>
@@ -148,7 +154,7 @@ export default withStore(RoomSelector)</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 26 2018 11:31:47 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 26 2018 17:43:46 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
