@@ -1,76 +1,107 @@
-import {mount} from 'enzyme'
-import React from 'react'
 import {DateRangePicker} from "../../../../lib/react-date-range"
 import Calendar from "../Calendar"
 import {Date as DateLabel} from '../../../shared/Form'
-import moment from "../../../../lib/moment"
 import {TOMORROW} from '../../../../utils/constants'
-import Database from "../../../db"
-import {MemoryRouter} from "react-router"
+import {sendNotification} from '../../../db/notification'
+import {Loading} from '../../../shared/Elements'
+
+
+jest.mock('../../../db/notification', () => ({sendNotification: jest.fn()}))
+
 
 describe("Calendar component", () => {
-  const wrapper = mount(
-    <MemoryRouter>
-      <Database
-        overlaps={[]}
-        reservation={{roomId: 1}}
-      >
-        <Calendar />
-      </Database>
-    </MemoryRouter>
-  )
 
-  test("renders correctly", () => {
+  const props = {
+    overlaps: [moment.range(TOMORROW, TOMORROW.clone().add(1, "week"))],
+    fetchOverlaps: jest.fn(),
+    rooms: [{unavailable: TOMORROW.clone().add(1, "month").format("YYYY-MM-DD")}],
+    reservation: {
+      roomId: 1,
+      from: moment().toDate(),
+      to: moment().add(1, "day").toDate()
+    },
+    updateReservation: jest.fn()
+  }
+
+  const wrapper = mount(<Calendar {...props}/>)
+
+  it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
   })
 
-  describe("Contains children", () => {
-    test("label for start date", () => {
+  describe("DateRangePicker", () => {
+    it("renders when fetched", async () => {
+      expect.assertions(1)
+      await wrapper.childAt(0).instance().componentDidMount()
+      wrapper.update()
+      expect(wrapper.find(DateRangePicker).length).toEqual(1)
+    })
+
+    it("propagates date change", () => {
+      const change = {selection: {startDate: new Date(), endDate: new Date()}}
+      const spy = jest.spyOn(wrapper.childAt(0).instance(), "handleSelect")
+      // wrapper.find(DateRangePicker).simulate("change", change)
+      wrapper.childAt(0).instance().handleSelect(change)
+      expect(spy).toBeCalledWith(change)
+      expect(props.updateReservation).toBeCalledTimes(2)
+      expect(props.updateReservation).toBeCalledWith("from", moment(change.selection.startDate).format("YYYY-MM-DD"))
+      expect(props.updateReservation).toBeCalledWith("to", moment(change.selection.endDate).format("YYYY-MM-DD"))
+      expect(sendNotification).toBeCalledWith("calendarSelectSuccess")
+    })
+
+  })
+
+  describe("Contains", () => {
+    it("label for start date", () => {
       expect(wrapper.find({name: "from"}).contains(DateLabel)).toBe(true)
     })
 
-    test("label for end date", () => {
+    it("label for end date", () => {
       expect(wrapper.find({name: "to"}).contains(DateLabel)).toBe(true)
     })
+
+    /**
+     * NOTE: Local implementation
+     * @see https://github.com/Adphorus/react-date-range/issues/231
+     */
   })
 
-  describe("react-date-range is fetched at mount", () => {
-    console.log(wrapper.find(Calendar))
+  describe("Overlaps", () => {
+    it("room change fetches overlaps", () => {
+      const roomId = props.reservation.roomId + 1
+      wrapper.setProps({reservation: {...props.reservation,
+        roomId}})
+      expect(props.fetchOverlaps).toBeCalledWith(roomId)
+    })
 
-  })
+
+    /*
+     * it("change is propagated", async () => {
+     *   expect.assertions(4)
+     *   const asyncWrapper = await mount(<Calendar {...props}/>)
+     *   await asyncWrapper.childAt(0).instance().componentDidMount()
+     *   const dateRangePicker = await asyncWrapper.childAt(0).find(DateRangePicker)
+     *   const startDate = TOMORROW.clone().add(2, "week").toDate()
+     *   const endDate = TOMORROW.clone().add(3, "week").toDate()
+     *   dateRangePicker.simulate("change", {selection: {startDate, endDate}})
+     *   expect(props.updateReservation).toBeCalledTimes(2)
+     *   expect(props.updateReservation).toBeCalledWith("from", moment(startDate).format("YYYY-MM-DD"))
+     *   expect(props.updateReservation).toBeCalledWith("to", moment(endDate).format("YYYY-MM-DD"))
+     *   expect(sendNotification).toBeCalledWith("calendarSelectSuccess")
+     * })
+     */
 
 
-  /**
-   * NOTE: Local implementation
-   * @see https://github.com/Adphorus/react-date-range/issues/231
-   */
-  test("handling overlaps", () => {
-    const overlaps = Array
-      .from(moment
-        .range(TOMORROW, TOMORROW.clone()
-          .add(1, "week")).by("day")
-      ).map(day => day.toDate())
-
-    const selectionRange = {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection'
-    }
-
-    const component = mount(
-      <DateRangePicker
-        disabledDates={overlaps}
-        minDate={new Date()}
-        ranges={[selectionRange]}
-      />
-    )
-
-    expect(
-      component.findWhere(e =>
-        e.hasClass("rdrDay") &&
-      e.contains(TOMORROW.clone().add(1, "day").format("DD"))
-      ).hasClass("rdrDayDisabled")
-    ).toBe(true)
+    /*
+     * it("gets disabled", () => {
+     *   expect(
+     *     dateRangePicker.findWhere(e =>
+     *       e.hasClass("rdrDay") && e.contains(TOMORROW.clone().add(1, "day").format("DD"))
+     *     ).hasClass("rdrDayDisabled")
+     *   ).toBe(true)
+     * })
+     */
   })
 })
+
 

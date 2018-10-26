@@ -1,5 +1,3 @@
-import React from 'react'
-import {mount} from 'enzyme'
 import {Button} from '../Elements'
 import {MemoryRouter} from 'react-router'
 
@@ -13,11 +11,11 @@ describe("Button component", () => {
     </MemoryRouter>
   )
 
-  test("renders correctly", () => {
+  it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
   })
 
-  test("props are propagated", () => {
+  it("props are propagated", () => {
     expect(wrapper.children().childAt(0).prop("to")).toBe(props.to)
     expect(wrapper.children().childAt(0).childAt(0).prop("children")).toBe(props.label)
   })

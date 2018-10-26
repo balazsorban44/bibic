@@ -40,8 +40,8 @@ describe("translations 🌐 ", () => {
   describe("translate", () => {
     const keyEnglish = "roomId"
     const keyHungarian = "szoba"
-    test("translate to Hungarian 🇭🇺", () => expect(translate(keyEnglish)).toBe(translations[keyEnglish][0]))
-    test("translate to English 🇬🇧", () => expect(translate(keyHungarian)).toBe("roomId"))
+    it("translate to Hungarian 🇭🇺", () => expect(translate(keyEnglish)).toBe(translations[keyEnglish][0]))
+    it("translate to English 🇬🇧", () => expect(translate(keyHungarian)).toBe("roomId"))
   })
 
   describe("isQueryString", () => {
@@ -51,24 +51,24 @@ describe("translations 🌐 ", () => {
     translationsNOTInURL.map(key => {
       test(`${key} is queryString`, () => expect(isQueryString(key)).toBe(false))
     })
-    test("key has no translation returns false", () => expect(isQueryString("")).toBe(false))
+    it("key has no translation returns false", () => expect(isQueryString("")).toBe(false))
   })
 })
 
 
 describe("toPrice", () => {
-  test("invalid value returns HUF 0", () => {
+  it("invalid value returns HUF 0", () => {
     expect(toPrice(NaN).replace(/\s/g, ' ')).toBe("HUF 0")
   })
-  test("100000 returns HUF 100,000", () => {
+  it("100000 returns HUF 100,000", () => {
     expect(toPrice(100000).replace(/\s/g, ' ')).toBe("HUF 100,000")
   })
 
-  test("1.0 returns HUF 1", () => {
+  it("1.0 returns HUF 1", () => {
     expect(toPrice(1.0).replace(/\s/g, ' ')).toBe("HUF 1")
   })
 
-  test("3/2 returns HUF 2", () => {
+  it("3/2 returns HUF 2", () => {
     expect(toPrice(3/2).replace(/\s/g, ' ')).toBe("HUF 2")
   })
 })

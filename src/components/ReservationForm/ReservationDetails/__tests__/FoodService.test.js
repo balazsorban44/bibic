@@ -1,5 +1,3 @@
-import React from 'react'
-import {mount} from 'enzyme'
 import FoodService from '../FoodService'
 import {Service} from '../../../shared/Form'
 
@@ -11,15 +9,15 @@ describe("FoodService component", () => {
     <FoodService reservation={reservation}/>
   )
 
-  test("renders correctly", () => {
+  it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
   })
 
-  test("shows all service types", () => {
+  it("shows all service types", () => {
     expect(wrapper.find(Service)).toHaveLength(serviceTypes.length)
   })
 
-  test("correct service is checked", () => {
+  it("correct service is checked", () => {
     const selected =
       wrapper.findWhere(e =>
         e.type() === Service &&

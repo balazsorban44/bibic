@@ -1,5 +1,3 @@
-import React from 'react'
-import {shallow} from 'enzyme'
 import PersonalDetails from '../'
 import PersonalDetail from '../PersonalDetail'
 
@@ -16,7 +14,7 @@ describe("PersonalDetails component", () => {
   }
   const wrapper = shallow(<PersonalDetails {...props}/>)
 
-  test("renders correctly", () => {
+  it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
   })
 

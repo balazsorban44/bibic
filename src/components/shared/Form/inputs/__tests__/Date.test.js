@@ -1,7 +1,4 @@
-import React from 'react'
-import {mount} from 'enzyme'
 import Date from '../Date'
-import moment from "../../../../../lib/moment"
 
 describe("Date component", () => {
   const props = {
@@ -13,7 +10,7 @@ describe("Date component", () => {
   }
   const wrapper = mount(<Date {...props}/>)
 
-  test("renders correctly", () => {
+  it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
   })
 
@@ -21,7 +18,7 @@ describe("Date component", () => {
   describe("Input div", () => {
     const inputDiv = wrapper.findWhere(e => e.hasClass("input-box"))
 
-    test("click send notification", () => {
+    it("click send notification", () => {
       inputDiv.simulate("click")
       expect(wrapper.prop("notification")).toBeCalledWith("useCalendarAsInput")
     })
@@ -30,7 +27,7 @@ describe("Date component", () => {
 
   describe("Input", () => {
 
-    test("inherits right props", () => {
+    it("inherits right props", () => {
       const input = wrapper.find("input")
       expect(input.prop("id")).toBe(props.name)
       expect(input.prop("name")).toBe(props.name)
@@ -38,11 +35,11 @@ describe("Date component", () => {
     })
 
     describe("Value", () => {
-      test("formatted date if specified", () => {
+      it("formatted date if specified", () => {
         expect(wrapper.find("input").prop("value")).toBe(moment(props.value).format("LL"))
       })
 
-      test("Message if not specified", () => {
+      it("Message if not specified", () => {
         wrapper.setProps({value: null})
         expect(wrapper.find("input").prop("value")).toBe("Nincs megadva")
       })
@@ -52,16 +49,16 @@ describe("Date component", () => {
 
   describe("Label", () => {
 
-    test("inherits label text", () => {
+    it("inherits label text", () => {
       expect(wrapper.find("label").prop("children")).toBe(props.label)
     })
 
     describe("Footnote", () => {
-      test("has", () => {
+      it("has", () => {
         wrapper.setProps({hasFootnote: true})
         expect(wrapper.find("label").hasClass("footnote-asterix")).toBe(true)
       })
-      test("has not", () => {
+      it("has not", () => {
         wrapper.setProps({hasFootnote: false})
         expect(wrapper.find("label").hasClass("footnote-asterix")).toBe(false)
       })
