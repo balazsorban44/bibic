@@ -1,9 +1,4 @@
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
+export default {
   dateRangeWrapper: 'rdrDateRangeWrapper',
   calendarWrapper: 'rdrCalendarWrapper',
   dateDisplay: 'rdrDateDisplay',
@@ -54,5 +49,5 @@ exports.default = {
   monthName: 'rdrMonthName',
   infiniteMonths: 'rdrInfiniteMonths',
   monthsVertical: 'rdrMonthsVertical',
-  monthsHorizontal: 'rdrMonthsHorizontal'
+  monthsHorizontal: 'rdrMonthsHorizontal',
 };
