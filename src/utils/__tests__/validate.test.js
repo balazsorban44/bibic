@@ -204,8 +204,34 @@ describe("valueToState", () => {
   })
 
   describe("people", () => {
-    test("minimum adult is 1", () => expect(valueToState("adults", undefined)).toBe(1))
+    
+    describe("Adults", () => {
+      test("minimum is 1", () => expect(valueToState("adults", undefined)).toBe(1))
+    })
+    
+    describe("Children", () => {
+      const invalidAgeGroup = "0-12"
+      const validAgeGroup = "6-12"
+      describe("Invalid", () => {
+        test("minimum child is 0", () => {
+          expect(valueToState("children", undefined)).toHaveLength(0)
+        })
+        
+        test("mix of valid invalid is 0", () => {
+          expect(valueToState("children", [valid, invalidAgeGroup])).toHaveLength(0)
+        })
+      })
+  
+      describe("Valid", () => {
+        test("always return array of children", () => {
+          expect(valueToState("children", validAgeGroup)).toEqual([validAgeGroup])
+        })
+      })
+
+    })
+
   })
+
 
   describe("dates", () => {
     const date = moment()

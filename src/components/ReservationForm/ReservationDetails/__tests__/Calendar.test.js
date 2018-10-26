@@ -5,15 +5,20 @@ import Calendar from "../Calendar"
 import {Date as DateLabel} from '../../../shared/Form'
 import moment from "../../../../lib/moment"
 import {TOMORROW} from '../../../../utils/constants'
-
-const wrapper = mount(
-  <Calendar
-    overlaps={[]}
-    reservation={{roomId: 1}}
-  />
-)
+import Database from "../../../db"
+import {MemoryRouter} from "react-router"
 
 describe("Calendar component", () => {
+  const wrapper = mount(
+    <MemoryRouter>
+      <Database
+        overlaps={[]}
+        reservation={{roomId: 1}}
+      >
+        <Calendar />
+      </Database>
+    </MemoryRouter>
+  )
 
   test("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
@@ -27,42 +32,45 @@ describe("Calendar component", () => {
     test("label for end date", () => {
       expect(wrapper.find({name: "to"}).contains(DateLabel)).toBe(true)
     })
+  })
+
+  describe("react-date-range is fetched at mount", () => {
+    console.log(wrapper.find(Calendar))
 
   })
 
 
-})
+  /**
+   * NOTE: Local implementation
+   * @see https://github.com/Adphorus/react-date-range/issues/231
+   */
+  test("handling overlaps", () => {
+    const overlaps = Array
+      .from(moment
+        .range(TOMORROW, TOMORROW.clone()
+          .add(1, "week")).by("day")
+      ).map(day => day.toDate())
 
+    const selectionRange = {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection'
+    }
 
-/**
- * NOTE: Local implementation
- * @see https://github.com/Adphorus/react-date-range/issues/231
- */
-test("DateRangePicker is handling the overlaps", () => {
-  const overlaps = Array
-    .from(moment
-      .range(TOMORROW, TOMORROW.clone()
-        .add(1, "week")).by("day")
-    ).map(day => day.toDate())
+    const component = mount(
+      <DateRangePicker
+        disabledDates={overlaps}
+        minDate={new Date()}
+        ranges={[selectionRange]}
+      />
+    )
 
-  const selectionRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection'
-  }
-
-  const component = mount(
-    <DateRangePicker
-      disabledDates={overlaps}
-      minDate={new Date()}
-      ranges={[selectionRange]}
-    />
-  )
-
-  expect(
-    component.findWhere(e =>
-      e.hasClass("rdrDay") &&
+    expect(
+      component.findWhere(e =>
+        e.hasClass("rdrDay") &&
       e.contains(TOMORROW.clone().add(1, "day").format("DD"))
-    ).hasClass("rdrDayDisabled")
-  ).toBe(true)
+      ).hasClass("rdrDayDisabled")
+    ).toBe(true)
+  })
 })
+
