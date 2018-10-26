@@ -9,7 +9,7 @@ import ReservationDetails from './ReservationDetails'
 import Footnote from './Footnote'
 
 
-class ReservationForm extends Component {
+export class ReservationForm extends Component {
 
   componentDidMount() {window.scrollTo(0, 0)}
 
@@ -26,7 +26,6 @@ class ReservationForm extends Component {
     const maxPeople = (rooms.length && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
 
     return(
-
       <form
         action=""
         className="form"

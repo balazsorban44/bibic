@@ -1,13 +1,16 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
 
 const RoomServices = ({roomServices, reservation: {roomId}}) =>
-  <Fragment>
+  <>
     <h5>a szoba szolgáltatásai</h5>
-    {roomServices.length ?
       <div className="room-services">
-        {roomServices.map(([key, {inRoom, name, icon}]) =>
+        {roomServices.length ? roomServices.map(([
+          key, {
+            inRoom, name, icon
+          }
+        ]) =>
           <div
             className={`room-service ${
               Object.values(inRoom).includes(roomId) ?
@@ -22,11 +25,9 @@ const RoomServices = ({roomServices, reservation: {roomId}}) =>
             />
             <span>{name}</span>
           </div>
-        )}
-      </div> :
-      <Loading/>
-    }
-  </Fragment>
+        ) : <Loading/>}
+      </div>
+  </>
 
 export default withStore(RoomServices)
 
