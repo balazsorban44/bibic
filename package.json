@@ -44,7 +44,7 @@
     "eject": "react-scripts eject",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test --coverage --coverageReporters html --watch",
-    "test:coverage": "rm -rf docs; rm -rf coverage; react-scripts test --coverage | npx coveralls; mv coverage docs"
+    "test:coverage": "rm -rf coverage;react-scripts test --coverage --coverageReporters html text-lcov | npx coveralls"
   },
   "browserslist": [
     ">0.2%",
@@ -53,11 +53,6 @@
     "not op_mini all"
   ],
   "jest": {
-    "coverageReporters": [
-      "json-summary",
-      "html",
-      "text-lcov"
-    ],
     "collectCoverageFrom": [
       "src/**/*{js,jsx}",
       "!/node_modules/",
