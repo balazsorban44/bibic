@@ -23,7 +23,7 @@ class Calendar extends Component {
     const {fetchOverlaps, reservation: {roomId}} = this.props
     fetchOverlaps(roomId)
     try {
-      const {DateRangePicker} = await import("react-date-range")
+      const {DateRangePicker} = await import("../../../lib/react-date-range")
       await import('../../../lib/react-date-range/theme/default.css')
       this.setState({DateRangePicker})
     } catch(error) {
