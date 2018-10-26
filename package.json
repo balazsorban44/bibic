@@ -43,7 +43,7 @@
     "deploy": "npm run build && firebase deploy",
     "eject": "react-scripts eject",
     "test": "CI=true react-scripts test",
-    "test:watch": "react-scripts test --coverage --watch",
+    "test:watch": "react-scripts test --coverage --coverageReporters html --watch",
     "test:coverage": "rm -rf docs; rm -rf coverage; react-scripts test --coverage | npx coveralls; mv coverage docs"
   },
   "browserslist": [
