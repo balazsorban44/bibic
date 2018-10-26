@@ -26,7 +26,6 @@
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "make-coverage-badge": "^1.0.1",
     "node-sass-chokidar": "^1.3.3",
     "npm-run-all": "^4.1.3",
     "react-scripts": "2.0.5",
@@ -44,11 +43,8 @@
     "deploy": "npm run build && firebase deploy",
     "eject": "react-scripts eject",
     "test": "CI=true react-scripts test",
-    "test:watch": "react-scripts test --watch",
-    "test:badge": "npx make-coverage-badge",
-    "test:coverage": "react-scripts test --coverage;yarn test:badge",
-    "coverage": "rm -rf docs; rm -rf coverage; yarn test:coverage | npx coveralls; mv coverage docs",
-    "test:coverage:watch": "react-scripts test --coverage --watch"
+    "test:watch": "react-scripts test --coverage --watch",
+    "test:coverage": "rm -rf docs; rm -rf coverage; react-scripts test --coverage | npx coveralls; mv coverage docs"
   },
   "browserslist": [
     ">0.2%",
