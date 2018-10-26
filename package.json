@@ -45,9 +45,9 @@
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test --watch",
     "test:badge": "npx make-coverage-badge",
-    "test:coverage": "react-scripts test --coverage;  yarn test:badge",
+    "test:coverage": "react-scripts test --coverage;yarn test:badge",
     "coverage": "rm -rf docs; rm -rf coverage; yarn test:coverage; mv coverage docs",
-    "test:coverage:watch": "react-scripts test --coverage --watch"
+    "test:coverage:watch": "yarn test:coverage --watch"
   },
   "browserslist": [
     ">0.2%",
@@ -59,6 +59,11 @@
     "coverageReporters": [
       "json-summary",
       "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*js",
+      "!/node_modules/",
+      "!src/lib/react-date-range/**/*js"
     ]
   }
 }
