@@ -22,7 +22,7 @@ const menu = [
   {to:"kapcsolat", name: "Kapcsolat"}
 ]
 
-class Menu extends Component {
+export class Menu extends Component {
 
   state = {
     isMenuOpen: false,

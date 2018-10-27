@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import {withStore} from './db'
 import Fade from "react-reveal/Fade"
 
-class Prices extends Component {
+export class Prices extends Component {
 
   state = {minPrice: "Betöltés..."}
 

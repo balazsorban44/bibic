@@ -6,7 +6,7 @@ import PersonalDetails from './shared/PersonalDetails'
 import {withStore} from './db'
 
 
-class Message extends Component {
+export class Message extends Component {
 
   componentDidMount() {window.scrollTo(0, 0)}
 

@@ -84,7 +84,7 @@ const App = () =>
   </>
 
 
-const NotFound = () =>
+export const NotFound = () =>
   <div className="not-found">
     <h2>
       404
@@ -96,7 +96,7 @@ const NotFound = () =>
   </div>
 
 
-const Main = () =>
+export const Main = () =>
   <>
     <Menu/>
     <Hero/>

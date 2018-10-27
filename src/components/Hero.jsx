@@ -8,11 +8,11 @@ import Zoom from "react-reveal/Zoom"
 import makeCarousel from 'react-reveal/makeCarousel'
 
 
-const CarouselUI = ({children}) => <div className="hero-slider">{children}</div>
+export const CarouselUI = ({children}) => <div className="hero-slider">{children}</div>
 const Carousel = makeCarousel(CarouselUI)
 
 
-class Hero extends Component {
+export class Hero extends Component {
 
   state = {isBigScreen: false}
 
