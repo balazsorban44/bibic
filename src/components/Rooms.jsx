@@ -4,7 +4,7 @@ import {Loading} from './shared/Elements'
 import {withStore} from "./db"
 import Fade from "react-reveal/Fade"
 
-const Rooms = ({
+export const Rooms = ({
   galleries, rooms, roomServices
 }) =>
   <section id="szobak">
@@ -13,7 +13,7 @@ const Rooms = ({
       {rooms.length ? rooms.map((room, key) =>
         <Fade key={key}>
           <Room
-            pictures={galleries["szobak"] ? galleries["szobak"][key] : []}
+            pictures={galleries["szobak"] ? galleries["szobak"][key] : undefined}
             services={roomServices}
             {...room}
           />
@@ -26,7 +26,7 @@ const Rooms = ({
 
 export default withStore(Rooms)
 
-const Room = ({
+export const Room = ({
   id, name, description, pictures, services
 }) =>
   <li
@@ -57,8 +57,9 @@ const Room = ({
     </div>
   </li>
 
+Room.defaultProps = {pictures: []}
 
-class RoomSlider extends Component {
+export class RoomSlider extends Component {
 
   state = {
     positionX: 0,
@@ -129,7 +130,7 @@ class RoomSlider extends Component {
                    * onMouseLeave={this.setTicker}
                    */
                   className={!isFirst ? "room-placeholder-slide" : "room-first-slide"}
-                  style={{zIndex: isFirst ? 99 : 10-index}}
+                  style={{zIndex: isFirst ? 99 : 10 - index}}
                 >
                   <Slide
                     {...{picture}}
@@ -158,7 +159,7 @@ class RoomSlider extends Component {
   }
 }
 
-const Slide = ({picture: {
+export const Slide = ({picture: {
   fileName, SIZE_768, SIZE_1280, SIZE_1440
 }}) =>
   <picture>
