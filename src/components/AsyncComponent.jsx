@@ -1,13 +1,18 @@
 import React, {Component} from "react"
 import {Loading} from "./shared/Elements"
+import {sendNotification} from "./db/notification"
 
 export default importComponent =>
   class extends Component {
     state = {C: null}
 
     async componentDidMount() {
-      const {default: C} = await importComponent()
-      this.setState({C})
+      try {
+        const {default: C} = await importComponent()
+        this.setState({C})
+      } catch (error) {
+        sendNotification(error.message)
+      }
     }
 
     render() {
