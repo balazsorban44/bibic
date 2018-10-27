@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom'
 import Menu, {BackMenu} from './Menu'
 
-import asyncComponent from "./AsyncComponent"
+import lazy from "./AsyncComponent"
 import Introduction from './Introduction'
 import Hero from './Hero'
 
@@ -12,14 +12,14 @@ import {ToastContainer} from 'react-toastify'
 import ChatFAB from './ChatFAB'
 
 // NOTE: Asynchronously fetching Components that do not need to load at startup
-const ReservationForm = asyncComponent(() => import("./ReservationForm"))
-const Sunflower = asyncComponent(() => import('./Sunflower'))
-const Services = asyncComponent(() => import('./Services'))
-const Prices = asyncComponent(() => import('./Prices'))
-const Message = asyncComponent(() => import("./Message"))
-const Rooms = asyncComponent(() => import("./Rooms"))
-const Carousel = asyncComponent(() => import("./shared/Carousel"))
-const MoreServices = asyncComponent(() => import("./MoreServices"))
+const ReservationForm = lazy(() => import("./ReservationForm"))
+const Sunflower = lazy(() => import('./Sunflower'))
+const Services = lazy(() => import('./Services'))
+const Prices = lazy(() => import('./Prices'))
+const Message = lazy(() => import("./Message"))
+const Rooms = lazy(() => import("./Rooms"))
+const Carousel = lazy(() => import("./shared/Carousel"))
+const MoreServices = lazy(() => import("./MoreServices"))
 
 const App = () =>
   <>
