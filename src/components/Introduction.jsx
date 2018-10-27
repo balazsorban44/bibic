@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, {Suspense, lazy} from 'react'
 import hegedus from '../assets/images/intro/hegedus.jpg'
 import hegedusne from '../assets/images/intro/hegedusne.jpg'
 import gombkoto from '../assets/images/intro/gombkoto.jpg'
-import asyncComponent from './AsyncComponent'
 import Zoom from "react-reveal/Zoom"
 import Fade from "react-reveal/Fade"
+import {Loading} from './shared/Elements'
 
-const Paragraphs = asyncComponent(() => import("./shared/Paragraphs"))
+const Paragraphs = lazy(() => import("./shared/Paragraphs"))
 
 const profiles = [
   {
