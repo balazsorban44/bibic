@@ -9,6 +9,7 @@ branches:
   - master
   - develop
   - feature/tests
+  - greenkeeper.*
 script:
   - yarn build
   - yarn test
