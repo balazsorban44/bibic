@@ -4,10 +4,10 @@ import {toast} from "react-toastify"
 export const sendNotification = (type, message) => {
   switch (type) {
   case "sameDay":
-    toast.warning("A foglalás minimum 1 éjszakát kell hogy tartalmazzon. Kérjük válasszon másik dátumot.")
+    toast.warn("A foglalás minimum 1 éjszakát kell hogy tartalmazzon. Kérjük válasszon másik dátumot.")
     break
   case "overlap":
-    toast.warning("Az adott intervallum már tartalmaz foglalást. Az elérhető leghosszabb intervallum kijelölve. Próbálkozhat új intervallummal, vagy másik szobával.", {autoClose: 10000})
+    toast.warn("Az adott intervallum már tartalmaz foglalást. Az elérhető leghosszabb intervallum kijelölve. Próbálkozhat új intervallummal, vagy másik szobával.", {autoClose: 10000})
     break
   case "calendarSelectSuccess":
     toast.info("Dátum kiválasztva.", {hideProgressBar: true, autoClose: 1000})
@@ -17,6 +17,24 @@ export const sendNotification = (type, message) => {
     break
   case "wrongInput":
     toast.error(`${message} Ha úgy gondolja más a hiba oka, kérjük írjon az alábbi címre: hiba@bibicvedeghazak.hu`, {autoClose: 7500})
+    break
+  case "reservationSubmitted":
+    toast.success(
+      <p style={{padding: ".5rem",
+        fontSize: "1.2rem"}}
+      >Foglalását rögzítettük. <br/>
+        <span style={{fontSize: "1rem"}}>
+        Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:<br/>
+          <a
+            href="mailto:info@bibicvendeghazak.hu"
+            style={{color: "white"}}
+          >info@bibicvendeghazak.hu</a><br/>
+          <a
+            href="tel:+36305785730"
+            style={{color: "white"}}
+          >+36 30 578 5730</a>
+        </span>
+      </p>, {autoClose: 7500})
     break
   case "messageSuccess":
     toast.success(
@@ -40,7 +58,14 @@ export const sendNotification = (type, message) => {
       </p>, {autoClose: 7500})
     break
   case "error":
-    toast.error(<span>Hiba: {message}</span>)
+    toast.error(
+      <p style={{padding: ".5rem",
+        fontSize: "1.2rem"}}
+      >Hiba: {message}<br/>
+        <span style={{fontSize: "1rem"}}>
+    Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés&body=${message}`}>hiba@bibicvedeghazak.hu</a>
+        </span>
+      </p>, {autoClose: 10000})
     break
   default:
     toast.info(type)

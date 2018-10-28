@@ -3,7 +3,9 @@ import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
 import {withRouter} from 'react-router-dom'
 import {isQueryString, translate} from '../../utils/language'
-import {submitReservation, getPrice} from './reservation'
+import {
+  submitReservation, getPrice, normalizeReservation
+} from './reservation'
 import {valueToState} from '../../utils/validate'
 import {isEquivalent} from '../../utils/compare'
 import {
@@ -145,7 +147,7 @@ class Database extends Component {
 
   handleSubmitReservation = () =>
     submitReservation(
-      {...this.state.reservation},
+      normalizeReservation(this.state.reservation),
       isReserving => this.setState({isReserving}),
       () => this.setState({reservation: initialReservation}),
       () => this.props.history.push(""),
