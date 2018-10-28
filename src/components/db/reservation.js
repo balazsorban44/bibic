@@ -5,21 +5,25 @@ import {validateReservation} from '../../utils/validate'
 import {sendNotification} from './notification'
 
 
-export const getPrice = (room, {
-  roomId, adults, children, foodService, from, to
-}) => {
+export const getPrice = (room, reservation) => {
   let price = 0
-  adults = room.prices.table[foodService][adults]
-  if (!adults) return price
-  children = children.filter(child => child==="6-12").length
-  if (children) {
-    price = adults[children].price
-  } else {
-    price = adults[0].price
-  }
-  // If interval chosen, price times the days
-  if (from && to) {
-    return price*moment(to).diff(moment(from), "days")
+  if (room && reservation) {
+    const {
+      foodService, from, to
+    } = reservation
+    let {adults, children} = reservation
+    adults = room.prices.table[foodService][adults]
+    if (!adults) return price
+    children = children.filter(child => child==="6-12").length
+    if (children) {
+      price = adults[children].price
+    } else {
+      price = adults[0].price
+    }
+    // If interval chosen, price times the days
+    if (from && to) {
+      return price*moment(to).diff(moment(from), "days")
+    } else return price
   }
   return price
 }
@@ -40,11 +44,14 @@ export const isAvailable = (roomId, from, to) =>
  * @param {object} reservation The reservation to be verified
  * @return {boolean}
  */
-const isValidReservation = (reservation, rooms) => {
+export const isValidReservation = (reservation, rooms) => {
 
-  const {roomId} = reservation
-  const roomLength = Object.keys(rooms).length
-  const maxPeople = roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople
+  if (!reservation || !reservation.roomId || !rooms.length) {
+    sendNotification("error", "wrong parameters")
+    return false
+  }
+  const roomLength = rooms.length
+  const maxPeople = rooms[reservation.roomId-1].prices.metadata.maxPeople
 
   const error = validateReservation({
     roomLength, maxPeople, ...reservation

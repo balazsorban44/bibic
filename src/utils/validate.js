@@ -28,12 +28,13 @@ export const valid = {
         ["0-6", "6-12"].includes(child.name) && child.count >= 0
     )),
   peopleCount: (adults, children, maxPeople) => adults + children.reduce((acc, {count}) => acc+count, 0) <= maxPeople,
-  subject: subject => ["eventHall", "fullHouse", "special", "other"].includes(subject)
+  subject: subject => ["eventHall", "fullHouse", "special", "other"].includes(subject),
+  foodService: service => ["breakfast", "halfBoard"].includes(service)
 }
 
 
 export const validateReservation = ({
-  roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople
+  roomId, roomLength, name, email, tel, address, from, to, message, adults, children, maxPeople, foodService
 }) =>
   !valid.roomId(roomId, roomLength) ? "Érvénytelen szobaszám" :
     !valid.name(name) ? "Érvénytelen név" :
@@ -47,8 +48,9 @@ export const validateReservation = ({
                     !valid.messageMin(message) ? "Túl rövid üzenet (min 40 karakter)" :
                       !valid.adults(adults) ? "Érvénytelen felnőtt" :
                         !valid.children(children) ? "Érvénytelen gyerek" :
-                          !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
-                            false
+                          !valid.foodService(foodService) ? "Érvénytelen ellátás" :
+                            !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
+                              false
 
 export const validateMessage = ({
   subject, name, email, tel, content, address
