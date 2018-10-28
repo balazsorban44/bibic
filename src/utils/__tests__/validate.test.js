@@ -92,7 +92,7 @@ describe("validate reservation", () => {
 
 
 describe("validateReservation", () => {
-  const res = {
+  const params = {
     roomId: 1,
     roomLength: 6,
     name: "Name Name",
@@ -104,63 +104,67 @@ describe("validateReservation", () => {
     message: "Lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet.",
     adults: 1,
     children: [],
+    // NOTE: Add test
+    foodService: "breakfast",
     maxPeople: 3
   }
   describe("invalid 👎", () => {
     it("roomId", () =>
-      expect(validateReservation({...res, roomId: 0})).toContain("szobaszám"))
+      expect(validateReservation({...params, roomId: 0})).toContain("szobaszám"))
 
     it("name", () =>
-      expect(validateReservation({...res, name: ""})).toContain("név"))
+      expect(validateReservation({...params, name: ""})).toContain("név"))
 
     it("email", () =>
-      expect(validateReservation({...res, email: "email@name."})).toContain("e-mail"))
+      expect(validateReservation({...params, email: "email@name."})).toContain("e-mail"))
 
     it("tel", () =>
-      expect(validateReservation({...res, tel: ""})).toContain("telefon"))
+      expect(validateReservation({...params, tel: ""})).toContain("telefon"))
 
     it("address", () =>
-      expect(validateReservation({...res, address: ""})).toContain("lakcím"))
+      expect(validateReservation({...params, address: ""})).toContain("lakcím"))
 
     it("arrival is too early", () =>
-      expect(validateReservation({...res, from: moment()})).toContain("érkezés"))
+      expect(validateReservation({...params, from: moment()})).toContain("érkezés"))
 
     it("departure is too early", () =>
-      expect(validateReservation({...res, to: moment()})).toContain("távozás"))
+      expect(validateReservation({...params, to: moment()})).toContain("távozás"))
 
     it("period length is less than 1 night", () =>
-      expect(validateReservation({...res, to: res.from})).toContain("éjszakát"))
+      expect(validateReservation({...params, to: params.from})).toContain("éjszakát"))
 
     it("message", () =>
-      expect(validateReservation({...res, message: 0})).toContain("üzenet"))
+      expect(validateReservation({...params, message: 0})).toContain("üzenet"))
 
     it("message less than 40 char", () =>
-      expect(validateReservation({...res, message: "lorem ipsum"})).toContain("rövid"))
+      expect(validateReservation({...params, message: "lorem ipsum"})).toContain("rövid"))
 
     it("adult is 0", () =>
-      expect(validateReservation({...res, adults: 0})).toContain("felnőtt"))
+      expect(validateReservation({...params, adults: 0})).toContain("felnőtt"))
 
     it("children count is -1", () =>
-      expect(validateReservation({...res,
+      expect(validateReservation({...params,
         children: [ {name: "0-6", count: -1} ]})).toContain("gyerek"))
 
     it("people count is higher than max people", () =>
-      expect(validateReservation({...res, adults: 4})).toContain("száma"))
+      expect(validateReservation({...params, adults: 4})).toContain("száma"))
 
     it("people count is higher than max people 2", () =>
       expect(validateReservation({
-        ...res, adults: 1, children: [{name: "0-6", count: 3}]
+        ...params, adults: 1, children: [{name: "0-6", count: 3}]
       })).toContain("száma"))
 
+    it("invalid food service", () =>
+      expect(validateReservation({...params, foodService: "invalid"})).toContain("ellátás"))
   })
 
   it("passed", () =>
-    expect(validateReservation(res)).toBe(false))
+    expect(validateReservation(params)).toBe(false))
 
 })
 
 
-describe("validateReservation", () => {
+describe("validateMessage", () => {
   const mes = {
     subject: "eventHall",
     name: "Name Name",
