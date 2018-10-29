@@ -62,7 +62,7 @@ const initialMessage = {
   tel: ""
 }
 
-class Database extends Component {
+export class Database extends Component {
 
   state = {
     hero: [],
