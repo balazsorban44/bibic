@@ -22,7 +22,7 @@ export const isValidMessage = message => {
 export const submitMessage = (message, messageLoading, resetMessage, closeMessage) => {
   if (isValidMessage(message)) {
     messageLoading(true)
-    import('../../lib/firebase').then(({MESSAGES_FS_REF, TIMESTAMP}) => {
+    return import('../../lib/firebase').then(({MESSAGES_FS_REF, TIMESTAMP}) =>
       MESSAGES_FS_REF.add({
         ...message,
         timestamp: TIMESTAMP,
@@ -35,15 +35,15 @@ export const submitMessage = (message, messageLoading, resetMessage, closeMessag
           setTimeout(() => {
             resetMessage()
             closeMessage()
-            return true
           }, 7500)
+          return true
         })
         .catch(({message}) => {
           messageLoading(false)
           sendNotification("error", message)
           return false
         })
-    })
+    )
   } else {
     messageLoading(false)
     return false

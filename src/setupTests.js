@@ -9,23 +9,20 @@ import fetch from "jest-fetch-mock"
 import firebasemock from 'firebase-mock'
 
 
-const mockauth = new firebasemock.MockAuthentication()
 const mockdatabase = new firebasemock.MockFirebase()
 const mockfirestore = new firebasemock.MockFirestore()
-const mockstorage = new firebasemock.MockStorage()
-const mockmessaging = new firebasemock.MockMessaging()
 
 const firebase = new firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   (path) => path ? mockdatabase.child(path) : mockdatabase,
   // use null if your code does not use AUTHENTICATION
-  () => mockauth,
+  () => null,
   // use null if your code does not use FIRESTORE
   () => mockfirestore,
   // use null if your code does not use STORAGE
-  () => mockstorage,
+  () => null,
   // use null if your code does not use MESSAGING
-  () => mockmessaging
+  () => null
 )
 
 
