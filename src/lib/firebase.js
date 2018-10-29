@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import "firebase/database"
 import "firebase/firestore"
 
-export default firebase.initializeApp({
+firebase.initializeApp({
   apiKey: "AIzaSyB4-Y2_RCdrOouJJxUJkBBXGyj4hNdjDs0",
   authDomain: "bibic-vendeghazak-api.firebaseapp.com",
   databaseURL: "https://bibic-vendeghazak-api.firebaseio.com",
