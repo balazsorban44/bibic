@@ -59,7 +59,7 @@ export const validateMessage = ({
     !valid.subject(subject) ? "Érvénytelen téma" :
       !valid.email(email) ? "Érvénytelen e-mail cím" :
         !valid.tel(tel) ? "Érvénytelen telefonszám" :
-          !valid.tel(address) ? "Érvénytelen lakcím" :
+          !valid.address(address) ? "Érvénytelen lakcím" :
             !valid.messageMin(content) ? "Túl rövid üzenet (min 40 karakter)" :
               false
 
