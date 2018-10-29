@@ -1,8 +1,9 @@
 import {submitMessage, isValidMessage} from "../message"
 import {sendNotification} from "../notification"
-import {MESSAGES_FS_REF} from "../../../lib/firebase"
+
 
 jest.mock("../notification", () => ({sendNotification: jest.fn()}))
+
 
 const validMessage = {
   subject: "other",
@@ -84,20 +85,38 @@ describe("submitMessage", () => {
 
     describe("successful submitting", () => {
 
-      beforeAll(() => {
+      beforeAll(async () => {
         jest.resetAllMocks()
-      })
-
-      it("TODO", async () => {
+        jest.useFakeTimers()
         jest.mock("../../../lib/firebase",
           () => ({MESSAGES_FS_REF: {add: () => new Promise(resolve => resolve())}})
         )
         await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
-        expect.assertions(4)
-        expect(sendNotification).toBeCalledWith("messageSuccess")
+      })
+
+      afterAll(() => {
+        jest.clearAllTimers()
+      })
+
+      it("loading is handled", () => {
         expect(messageLoading).toBeCalledTimes(2)
         expect(messageLoading).toBeCalledWith(true)
         expect(messageLoading).toBeCalledWith(false)
+      })
+
+      it("send succesful notification", () => {
+        expect(sendNotification).toBeCalledWith("messageSuccess")
+      })
+
+      it("closes message form", async () => {
+        expect.assertions(1)
+        await jest.advanceTimersByTime(7500)
+        expect(closeMessage).toBeCalled()
+      })
+
+      it("resets message form", () => {
+        expect.assertions(1)
+        expect(resetMessage).toBeCalled()
       })
     })
 

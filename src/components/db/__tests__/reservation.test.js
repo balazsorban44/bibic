@@ -7,7 +7,8 @@ import {sendNotification} from "../notification"
 
 jest.mock("../notification", () => ({sendNotification: jest.fn()}))
 
-jest.mock('../../../lib/firebase', () => mockFirebase)
+jest.mock('../../../lib/firebase', () => ({RESERVATIONS_FS_REF: {add: () => new Promise(resolve => resolve())}
+  , TIMESTAMP: jest.fn()}))
 
 const validReservation = {
   roomId: 1,
