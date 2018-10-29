@@ -1,6 +1,6 @@
 import {submitMessage, isValidMessage} from "../message"
 import {sendNotification} from "../notification"
-
+import {MESSAGES_FS_REF} from "../../../lib/firebase"
 
 jest.mock("../notification", () => ({sendNotification: jest.fn()}))
 
@@ -68,8 +68,10 @@ describe("submitMessage", () => {
 
   describe("valid message", () => {
 
-    beforeAll(() => {
-      submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
+    let isSubmitted
+
+    beforeAll(async () => {
+      isSubmitted = await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
     })
 
     afterAll(() => {
@@ -79,7 +81,37 @@ describe("submitMessage", () => {
     it("message is submitting", () => {
       expect(messageLoading).toBeCalledWith(true)
     })
+
+    describe("successful submitting", () => {
+
+      beforeAll(() => {
+        jest.resetAllMocks()
+      })
+
+      it("TODO", async () => {
+        jest.mock("../../../lib/firebase",
+          () => ({MESSAGES_FS_REF: {add: () => new Promise(resolve => resolve())}})
+        )
+        await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
+        expect.assertions(4)
+        expect(sendNotification).toBeCalledWith("messageSuccess")
+        expect(messageLoading).toBeCalledTimes(2)
+        expect(messageLoading).toBeCalledWith(true)
+        expect(messageLoading).toBeCalledWith(false)
+      })
+    })
+
+    describe("catch submit error", () => {
+
+      it("returns false", async () => {
+        expect.assertions(1)
+        expect(isSubmitted).toBe(false)
+      })
+      it("sends error notification", async () => {
+        expect.assertions(1)
+        expect(sendNotification).toBeCalled()
+      })
+
+    })
   })
-
-
 })
