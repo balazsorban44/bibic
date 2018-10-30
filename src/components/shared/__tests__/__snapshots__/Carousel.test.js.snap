@@ -1,0 +1,365 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarouselItem component renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CarouselItem
+    SIZE_1280="SIZE_1280.jpg"
+    SIZE_1440="SIZE_1440.jpg"
+    SIZE_640="SIZE_640.jpg"
+    SIZE_ORIGINAL="SIZE_ORIGINAL.jpg"
+    desc="desc"
+    itemClassName="fake-classname"
+    title="title"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <picture>
+          <source
+            media="(max-width: 640px)"
+            srcSet="SIZE_640.jpg"
+          />
+          <source
+            media="(max-width: 1280px)"
+            srcSet="SIZE_1280.jpg"
+          />
+          <source
+            media="(max-width: 1920px)"
+            srcSet="SIZE_1440.jpg"
+          />
+          <img
+            alt="title"
+            src="SIZE_ORIGINAL.jpg"
+          />
+        </picture>,
+        <div
+          className="fake-classname-desc carousel-item-desc"
+        >
+          <h4>
+            title
+          </h4>
+          <p>
+            desc
+          </p>
+        </div>,
+      ],
+      "className": "fake-classname carousel-item",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <source
+              media="(max-width: 640px)"
+              srcSet="SIZE_640.jpg"
+            />,
+            <source
+              media="(max-width: 1280px)"
+              srcSet="SIZE_1280.jpg"
+            />,
+            <source
+              media="(max-width: 1920px)"
+              srcSet="SIZE_1440.jpg"
+            />,
+            <img
+              alt="title"
+              src="SIZE_ORIGINAL.jpg"
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "media": "(max-width: 640px)",
+              "srcSet": "SIZE_640.jpg",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "source",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "media": "(max-width: 1280px)",
+              "srcSet": "SIZE_1280.jpg",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "source",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "media": "(max-width: 1920px)",
+              "srcSet": "SIZE_1440.jpg",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "source",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "alt": "title",
+              "src": "SIZE_ORIGINAL.jpg",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+        ],
+        "type": "picture",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h4>
+              title
+            </h4>,
+            <p>
+              desc
+            </p>,
+          ],
+          "className": "fake-classname-desc carousel-item-desc",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "title",
+            },
+            "ref": null,
+            "rendered": "title",
+            "type": "h4",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "desc",
+            },
+            "ref": null,
+            "rendered": "desc",
+            "type": "p",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <picture>
+            <source
+              media="(max-width: 640px)"
+              srcSet="SIZE_640.jpg"
+            />
+            <source
+              media="(max-width: 1280px)"
+              srcSet="SIZE_1280.jpg"
+            />
+            <source
+              media="(max-width: 1920px)"
+              srcSet="SIZE_1440.jpg"
+            />
+            <img
+              alt="title"
+              src="SIZE_ORIGINAL.jpg"
+            />
+          </picture>,
+          <div
+            className="fake-classname-desc carousel-item-desc"
+          >
+            <h4>
+              title
+            </h4>
+            <p>
+              desc
+            </p>
+          </div>,
+        ],
+        "className": "fake-classname carousel-item",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <source
+                media="(max-width: 640px)"
+                srcSet="SIZE_640.jpg"
+              />,
+              <source
+                media="(max-width: 1280px)"
+                srcSet="SIZE_1280.jpg"
+              />,
+              <source
+                media="(max-width: 1920px)"
+                srcSet="SIZE_1440.jpg"
+              />,
+              <img
+                alt="title"
+                src="SIZE_ORIGINAL.jpg"
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "media": "(max-width: 640px)",
+                "srcSet": "SIZE_640.jpg",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "source",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "media": "(max-width: 1280px)",
+                "srcSet": "SIZE_1280.jpg",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "source",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "media": "(max-width: 1920px)",
+                "srcSet": "SIZE_1440.jpg",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "source",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "title",
+                "src": "SIZE_ORIGINAL.jpg",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+          ],
+          "type": "picture",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h4>
+                title
+              </h4>,
+              <p>
+                desc
+              </p>,
+            ],
+            "className": "fake-classname-desc carousel-item-desc",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "title",
+              },
+              "ref": null,
+              "rendered": "title",
+              "type": "h4",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "desc",
+              },
+              "ref": null,
+              "rendered": "desc",
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
