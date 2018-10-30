@@ -5,7 +5,7 @@ import {Next, Prev} from './Elements'
 import NukaCarousel from 'nuka-carousel'
 
 
-class Carousel extends Component {
+export class Carousel extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0)
@@ -49,7 +49,7 @@ class Carousel extends Component {
 export default withRouter(Carousel)
 
 
-const CarouselItem = ({
+export const CarouselItem = ({
   title, desc, SIZE_640, SIZE_1280, SIZE_1440, SIZE_ORIGINAL, itemClassName: className
 }) =>
   <div className={`${className} carousel-item`}>

@@ -3,7 +3,7 @@ import {Loading} from './Elements'
 import {withStore} from '../db'
 import {withRouter} from 'react-router-dom/'
 
-const Gallery = ({
+export const Gallery = ({
   path, galleries, count,
   item: Item, itemClassName,
   component: Component, componentProps
@@ -41,7 +41,7 @@ const Gallery = ({
 export default withRouter(withStore(Gallery))
 
 
-const GalleryItem = ({
+export const GalleryItem = ({
   SIZE_1024, SIZE_1440, SIZE_640, desc, title
 }) =>
   <picture>
