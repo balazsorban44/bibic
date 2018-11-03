@@ -11,7 +11,10 @@ describe("translations 🌐 ", () => {
     "from",
     "children",
     "foodService",
-    "subject"
+    "subject",
+    "id",
+    "customId",
+    "rating"
   ]
 
   const translationsInURL = []

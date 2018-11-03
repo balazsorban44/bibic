@@ -1,5 +1,5 @@
 import {
-  valid, validateReservation, validateMessage, valueToState
+  valid, validateReservation, validateMessage, valueToState, validateFeedback
 } from "../validate"
 
 
@@ -88,6 +88,45 @@ describe("validate reservation", () => {
       it("\"\"", () => expect(valid.address("")).toBe(false))
     })
   })
+
+  describe("ratings", () => {
+
+    it("valid 👍", () => expect(valid.ratings({
+      coffee: 1,
+      cleanliness: 1,
+      comfort: 1,
+      food: 1,
+      services: 1,
+      staff: 1
+    })).toBe(true))
+
+
+    it("invalid 👎", () => expect(valid.ratings({})).toBe(true))
+
+    describe("rating", () => {
+      describe("valid 👍", () => {
+        Array(5).fill(null).map((_e, value) => it((value+1).toString(), () => expect(valid.rating(value+1)).toBe(true)))
+      })
+      describe("invalid 👎", () => {
+        it("0", () => expect(valid.address(0)).toBe(false))
+        it("6", () => expect(valid.address(6)).toBe(false))
+      })
+    })
+  })
+
+  describe("id", () => {
+    it("valid 👍", () => expect(valid.id("")).toBe(true))
+    it("invalid 👎", () => expect(valid.id(null)).toBe(false))
+  })
+
+  describe("content", () => {
+    describe("valid 👍", () => {
+      it("type is string", () => expect(valid.content("")).toBe(true))
+      it("type is undefined", () => expect(valid.content(undefined)).toBe(true))
+    })
+    it("invalid 👎", () => expect(valid.content(null)).toBe(false))
+  })
+
 })
 
 
@@ -198,6 +237,38 @@ describe("validateMessage", () => {
 })
 
 
+describe("validateFeedback", () => {
+  const feedback = {
+    id: "id",
+    customId: "customId",
+    ratings: {
+      coffee: 1,
+      cleanliness: 1,
+      comfort: 1,
+      food: 1,
+      services: 1,
+      staff: 1
+    }
+  }
+  describe("invalid 👎", () => {
+
+    it("id", () =>
+      expect(validateFeedback({...feedback, id: null})).toContain("azonosító"))
+
+    it("customId", () =>
+      expect(validateFeedback({...feedback, customId: null})).toContain("azonosító"))
+
+    it("ratings", () =>
+      expect(validateFeedback({...feedback, ratings: "email@name."})).toContain("értékelés"))
+
+    it("content", () =>
+      expect(validateFeedback({...feedback, content: null})).toContain("üzenet"))
+
+  })
+
+  it("passed", () => expect(validateFeedback(feedback)).toBe(false))
+})
+
 describe("valueToState", () => {
   describe("roomId", () => {
     it("valid roomId is number", () => expect(valueToState("roomId", "3")).toBe(3))
@@ -259,6 +330,11 @@ describe("valueToState", () => {
 
     validValues
       .map(validValue => test(`${validValue} returns ${validValue}`, () => expect(valueToState(key, validValue)).toBe(validValue)))
+  })
+
+  describe("rating", () => {
+    it("valid number as string", () => expect(valueToState("rating", "5")).toBe(5))
+    it("invalid number as string", () => expect(valueToState("rating", "five")).toBe(5))
   })
 
   describe("default", () => {
