@@ -10,6 +10,9 @@ import Hero from './Hero'
 
 import {ToastContainer} from 'react-toastify'
 import ChatFAB from './ChatFAB'
+import Feedbacks from './Feedbacks'
+import FeedbackForm from './FeedbackForm'
+import {FEEDBACK_FORM} from '../utils/constants'
 
 // NOTE: Asynchronously fetching Components that do not need to load at startup
 const ReservationForm = lazy(() => import("./ReservationForm"))
@@ -71,6 +74,10 @@ const App = () =>
         path="/uzenet"
       />
       <Route
+        component={FeedbackForm}
+        path={FEEDBACK_FORM}
+      />
+      <Route
         component={() =>
           <>
             <BackMenu/>
@@ -105,6 +112,7 @@ export const Main = () =>
     <Services/>
     <Rooms/>
     <Prices/>
+    <Feedbacks/>
   </>
 
 

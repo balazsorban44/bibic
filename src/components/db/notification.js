@@ -18,6 +18,12 @@ export const sendNotification = (type, message) => {
   case "wrongInput":
     toast.error(`${message} Ha úgy gondolja más a hiba oka, kérjük írjon az alábbi címre: hiba@bibicvedeghazak.hu`, {autoClose: 7500})
     break
+  case "no-reservation-found":
+    toast.error("Hiba! Ez a foglalás nem létezik.", {autoClose: 7500})
+    break
+  case "successful-feedback":
+    toast.success("Visszajelzés sikeresen elküldve.")
+    break
   case "reservationSubmitted":
     toast.success(
       <p style={{padding: ".5rem",

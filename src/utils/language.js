@@ -1,4 +1,5 @@
 export const translations = {
+  // Reservation / message
   roomId: ["szoba", true],
   name: ["nev", false],
   tel: ["telefon", false],
@@ -8,17 +9,29 @@ export const translations = {
   to: ["ig", true],
   adults: ["felnott", true],
   children: ["gyerek", true],
+  // Reservation
   foodService: ["ellatas", true],
   breakfast: ["reggeli", false],
   halfBoard: ["felpanzio", false],
   fullBoard: ["teljes-ellatas", false],
   allInclusive: ["all-inclusive", false],
+  // Message
   subject: ["tema", true],
   message: ["uzenet", false],
   eventHall: ["rendezvenyterem", false],
   special: ["kulonajanlat", false],
   fullHouse: ["teljeshaz", false],
-  other: ["egyeb", false]
+  other: ["egyeb", false],
+  // Feedback
+  id: ["id", true],
+  customId: ["customId", true],
+  rating: ["rating", true],
+  coffee: ["kávé", false],
+  cleanliness: ["tisztaság", false],
+  comfort: ["komfort", false],
+  food: ["étel", false],
+  services: ["szolgáltatások", false],
+  staff: ["személyzet", false]
 }
 
 /**

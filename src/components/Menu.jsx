@@ -18,7 +18,7 @@ const menu = [
   {
     to:"rendezvenyek", name: "Rendezvények", component: RouteLink
   },
-  //{to:"visszajelzesek", name: "Visszajelzések", component: RouteLink},
+  {to:"visszajelzesek", name: "Visszajelzések"},
   {to:"kapcsolat", name: "Kapcsolat"}
 ]
 

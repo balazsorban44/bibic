@@ -29,7 +29,15 @@ export const valid = {
     )),
   peopleCount: (adults, children, maxPeople) => adults + children.reduce((acc, {count}) => acc+count, 0) <= maxPeople,
   subject: subject => ["eventHall", "fullHouse", "special", "other"].includes(subject),
-  foodService: service => ["breakfast", "halfBoard"].includes(service)
+  foodService: service => ["breakfast", "halfBoard"].includes(service),
+  ratings: ratings =>
+    Object.entries(ratings)
+      .every(([key, value]) =>
+        ["coffee", "cleanliness", "comfort", "food", "services", "staff"]
+          .includes(key) && valid.rating(value)),
+  rating: rating => rating > 0 && rating < 6,
+  content: content => ["string", "undefined"].includes(typeof content),
+  id: id => typeof id === "string"
 }
 
 
@@ -52,6 +60,7 @@ export const validateReservation = ({
                             !valid.peopleCount(adults, children, maxPeople) ? "A személyek száma nem haladhatja meg a szoba kapacitását" :
                               false
 
+
 export const validateMessage = ({
   subject, name, email, tel, content, address
 }) =>
@@ -63,6 +72,14 @@ export const validateMessage = ({
             !valid.messageMin(content) ? "Túl rövid üzenet (min 40 karakter)" :
               false
 
+
+export const validateFeedback = ({
+  id, customId, content, ratings
+}) =>
+  !valid.id(id) || !valid.id(customId) ? "Érvénytelen azonosító" :
+    !valid.content(content) ? "Érvénytelen üzenet" :
+      !valid.ratings(ratings) ? "Érvénytelen értékelés. Töltse ki az összes mezőt." :
+        false
 
 export const valueToState = (key, value) => {
   switch (key) {
@@ -85,6 +102,8 @@ export const valueToState = (key, value) => {
     return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
   case "subject":
     return valid.subject(value) ? value : "other"
+  case "rating":
+    return parseInt(value, 10) || 5
   default:
     return
   }

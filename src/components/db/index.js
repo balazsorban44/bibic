@@ -14,6 +14,8 @@ import {
 
 import {sendNotification} from "./notification"
 import {submitMessage} from './message'
+import {submitFeedback} from './feedback'
+import {FEEDBACKS_REF} from '../../lib/firebase'
 
 const Store = createContext()
 /**
@@ -76,7 +78,8 @@ export class Database extends Component {
     message: initialMessage,
     rooms: [],
     roomServices: [],
-    overlaps: []
+    overlaps: [],
+    feedbacks: {all: [], rooms: []}
   }
 
 
@@ -91,8 +94,22 @@ export class Database extends Component {
     })
 
     import("../../lib/firebase").then(({
-      PARAGRAPHS_REF, ROOMS_REF, ROOM_SERVICES_REF, GALLERIES_REF
+      PARAGRAPHS_REF, ROOMS_REF, ROOM_SERVICES_REF, GALLERIES_REF, FEEDBACKS_FS_REF
     }) => {
+
+      FEEDBACKS_FS_REF.where("accepted", "==", true).orderBy("timestamp", "asc").limit(20).onSnapshot(data => {
+        const feedbacks = []
+        data.forEach(feedback => {
+          feedbacks.push(feedback.data())
+        })
+        this.setState(({feedbacks: prevFeedbacks}) => ({feedbacks: {...prevFeedbacks, all: feedbacks}}))
+      })
+
+      FEEDBACKS_REF.on("value", snap =>
+        this.setState(
+          ({feedbacks: prevFeedbacks}) => ({feedbacks: {...prevFeedbacks, rooms: snap.val()}})
+        )
+      )
 
       PARAGRAPHS_REF
         .on("value", snap => {
@@ -215,6 +232,15 @@ export class Database extends Component {
 
   /*
    * ----------------------------------------------------------------------------
+   * Feedback
+   */
+
+  handleSubmitFeedback = feedback =>
+    submitFeedback(feedback, loading => this.setState({loading}))
+
+
+  /*
+   * ----------------------------------------------------------------------------
    * Routing
    */
 
@@ -256,6 +282,7 @@ export class Database extends Component {
         value={{
           submitReservation: this.handleSubmitReservation,
           submitMessage: this.handleSubmitMessage,
+          submitFeedback: this.handleSubmitFeedback,
           updateReservation: this.updateReservation,
           updateMessage: this.updateMessage,
           fetchOverlaps: this.fetchOverlaps,
