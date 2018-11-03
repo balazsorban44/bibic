@@ -14,7 +14,7 @@
     "block-spacing":["warn", "never"],
     "semi": [2, "never"],
     "no-trailing-spaces":"error",
-    "multiline-comment-style":"error",
+    // "multiline-comment-style":"error",
     "space-unary-ops":"error",
     "no-mixed-spaces-and-tabs":"error",
     "indent": ["error", 2],
