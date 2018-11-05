@@ -8,7 +8,7 @@ global.scrollTo = jest.fn()
 
 describe("FeedbackForm component", () => {
   const props = {submitFeedback: jest.fn().mockResolvedValue({error: true, success: true})}
-  const wrapper = shallow(<FeedbackForm {...props}/>)
+  let wrapper = shallow(<FeedbackForm {...props}/>)
 
 
   beforeEach(() => {
@@ -56,6 +56,67 @@ describe("FeedbackForm component", () => {
     // expect(wrapper.state("success")).toBe(true)
     // expect(wrapper.state("error")).toBe(true)
   })
+
+  describe("one-click submitting", () => {
+    it("rating is given", () => {
+      wrapper = shallow(
+        <FeedbackForm
+          {...{...props, location: {search: "?id=id&one-click=1&rating=5"}}}
+        />
+      )
+      expect(props.submitFeedback).toBeCalledWith({id: "id",
+        ratings: {
+          cleanliness: 5,
+          coffee: 5,
+          comfort: 5,
+          food: 5,
+          services: 5,
+          staff: 5
+        }})
+    })
+    it("default rating is 0", () => {
+      wrapper = shallow(
+        <FeedbackForm
+          {...{...props, location: {search: "?id=id&one-click=1"}}}
+        />
+      )
+      expect(props.submitFeedback).toBeCalledWith({id: "id",
+        ratings: {
+          cleanliness: 0,
+          coffee: 0,
+          comfort: 0,
+          food: 0,
+          services: 0,
+          staff: 0
+        }})
+    })
+  })
+
+  describe("show full form (eg.: NO one-click submitting)", () => {
+    it("set id in the state", () => {
+      wrapper = shallow(
+        <FeedbackForm
+          {...{...props, location: {search: "?id=id"}}}
+        />
+      )
+      expect(wrapper.state("feedback").id).toBe("id")
+    })
+  })
+
+  describe("change correctly", () => {
+    const name = "name"
+    const value = "value"
+    it("textarea", () => {
+      wrapper.find("textarea").simulate("change", {target: {name, value}})
+      expect(wrapper.state("feedback")[name]).toBe(value)
+    })
+
+    it("Rating slider click", () => {
+      wrapper.find(RatingSlider).first().simulate("change", name, value)
+      expect(wrapper.state("feedback").ratings[name]).toBe(value)
+    })
+  })
+
 })
 
 
