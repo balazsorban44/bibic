@@ -5,6 +5,7 @@ cache:
   directories:
   - node_modules
 install:
+  - yarn
   - yarn global add firebase-tools
 script:
   - yarn build
