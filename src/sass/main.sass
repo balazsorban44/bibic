@@ -13,33 +13,8 @@
 @import 'MAIN-SECTIONS/footer'
 // ------------------------------ //SECTIONS ------------------------------ //
 
-@import 'reservation'
-@import 'message'
 @import 'form'
 
-.not-found
-  position: relative
-  display: grid
-  align-content: center
-  justify-content: center
-  height: 100vh
-  p, h2, a
-    text-align: center
-    font-size: 2em
-  h2
-    color: $accent-color
-    font-weight: bolder
-    font-size: 3em
-  p
-    font-style: italic
-  a
-    font-size: 1.5em
-    text-transform: uppercase
-    font-family: sans-serif
-    font-weight: bolder
-    margin-top: .5em
-    &:hover
-      color: $dark
 
 
 @for $i from 1 through length($rooms)
