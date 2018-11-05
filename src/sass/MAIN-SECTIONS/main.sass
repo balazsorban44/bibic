@@ -1,20 +1,28 @@
 @import '2-main/landing'
 @import '2-main/napraforgo'
 @import '2-main/services'
-@import '2-main/rooms'
-@import '2-main/foods'
+@import '2-main/rooms/main'
+@import '2-main/carousel'
 @import '2-main/events'
 @import '2-main/programs'
 @import '2-main/prices'
 
-
-.chat-fab
+.back-to-home, .chat-fab
+  z-index: 1000
   position: fixed
   bottom: 0
-  right: 0
-  z-index: 1000
-  margin: calc(2.5vmax + 1em) 2.5vmax
+  margin: 2.5%
   transition: .2s ease-out
+
+.back-to-home, .chat-fab a
+  box-shadow: 0 0 10px black
+  @media (min-width: 720px)
+    &:hover, &:active
+      animation: none
+      transform: scale(1.1)
+
+.chat-fab
+  right: 0
   width: 54px
   height: 54px
   a
@@ -26,19 +34,16 @@
     height: 100%
     background-color: $accent-color
     border-radius: 50%
-    box-shadow: 0 0 10px black
-    &:hover, &:active
-      animation: none
-      transform: scale(1.1)
     @media (min-width: 720px)
       animation: chat 2.5s infinite
+    
     img
       width: 32px
   .filled
     transition: opacity .3s
     opacity: 1
   .tooltip
-    margin-bottom: -1em
+    margin-bottom: -54px
     float: right
     color: $light
     background-color: #444
@@ -60,3 +65,17 @@
       transform: none
       opacity: 1
   
+
+.back-to-home
+  padding: .5em
+  color: $light
+  font-family: "White Festive"
+  font-weight: bolder
+  font-size: 1.3em
+  letter-spacing: .1em
+  background-color: $accent-color
+  border-radius: 2em
+  transition: .2s
+  &:hover
+    transform: scale(1.05)
+    color: $light

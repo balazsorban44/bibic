@@ -1,70 +1,43 @@
-#szolgaltatasok
-  display: flex
-  flex-direction: column
+
+#szolgaltatasok .gallery, .services-footer, #szolgaltatasok h2
+  max-width: 1024px
+  margin-left: auto
+  margin-right: auto
+
+#szolgaltatasok 
+  padding: 2.5%
   h2
-    padding-left: .5em
+    margin-left: 5%
+    width: 100%
+    margin-top: 0
+  .gallery
+    display: grid
+    grid-gap: 3em
+    grid-template-columns: repeat(auto-fill, calc(1024px / 3 - 2em))
+.service-item
+  background-color: $accent-color
   img
-    border-top-left-radius: 11px
-    border-top-right-radius: 11px
-  li
-    border-radius: 12px
-    p
-      background-color: $light
-      color: $dark
-  p
-    padding: 1em
-@media (orientation: landscape)
-  #szolgaltatasok
+    min-height: 160px
+    user-select: none
+  .img-wrapper
+    overflow: hidden
+    max-height: calc(320px * 0.54)
+    display: flex
+    align-items: flex-end
     img
-      position: relative
-      margin: 0 auto
-      width: 50%
-      box-shadow: 0 0 10px rgba(0,0,0,.8)
-
-@media (min-width: 1024px)
-  #szolgaltatasok
-    position: relative
-    h2
-      text-align: left
-      margin-left: 15vw
-      padding-bottom: 0
-    ul
-      display: flex
-      justify-content: space-around
-      flex-wrap: wrap
-      margin: 0 5vw
-    li
-      margin: 1em
-      box-shadow: 0 0 10px rgba(0,0,0,.8)
-      width: 35vw
-      display: flex
-      flex-direction: column
-      p
-        display: flex
-        align-items: center
-        border-bottom-right-radius: 12px
-        border-bottom-left-radius: 12px
-        flex: 1
-        background-color: $light
-        margin: 0
-        padding: 1.5em 2.5em
-    img
-      box-shadow: none
       width: 100%
-      height: calc(100% * 2/3)
-    >p
-      margin: 5vw auto
-      padding: 0
-      max-width: 30vw
+      margin: auto
+  p
+    background-color: $light
+    color: $dark
+    padding: 1em 
+  
+.services-footer
+  width: 100%
+  margin-top: 3em
+  text-align: right
 
-@media (min-width: 1280px)
+@media(min-width: 1024px)
   #szolgaltatasok
     h2
-      padding-top: 0
-    ul
-      flex-wrap: nowrap
-    li
-      transition: .3s
-      cursor: pointer
-      &:hover
-        transform: scale(1.05)
+      margin-left: auto

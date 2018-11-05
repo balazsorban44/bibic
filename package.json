@@ -3,31 +3,58 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.0.4",
-    "google-map-react": "^1.0.3",
-    "moment": "^2.21.0",
-    "node-sass-chokidar": "^1.2.2",
-    "npm-run-all": "^4.1.2",
+    "firebase": "^5.5.7",
+    "google-map-react": "^1.0.9",
+    "moment": "^2.22.2",
+    "moment-range": "^4.0.1",
+    "nuka-carousel": "^4.4.2",
     "query-string": "5.1.1",
-    "react": "^16.2.0",
-    "react-calendar": "^2.14.0",
-    "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "react-scroll": "^1.7.7",
-    "react-scrolllock": "^2.0.1",
-    "react-slick": "^0.21.0",
-    "react-toastify": "^4.0.0-rc.5",
-    "slick-carousel": "^1.8.1"
+    "react": "^16.6.0",
+    "react-date-range": "balazsorban44/react-date-range#patch-1",
+    "react-dom": "^16.6.0",
+    "react-reveal": "^1.2.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scroll": "^1.7.10",
+    "react-scrolllock": "^3.0.2",
+    "react-toastify": "^4.4.0"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "firebase-mock": "^2.2.10",
+    "jest-fetch-mock": "^1.6.6",
+    "node-sass": "^4.10.0",
+    "npm-run-all": "^4.1.3",
+    "react-scripts": "2.1.1",
+    "source-map-explorer": "^1.6.0",
+    "stylelint": "^9.7.1",
+    "stylelint-config-recommended": "^2.1.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --output-style compressed --include-path src/sass src/sass/main.sass src/main.css",
-    "watch-css": "npm run build-css && node-sass-chokidar --output-style compressed --include-path src/sass src/sass/main.sass src/main.css -w -r",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
+    "analyze": "source-map-explorer --html build/static/js/main.* > index.html",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "deploy": "npm run build && firebase deploy",
-    "eject": "react-scripts eject"
+    "test": "CI=true react-scripts test",
+    "test:watch": "react-scripts test --coverage --coverageReporters html --watch",
+    "test:coverage": "react-scripts test --coverage --coverageReporters text-lcov | npx coveralls && rm -rf coverage"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*{js,jsx}",
+      "!/node_modules/",
+      "!src/lib/react-date-range/**/*{js,jsx}"
+    ]
   }
 }

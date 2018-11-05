@@ -1,84 +1,38 @@
-.slider
-  padding: .5em 1em
-  min-height: 0
-  h2
-    margin: 0
-    font-size: 2.5em
-    text-align: center
-  p
-    margin: .5em
-  .slider-arrow
-    width: 24px
-    height: 24px
-    top: -1em
-.slide-content
-  cursor: pointer
-  margin: 1px
+.not-available
+  border: 1px solid $light
+  border-radius: 2em
+  padding: .5em 1.5em
+  
+.gallery
   display: flex
+  margin: 0 auto
+  justify-content: center
+  flex-wrap: wrap
+
+
+.loading
+  display: flex
+  justify-content: center
   align-items: center
-  flex-direction: column
-  img
-    pointer-events: none
-    max-height: 60vh
-    
-@media (orientation: landscape) and (min-width: 1024px)
-  .slider
-    padding: 2.5% 10%
-    h2
-      text-align: left
-      font-size: 3em
-    .slider-arrow
-      top: 50%
-    .slider-arrow-prev
-      left: -10%
-    .slider-arrow-next
-      right: -10%
-
-    .slide-content
-      justify-content: space-between
-      flex-direction: row-reverse
-      img
-        max-height: none
-        max-width: 40vw
-
-  .slide-content-right
-    flex-direction: row !important
-
-  .slide-title-right
-    text-align: right !important
-
-
-.swipe-icon
-  opacity: .5
-  z-index: 10
-  width: 36px
-  height: 36px
-  margin-top: 1em
-  left: 50%
-  transform: translateX(-100%)
-  animation: swipe 3.5s infinite alternate-reverse
-  animation-timing-function: ease-in-out
-  transition: opacity 1s ease-out
+  padding: 1em
+  .spinner
+    animation: pulsate 1s infinite
+    background-color: $accent-color
+    border-radius: 50%
+    position: relative
+    width: 12px
+    height: 12px
+    margin-right: .5em
 
 .slider-arrow
-  position: absolute
-  top: 95%
-  z-index: 1000
   width: 24px
   height: 24px
-  padding: 6px
   display: flex
-  align-items: center
   justify-content: center
+  align-items: center
+  padding: 8px
   cursor: pointer
+  margin-top: -48px
+
 .slider-arrow-prev
-  transform: translate(50%, -100%) rotate(180deg)
-
-.slider-arrow-next
-  right: 0
-  transform: translate(-50%, -100%) 
-
-
-@media (orientation: landscape)
-  .slider-arrow
-    margin: 0 1em
+  transform: rotate(180deg)

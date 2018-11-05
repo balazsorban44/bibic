@@ -1,0 +1,54 @@
+.feedback-form
+
+  h2
+    margin: 1em 0 0 !important
+    span
+      display: block
+      font-size: .5em
+      opacity: .9
+.feedback-rating-slider
+  margin: .5em 1em
+  h3
+    margin-bottom: .5em
+    font-family: "Coolvetica", monospace
+    letter-spacing: .05em
+    font-weight: lighter
+    font-size: .8em
+  ul
+    display: grid
+    grid-gap: 1em
+    justify-items: center
+    grid-template-columns: repeat(5 ,1fr)
+    align-items: center
+    position: relative
+
+  li
+    margin-bottom: .5em
+    width: 24px
+    height: 24px
+    display: flex
+    justify-content: center
+    align-items: center
+    color: $light
+    background-color: lighten($accent-color, 30)
+    cursor: pointer
+    border-radius: 50%
+
+.rating-value-active
+  background-color: $accent-color !important
+
+@media (min-width: 768px)
+  .feedback-form
+
+    margin: 0 auto !important
+    max-width: 640px
+    height: 100vh
+    display: grid
+    align-items: center
+    overflow: hidden
+    .footnote
+      padding: .5em !important
+    h2
+      margin-bottom: -1em !important
+      span
+        display: inline-block

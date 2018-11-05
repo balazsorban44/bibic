@@ -1,81 +1,97 @@
-import React, {Component, Fragment} from 'react'
-import {Route, Link, Switch} from 'react-router-dom'
-import Reservation from './Reservation'
-import Introduction from './Introduction'
-import Sunflower from './Sunflower'
-import Hero from './Hero'
-import Services from './Services'
-import Rooms from './Rooms'
-import Prices from './Prices'
+import React from 'react'
+import {Route, Switch} from 'react-router-dom'
 import Menu, {BackMenu} from './Menu'
-import chat from '../assets/icons/chat.svg'
-import Foods from './Foods'
 
-import Slider from './shared/Slider'
-import Message from './Message'
+import lazy from "./AsyncComponent"
+import Introduction from './Introduction'
+import Hero from './Hero'
 
+import {ToastContainer} from 'react-toastify'
+import ChatFAB from './ChatFAB'
+import Feedbacks from './Feedbacks'
+import FeedbackForm from './FeedbackForm'
+import {FEEDBACK_FORM} from '../utils/constants'
 
-const App = () => 
-  <Fragment>
+// NOTE: Asynchronously fetching Components that do not need to load at startup
+const ReservationForm = lazy(() => import("./ReservationForm"))
+const Sunflower = lazy(() => import('./Sunflower'))
+const Services = lazy(() => import('./Services'))
+const Prices = lazy(() => import('./Prices'))
+const MessageForm = lazy(() => import("./MessageForm"))
+const Rooms = lazy(() => import("./Rooms"))
+const Carousel = lazy(() => import("./shared/Carousel"))
+const MoreServices = lazy(() => import("./MoreServices"))
+const NotFound = lazy(() => import("./NotFound"))
+
+const App = () =>
+  <>
+    <ToastContainer
+      closeOnClick
+      position="bottom-center"
+      style={{
+        position: "fixed",
+        zIndex: 10001,
+        bottom: 0
+      }}
+    />
+    <Route render={({location: {pathname}}) => pathname !== '/' && <BackMenu/>} />
     <ChatFAB/>
     <Switch>
-      <Route exact path="/" render={Main}/>
-      <Route exact path="/etelek" component={Foods}/>
-      <Route exact path="/rendezvenyek" component={Events}/>
-      <Route exact path="/foglalas" component={Reservation}/>
-      <Route path="/uzenet" component={Message}/>
+      <Route
+        exact
+        path="/"
+        render={Main}
+      />
+      <Route
+        component={() =>
+          <Carousel
+            className="foods"
+            itemClassName="food"
+            title="Ételeink"
+          />
+        }
+        exact
+        path="/etelek"
+      />
+      <Route
+        component={() =>
+          <Carousel
+            className="events"
+            itemClassName="event"
+            title="Korábbi rendezvények"
+          />}
+        exact
+        path="/rendezvenyek"
+      />
+      <Route
+        component={ReservationForm}
+        exact
+        path="/foglalas"
+      />
+      <Route
+        component={MessageForm}
+        path="/uzenet"
+      />
+      <Route
+        component={FeedbackForm}
+        path={FEEDBACK_FORM}
+      />
+      <Route
+        component={() =>
+          <>
+            <BackMenu/>
+            <MoreServices/>
+          </>
+        }
+        path="/szolgaltatasok"
+      />
       <Route component={NotFound}/>
     </Switch>
-  </Fragment>
-
-const ChatFAB = () =>
-  <div className="chat-fab">
-    <span className="tooltip">Megtalál minket a Messengeren is!</span>
-    <a
-      href="https://www.messenger.com/t/200199203718517" 
-      rel="noopener noreferrer"
-      target="_blank">
-      <img className="filled" src={chat} alt="" aria-hidden/>
-    </a>
-  </div>
+  </>
 
 
-
-const NotFound = () => 
-  <div className="not-found">
-    <h2>
-      404
-    </h2>
-    <p>
-      Hmm... Ez az oldal sajnos üres.
-    </p>
-    <Link to ="/">Vissza a főoldalra</Link>
-  </div>
-
-
-class Events extends Component {
-
-  componentDidMount() {
-    window.scrollTo(0, 0)
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <BackMenu/>
-        <Slider
-          title="Rendezvények"
-          sectionId="rendezvenyek"
-          databaseRef="events"
-        />
-      </Fragment>
-    )
-  }
-}
-
-
-const Main = () =>
-  <Fragment>
+export const Main = () =>
+  <>
     <Menu/>
     <Hero/>
     <Introduction/>
@@ -83,7 +99,8 @@ const Main = () =>
     <Services/>
     <Rooms/>
     <Prices/>
-  </Fragment>
+    <Feedbacks/>
+  </>
 
 
 export default App

@@ -1,87 +1,153 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {Link as RouteLink} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
+import {withStore} from './db'
+import Fade from "react-reveal/Fade"
+import {BASE_URL} from '../utils/constants'
 
-export default class Menu extends Component {
+const menu = [
+  {to:"bemutatkozas", name: "Bemutatkozás"},
+  {to:"szolgaltatasok", name: "Szolgáltatások"},
+  {to:"szobak", name: "Szobák"},
+  {to:"arak", name: "Árak"},
+  {
+    to:"etelek", name: "Ételek", component: RouteLink
+  },
+  {
+    to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+  },
+  {to:"visszajelzesek", name: "Visszajelzések"},
+  {to:"kapcsolat", name: "Kapcsolat"}
+]
+
+export class Menu extends Component {
+
   state = {
     isMenuOpen: false,
-    isScrolled: false
+    isScrolled: false,
+    isRoomMenuOpen: true
   }
 
   componentDidMount() {
     window.addEventListener("scroll", this.isScrolled, false)
+    window.addEventListener("resize", this.isResized, false)
+    this.isScrolled()
+    this.isResized()
+    if (window.innerWidth > 768) this.setState({isRoomMenuOpen: false})
   }
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.isScrolled, false)
+    window.removeEventListener("resize", this.isResized, false)
   }
 
-  isScrolled = () => {
-    this.setState({
-      isScrolled: window.pageYOffset >= 100
-    })
-  }
+  isScrolled = () => this.setState({isScrolled: window.pageYOffset >= 100})
 
-  toggleMenu = () => 
-    this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
-  
+  isResized = () => this.setState({width: window.innerWidth})
+
+  handleShowRoomMenu = () => this.setState({isRoomMenuOpen: true})
+
+  handleHideRoomMenu = () => this.setState({isRoomMenuOpen: false})
+
+  handleMenuToggle = () => this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
+
+
+  handleHideMenu = () => this.setState({isMenuOpen: false, isRoomMenuOpen: false})
+
   render() {
-    const {isMenuOpen, isScrolled} = this.state
+    const {
+      isMenuOpen, isScrolled, isRoomMenuOpen, width
+    } = this.state
+    const isBigScreen = width > 768
+    const {hero, rooms} = this.props
     return (
-      <Fragment>
-          <div className={`menu-wrapper ${isScrolled ? "header-scrolled" : ""}`}>
-          <div onClick={this.toggleMenu} className={`hamburger ${isMenuOpen ? "hamburger-clicked" : ""}`}>
-            <span/><span/><span/>
-          </div>
-          <div className="pc-logo">
-            <a href="/">
-              <img alt="" src={logo}/>
-            </a>
-          </div>
-          <nav className={`menu ${isMenuOpen ? "" : "menu-hidden"}`}>
-            <ul
-              onClick={this.toggleMenu} 
+      <Fade
+        down
+        when={hero.length}
+      >
+        <div
+          className={`menu ${isScrolled ? "menu-scrolled" : ""} ${isMenuOpen ? "" : "menu-hidden"}`}
+        >
+          <Fade right>
+            <div
+              className={`hamburger ${isMenuOpen ? "hamburger-clicked" : ""}`}
+              onClick={this.handleMenuToggle}
+            ><span/><span/><span/></div>
+          </Fade>
+          <a
+            className={`menu-logo ${isScrolled ? "menu-logo-scrolled" : ""}`}
+            href={BASE_URL}
+          >
+            <picture>
+              <source
+                media="(min-aspect-ratio: 7/6) and (min-width: 1024px)"
+                srcSet={logo}
+              />
+              <img
+                alt="logo"
+                src={bibic}
+              />
+            </picture>
+          </a>
+          <nav>
+            <Fade
+              cascade
+              down
+              when={hero.length}
             >
-              <li><Link onClick={this.toggleMenu} offset={-64} smooth to="bemutatkozas">Bemutatkozás</Link></li>
-              <li><Link onClick={this.toggleMenu} offset={-64} smooth to="szolgaltatasok">Szolgáltatások</Link></li>
-              <li><Link onClick={this.toggleMenu} offset={-64} smooth to="szobak">Szobák</Link><span>►</span></li>
-              <li><Link onClick={this.toggleMenu} offset={-64} smooth to="arak">Árak</Link></li>
-              <li><RouteLink onClick={this.toggleMenu} to="etelek">Ételek</RouteLink></li>
-              <li><RouteLink onClick={this.toggleMenu} to="rendezvenyek">Rendezvények</RouteLink></li>
-              <li><RouteLink onClick={this.toggleMenu} to="visszajelzesek">Visszajelzések</RouteLink></li>
-              <li><Link onClick={this.toggleMenu} offset={-64} smooth to="kapcsolat">Kapcsolat</Link></li>
-            </ul>
+              <ul>
+                {menu.map(({
+                  name, to, component: Component=Link, offset
+                }) =>
+                  <li key={to}>
+                    <Component
+                      offset={isBigScreen ? offset!==undefined ? offset : -64 : 0}
+                      onClick={this.handleHideMenu}
+                      onMouseEnter={() => to==="szobak" && this.handleShowRoomMenu()}
+                      smooth={Component===Link ? true : undefined}
+                      to={to}
+                    >
+                      {name}
+                    </Component>
+                  </li>
+                )}
+              </ul>
+            </Fade>
           </nav>
-          <div className="tablet-header">
-            <div>
-              <a href="/">
-                <img alt="" src={bibic}/>
-              </a>
-            </div>
-            <RouteLink className="tablet-reservation" offset={-64} to="foglalas">Foglalás</RouteLink>
-          </div>
-          <ul className={`room-menu ${isMenuOpen ? "" : "room-menu-hidden"}`}>
-            <li><Link onClick={this.toggleMenu}  to="szoba-1">1</Link></li>
-            <li><Link onClick={this.toggleMenu}  to="szoba-2">2</Link></li>
-            <li><Link onClick={this.toggleMenu}  to="szoba-3">3</Link></li>
-            <li><Link onClick={this.toggleMenu}  to="szoba-4">4</Link></li>
-            <li><Link onClick={this.toggleMenu}  to="szoba-5">5</Link></li>
-            <li><Link onClick={this.toggleMenu}  to="szoba-6">6</Link></li>
+          <ul className={`room-menu ${isRoomMenuOpen ? "room-menu-show" : ""}`}>
+            {rooms.map(({id}) =>
+              <li
+                key={id}
+              >
+                <Link
+                  offset={isBigScreen ? -106 : -40}
+                  onClick={this.handleHideMenu}
+                  to={`szoba-${id}`}
+                >
+                  {id}
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
-      </Fragment>
-     
+      </Fade>
     )
   }
 }
 
+export default withStore(Menu)
+
 export const BackMenu = () =>
-  <nav className="back-menu">
-    <ul>
-      <li>
-        <RouteLink to="/">← Vissza a főoldalra</RouteLink>
-      </li>
-      <li><Link smooth to="kapcsolat">Kapcsolat</Link></li>
-    </ul>
-  </nav>
+  /**
+   * REVIEW: Not working with react-reveal
+   * <Fade up>
+   */
+  <RouteLink
+    className="back-to-home"
+    to="/"
+  >
+      ← Vissza a főoldalra
+  </RouteLink>
+  // </Fade>

@@ -1,0 +1,84 @@
+.carousel-section
+  padding: 0
+  min-height: 100vh
+  h2
+    text-align: center
+    margin-bottom: -.5rem
+
+.carousel
+  margin: auto
+
+.slider-control-centerright, .slider-control-centerleft, .slider-control-bottomcenter
+  display: none
+
+.carousel-item
+  position: relative
+  display: flex
+  flex-direction: column
+
+.carousel-item-desc
+  color: $light
+  background-color: $accent-color-3
+  z-index: 1
+  top: 0
+  width: 100%
+  height: 100%
+  padding: .5rem 0
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  h4
+    align-self: center
+    font-size: 2em
+    font-family: "White Festive", sans-serif
+    letter-spacing: .05em
+  p
+    margin: 0
+    font-family: "Coolvetica", sans-serif
+    padding: 0 1.5rem
+
+@media (min-width: 576px)
+  .carousel-item
+    max-width: 576px
+    margin: 0 auto
+
+
+@media (min-width: 860px)
+  .carousel-section
+    padding: 0 2.5% 2.5%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    h2
+      margin: 0
+      padding: 0
+  .carousel-item
+    
+    display: grid
+    max-width: none
+    max-width: 860px
+    grid-template-columns: 576px 1fr
+    picture
+      max-width: 576px
+  .carousel-item-desc
+    width: auto
+    height: auto
+    background-color: $accent-color-3
+    justify-content: center
+    h4, p
+      display: inline-block
+    h4
+      margin: 0
+      text-align: left
+      padding-left: 1rem
+      padding-bottom: 1rem
+
+@media (min-width: 1024px)
+
+  .slider-control-topright, .slider-control-topleft
+    display: none
+  .slider-control-centerright, .slider-control-centerleft
+    display: block
+  .carousel-item
+    border-radius: 1em
+    overflow: hidden
