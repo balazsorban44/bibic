@@ -4,8 +4,12 @@ node_js:
 cache:
   directories:
   - node_modules
+install:
+  - yarn global add firebase-tools
 script:
   - yarn build
-  - yarn test
-  - yarn add firebase-tools
-  - npx firebase deploy --token $FIREBASE_TOKEN
+  - yarn test:coverage
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: firebase deploy --token $FIREBASE_TOKEN
