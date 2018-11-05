@@ -122,9 +122,13 @@ nav
     transform: none !important
 
   .menu-hidden
-    pointer-events: all
     nav, .room-menu
       transform: none
+
+  .menu
+    pointer-events: none
+    li
+      pointer-events: all
 
   .menu-logo
     background-color: $light
