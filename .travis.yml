@@ -13,3 +13,6 @@ deploy:
   skip_cleanup: true
   provider: script
   script: firebase deploy --token $FIREBASE_TOKEN
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^develop|master$
