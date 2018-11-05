@@ -1,4 +1,4 @@
-import App, {Main, NotFound} from "../App"
+import App, {Main} from "../App"
 
 describe("App component", () => {
   const props = {}
@@ -9,14 +9,6 @@ describe("App component", () => {
   })
 })
 
-
-describe("NotFound component", () => {
-  const wrapper = shallow(<NotFound/>)
-
-  it("renders correctly", () => {
-    expect(wrapper).toMatchSnapshot()
-  })
-})
 
 describe("Main component", () => {
   const wrapper = shallow(<Main/>)

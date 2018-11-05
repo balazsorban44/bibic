@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {
   FormGroup, FormSection, Send
-} from './shared/Form'
-import PersonalDetails from './shared/PersonalDetails'
-import {withStore} from './db'
+} from '../shared/Form'
+import PersonalDetails from '../shared/PersonalDetails'
+import {withStore} from '../db'
 
+import "./message.sass"
 
 export class Message extends Component {
 

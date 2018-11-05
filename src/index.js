@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {render} from 'react-dom'
-import './main.css'
+import './sass/main.sass'
 import "./lib/moment"
 import 'react-toastify/dist/ReactToastify.css'
 import Database from './components/db'

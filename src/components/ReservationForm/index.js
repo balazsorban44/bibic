@@ -8,6 +8,7 @@ import PersonalDetails from '../shared/PersonalDetails'
 import ReservationDetails from './ReservationDetails'
 import Footnote from './Footnote'
 
+import "./reservation.sass"
 
 export class ReservationForm extends Component {
 

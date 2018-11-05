@@ -1,6 +1,6 @@
-import {Message} from "../Message"
-import {Send} from "../shared/Form"
-import PersonalDetails from "../shared/PersonalDetails"
+import {Message} from ".."
+import {Send} from "../../shared/Form"
+import PersonalDetails from "../../shared/PersonalDetails"
 
 window.scrollTo = jest.fn()
 

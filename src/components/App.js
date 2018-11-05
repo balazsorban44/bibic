@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  Route, Link, Switch
-} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Menu, {BackMenu} from './Menu'
 
 import lazy from "./AsyncComponent"
@@ -19,10 +17,11 @@ const ReservationForm = lazy(() => import("./ReservationForm"))
 const Sunflower = lazy(() => import('./Sunflower'))
 const Services = lazy(() => import('./Services'))
 const Prices = lazy(() => import('./Prices'))
-const Message = lazy(() => import("./Message"))
+const MessageForm = lazy(() => import("./MessageForm"))
 const Rooms = lazy(() => import("./Rooms"))
 const Carousel = lazy(() => import("./shared/Carousel"))
 const MoreServices = lazy(() => import("./MoreServices"))
+const NotFound = lazy(() => import("./NotFound"))
 
 const App = () =>
   <>
@@ -70,7 +69,7 @@ const App = () =>
         path="/foglalas"
       />
       <Route
-        component={Message}
+        component={MessageForm}
         path="/uzenet"
       />
       <Route
@@ -89,18 +88,6 @@ const App = () =>
       <Route component={NotFound}/>
     </Switch>
   </>
-
-
-export const NotFound = () =>
-  <div className="not-found">
-    <h2>
-      404
-    </h2>
-    <p>
-      Hmm... Ez az oldal sajnos üres.
-    </p>
-    <Link to ="/">Vissza a főoldalra</Link>
-  </div>
 
 
 export const Main = () =>
