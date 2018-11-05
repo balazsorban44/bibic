@@ -4,6 +4,10 @@ import {CLOUD_FUNCTION_BASE_URL} from "../../utils/constants"
 
 
 export const isValidFeedback = feedback => {
+  if (!feedback) {
+    sendNotification("error", "Hibás visszajelzés.")
+    return false
+  }
   const error = validateFeedback(feedback)
   if (!error) {
     return true
