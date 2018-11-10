@@ -84,7 +84,8 @@ export const submitReservation = (reservation, isReserving, resetReservation, cl
               id: `${moment(from).format("YYYYMMDD")}-sz${roomId}`,
               lastHandledBy: "",
               timestamp: TIMESTAMP,
-              handled: false
+              handled: false,
+              archived: false
             })
             .then(() => {
               isReserving(false)
