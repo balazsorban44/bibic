@@ -24,7 +24,7 @@ describe("Database component", () => {
 
     it("message form", () => {
       wrapper.setProps({location: {...props.location, pathname: "uzenet"}})
-      wrapper.instance().updateByURL("tema=reggeli", true)
+      wrapper.instance().updateByURL("tema=reggeli")
       expect(wrapper.state("reservation").foodService).toBe("breakfast")
     })
 
@@ -32,6 +32,19 @@ describe("Database component", () => {
       wrapper.instance().updateByURL("tema=reggeli")
       expect(wrapper.state("reservation").foodService).toBe("breakfast")
     })
+
+    it("changed query updates price", () => {
+      const spy = jest.spyOn(wrapper.instance(), "updatePrice")
+      wrapper.setProps({location: {search: "?szoba=1", pathname: "foglalas"}})
+      expect(spy).toBeCalled()
+    })
+
+    it("changed query updates state", () => {
+      const spy = jest.spyOn(wrapper.instance(), "updatePrice")
+      wrapper.setProps({location: {search: "?szoba=10", pathname: "foglalas"}})
+      expect(wrapper.state("reservation").roomId).toBe(10)
+    })
+
   })
 
 
