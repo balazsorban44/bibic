@@ -5,7 +5,7 @@ import {colors} from '../../../utils/colors'
 import {sendNotification} from '../../db/notification'
 import {Loading} from '../../shared/Elements'
 import {Date as DateLabel} from '../../shared/Form'
-import {TODAY} from '../../../utils/constants'
+import {TOMORROW} from '../../../utils/constants'
 
 /*
  *  NOTE: Implemented locally
@@ -46,12 +46,8 @@ class Calendar extends Component {
 
   render() {
     const {DateRangePicker} = this.state
-    const {reservation: {
-      roomId, from, to
-    }, rooms} = this.props
+    const {reservation: {from, to}} = this.props
     let {overlaps} = this.props
-    const unavailable = rooms[roomId-1] && rooms[roomId-1].unavailable
-    if (unavailable) overlaps.push(moment.range(TODAY, moment(new Date(unavailable))))
 
     const selected = {
       startDate: from,
@@ -97,7 +93,7 @@ class Calendar extends Component {
             disabledDates={overlaps}
             inputRanges={[]}
             locale={hu}
-            minDate={moment().add(1, "day").startOf("day").toDate()}
+            minDate={TOMORROW.clone().toDate()}
             onChange={this.handleSelect}
             ranges={[selected]}
             staticRanges={[]}
