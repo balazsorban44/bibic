@@ -6,7 +6,7 @@ import {
   submitReservation, getPrice, normalizeReservation
 } from './reservation'
 import {valueToState} from '../../utils/validate'
-import {isEquivalent} from '../../utils/compare'
+import {CLOUD_FUNCTION_BASE_URL} from '../../utils/constants'
 import {
   CLOUD_FUNCTION_BASE_URL, TODAY, TOMORROW
 } from '../../utils/constants'
@@ -148,7 +148,7 @@ export class Database extends Component {
     const {search} = this.props.location
     const {reservation} = this.state
 
-    if (!isEquivalent(prevReservation, reservation)) this.updatePrice()
+    if (!deepEqual(prevReservation, reservation)) this.updatePrice()
     if (prevSearch !== search) {
       this.updateByURL(search)
       this.updatePrice()
