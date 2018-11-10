@@ -1,5 +1,4 @@
 import moment from 'moment'
-import QueryString from 'query-string'
 import React, {Component, createContext} from 'react'
 import {withRouter} from 'react-router-dom'
 import {isQueryString, translate} from '../../utils/language'
@@ -188,9 +187,9 @@ export class Database extends Component {
   updateReservation = (key, value) => {
     if (isQueryString(key)) {
       const {history} = this.props
-      const search = QueryString.parse(history.location.search)
+      const search = querystringDecode(history.location.search)
       search[translate(key)] = key === "foodService" ? translate(value) : value
-      history.push(`foglalas?${ QueryString.stringify(search)}`)
+      history.push(`foglalas?${ querystring(search)}`)
     } else this.setState(({reservation}) => ({reservation: {...reservation,
       [key]: value}}))
   }
@@ -222,22 +221,19 @@ export class Database extends Component {
   updateMessage = (key, value) => {
     if (isQueryString(key)) {
       const {history} = this.props
-      const search = QueryString.parse(history.location.search)
+      const search = querystringDecode(history.location.search)
       search[translate(key)] = key === "subject" ? translate(value) : value
-      history.push(`uzenet?${ QueryString.stringify(search)}`)
+      history.push(`uzenet?${ querystring(search)}`)
     } else this.setState(({message}) => ({message: {...message,
       [key]: value}}))
   }
-
 
   /*
    * ----------------------------------------------------------------------------
    * Feedback
    */
-
   handleSubmitFeedback = feedback =>
     submitFeedback(feedback, loading => this.setState({loading}))
-
 
   /*
    * ----------------------------------------------------------------------------
@@ -254,7 +250,7 @@ export class Database extends Component {
     if (queryString) {
       const reservation = {...this.state.reservation}
       const message = {...this.state.message}
-      queryString = QueryString.parse(queryString)
+      queryString = querystringDecode(queryString)
       Object.entries(queryString).forEach(([key, value]) => {
         key = translate(key)
         value = key === "foodService" || key === "subject" ? translate(value) : value
