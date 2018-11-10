@@ -9,7 +9,6 @@
     "moment": "^2.22.2",
     "moment-range": "^4.0.1",
     "nuka-carousel": "^4.4.2",
-    "query-string": "6.2.0",
     "react": "^16.6.3",
     "react-date-range": "balazsorban44/react-date-range#patch-1",
     "react-dom": "^16.6.3",
