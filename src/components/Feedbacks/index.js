@@ -6,8 +6,9 @@ import moment from "../../lib/moment"
 import Fade from "react-reveal/Fade"
 
 export const Feedbacks = ({feedbacks}) => {
-  const sum = feedbacks.rooms.reduce((acc, room) => room += acc, 0)
-  const allAvg = (sum / feedbacks.rooms.length).toFixed(2)
+  const rooms = Object.entries(feedbacks.rooms)
+  const sum = rooms.reduce((acc, room) => acc + parseInt(room, 10) + 1, 0)
+  const allAvg = (sum / rooms.length).toFixed(2)
 
   return (
     <section id="visszajelzesek">
@@ -20,15 +21,15 @@ export const Feedbacks = ({feedbacks}) => {
             value={allAvg}
           />
           <div className="room-feedbacks">
-            {feedbacks.rooms.map((avg, index) =>
+            {rooms.map(([roomId, avg]) =>
               <div
                 className="room-feedback"
-                key={index}
+                key={roomId}
               >
                 <Stars
                   size={18}
-                  title={`Szoba ${index + 1}`}
-                  value={avg}
+                  title={`Szoba ${roomId}`}
+                  value={avg.toFixed(2)}
                 />
               </div>
             )}
@@ -39,12 +40,13 @@ export const Feedbacks = ({feedbacks}) => {
         <div>
           <h3>Önök mondták</h3>
           <ul className="feedback-list">
-            {feedbacks.all.length ? feedbacks.all.map((feedback, index) =>
-              <Feedback
-                key={index}
-                {...feedback}
-              />
-            ) : <Loading/>}
+            {feedbacks.all.length ?
+              feedbacks.all.map((feedback, index) =>
+                <Feedback
+                  key={index}
+                  {...feedback}
+                />
+              ) : <Loading/>}
           </ul>
         </div>
       </Fade>
@@ -56,13 +58,13 @@ export default withStore(Feedbacks)
 
 
 export const Feedback = ({
-  content, roomId, timestamp, ratings
+  content, roomId, timestamp
 }) =>
   <li
     className="feedback-list-element"
     data-room={roomId}
   >
     <span>{roomId}</span>
-    <p>{content !== "" ? content : "*".repeat(ratings.coffee)}</p>
+    <p>{content}</p>
     <h6>{moment(timestamp.toDate()).fromNow()}</h6>
   </li>

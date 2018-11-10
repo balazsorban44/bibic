@@ -7,17 +7,21 @@ import {
 } from './reservation'
 import {valueToState} from '../../utils/validate'
 import {CLOUD_FUNCTION_BASE_URL} from '../../utils/constants'
-import {
-  CLOUD_FUNCTION_BASE_URL, TODAY, TOMORROW
-} from '../../utils/constants'
+
+import deepEqual from "deep-equal"
 
 import {sendNotification} from "./notification"
 import {submitMessage} from './message'
-import {submitFeedback} from './feedback'
-import {FEEDBACKS_REF} from '../../lib/firebase'
+import {submitFeedback, subscribeToFeedbacks} from './feedback'
+import {fetchData, subscribeToDatabase} from './fetch'
+import {
+  initialState, initialMessage, initialReservation
+} from './initialState'
+import {querystringDecode, querystring} from '@firebase/util'
 
 const Store = createContext()
 /**
+ * REVIEW: @see https://reactjs.org/docs/context.html#classcontexttype check this out to replace withStore
  * Makes the Store values available
  * @param {Component} WrappedComponent The component to pass the store values to
  * @returns {Component} Component with the Store values
@@ -27,119 +31,50 @@ export const withStore = WrappedComponent =>
     render() {
       return (
         <Store.Consumer>
-          {values =>
-            <WrappedComponent
-              {...{...values,
-                ...this.props}}
-            />
-          }
+          {values => <WrappedComponent{...{...values, ...this.props}}/>}
         </Store.Consumer>
       )
     }
   }
 
 
-const initialReservation = {
-  roomId: null,
-  from: TOMORROW.toDate(),
-  to: TOMORROW.toDate(),
-  name: "",
-  email: "",
-  address: "",
-  tel: "",
-  message: "",
-  adults: 1,
-  children: [],
-  foodService: "breakfast",
-  price: 0
-}
-
-const initialMessage = {
-  content: "",
-  subject: "other",
-  address: "",
-  name: "",
-  email: "",
-  tel: ""
-}
-
 export class Database extends Component {
 
-  state = {
-    hero: [],
-    isReserving: false,
-    isMessageLoading: false,
-    tomorrow: TOMORROW,
-    paragraphs: {},
-    galleries: {},
-    month: TODAY,
-    reservation: initialReservation,
-    message: initialMessage,
-    rooms: [],
-    roomServices: [],
-    overlaps: [],
-    feedbacks: {all: [], rooms: []}
-  }
+  state = initialState
 
+  // Fetch all initial data
+  componentDidMount = async () => {
+    try {
+      const images = await Promise.all([
+        import("../../assets/images/hero/1.jpg"),
+        import("../../assets/images/hero/2.jpg")
+      ])
 
-  // Fetch all initial data from Firebase.
-  componentDidMount() {
+      const {
+        PARAGRAPHS_REF, ROOMS_REF,
+        ROOM_SERVICES_REF, GALLERIES_REF,
+        FEEDBACKS_FS_REF, FEEDBACKS_REF
+      } = await import("../../lib/firebase")
 
-    Promise.all([
-      import("../../assets/images/hero/1.jpg"),
-      import("../../assets/images/hero/2.jpg")
-    ]).then(images => {
-      this.setState({hero: images.map(({default: img}) => img)})
-    })
+      subscribeToDatabase(PARAGRAPHS_REF, paragraphs => this.setState({paragraphs}), true)
 
-    import("../../lib/firebase").then(({
-      PARAGRAPHS_REF, ROOMS_REF, ROOM_SERVICES_REF, GALLERIES_REF, FEEDBACKS_FS_REF
-    }) => {
+      subscribeToDatabase(GALLERIES_REF, galleries => this.setState({galleries}), true)
 
-      FEEDBACKS_FS_REF.where("accepted", "==", true).orderBy("timestamp", "asc").limit(20).onSnapshot(data => {
-        const feedbacks = []
-        data.forEach(feedback => {
-          feedbacks.push(feedback.data())
-        })
-        this.setState(({feedbacks: prevFeedbacks}) => ({feedbacks: {...prevFeedbacks, all: feedbacks}}))
-      })
+      subscribeToDatabase(ROOM_SERVICES_REF, services => this.setState({roomServices: Object.entries(services)}))
 
-      FEEDBACKS_REF.on("value", snap =>
-        this.setState(
-          ({feedbacks: prevFeedbacks}) => ({feedbacks: {...prevFeedbacks, rooms: snap.val()}})
-        )
-      )
+      subscribeToDatabase(FEEDBACKS_REF,
+        rooms => this.setState(({feedbacks}) => ({feedbacks: {...feedbacks, rooms}})))
 
-      PARAGRAPHS_REF
-        .on("value", snap => {
-          const paragraphs = {}
-          Object.entries(snap.val()).forEach(([paragraphType, paragraphList]) => {
-            paragraphs[paragraphType] = Object.values(paragraphList)
-              .sort((a, b) => a.order - b.order)
-          })
-          this.setState({paragraphs})
-        })
+      subscribeToFeedbacks(FEEDBACKS_FS_REF,
+        all => this.setState(({feedbacks: prev}) => ({feedbacks: {...prev, all}})))
 
-      GALLERIES_REF
-        .on("value", snap => {
-          const galleries = {}
-          Object.entries(snap.val()).forEach(([galleryType, galleryList]) => {
-            galleries[galleryType] = Object.values(galleryList)
-              .sort((a, b) => a.order - b.order)
-          })
-          this.setState({galleries})
-        })
+      const rooms = await fetchData(ROOMS_REF)
+      this.setState({hero: images.map(({default: img}) => img), rooms})
+      this.updateByURL(this.props.location.search, true)
 
-
-      ROOM_SERVICES_REF
-        .on("value", snap =>
-          this.setState({roomServices: Object.entries(snap.val())})
-        )
-
-
-      ROOMS_REF.once("value", snap => this.setState({rooms: snap.val()}))
-        .then(() => this.updateByURL(this.props.location.search, true))
-    })
+    } catch (error) {
+      sendNotification("error", "Adatbázis hiba. Kérjük vegye fel velünk a kapcsolatot.")
+    }
 
   }
 
