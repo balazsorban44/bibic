@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "deep-equal": "^1.0.1",
     "firebase": "^5.5.7",
     "google-map-react": "^1.0.9",
     "moment": "^2.22.2",

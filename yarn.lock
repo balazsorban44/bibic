@@ -2645,8 +2645,9 @@ data-urls@^1.0.0, data-urls@^1.0.1:
     whatwg-url "^7.0.0"
 
 date-fns@^2.0.0-alpha.24:
-  version "2.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.25.tgz#651a5d1f59a01af6cf0371e39b2ae29df5d521ee"
+  version "2.0.0-alpha.24"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.24.tgz#2988c137c72275af29d7d21cc53eb52b3a8c2586"
+  integrity sha512-jpLzKHKSq0nTcZ3K5ZnTelxWmUwPepuoEaXkATwIUnc1tc+/rIooAvDMR+zdAGnwQ35eVWiyn5dikoLHjhEYeA==
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -2700,6 +2701,7 @@ decode-uri-component@^0.2.0:
 deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
+  integrity sha1-9dJgKStmDghO/0zbyfCK0yR0SLU=
 
 deep-extend@^0.6.0:
   version "0.6.0"
