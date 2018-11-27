@@ -2370,6 +2370,13 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+cross-fetch@^2.2.2:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-2.2.3.tgz#e8a0b3c54598136e037f8650f8e823ccdfac198e"
+  dependencies:
+    node-fetch "2.1.2"
+    whatwg-fetch "2.0.4"
+
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.4, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -4990,7 +4997,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isomorphic-fetch@2.2.1, isomorphic-fetch@^2.2.1:
+isomorphic-fetch@2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -5167,11 +5174,11 @@ jest-environment-node@^23.4.0:
     jest-mock "^23.2.0"
     jest-util "^23.4.0"
 
-jest-fetch-mock@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.6.6.tgz#f07d80912689c21fb01199f313abd121beff5558"
+jest-fetch-mock@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-2.0.0.tgz#fa78869d7eaccc25e7595e9ff11c3e357ae7eaa7"
   dependencies:
-    isomorphic-fetch "^2.2.1"
+    cross-fetch "^2.2.2"
     promise-polyfill "^7.1.1"
 
 jest-get-type@^22.1.0:
@@ -6379,6 +6386,10 @@ no-case@^2.2.0:
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
   dependencies:
     lower-case "^1.1.1"
+
+node-fetch@2.1.2:
+  version "2.1.2"
+  resolved "http://registry.npmjs.org/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
 
 node-fetch@^1.0.1:
   version "1.7.3"
