@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import moment from 'moment'
 import {withStore} from '../../db'
 import {colors} from '../../../utils/colors'
 import {sendNotification} from '../../db/notification'
@@ -12,7 +11,8 @@ import {TOMORROW} from '../../../utils/constants'
  * @see https://github.com/Adphorus/react-date-range/pull/246
  */
 
-import hu from "../../../lib/react-date-range/locale/hu"
+import {format} from 'date-fns'
+import {hu} from 'date-fns/locale'
 
 
 class Calendar extends Component {
@@ -39,15 +39,14 @@ class Calendar extends Component {
 
   handleSelect = ({selection: {startDate, endDate}}) => {
     const {updateReservation} = this.props
-    updateReservation("from", moment(startDate).format("YYYY-MM-DD"))
-    updateReservation("to", moment(endDate).format("YYYY-MM-DD"))
+    updateReservation("from", format(startDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
+    updateReservation("to", format(endDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
     sendNotification("calendarSelectSuccess")
   }
 
   render() {
     const {DateRangePicker} = this.state
-    const {reservation: {from, to}} = this.props
-    let {overlaps} = this.props
+    const {reservation: {from, to}, overlaps} = this.props
 
     const selected = {
       startDate: from,
@@ -55,11 +54,6 @@ class Calendar extends Component {
       key: 'selection',
       color: colors.accent.primary
     }
-
-    overlaps = overlaps
-      .map(overlap => Array.from(overlap.by("day")))
-      .reduce((acc, val) => acc.concat(val), [])
-      .map(day => day.toDate())
 
     return (
       <div style={{
@@ -93,7 +87,7 @@ class Calendar extends Component {
             disabledDates={overlaps}
             inputRanges={[]}
             locale={hu}
-            minDate={TOMORROW.clone().toDate()}
+            minDate={TOMORROW}
             onChange={this.handleSelect}
             ranges={[selected]}
             staticRanges={[]}

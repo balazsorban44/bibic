@@ -2,11 +2,12 @@ import React from 'react'
 import Stars from './Stars'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
-import moment from "../../lib/moment"
 import Fade from "react-reveal/Fade"
+import {hu} from 'date-fns/locale'
+import {format} from 'date-fns'
 
 export const Feedbacks = ({feedbacks}) => {
-  const rooms = Object.entries(feedbacks.rooms)
+  const rooms = Object.entries(feedbacks.rooms || {})
   const sum = rooms.reduce((acc, room) => acc + parseInt(room, 10) + 1, 0)
   const allAvg = (sum / rooms.length).toFixed(2)
 
@@ -66,5 +67,5 @@ export const Feedback = ({
   >
     <span>{roomId}</span>
     <p>{content}</p>
-    <h6>{moment(timestamp.toDate()).fromNow()}</h6>
+    <h6>{format(timestamp, "MMMM d.", {locale: hu})}</h6>
   </li>

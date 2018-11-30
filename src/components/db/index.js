@@ -1,4 +1,3 @@
-import moment from 'moment'
 import React, {Component, createContext} from 'react'
 import {withRouter} from 'react-router-dom'
 import {isQueryString, translate} from '../../utils/language'
@@ -18,6 +17,7 @@ import {
   initialState, initialMessage, initialReservation
 } from './initialState'
 import {querystringDecode, querystring} from '@firebase/util'
+import {eachDayOfInterval} from 'date-fns'
 
 const Store = createContext()
 /**
@@ -133,7 +133,8 @@ export class Database extends Component {
     try {
       let overlaps = await fetch(`${CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${this.state.reservation.roomId}`)
       overlaps = await overlaps.json()
-      this.setState({overlaps: overlaps.map(({start, end}) => moment.range(start, end))})
+      this.setState({overlaps:
+        overlaps.reduce((acc, interval) => [...acc, ...eachDayOfInterval(interval)], [])})
     } catch (error) {
       sendNotification("error", error.message)
     }
@@ -197,9 +198,8 @@ export class Database extends Component {
       })
 
       this.setState({reservation, message}, () => {
-        let {reservation: {from}} = this.state
+        const {reservation: {from}} = this.state
         if (isInitial) {
-          from = moment(from)
           this.setState({month: from})
         }
       })

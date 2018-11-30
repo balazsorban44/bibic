@@ -4,7 +4,6 @@ import {
 } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 configure({adapter: new Adapter()})
-import moment from "./lib/moment"
 import fetch from "jest-fetch-mock"
 
 /**
@@ -14,5 +13,4 @@ import fetch from "jest-fetch-mock"
 global.React = React
 global.mount = mount
 global.shallow = shallow
-global.moment = moment
 global.fetch = fetch

@@ -3,8 +3,8 @@ import {TOMORROW, TODAY} from "../../utils/constants"
 
 export const initialReservation = {
   roomId: null,
-  from: TOMORROW.toDate(),
-  to: TOMORROW.toDate(),
+  from: TOMORROW,
+  to: TOMORROW,
   name: "",
   email: "",
   address: "",

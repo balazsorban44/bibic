@@ -1,5 +1,7 @@
-import moment from 'moment'
-import {TOMORROW} from './constants'
+import {TOMORROW, TODAY} from './constants'
+import {
+  isAfter, differenceInCalendarDays, startOfDay, endOfDay, addDays, isDate
+} from 'date-fns'
 
 
 const nameRe = new RegExp(/[\s.áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z-]+/)
@@ -15,9 +17,9 @@ export const valid = {
   address: address => typeof address === "string" && addressRe.test(address),
   message: message => typeof message === "string",
   messageMin: message => typeof message === "string" && message.length >= 40,
-  from: from => moment(from).isAfter(TOMORROW),
-  to: to => moment(to).isAfter(TOMORROW.clone().add(2, "day")),
-  period: (from, to) => moment.range(from, to).snapTo("day").diff("day") >= 1,
+  from: from => isAfter(from, TOMORROW),
+  to: to => isAfter(to, addDays(TOMORROW, 2)),
+  period: (from, to) => differenceInCalendarDays(endOfDay(to), startOfDay(from)) >= 1,
   adults: adults => typeof adults === "number" && adults,
   children: children =>
     Array.isArray(children) &&
@@ -96,8 +98,8 @@ export const valueToState = (key, value) => {
         value.filter(child => ageGroups.includes(child)) : []
   case "from":
   case "to":
-    const date = moment(value, "YYYY-MM-DD", true)
-    return date.isValid() ? date.toDate() : moment().toDate()
+    const date = new Date(value)
+    return isDate(date) ? date : TODAY
   case "foodService":
     return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
   case "subject":
