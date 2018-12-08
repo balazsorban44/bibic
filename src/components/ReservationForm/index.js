@@ -9,6 +9,7 @@ import ReservationDetails from './ReservationDetails'
 import Footnote from './Footnote'
 
 import "./reservation.sass"
+import ToastContainer from '../ToastContainer';
 
 export class ReservationForm extends Component {
 
@@ -31,6 +32,7 @@ export class ReservationForm extends Component {
         action=""
         className="form"
       >
+        <ToastContainer/>
         <h2>Foglalás</h2>
         <RoomSelector/>
         <RoomServices/>

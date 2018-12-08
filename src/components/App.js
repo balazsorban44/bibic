@@ -1,46 +1,44 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import {Route, Switch} from 'react-router-dom'
-import Menu, {BackMenu} from './Menu'
 
-import lazy from "./AsyncComponent"
-import Introduction from './Introduction'
-import Hero from './Hero'
-
-import {ToastContainer} from 'react-toastify'
+import {BackMenu} from './Menu'
 import ChatFAB from './ChatFAB'
 import {routes} from '../utils/constants'
-import FeedbackForm from './FeedbackForm'
-import {FEEDBACK_FORM} from '../utils/constants'
+import Top from "./Top"
+import NotFound from "./NotFound"
+import {Loading} from './shared/Elements'
 
-// NOTE: Asynchronously fetching Components that do not need to load at startup
-const ReservationForm = lazy(() => import("./ReservationForm"))
-const Sunflower = lazy(() => import('./Sunflower'))
-const Services = lazy(() => import('./Services'))
-const Prices = lazy(() => import('./Prices'))
-const MessageForm = lazy(() => import("./MessageForm"))
-const Rooms = lazy(() => import("./Rooms"))
-const Carousel = lazy(() => import("./shared/Carousel"))
-const MoreServices = lazy(() => import("./MoreServices"))
-const NotFound = lazy(() => import("./NotFound"))
+
+/**
+ * NOTE: Asynchronously fetching Components
+ * that do not need to be loaded at startup
+ */
+
+import ReservationForm from "./ReservationForm"
+import FeedbackForm from "./FeedbackForm"
+import MessageForm from "./MessageForm"
+import Carousel from "./shared/Carousel"
+import MoreServices from "./MoreServices"
+
+const Main = lazy(() => import("./Main"))
+
 
 const App = () =>
   <>
-    <ToastContainer
-      closeOnClick
-      position="bottom-center"
-      style={{
-        position: "fixed",
-        zIndex: 10001,
-        bottom: 0
-      }}
-    />
-    <Route render={({location: {pathname}}) => pathname !== '/' && <BackMenu/>} />
+    <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackMenu/>} />
     <ChatFAB/>
     <Switch>
       <Route
         exact
-        path="/"
-        render={Main}
+        path={routes.HOME}
+        render={() =>
+          <>
+            <Top/>
+            <Suspense fallback={<Loading/>}>
+              <Main/>
+            </Suspense>
+          </>
+        }
       />
       <Route
         component={() =>
@@ -82,19 +80,6 @@ const App = () =>
       />
       <Route component={NotFound}/>
     </Switch>
-  </>
-
-
-export const Main = () =>
-  <>
-    <Menu/>
-    <Hero/>
-    <Introduction/>
-    <Sunflower/>
-    <Services/>
-    <Rooms/>
-    <Prices/>
-    <Feedbacks/>
   </>
 
 

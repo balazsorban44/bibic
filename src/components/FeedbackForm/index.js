@@ -6,6 +6,7 @@ import {translate, isQueryString} from '../../utils/language'
 import errorState from "../../assets/images/other/empty-state.svg"
 import successState from "../../assets/images/other/success-state.svg"
 import {Loading} from '../shared/Elements'
+import ToastContainer from '../ToastContainer';
 export class FeedbackForm extends Component {
 
   state = {
@@ -79,7 +80,9 @@ export class FeedbackForm extends Component {
     } = this.state
 
     return(
-      <>{error ?
+      <>
+      <ToastContainer/>
+      {error ?
         <FeedbackDone>
           <h1>Hiba történt.</h1>
           <img

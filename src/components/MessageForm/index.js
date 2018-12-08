@@ -6,6 +6,7 @@ import PersonalDetails from '../shared/PersonalDetails'
 import {withStore} from '../db'
 
 import "./message.sass"
+import ToastContainer from '../ToastContainer';
 
 export class Message extends Component {
 
@@ -29,6 +30,7 @@ export class Message extends Component {
         action=""
         className="form message-form"
       >
+        <ToastContainer/>
         <FormSection title="Személyi adatok">
           <PersonalDetails
             disabled={isMessageLoading}
