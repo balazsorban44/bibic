@@ -45,10 +45,6 @@ export class Database extends Component {
   // Fetch all initial data
   componentDidMount = async () => {
     try {
-      const images = await Promise.all([
-        import("../../assets/images/hero/1.jpg"),
-        import("../../assets/images/hero/2.jpg")
-      ])
 
       const {
         PARAGRAPHS_REF, ROOMS_REF,
@@ -69,7 +65,7 @@ export class Database extends Component {
         all => this.setState(({feedbacks: prev}) => ({feedbacks: {...prev, all}})))
 
       const rooms = await fetchData(ROOMS_REF)
-      this.setState({hero: images.map(({default: img}) => img), rooms})
+      this.setState({rooms})
       this.updateByURL(this.props.location.search, true)
 
     } catch (error) {
