@@ -120,7 +120,7 @@ export class Database extends Component {
       const {history} = this.props
       const search = querystringDecode(history.location.search)
       search[translate(key)] = key === "foodService" ? translate(value) : value
-      history.push(`foglalas?${ querystring(search)}`)
+      history.push(`foglalas?${querystring(search)}`)
     } else this.setState(({reservation}) => ({reservation: {...reservation,
       [key]: value}}))
   }
