@@ -1,84 +1,82 @@
-.carousel-section
-  padding: 0
-  min-height: 100vh
+.carousel-wrapper
+  padding: 1em 0 0 0
+  display: grid
+  height: 100vh
+  grid-template-rows: 64px 1fr
+  grid-template-columns: repeat(4, 1fr)
+  grid-template-areas: ". . . title" "carousel carousel carousel carousel"
+  
   h2
-    text-align: center
-    margin-bottom: -.5rem
-
+    margin: 0
+    padding: 0 .5em 0 0
+    grid-area: title
 .carousel
-  margin: auto
-
-.slider-control-centerright, .slider-control-centerleft, .slider-control-bottomcenter
-  display: none
-
-.carousel-item
+  grid-area: carousel
   position: relative
-  display: flex
-  flex-direction: column
-
-.carousel-item-desc
-  color: $light
-  background-color: $accent-color-3
-  z-index: 1
-  top: 0
-  width: 100%
-  height: 100%
-  padding: .5rem 0
+  overflow: hidden
+.carousel-item
   display: flex
   flex-direction: column
   justify-content: space-between
+
+  >div
+    img
+      background-color: white
+      margin: 0 auto
+      width: auto
+      max-width: none
+      height: 100%
+
   h4
-    align-self: center
-    font-size: 2em
-    font-family: "White Festive", sans-serif
-    letter-spacing: .05em
-  p
-    margin: 0
-    font-family: "Coolvetica", sans-serif
-    padding: 0 1.5rem
+    font-size: 1.2em
+    font-weight: bolder
+    letter-spacing: .1em
+    padding-bottom: .25em
 
-@media (min-width: 576px)
-  .carousel-item
-    max-width: 576px
-    margin: 0 auto
+.carousel-item-picture
+  position: relative
+  height: calc(100vw * 2 / 3)
+  overflow: hidden
 
+.carousel-item-desc
+  padding: 1em 1.5em
 
-@media (min-width: 860px)
-  .carousel-section
-    padding: 0 2.5% 2.5%
-    display: flex
-    flex-direction: column
-    justify-content: center
-    h2
-      margin: 0
-      padding: 0
-  .carousel-item
-    
-    display: grid
-    max-width: none
-    max-width: 860px
-    grid-template-columns: 576px 1fr
-    picture
-      max-width: 576px
-  .carousel-item-desc
-    width: auto
-    height: auto
-    background-color: $accent-color-3
-    justify-content: center
-    h4, p
-      display: inline-block
-    h4
-      margin: 0
-      text-align: left
-      padding-left: 1rem
-      padding-bottom: 1rem
+.carousel-arrow
+  cursor: pointer
+  width: 36px
+  height: 36px
+  display: grid
+  place-items: center
+  background-color: $accent-color
+  border-radius: 50%
+  margin: 6px
+  position: absolute
+  top: calc(100vw / 3)
+  transform: translateY(-50%)
+  z-index: 1000
+
+.carousel-arrow-prev
+  grid-area: arrow-prev
+
+.carousel-arrow-next
+  right: 0
+  grid-area: arrow-next
+
 
 @media (min-width: 1024px)
-
-  .slider-control-topright, .slider-control-topleft
-    display: none
-  .slider-control-centerright, .slider-control-centerleft
-    display: block
-  .carousel-item
-    border-radius: 1em
+  .carousel-wrapper
+  .carousel
+    max-width: 70%
+    margin-left: 15%
     overflow: hidden
+    max-height: 66vh
+
+  .carousel-item
+    flex-direction: row
+    >div
+      img
+        height: auto
+        max-width: 90%
+
+  .carousel-arrow
+    top: 50%
