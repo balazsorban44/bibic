@@ -5,7 +5,6 @@ import './sass/main.sass'
 import 'react-toastify/dist/ReactToastify.css'
 import Database from './components/db'
 import App from './components/App'
-import Map from './components/Map'
 
 render(
   <BrowserRouter>
@@ -15,5 +14,3 @@ render(
   </BrowserRouter>,
   document.querySelector('.app')
 )
-
-render(<Map/>, document.querySelector(".map"))

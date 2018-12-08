@@ -13,15 +13,17 @@ export const Marker = () =>
   />
 
 export default () =>
-  <GoogleMaps
-    bootstrapURLKeys={{key: [MAPS_API_KEY]}}
-    center={{lat: 46.3950025,
-      lng: 17.506616}}
-    options={{styles: MAPS_STYLE}}
-    zoom={15}
-  >
-    <Marker
-      lat={46.3950025}
-      lng={17.506616}
-    />
-  </GoogleMaps>
+  <div className="map">
+    <GoogleMaps
+      bootstrapURLKeys={{key: [MAPS_API_KEY]}}
+      center={{lat: 46.3950025,
+        lng: 17.506616}}
+      options={{styles: MAPS_STYLE}}
+      zoom={15}
+    >
+      <Marker
+        lat={46.3950025}
+        lng={17.506616}
+      />
+    </GoogleMaps>
+  </div>
