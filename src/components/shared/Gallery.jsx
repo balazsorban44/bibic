@@ -1,44 +1,31 @@
 import React from 'react'
 import {Loading} from './Elements'
 import {withStore} from '../db'
-import {withRouter} from 'react-router-dom/'
 
 export const Gallery = ({
-  path, galleries, count,
-  item: Item, itemClassName,
-  component: Component, componentProps
+  galleries, count, path
 }) => {
+  path = path.replace("/", "")
+
   const children = galleries[path] ?
     Object
       .values(galleries[path])
       .slice(0, count)
       .map((itemProps, key) =>
-        Item ?
-          <Item
-            key={key}
-            {...{...itemProps,
-              itemClassName}}
-          /> :
-          <GalleryItem
-            key={key}
-            {...itemProps}
-          />
+        <GalleryItem
+          key={key}
+          {...itemProps}
+        />
       ) :
     <Loading/>
 
   return (
-    Component ?
-      <Component {...componentProps}>
-        {children}
-      </Component> :
-      <div className="gallery">
-        {children}
-      </div>
+    <div className="gallery">{children}</div>
   )
 }
 
 
-export default withRouter(withStore(Gallery))
+export default withStore(Gallery)
 
 
 export const GalleryItem = ({
