@@ -175,9 +175,6 @@ describe("validateReservation", () => {
     it("message", () =>
       expect(validateReservation({...params, message: 0})).toContain("üzenet"))
 
-    it("message less than 40 char", () =>
-      expect(validateReservation({...params, message: "lorem ipsum"})).toContain("rövid"))
-
     it("adult is 0", () =>
       expect(validateReservation({...params, adults: 0})).toContain("felnőtt"))
 
@@ -229,8 +226,6 @@ describe("validateMessage", () => {
     it("address", () =>
       expect(validateMessage({...mes, address: ""})).toContain("lakcím"))
 
-    it("message less than 40 char", () =>
-      expect(validateMessage({...mes, content: "lorem ipsum"})).toContain("rövid"))
   })
 
   it("passed", () => expect(validateMessage(mes)).toBe(false))
