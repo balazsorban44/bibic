@@ -8,7 +8,7 @@ import Hero from './Hero'
 
 import {ToastContainer} from 'react-toastify'
 import ChatFAB from './ChatFAB'
-import Feedbacks from './Feedbacks'
+import {routes} from '../utils/constants'
 import FeedbackForm from './FeedbackForm'
 import {FEEDBACK_FORM} from '../utils/constants'
 
@@ -51,7 +51,7 @@ const App = () =>
           />
         }
         exact
-        path="/etelek"
+        path={routes.FOODS}
       />
       <Route
         component={() =>
@@ -61,29 +61,24 @@ const App = () =>
             title="Korábbi rendezvények"
           />}
         exact
-        path="/rendezvenyek"
+        path={routes.EVENTS}
       />
       <Route
         component={ReservationForm}
         exact
-        path="/foglalas"
+        path={routes.RESERVE}
       />
       <Route
         component={MessageForm}
-        path="/uzenet"
+        path={routes.MESSAGE}
       />
       <Route
         component={FeedbackForm}
-        path={FEEDBACK_FORM}
+        path={routes.FEEDBACK_FORM}
       />
       <Route
-        component={() =>
-          <>
-            <BackMenu/>
-            <MoreServices/>
-          </>
-        }
-        path="/szolgaltatasok"
+        component={MoreServices}
+        path={routes.SERVICES}
       />
       <Route component={NotFound}/>
     </Switch>

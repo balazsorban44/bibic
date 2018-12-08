@@ -5,4 +5,13 @@ export const CLOUD_FUNCTION_BASE_URL = "https://europe-west1-bibic-vendeghazak-a
 export const TODAY = startOfDay(new Date())
 export const TOMORROW = addDays(TODAY, 1)
 
-export const FEEDBACK_FORM = "/visszajelzes"
+
+export const routes = {
+  HOME: "/",
+  FEEDBACK_FORM: "/visszajelzes",
+  RESERVE: "/foglalas",
+  FOODS: "/etelek",
+  EVENTS: "/rendezvenyek",
+  MESSAGE: "/uzenet",
+  SERVICES: "/szolgaltatasok"
+}
