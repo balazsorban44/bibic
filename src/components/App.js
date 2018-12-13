@@ -56,7 +56,7 @@ const App = () =>
           <Carousel
             className="events"
             itemClassName="event"
-            title="Korábbi rendezvények"
+            title="Rendezvények"
           />}
         exact
         path={routes.EVENTS}
