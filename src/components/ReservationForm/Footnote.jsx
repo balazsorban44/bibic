@@ -2,7 +2,7 @@ import React from 'react'
 import BANK from '../../assets/icons/bank.png'
 import CASH from '../../assets/icons/cash.png'
 import MASTERCARD from '../../assets/icons/mastercard.png'
-import SZEP from '../../assets/icons/szep.png'
+import SZEP from '../../assets/icons/szep.jpg'
 import VISA from '../../assets/icons/visa.png'
 
 const Footnote = () => <span className="footnote">Elfogadott fizetési módok

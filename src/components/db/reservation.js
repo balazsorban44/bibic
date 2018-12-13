@@ -1,6 +1,8 @@
-import moment from "moment"
 import {validateReservation} from '../../utils/validate'
 import {sendNotification} from './notification'
+import {
+  areIntervalsOverlapping, differenceInCalendarDays, format, startOfDay, setHours
+} from "date-fns"
 
 
 export const getPrice = (room, reservation) => {
@@ -20,7 +22,7 @@ export const getPrice = (room, reservation) => {
     }
     // If interval chosen, price times the days
     if (from && to) {
-      return price*moment(to).diff(moment(from), "days")
+      return price*differenceInCalendarDays(to, from)
     } else return price
   }
   return price
@@ -30,9 +32,7 @@ export const isAvailable = (roomId, range) =>
   fetch(`https://europe-west1-bibic-vendeghazak-api.cloudfunctions.net/getOverlaps?roomId=${roomId}`)
     .then(res => res.json())
     .then(overlaps =>
-      !overlaps.some(({start, end}) =>
-        moment.range(start, end).overlaps(range)
-      )
+      !overlaps.some(interval => areIntervalsOverlapping(interval, range))
     )
 
 
@@ -75,16 +75,17 @@ export const submitReservation = (reservation, isReserving, resetReservation, cl
     const {
       roomId, from, to
     } = reservation
-    isAvailable(roomId, moment.range(from, to)).then(available => {
+    isAvailable(roomId, {start: from, end: to}).then(available => {
       if (available === true) {
         import("../../lib/firebase").then(({RESERVATIONS_FS_REF, TIMESTAMP}) =>
           RESERVATIONS_FS_REF
             .add({
               ...reservation,
-              id: `${moment(from).format("YYYYMMDD")}-sz${roomId}`,
+              id: `${format(from, "YYYYMMdd", {awareOfUnicodeTokens: true})}-sz${roomId}`,
               lastHandledBy: "",
               timestamp: TIMESTAMP,
-              handled: false
+              handled: false,
+              archived: false
             })
             .then(() => {
               isReserving(false)
@@ -134,8 +135,8 @@ export const normalizeReservation = reservation => {
   } = reservation
 
   // Normalize dates
-  normalized.from = moment(from).startOf("day").hours(14).toDate()
-  normalized.to = moment(to).startOf("day").hours(10).toDate()
+  normalized.from = setHours(startOfDay(from), 14)
+  normalized.to = setHours(startOfDay(to), 10)
 
   // Normalize message
   normalized.message = message !== "" ? message : "Nincs üzenet"

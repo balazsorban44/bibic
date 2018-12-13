@@ -1,13 +1,9 @@
 import React from 'react'
 import chat from '../assets/icons/chat.svg'
-import {withStore} from './db'
 import Fade from "react-reveal/Fade"
 
-export const ChatFAB = ({hero}) =>
-  <Fade
-    up
-    when={!!hero.length}
-  >
+export const ChatFAB = () =>
+  <Fade up>
     <div className="chat-fab">
       <span className="tooltip">Megtalál minket a Messengeren is!</span>
       <a
@@ -26,4 +22,4 @@ export const ChatFAB = ({hero}) =>
   </Fade>
 
 
-export default withStore(ChatFAB)
+export default ChatFAB

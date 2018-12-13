@@ -24,8 +24,8 @@ describe("Feedbacks component", () => {
   })
 
   it("all rooms' average calculated", () => {
-    wrapper.setProps({feedbacks: {all: [], rooms: [1,2,3,4,5,6]}})
-    expect(wrapper.find(Stars).first().prop("value")).toBe(((1+2+3+4+5+6)/6).toFixed(2).toString())
+    wrapper.setProps({feedbacks: {all: [], rooms: [1,2]}})
+    expect(wrapper.find(Stars).first().prop("value")).toBe("1.50")
   })
 
   describe("individual averages calculated", () => {
@@ -33,7 +33,7 @@ describe("Feedbacks component", () => {
     Array(newFeedbacks.rooms.length).fill(null).map((_e, i) =>
       it(`${i+1}. average `, () => {
         wrapper.setProps({feedbacks: newFeedbacks})
-        expect(wrapper.find(Stars).get(i+1).props.value).toBe(newFeedbacks.rooms[i])
+        expect(wrapper.find(Stars).get(i+1).props.value).toBe(newFeedbacks.rooms[i].toFixed(2))
       })
     )
   })
@@ -50,8 +50,4 @@ describe("Feedback component", () => {
     expect(wrapper).toHaveLength(1)
   })
 
-  it("if no content, content is rating stars \n\t(eg.: 3 > ***)", () => {
-    wrapper.setProps({content: ""})
-    expect(wrapper.find("p").prop("children")).toBe("*")
-  })
 })

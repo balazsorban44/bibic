@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import Gallery from './Gallery'
 import withRouter from 'react-router/withRouter'
-import {Next, Prev} from './Elements'
-import NukaCarousel from 'nuka-carousel'
-
+import Slide from "react-reveal/Slide"
+import makeCarousel from "react-reveal/makeCarousel"
+import {withStore} from '../db'
+import {Loading} from './Elements'
 
 export class Carousel extends Component {
 
@@ -13,66 +13,92 @@ export class Carousel extends Component {
 
   render() {
     let {match: {path}} = this.props
-    const {
-      className, itemClassName, title
-    } = this.props
+    const {title, galleries} = this.props
     path = path.replace("/", "")
+    const children = galleries[path] ?
+      Object
+        .values(galleries[path])
+        .map((itemProps, key) =>
+          <Slide
+            key={key}
+            right
+          >
+            <CarouselItem
+              className="carousel-item"
+              {...itemProps}
+            />
+          </Slide>
+        ) :
+      <Loading/>
     return(
       <section
-        className="carousel-section"
+        className="carousel-wrapper"
         id={path}
       >
         <h2>{title}</h2>
-        <Gallery
-          className={`${className} carousel`}
-          component={NukaCarousel}
-          componentProps={{
-            // autoplay: true,
-            wrapAround: true,
-            // slidesToShow: 2,
-            cellAlign: "center",
-            heightMode: "max",
-            cellSpacing: 40,
-            renderCenterRightControls: Next,
-            renderCenterLeftControls: Prev,
-            renderTopRightControls: Next,
-            renderTopLeftControls: Prev
-          }}
-          {...itemClassName}
-          item={CarouselItem}
-          path={path}
-        />
+        <CarouselWrapper defaultWait={10000}>
+          {children}
+        </CarouselWrapper>
       </section>
     )}
 }
 
-export default withRouter(Carousel)
+const CarouselWrapper = makeCarousel(({
+  position, handleClick, children
+}) =>
+  <div className="carousel">{children}
+    <span
+      className="carousel-arrow carousel-arrow-prev"
+      data-position={position - 1}
+      onClick={handleClick}
+    ><span className="arrow-icon"/></span>
+    <span
+      className="carousel-arrow carousel-arrow-next"
+      data-position={position + 1}
+      onClick={handleClick}
+    ><span className="arrow-icon"/></span>
+  </div>)
+
+export default withRouter(withStore(Carousel))
 
 
 export const CarouselItem = ({
-  title, desc, SIZE_640, SIZE_1280, SIZE_1440, SIZE_ORIGINAL, itemClassName: className
+  title, desc, SIZE_640, SIZE_1280, SIZE_1440, SIZE_ORIGINAL, className
 }) =>
-  <div className={`${className} carousel-item`}>
-    <picture>
-      <source
-        media="(max-width: 640px)"
-        srcSet={SIZE_640}
-      />
-      <source
-        media="(max-width: 1280px)"
-        srcSet={SIZE_1280}
-      />
-      <source
-        media="(max-width: 1920px)"
-        srcSet={SIZE_1440}
-      />
+  <div className={className}>
+    <span>
       <img
-        alt={title}
-        src={SIZE_ORIGINAL}
+        alt="blurred background"
+        className="carousel-item-bg"
+        src={SIZE_640}
       />
-    </picture>
-    <div className={`${className}-desc carousel-item-desc`}>
-      <h4>{title}</h4>
-      <p>{desc}</p>
+    </span>
+    <div className="carousel-item-picture">
+      <picture
+        className="carousel-item-img"
+      >
+        <source
+          media="(max-width: 640px)"
+          srcSet={SIZE_640}
+        />
+        <source
+          media="(max-width: 1280px)"
+          srcSet={SIZE_1280}
+        />
+        <source
+          media="(max-width: 1920px)"
+          srcSet={SIZE_1440}
+        />
+        <img
+          alt={title}
+          src={SIZE_ORIGINAL}
+        />
+      </picture>
     </div>
+    {desc ?
+      <div className="carousel-item-desc">
+        <h4>{title}</h4>
+        <p>{desc}</p>
+      </div> : null
+    }
   </div>

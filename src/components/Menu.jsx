@@ -1,11 +1,14 @@
-import React, {Component} from 'react'
+import React, {
+  lazy, Suspense, Component
+} from 'react'
 import {Link as RouteLink} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
-import {withStore} from './db'
 import Fade from "react-reveal/Fade"
 import {BASE_URL} from '../utils/constants'
+
+const RoomMenu = lazy(() => import("./RoomMenu"))
 
 const menu = [
   {to:"bemutatkozas", name: "Bemutatkozás"},
@@ -53,7 +56,6 @@ export class Menu extends Component {
 
   handleMenuToggle = () => this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
 
-
   handleHideMenu = () => this.setState({isMenuOpen: false, isRoomMenuOpen: false})
 
   render() {
@@ -61,12 +63,8 @@ export class Menu extends Component {
       isMenuOpen, isScrolled, isRoomMenuOpen, width
     } = this.state
     const isBigScreen = width > 768
-    const {hero, rooms} = this.props
     return (
-      <Fade
-        down
-        when={hero.length}
-      >
+      <Fade down>
         <div
           className={`menu ${isScrolled ? "menu-scrolled" : ""} ${isMenuOpen ? "" : "menu-hidden"}`}
         >
@@ -95,7 +93,6 @@ export class Menu extends Component {
             <Fade
               cascade
               down
-              when={hero.length}
             >
               <ul>
                 {menu.map(({
@@ -116,28 +113,22 @@ export class Menu extends Component {
               </ul>
             </Fade>
           </nav>
-          <ul className={`room-menu ${isRoomMenuOpen ? "room-menu-show" : ""}`}>
-            {rooms.map(({id}) =>
-              <li
-                key={id}
-              >
-                <Link
-                  offset={isBigScreen ? -106 : -40}
-                  onClick={this.handleHideMenu}
-                  to={`szoba-${id}`}
-                >
-                  {id}
-                </Link>
-              </li>
-            )}
-          </ul>
+          <Suspense fallback={null}>
+            <ul className={`room-menu ${isRoomMenuOpen ? "room-menu-show" : ""}`}>
+              <RoomMenu
+                isBigScreen={isBigScreen}
+                onClick={this.handleHideMenu}
+              />
+            </ul>
+          </Suspense>
         </div>
       </Fade>
     )
   }
 }
 
-export default withStore(Menu)
+export default Menu
+
 
 export const BackMenu = () =>
   /**

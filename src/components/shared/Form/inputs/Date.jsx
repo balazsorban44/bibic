@@ -1,5 +1,6 @@
 import React from 'react'
-import moment from "moment"
+import {format} from 'date-fns'
+import {hu} from 'date-fns/locale'
 
 
 const Date = ({
@@ -18,7 +19,7 @@ const Date = ({
       id={name}
       readOnly
       {...{name}}
-      value={value ? moment(value).format("LL") : "Nincs megadva"}
+      value={value ? format(value, "YYYY. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}) : "Nincs megadva"}
     />
   </div>
 )
