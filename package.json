@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "date-fns": "^2.0.0-alpha.25",
+    "date-fns": "^2.0.0-alpha.26",
     "deep-equal": "^1.0.1",
     "firebase": "^5.7.0",
     "google-map-react": "^1.1.1",
