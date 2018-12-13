@@ -4,7 +4,8 @@ import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
 import Fade from "react-reveal/Fade"
 import {hu} from 'date-fns/locale'
-import {format} from 'date-fns'
+import {formatDistance} from 'date-fns'
+import {TODAY} from '../../utils/constants'
 
 export const Feedbacks = ({feedbacks}) => {
   const rooms = Object.entries(feedbacks.rooms || {})
@@ -67,5 +68,5 @@ export const Feedback = ({
   >
     <span>{roomId}</span>
     <p>{content}</p>
-    <h6>{format(timestamp, "MMMM d.", {locale: hu})}</h6>
+    <h6>{formatDistance(timestamp, TODAY, {locale: hu})}</h6>
   </li>
