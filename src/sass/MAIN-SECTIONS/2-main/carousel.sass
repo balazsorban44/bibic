@@ -1,82 +1,130 @@
 .carousel-wrapper
-  padding: 1em 0 0 0
-  display: grid
+  padding: 0
+  min-height: 0
   height: 100vh
-  grid-template-rows: 64px 1fr
-  grid-template-columns: repeat(4, 1fr)
-  grid-template-areas: ". . . title" "carousel carousel carousel carousel"
-  
+  position: static
+  display: grid
+  grid-template-rows: auto 1fr
   h2
-    margin: 0
-    padding: 0 .5em 0 0
-    grid-area: title
+    margin: 1rem
+    padding: 0
+    text-align: center
+
 .carousel
-  grid-area: carousel
   position: relative
-  overflow: hidden
+  >div, .react-reveal
+    display: flex
+    flex: 1
+
 .carousel-item
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-
-  >div
-    img
-      background-color: white
-      margin: 0 auto
-      width: auto
-      max-width: none
+  display: grid
+  grid-template-rows: repeat(2, 1fr)
+  span
+    position: absolute
+    width: 100%
+    height: 100%
+    &:after
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
       height: 100%
+      background: linear-gradient(transparent 65%, black 100%)
+      z-index: -1
+      opacity: .7
 
-  h4
-    font-size: 1.2em
-    font-weight: bolder
-    letter-spacing: .1em
-    padding-bottom: .25em
-
-.carousel-item-picture
-  position: relative
-  height: calc(100vw * 2 / 3)
-  overflow: hidden
+// .carousel-item-picture
+//   padding-top: 64px
 
 .carousel-item-desc
-  padding: 1em 1.5em
+  padding: 1em
+  h4
+    font-size: 1.2em
+    font-weight: bold
+    letter-spacing: .1em
+    text-align: left
+
+
+.carousel-item-bg
+  position: absolute
+  z-index: -1
+  opacity: .5
+  width: 100%
+  height: 100%
+  object-fit: cover
+  filter: blur(4px)
 
 .carousel-arrow
+  box-shadow: 0 0 5px black
+  --size: 48px
   cursor: pointer
-  width: 36px
-  height: 36px
+  width: var(--size)
+  height: var(--size)
   display: grid
   place-items: center
   background-color: $accent-color
   border-radius: 50%
-  margin: 6px
+  margin: 6px 1rem
   position: absolute
-  top: calc(100vw / 3)
-  transform: translateY(-50%)
   z-index: 1000
+  top: calc(-64px - 1rem)
 
-.carousel-arrow-prev
-  grid-area: arrow-prev
+.arrow-icon
+  width: 0
+  height: 0
+  border-style: solid
+  border-width: 6px 0 6px 12px
+  border-color: transparent transparent transparent #fff
+
+.carousel-arrow-prev .arrow-icon
+  transform: rotate(180deg)
 
 .carousel-arrow-next
   right: 0
-  grid-area: arrow-next
 
 
-@media (min-width: 1024px)
-  .carousel-wrapper
+@media (min-aspect-ratio: 3/4)
   .carousel
-    max-width: 70%
-    margin-left: 15%
-    overflow: hidden
-    max-height: 66vh
-
+    margin-bottom: 2em
   .carousel-item
-    flex-direction: row
-    >div
-      img
-        height: auto
-        max-width: 90%
+    max-width: 640px
+    max-height: 540px
+    margin: 0 auto
+    position: relative
+    width: 100%
+    grid-template-rows: 1fr
+    span
+      display: none
 
+  .carousel-item-desc
+    background: linear-gradient(rgba(0,0,0, .8), transparent)
+    padding-right: 25%
+
+  .carousel-item-picture
+    z-index: -1
+    padding-top: 0
+    height: 100%
+    width: 100%
+    position: absolute
+    img
+      object-fit: cover
+      width: 100%
+      height: 100%
+      max-width: none
+
+
+@media (min-width: 860px)
+  .carousel
+    overflow: hidden
+    width: 860px
+    margin: 0 auto 10vh
   .carousel-arrow
-    top: 50%
+    top: calc(50% - 1em)
+    transform: translateY(-50%)
+
+  .carousel-item-desc
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    background: linear-gradient(transparent, rgba(0,0,0, .7) 80%)

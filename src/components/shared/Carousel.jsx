@@ -45,19 +45,19 @@ export class Carousel extends Component {
 
 const CarouselWrapper = makeCarousel(({
   position, handleClick, children
-}) => <div className="carousel">{children}
-  <span
-    className="carousel-arrow carousel-arrow-prev"
-    data-position={position - 1}
-    onClick={handleClick}
-  >{'<'}</span>
-  <span
-    className="carousel-arrow carousel-arrow-next"
-    data-position={position + 1}
-    onClick={handleClick}
-  >{'>'}</span>
-
-</div>)
+}) =>
+  <div className="carousel">{children}
+    <span
+      className="carousel-arrow carousel-arrow-prev"
+      data-position={position - 1}
+      onClick={handleClick}
+    ><span className="arrow-icon"/></span>
+    <span
+      className="carousel-arrow carousel-arrow-next"
+      data-position={position + 1}
+      onClick={handleClick}
+    ><span className="arrow-icon"/></span>
+  </div>)
 
 export default withRouter(withStore(Carousel))
 
@@ -66,8 +66,17 @@ export const CarouselItem = ({
   title, desc, SIZE_640, SIZE_1280, SIZE_1440, SIZE_ORIGINAL, className
 }) =>
   <div className={className}>
+    <span>
+      <img
+        alt="blurred background"
+        className="carousel-item-bg"
+        src={SIZE_640}
+      />
+    </span>
     <div className="carousel-item-picture">
-      <picture>
+      <picture
+        className="carousel-item-img"
+      >
         <source
           media="(max-width: 640px)"
           srcSet={SIZE_640}
@@ -86,8 +95,10 @@ export const CarouselItem = ({
         />
       </picture>
     </div>
-    <div className="carousel-item-desc">
-      <h4>{title}</h4>
-      <p>{desc}</p>
-    </div>
+    {desc ?
+      <div className="carousel-item-desc">
+        <h4>{title}</h4>
+        <p>{desc}</p>
+      </div> : null
+    }
   </div>
