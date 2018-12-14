@@ -1,9 +1,11 @@
 import {
   getPrice, isAvailable, isValidReservation, submitReservation, normalizeReservation
 } from "../reservation"
-import moment from "../../../lib/moment"
 import "../../../lib/firebase"
 import {sendNotification} from "../notification"
+import {
+  addDays, isSameDay, getHours
+} from "date-fns"
 
 jest.mock("../notification", () => ({sendNotification: jest.fn()}))
 
@@ -17,8 +19,8 @@ const validReservation = {
   email: "email@email.hu",
   tel: "+000-000-000",
   address: "1234 Budapest, Utca utca 1/a",
-  from: moment().add(3, "days"),
-  to: moment().add(4, "days"),
+  from: addDays(new Date(), 3),
+  to: addDays(new Date(), 4),
   message: "Lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet.",
   adults: 1,
   children: [],
@@ -40,8 +42,8 @@ describe("getPrice", () => {
             foodService: "foodService",
             adults: 1,
             children: [],
-            from: moment(),
-            to: moment().add(1, "day")
+            from: new Date(),
+            to: addDays(new Date(), 1)
           }
         )).toBe(0)
       })
@@ -66,8 +68,8 @@ describe("getPrice", () => {
           foodService: "foodService",
           adults: 1,
           children: [],
-          from: moment(),
-          to: moment().add(1, "day")
+          from: new Date(),
+          to: addDays(new Date(), 1)
         }
       )).toBe(1000)
     })
@@ -79,8 +81,8 @@ describe("getPrice", () => {
           foodService: "foodService",
           adults: 1,
           children: [],
-          from: moment(),
-          to: moment().add(2, "day")
+          from: new Date(),
+          to: addDays(new Date(), 2)
         }
       )).toBe(2000)
     })
@@ -92,8 +94,8 @@ describe("getPrice", () => {
           foodService: "foodService",
           adults: 1,
           children: ["6-12"],
-          from: moment(),
-          to: moment().add(1, "day")
+          from: new Date(),
+          to: addDays(new Date(), 1)
         }
       )).toBe(1000)
     })
@@ -105,8 +107,8 @@ describe("getPrice", () => {
           foodService: "foodService",
           adults: 2,
           children: ["0-6","6-12","6-12"],
-          from: moment(),
-          to: moment().add(2, "day")
+          from: new Date(),
+          to: addDays(new Date(), 2)
         }
       )).toBe(2000)
     })
@@ -117,9 +119,9 @@ describe("getPrice", () => {
 
 describe("isAvailable", () => {
   const roomId = 1
-  const start = moment().add(2, "day")
-  const end = moment().add(5, "day")
-  const range = moment.range(start, end)
+  const start = addDays(new Date(), 2)
+  const end = addDays(new Date(), 5)
+  const range = {start, end}
 
   beforeEach(() => {
     fetch.resetMocks()
@@ -208,11 +210,11 @@ describe("submitReservation", () => {
 
     describe("there are overlaps", () => {
 
-      beforeAll(() => {
-        fetch.mockResponse(JSON.stringify([validReservation.from, validReservation.to]))
+      beforeEach(() => {
+        fetch.mockResponse(JSON.stringify([{start: validReservation.from, end: validReservation.to}]))
       })
 
-      afterAll(() => {
+      afterEach(() => {
         fetch.resetMocks()
       })
 
@@ -258,8 +260,8 @@ describe("submitReservation", () => {
 
 
 describe("normalizeReservation normalizes", () => {
-  const from = moment()
-  const to = moment()
+  const from = new Date()
+  const to = new Date()
   const reservation = {
     children: ["0-6", "6-12", "0-6"], from, to, message: ""
   }
@@ -279,11 +281,11 @@ describe("normalizeReservation normalizes", () => {
 
   it("start date", () => {
     const {from: normalizedFrom} = normalizeReservation(reservation)
-    expect(moment(normalizedFrom).isSame(from, "day") && moment(normalizedFrom).hour() === 14).toBe(true)
+    expect(isSameDay(normalizedFrom, from) && getHours(normalizedFrom) === 14).toBe(true)
   })
 
   it("end date", () => {
     const {to: normalizedTo} = normalizeReservation(reservation)
-    expect(moment(normalizedTo).isSame(to, "day") && moment(normalizedTo).hour() === 10).toBe(true)
+    expect(isSameDay(normalizedTo, to) && getHours(normalizedTo) === 10).toBe(true)
   })
 })

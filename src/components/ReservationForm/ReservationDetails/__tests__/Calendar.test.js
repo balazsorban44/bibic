@@ -1,9 +1,11 @@
 import {DateRangePicker} from "../../../../lib/react-date-range"
 import Calendar from "../Calendar"
 import {Date as DateLabel} from '../../../shared/Form'
-import {TOMORROW} from '../../../../utils/constants'
 import {sendNotification} from '../../../db/notification'
 import {Loading} from '../../../shared/Elements'
+import {
+  addWeeks, addMonths, format, addDays
+} from "date-fns"
 
 
 jest.mock('../../../db/notification', () => ({sendNotification: jest.fn()}))
@@ -12,13 +14,13 @@ jest.mock('../../../db/notification', () => ({sendNotification: jest.fn()}))
 describe("Calendar component", () => {
 
   const props = {
-    overlaps: [moment.range(TOMORROW, TOMORROW.clone().add(1, "week"))],
+    overlaps: [{start: new Date(), end: addWeeks(new Date(), 1)}],
     fetchOverlaps: jest.fn(),
-    rooms: [{unavailable: TOMORROW.clone().add(1, "month").format("YYYY-MM-DD")}],
+    rooms: [{unavailable: format(addMonths(new Date(), 1), "YYYY-MM-dd", {awareOfUnicodeTokens: true})}],
     reservation: {
       roomId: 1,
-      from: moment().toDate(),
-      to: moment().add(1, "day").toDate()
+      from: new Date(),
+      to: addDays(new Date(), 1)
     },
     updateReservation: jest.fn()
   }
@@ -44,8 +46,8 @@ describe("Calendar component", () => {
       wrapper.childAt(0).instance().handleSelect(change)
       expect(spy).toBeCalledWith(change)
       expect(props.updateReservation).toBeCalledTimes(2)
-      expect(props.updateReservation).toBeCalledWith("from", moment(change.selection.startDate).format("YYYY-MM-DD"))
-      expect(props.updateReservation).toBeCalledWith("to", moment(change.selection.endDate).format("YYYY-MM-DD"))
+      expect(props.updateReservation).toBeCalledWith("from", format(change.selection.startDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
+      expect(props.updateReservation).toBeCalledWith("to", format(change.selection.endDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
       expect(sendNotification).toBeCalledWith("calendarSelectSuccess")
     })
 
@@ -85,8 +87,8 @@ describe("Calendar component", () => {
      *   const endDate = TOMORROW.clone().add(3, "week").toDate()
      *   dateRangePicker.simulate("change", {selection: {startDate, endDate}})
      *   expect(props.updateReservation).toBeCalledTimes(2)
-     *   expect(props.updateReservation).toBeCalledWith("from", moment(startDate).format("YYYY-MM-DD"))
-     *   expect(props.updateReservation).toBeCalledWith("to", moment(endDate).format("YYYY-MM-DD"))
+     *   expect(props.updateReservation).toBeCalledWith("from", format(startDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
+     *   expect(props.updateReservation).toBeCalledWith("to", format(endDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
      *   expect(sendNotification).toBeCalledWith("calendarSelectSuccess")
      * })
      */

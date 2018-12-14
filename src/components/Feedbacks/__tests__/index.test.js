@@ -1,6 +1,7 @@
 import {Loading} from "../../shared/Elements"
 import {Feedbacks, Feedback} from "../"
 import Stars from "../Stars"
+import {startOfDay} from "date-fns"
 describe("Feedbacks component", () => {
   const props = {feedbacks: {rooms: [], all: []}}
   const wrapper = shallow(<Feedbacks {...props}/>)
@@ -42,7 +43,7 @@ describe("Feedbacks component", () => {
 
 describe("Feedback component", () => {
   const props = {
-    timestamp: moment(new Date("2018-11-4")).startOf("day"), content: "content", roomId: 1, ratings: {coffee: 1}
+    timestamp:  startOfDay(new Date("2018-11-4")), content: "content", roomId: 1, ratings: {coffee: 1}
   }
   const wrapper = shallow(<Feedback {...props}/>)
 
