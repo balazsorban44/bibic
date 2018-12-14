@@ -9,14 +9,8 @@ describe("Hero component", () => {
     expect(wrapper).toHaveLength(1)
   })
 
-  it("shows loading when no images yet", () => {
-    expect(wrapper.find(Loading).length).toBe(1)
-  })
-
   it("shows images when fetched", () => {
-    const newProps = {hero: ["1.jpg", "2.jpg"]}
-    wrapper.setProps(newProps)
-    expect(wrapper.find(".hero-slide").length).toBe(newProps.hero.length)
+    expect(wrapper.find(".hero-slide").length).toBe(2)
   })
 
 })
