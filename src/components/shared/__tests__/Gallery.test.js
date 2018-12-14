@@ -1,4 +1,5 @@
 import {Gallery, GalleryItem} from "../Gallery"
+import {Loading} from "../Elements"
 
 
 describe("GalleryItem component", () => {
@@ -40,30 +41,21 @@ describe("GalleryItem component", () => {
 })
 
 describe("Gallery component", () => {
-  const props = {galleries: {}}
+  const props = {galleries: {}, path: "/path"}
   const wrapper = shallow(<Gallery {...props}/>)
 
   it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
   })
 
-  it("renders elements", () => {
-    wrapper.setProps({galleries: {path: [0,1]}, path: "path"})
-    expect(wrapper.find(".gallery").prop("children").length).toBe(2)
+  it("shows Loading when no items", () => {
+    expect(wrapper.find(Loading).length).toBe(1)
   })
 
-  it("renders custom elements", () => {
-    wrapper.setProps({
-      galleries: {path: [0,1]}, path: "path", item: GalleryItem
-    })
+  it("renders elements", () => {
+    wrapper.setProps({galleries: {path: [0,1]}})
     expect(wrapper.prop("children").length).toBe(2)
   })
 
-  it("renders custom wrapper", () => {
-    wrapper.setProps({
-      galleries: {path: [0,1,2]}, path: "path", component: ({children}) => <div className="custom-wrapper">{children}</div>
-    })
-    expect(wrapper.prop("children").length).toBe(3)
-  })
 })
 
