@@ -39,5 +39,5 @@ export const initialState = {
   rooms: [],
   roomServices: [],
   overlaps: [],
-  feedbacks: {all: [], rooms: []}
+  feedbacks: {all: [], rooms: {}}
 }
