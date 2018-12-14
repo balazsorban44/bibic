@@ -64,7 +64,7 @@ ShallowWrapper {
             </h6>
             <img
               alt="OTP SZÉP Kártya elfogadóhely"
-              src="szep.png"
+              src="szep.jpg"
             />
           </li>
         </ul>,
@@ -128,7 +128,7 @@ ShallowWrapper {
               </h6>
               <img
                 alt="OTP SZÉP Kártya elfogadóhely"
-                src="szep.png"
+                src="szep.jpg"
               />
             </li>,
           ],
@@ -319,7 +319,7 @@ ShallowWrapper {
                 </h6>,
                 <img
                   alt="OTP SZÉP Kártya elfogadóhely"
-                  src="szep.png"
+                  src="szep.jpg"
                 />,
               ],
             },
@@ -342,7 +342,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "alt": "OTP SZÉP Kártya elfogadóhely",
-                  "src": "szep.png",
+                  "src": "szep.jpg",
                 },
                 "ref": null,
                 "rendered": null,
@@ -423,7 +423,7 @@ ShallowWrapper {
               </h6>
               <img
                 alt="OTP SZÉP Kártya elfogadóhely"
-                src="szep.png"
+                src="szep.jpg"
               />
             </li>
           </ul>,
@@ -487,7 +487,7 @@ ShallowWrapper {
                 </h6>
                 <img
                   alt="OTP SZÉP Kártya elfogadóhely"
-                  src="szep.png"
+                  src="szep.jpg"
                 />
               </li>,
             ],
@@ -678,7 +678,7 @@ ShallowWrapper {
                   </h6>,
                   <img
                     alt="OTP SZÉP Kártya elfogadóhely"
-                    src="szep.png"
+                    src="szep.jpg"
                   />,
                 ],
               },
@@ -701,7 +701,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "alt": "OTP SZÉP Kártya elfogadóhely",
-                    "src": "szep.png",
+                    "src": "szep.jpg",
                   },
                   "ref": null,
                   "rendered": null,
