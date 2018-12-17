@@ -14,24 +14,25 @@
     display: grid
     grid-gap: 3em
     grid-template-columns: repeat(auto-fill, calc(1024px / 3 - 2em))
-.service-item
-  background-color: $accent-color
-  img
-    min-height: 160px
-    user-select: none
-  .img-wrapper
-    overflow: hidden
-    max-height: calc(320px * 0.54)
-    display: flex
-    align-items: flex-end
+
+  .gallery-item
+    background-color: $accent-color
     img
-      width: 100%
-      margin: auto
-  p
-    background-color: $light
-    color: $dark
-    padding: 1em 
-  
+      min-height: 160px
+      user-select: none
+    .img-wrapper
+      overflow: hidden
+      max-height: calc(320px * 0.54)
+      display: flex
+      align-items: flex-end
+      img
+        width: 100%
+        margin: auto
+    p
+      background-color: $light
+      color: $dark
+      padding: 1em 
+    
 .services-footer
   width: 100%
   margin-top: 3em
