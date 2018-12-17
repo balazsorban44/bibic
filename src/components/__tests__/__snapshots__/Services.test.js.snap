@@ -23,7 +23,6 @@ ShallowWrapper {
         </h2>,
         <Component
           count={3}
-          item={[Function]}
           path="szolgaltatasaink"
         />,
         <div
@@ -59,7 +58,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "count": 3,
-          "item": [Function],
           "path": "szolgaltatasaink",
         },
         "ref": null,
@@ -125,7 +123,6 @@ ShallowWrapper {
           </h2>,
           <Component
             count={3}
-            item={[Function]}
             path="szolgaltatasaink"
           />,
           <div
@@ -161,7 +158,6 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "count": 3,
-            "item": [Function],
             "path": "szolgaltatasaink",
           },
           "ref": null,

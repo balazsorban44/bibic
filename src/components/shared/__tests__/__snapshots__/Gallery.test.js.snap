@@ -24,19 +24,25 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <source
-          media="(min-width: 960px)"
-          srcSet="SIZE_1024.jpg"
-        />,
-        <source
-          media="(min-width: 1280px)"
-          srcSet="SIZE_1440.jpg"
-        />,
-        <img
-          alt="desc"
-          src="SIZE_640.jpg"
-        />,
+        <div
+          className="img-wrapper"
+        >
+          <GalleryImage
+            alt="desc"
+            sizes={
+              Object {
+                "SIZE_1024": "SIZE_1024.jpg",
+                "SIZE_1440": "SIZE_1440.jpg",
+                "SIZE_640": "SIZE_640.jpg",
+              }
+            }
+          />
+        </div>,
+        <p>
+          desc
+        </p>,
       ],
+      "className": "gallery-item",
     },
     "ref": null,
     "rendered": Array [
@@ -45,39 +51,50 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "media": "(min-width: 960px)",
-          "srcSet": "SIZE_1024.jpg",
+          "children": <GalleryImage
+            alt="desc"
+            sizes={
+              Object {
+                "SIZE_1024": "SIZE_1024.jpg",
+                "SIZE_1440": "SIZE_1440.jpg",
+                "SIZE_640": "SIZE_640.jpg",
+              }
+            }
+          />,
+          "className": "img-wrapper",
         },
         "ref": null,
-        "rendered": null,
-        "type": "source",
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "alt": "desc",
+            "sizes": Object {
+              "SIZE_1024": "SIZE_1024.jpg",
+              "SIZE_1440": "SIZE_1440.jpg",
+              "SIZE_640": "SIZE_640.jpg",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "div",
       },
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "media": "(min-width: 1280px)",
-          "srcSet": "SIZE_1440.jpg",
+          "children": "desc",
         },
         "ref": null,
-        "rendered": null,
-        "type": "source",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "alt": "desc",
-          "src": "SIZE_640.jpg",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": "img",
+        "rendered": "desc",
+        "type": "p",
       },
     ],
-    "type": "picture",
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -86,19 +103,25 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <source
-            media="(min-width: 960px)"
-            srcSet="SIZE_1024.jpg"
-          />,
-          <source
-            media="(min-width: 1280px)"
-            srcSet="SIZE_1440.jpg"
-          />,
-          <img
-            alt="desc"
-            src="SIZE_640.jpg"
-          />,
+          <div
+            className="img-wrapper"
+          >
+            <GalleryImage
+              alt="desc"
+              sizes={
+                Object {
+                  "SIZE_1024": "SIZE_1024.jpg",
+                  "SIZE_1440": "SIZE_1440.jpg",
+                  "SIZE_640": "SIZE_640.jpg",
+                }
+              }
+            />
+          </div>,
+          <p>
+            desc
+          </p>,
         ],
+        "className": "gallery-item",
       },
       "ref": null,
       "rendered": Array [
@@ -107,39 +130,50 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "media": "(min-width: 960px)",
-            "srcSet": "SIZE_1024.jpg",
+            "children": <GalleryImage
+              alt="desc"
+              sizes={
+                Object {
+                  "SIZE_1024": "SIZE_1024.jpg",
+                  "SIZE_1440": "SIZE_1440.jpg",
+                  "SIZE_640": "SIZE_640.jpg",
+                }
+              }
+            />,
+            "className": "img-wrapper",
           },
           "ref": null,
-          "rendered": null,
-          "type": "source",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "alt": "desc",
+              "sizes": Object {
+                "SIZE_1024": "SIZE_1024.jpg",
+                "SIZE_1440": "SIZE_1440.jpg",
+                "SIZE_640": "SIZE_640.jpg",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "div",
         },
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "media": "(min-width: 1280px)",
-            "srcSet": "SIZE_1440.jpg",
+            "children": "desc",
           },
           "ref": null,
-          "rendered": null,
-          "type": "source",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "alt": "desc",
-            "src": "SIZE_640.jpg",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": "img",
+          "rendered": "desc",
+          "type": "p",
         },
       ],
-      "type": "picture",
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {
