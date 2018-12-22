@@ -1,12 +1,20 @@
+import {sendNotification} from "./notification"
 
 export const fetchData = async (ref, shouldSort) => {
-  const result = await (await ref.once("value")).val()
-  if (shouldSort) {
-    Object.keys(result).forEach(path => {
-      result[path] = Object.values(result[path]).sort((a, b) => a.order - b.order)
-    })
+  let result
+  try {
+    result = await ref.once("value")
+    result = await result.val()
+    if (shouldSort) {
+      Object.keys(result).forEach(path => {
+        result[path] = Object.values(result[path]).sort((a, b) => a.order - b.order)
+      })
+    }
+    return result
+  } catch (error) {
+    sendNotification("error", error.message)
+    return false
   }
-  return result
 }
 
 export const subscribeToDatabase = (ref, callback, shouldSort) => {
