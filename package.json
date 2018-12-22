@@ -5,17 +5,17 @@
   "dependencies": {
     "date-fns": "^2.0.0-alpha.26",
     "deep-equal": "^1.0.1",
-    "firebase": "^5.7.0",
-    "google-map-react": "^1.1.1",
-    "react": "^16.6.3",
+    "firebase": "^5.7.1",
+    "google-map-react": "^1.1.2",
+    "react": "^16.7.0",
     "react-date-range": "balazsorban44/react-date-range#patch-1",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.7.0",
     "react-reveal": "^1.2.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scroll": "^1.7.10",
     "react-scrolllock": "^3.0.2",
-    "react-toastify": "^4.4.3"
+    "react-toastify": "^4.5.1"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
@@ -24,7 +24,7 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "jest-fetch-mock": "^2.0.1",
+    "jest-fetch-mock": "^2.1.0",
     "node-sass": "^4.11.0",
     "react-scripts": "2.1.1",
     "source-map-explorer": "^1.6.0",
