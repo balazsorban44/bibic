@@ -50,14 +50,14 @@ describe("App component", () => {
   })
 
   describe("MoreServices", () => {
-    it.skip("renders correctly", () => {
+    it("renders correctly", () => {
       const component = renderRoutes("/szolgaltatasok")
       expect(component.find(MoreServices).length).toBe(1)
     })
   })
 
   describe("Foods", () => {
-    it.skip("renders correctly", () => {
+    it("renders correctly", () => {
       const component = renderRoutes("/etelek")
       expect(component.find(Carousel).length).toBe(1)
     })

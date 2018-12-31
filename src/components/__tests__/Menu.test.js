@@ -1,8 +1,8 @@
 import {Menu, BackMenu} from "../Menu"
 import {MemoryRouter} from "react-router"
 
-describe.skip("Menu component", () => {
-  const props = {hero: [], rooms: [{id: 1}]}
+describe("Menu component", () => {
+  const props = {rooms: [{id: 1}]}
   const wrapper = shallow(
     <MemoryRouter>
       <Menu {...props}/>
@@ -13,6 +13,20 @@ describe.skip("Menu component", () => {
     expect(wrapper).toHaveLength(1)
   })
 
+  describe("Navigation menu", () => {
+    const navMenu = wrapper.dive().dive().find("ul").first()
+
+    it("has 8 elements", () => {
+      expect(navMenu.find("li").length).toBe(8)
+    })
+
+    it.skip("clicking element hides menu", () => {
+      wrapper.setState({isMenuOpen: true, isRoomMenuOpen: true})
+      navMenu.find("li").first().simulate("click")
+      expect(wrapper.state("isMenuOpen")).toBe(false)
+      expect(wrapper.state("isRoomMenuOpen")).toBe(false)
+    })
+  })
 
   it.skip("handleShowRoomMenu", () => {
     wrapper.childAt(0).childAt(0).instance().handleShowRoomMenu()
