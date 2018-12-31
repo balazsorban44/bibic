@@ -24,9 +24,10 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "jest-fetch-mock": "^2.1.0",
-    "node-sass": "^4.11.0",
-    "react-scripts": "2.1.1",
+    "firebase-mock": "^2.2.10",
+    "jest-fetch-mock": "^2.0.1",
+    "node-sass": "^4.10.0",
+    "react-scripts": "2.1.2",
     "source-map-explorer": "^1.6.0",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended": "^2.1.0"
