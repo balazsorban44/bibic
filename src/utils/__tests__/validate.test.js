@@ -1,6 +1,7 @@
 import {
   valid, validateReservation, validateMessage, valueToState, validateFeedback
 } from "../validate"
+import {addDays} from "date-fns"
 
 
 describe("validate reservation", () => {
@@ -138,8 +139,8 @@ describe("validateReservation", () => {
     email: "email@email.hu",
     tel: "+000-000-000",
     address: "1234 Budapest, Utca utca 1/a",
-    from: moment().add(3, "days"),
-    to: moment().add(4, "days"),
+    from: addDays(new Date(), 3),
+    to: addDays(new Date(), 4),
     message: "Lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet.",
     adults: 1,
     children: [],
@@ -164,10 +165,10 @@ describe("validateReservation", () => {
       expect(validateReservation({...params, address: ""})).toContain("lakcím"))
 
     it("arrival is too early", () =>
-      expect(validateReservation({...params, from: moment()})).toContain("érkezés"))
+      expect(validateReservation({...params, from: new Date()})).toContain("érkezés"))
 
     it("departure is too early", () =>
-      expect(validateReservation({...params, to: moment()})).toContain("távozás"))
+      expect(validateReservation({...params, to: new Date()})).toContain("távozás"))
 
     it("period length is less than 1 night", () =>
       expect(validateReservation({...params, to: params.from})).toContain("éjszakát"))
@@ -301,9 +302,9 @@ describe("valueToState", () => {
 
 
   describe("dates", () => {
-    const date = moment()
-    it("arrival is date", () => expect(valueToState("from", date)).toEqual(date.clone().toDate()))
-    it("departure is date", () => expect(valueToState("to", date)).toEqual(date.clone().toDate()))
+    const date = new Date()
+    it("arrival is date", () => expect(valueToState("from", date)).toEqual(date))
+    it("departure is date", () => expect(valueToState("to", date)).toEqual(date))
     it("invalid date", () => expect(valueToState("to", "invalid date")).toBeInstanceOf(Date))
   })
 

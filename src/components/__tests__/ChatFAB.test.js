@@ -11,7 +11,6 @@ describe("ChatFAB component", () => {
   })
 
   it("Fades when hero images loaded", () => {
-    wrapper.setProps({hero: [1,2,3]})
-    expect(wrapper.find(Fade).prop("when")).toBe(true)
+    expect(wrapper.find(Fade)).toHaveLength(1)
   })
 })

@@ -1,6 +1,7 @@
 import {Loading} from "../../shared/Elements"
 import {Feedbacks, Feedback} from "../"
 import Stars from "../Stars"
+import {startOfDay} from "date-fns"
 describe("Feedbacks component", () => {
   const props = {feedbacks: {rooms: [], all: []}}
   const wrapper = shallow(<Feedbacks {...props}/>)
@@ -19,21 +20,25 @@ describe("Feedbacks component", () => {
   })
 
   it("feedbacks fetched, show a list of Feedback", () => {
-    wrapper.setProps({feedbacks: {all: [1,2,3], rooms: []}})
-    expect(wrapper.find(Feedback).length).toBe(3)
+    wrapper.setProps({feedbacks: {all: [{content: "test"}, {content: "***"}], rooms: []}})
+    expect(wrapper.find(Feedback).length).toBe(1)
   })
 
   it("all rooms' average calculated", () => {
-    wrapper.setProps({feedbacks: {all: [], rooms: [1,2]}})
-    expect(wrapper.find(Stars).first().prop("value")).toBe("1.50")
+    wrapper.setProps({feedbacks: {all: [], rooms: {1: 5, 2: 1}}})
+    expect(wrapper.find(Stars).first().prop("value")).toBe("3.00")
   })
 
   describe("individual averages calculated", () => {
-    const newFeedbacks = {all: [1,2,3,4,5,6], rooms: [1,2,3,4,5,6]}
-    Array(newFeedbacks.rooms.length).fill(null).map((_e, i) =>
+    const newFeedbacks = {all: [{content: "Test"}], rooms: {1: 5, 2: 1}}
+    Object.entries(newFeedbacks.rooms).map(([id, val], i) =>
       it(`${i+1}. average `, () => {
         wrapper.setProps({feedbacks: newFeedbacks})
-        expect(wrapper.find(Stars).get(i+1).props.value).toBe(newFeedbacks.rooms[i].toFixed(2))
+        expect(
+          wrapper
+            .find(Stars)
+            .findWhere(e => e.prop("title").includes(id)).props().value
+        ).toBe(val.toFixed(2))
       })
     )
   })
@@ -42,7 +47,7 @@ describe("Feedbacks component", () => {
 
 describe("Feedback component", () => {
   const props = {
-    timestamp: moment(new Date("2018-11-4")).startOf("day"), content: "content", roomId: 1, ratings: {coffee: 1}
+    timestamp:  startOfDay(new Date("2018-11-4")), content: "content", roomId: 1, ratings: {coffee: 1}
   }
   const wrapper = shallow(<Feedback {...props}/>)
 

@@ -14,7 +14,7 @@ export const subscribeToFeedbacks = (ref, callback) => {
         feedback = feedback.data()
         feedback.content !== "" && feedbacks.push({...feedback, timestamp: feedback.timestamp.toDate()})
       })
-      callback(feedbacks)
+      callback(feedbacks.length ? feedbacks : null)
     })
 }
 

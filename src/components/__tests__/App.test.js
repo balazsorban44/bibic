@@ -1,4 +1,4 @@
-import App, {Main} from "../App"
+import App from "../App"
 import {BackMenu} from "../Menu"
 
 import {MemoryRouter} from "react-router"
@@ -7,6 +7,7 @@ import NotFound from "../NotFound"
 import MoreServices from "../MoreServices"
 import {Carousel} from "../shared/Carousel"
 import Link from "react-router-dom/Link"
+import Main from "../Main"
 
 global.scrollTo = jest.fn()
 
@@ -42,20 +43,21 @@ describe("App component", () => {
   describe("Not found", () => {
     it("renders correctly", () => {
       const component = renderRoutes("/a")
-      expect(component.find(Link).length).toBe(1)
-      expect(component.find(Link).prop("to")).toBe("/")
+      expect(component.find(Link).length).toBe(2)
+      expect(component.find(Link).first().prop("to")).toBe("/")
+      expect(component.find(Link).last().prop("to")).toBe("/")
     })
   })
 
   describe("MoreServices", () => {
-    it.skip("renders correctly", () => {
+    it("renders correctly", () => {
       const component = renderRoutes("/szolgaltatasok")
       expect(component.find(MoreServices).length).toBe(1)
     })
   })
 
   describe("Foods", () => {
-    it.skip("renders correctly", () => {
+    it("renders correctly", () => {
       const component = renderRoutes("/etelek")
       expect(component.find(Carousel).length).toBe(1)
     })

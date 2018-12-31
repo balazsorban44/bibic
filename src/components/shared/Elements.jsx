@@ -1,31 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 // For the slider elements
-import arrow from '../../assets/icons/arrow.svg'
 import {colors} from '../../utils/colors'
-
-export const Prev = ({previousSlide}) =>
-  <div
-    className="slider-arrow slider-arrow-prev"
-    onClick={previousSlide}
-  >
-    <img
-      alt=""
-      src={arrow}
-    />
-  </div>
-
-
-export const Next = ({nextSlide}) =>
-  <div
-    className="slider-arrow slider-arrow-next"
-    onClick={nextSlide}
-  >
-    <img
-      alt=""
-      src={arrow}
-    />
-  </div>
 
 export class Loading extends Component {
 

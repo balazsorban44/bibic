@@ -21,7 +21,7 @@ ShallowWrapper {
         <Component
           path="tanusitvanyok"
         />,
-        <withRouter(Component)
+        <Component
           path="tanusitvanyok"
         />,
         <div
@@ -51,7 +51,7 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
           "path": "tanusitvanyok",
         },
@@ -98,7 +98,7 @@ ShallowWrapper {
           <Component
             path="tanusitvanyok"
           />,
-          <withRouter(Component)
+          <Component
             path="tanusitvanyok"
           />,
           <div
@@ -128,7 +128,7 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
             "path": "tanusitvanyok",
           },

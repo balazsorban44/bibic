@@ -3,7 +3,7 @@ import {Carousel, CarouselItem} from "../Carousel"
 global.scrollTo = jest.fn()
 
 describe("Carousel component", () => {
-  const props = {match: {path: "/fake-path"}}
+  const props = {galleries: {}, match: {path: "/path"}}
   const wrapper = shallow(<Carousel {...props}/>)
 
   it("renders correctly", () => {
@@ -17,12 +17,12 @@ describe("Carousel component", () => {
   it("section gets right id", () => {
     expect(wrapper.find("section").prop("id")).toBe(props.match.path.replace("/", ""))
   })
-
 })
 
 
 describe("CarouselItem component", () => {
   const props = {
+    className: "className",
     title: "title",
     desc: "desc",
     SIZE_640: "SIZE_640.jpg",
@@ -38,7 +38,7 @@ describe("CarouselItem component", () => {
   })
 
   it("inherits classname", () => {
-    expect(wrapper.find(".carousel-item-desc").hasClass(`${props.itemClassName}-desc`)).toBe(true)
+    expect(wrapper.prop("classname")).toBe(props.classname)
   })
 
   it("title shown", () => {
@@ -61,7 +61,7 @@ describe("CarouselItem component", () => {
     })
 
     it("default image", () => {
-      expect(wrapper.find("img").prop("src")).toBe(props.SIZE_ORIGINAL)
+      expect(wrapper.find(".carousel-item-img img").prop("src")).toBe(props.SIZE_ORIGINAL)
     })
   })
 

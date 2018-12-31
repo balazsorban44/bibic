@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import * as firebase from 'firebase/app'
 import "firebase/database"
 import "firebase/firestore"
 
@@ -10,6 +10,8 @@ firebase.initializeApp({
   storageBucket: "bibic-vendeghazak-api.appspot.com",
   messagingSenderId: "586582307718"
 })
+
+
 export const FS = firebase.firestore()
 FS.settings({timestampsInSnapshots: true})
 
@@ -30,3 +32,5 @@ export const FEEDBACKS_FS_REF = FS.collection("feedbacks")
 
 export const TIMESTAMP_DB = firebase.database.ServerValue.TIMESTAMP
 export const TIMESTAMP = firebase.firestore.FieldValue.serverTimestamp()
+
+export default firebase

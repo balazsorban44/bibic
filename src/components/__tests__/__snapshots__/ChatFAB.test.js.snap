@@ -41,7 +41,6 @@ ShallowWrapper {
         </a>
       </div>,
       "up": true,
-      "when": false,
     },
     "ref": null,
     "rendered": Object {
@@ -149,7 +148,6 @@ ShallowWrapper {
           </a>
         </div>,
         "up": true,
-        "when": false,
       },
       "ref": null,
       "rendered": Object {

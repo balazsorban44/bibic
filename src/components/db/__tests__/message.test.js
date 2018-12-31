@@ -47,90 +47,45 @@ describe("isValidMessage", () => {
 
 
 describe("submitMessage", () => {
+
   const messageLoading = jest.fn()
   const resetMessage = jest.fn()
   const closeMessage = jest.fn()
 
 
-  describe("invalid message", () => {
+  it("invalid message handled", async () => {
+    expect.assertions(2)
+    const result = await submitMessage({}, messageLoading, resetMessage, closeMessage)
+    expect(result).toBe(false)
+    expect(messageLoading).toBeCalledWith(false)
+  })
 
-    afterAll(() => {
-      jest.resetAllMocks()
-    })
+  describe("valid message handled", () => {
 
-    it("returns false", () => {
-      expect(submitMessage({}, messageLoading, resetMessage, closeMessage)).toBe(false)
-    })
 
-    it("message do not load anymore", () => {
-      expect(messageLoading).toBeCalledWith(false)
+    // it("catches errors", async () => {
+    //   expect.assertions(2)
+    //   jest.mock("../../../lib/firebase", () => ({MESSAGES_FS_REF: {add: () => Promise.reject({message: "ERROR"})}}))
+
+    //   const result = await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
+    //   expect(sendNotification).toBeCalledWith("error", "ERROR")
+    //   expect(result).toBe(false)
+    // })
+
+    it("no errors", async () => {
+      jest.mock("../../../lib/firebase", () => ({MESSAGES_FS_REF: {add: () => Promise.resolve()}}))
+
+      jest.useFakeTimers()
+      expect.assertions(4)
+      const result = await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
+      expect(sendNotification).toBeCalledWith("messageSuccess")
+      expect(result).toBe(true)
+      jest.advanceTimersByTime(7500)
+      expect(resetMessage).toBeCalled()
+      expect(closeMessage).toBeCalled()
+      jest.clearAllTimers()
     })
   })
 
-  describe("valid message", () => {
 
-    let isSubmitted
-
-    beforeAll(async () => {
-      isSubmitted = await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
-    })
-
-    afterAll(() => {
-      jest.resetAllMocks()
-    })
-
-    it("message is submitting", () => {
-      expect(messageLoading).toBeCalledWith(true)
-    })
-
-    describe("successful submitting", () => {
-
-      beforeAll(async () => {
-        jest.resetAllMocks()
-        jest.useFakeTimers()
-        jest.mock("../../../lib/firebase",
-          () => ({MESSAGES_FS_REF: {add: () => new Promise(resolve => resolve())}})
-        )
-        await submitMessage(validMessage, messageLoading, resetMessage, closeMessage)
-      })
-
-      afterAll(() => {
-        jest.clearAllTimers()
-      })
-
-      it("loading is handled", () => {
-        expect(messageLoading).toBeCalledTimes(2)
-        expect(messageLoading).toBeCalledWith(true)
-        expect(messageLoading).toBeCalledWith(false)
-      })
-
-      it("send succesful notification", () => {
-        expect(sendNotification).toBeCalledWith("messageSuccess")
-      })
-
-      it("closes message form", async () => {
-        expect.assertions(1)
-        await jest.advanceTimersByTime(7500)
-        expect(closeMessage).toBeCalled()
-      })
-
-      it("resets message form", () => {
-        expect.assertions(1)
-        expect(resetMessage).toBeCalled()
-      })
-    })
-
-    describe("catch submit error", () => {
-
-      it("returns false", async () => {
-        expect.assertions(1)
-        expect(isSubmitted).toBe(false)
-      })
-      it("sends error notification", async () => {
-        expect.assertions(1)
-        expect(sendNotification).toBeCalled()
-      })
-
-    })
-  })
 })

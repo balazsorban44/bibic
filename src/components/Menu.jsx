@@ -10,27 +10,27 @@ import {BASE_URL} from '../utils/constants'
 
 const RoomMenu = lazy(() => import("./RoomMenu"))
 
-const menu = [
-  {to:"bemutatkozas", name: "Bemutatkozás"},
-  {to:"szolgaltatasok", name: "Szolgáltatások"},
-  {to:"szobak", name: "Szobák"},
-  {to:"arak", name: "Árak"},
-  {
-    to:"etelek", name: "Ételek", component: RouteLink
-  },
-  {
-    to:"rendezvenyek", name: "Rendezvények", component: RouteLink
-  },
-  {to:"visszajelzesek", name: "Visszajelzések"},
-  {to:"kapcsolat", name: "Kapcsolat"}
-]
 
 export class Menu extends Component {
 
   state = {
     isMenuOpen: false,
     isScrolled: false,
-    isRoomMenuOpen: true
+    isRoomMenuOpen: true,
+    menu: [
+      {to:"bemutatkozas", name: "Bemutatkozás"},
+      {to:"szolgaltatasok", name: "Szolgáltatások"},
+      {to:"szobak", name: "Szobák"},
+      {to:"arak", name: "Árak"},
+      {
+        to:"etelek", name: "Ételek", component: RouteLink
+      },
+      {
+        to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+      },
+      {to:"visszajelzesek", name: "Visszajelzések"},
+      {to:"kapcsolat", name: "Kapcsolat"}
+    ]
   }
 
   componentDidMount() {
@@ -60,7 +60,7 @@ export class Menu extends Component {
 
   render() {
     const {
-      isMenuOpen, isScrolled, isRoomMenuOpen, width
+      isMenuOpen, isScrolled, isRoomMenuOpen, width, menu
     } = this.state
     const isBigScreen = width > 768
     return (
@@ -100,10 +100,10 @@ export class Menu extends Component {
                 }) =>
                   <li key={to}>
                     <Component
-                      offset={isBigScreen ? offset!==undefined ? offset : -64 : 0}
+                      offset={isBigScreen ? offset !== undefined ? offset : -64 : 0}
                       onClick={this.handleHideMenu}
                       onMouseEnter={() => to==="szobak" && this.handleShowRoomMenu()}
-                      smooth={Component===Link ? true : undefined}
+                      smooth={Component === Link ? true : undefined}
                       to={to}
                     >
                       {name}

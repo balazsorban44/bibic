@@ -9,7 +9,7 @@ import {TODAY} from '../../utils/constants'
 
 export const Feedbacks = ({feedbacks}) => {
   const rooms = Object.entries(feedbacks.rooms || {})
-  const sum = rooms.reduce((acc, room) => acc + parseInt(room, 10) + 1, 0)
+  const sum = rooms.reduce((acc, [_, value]) => acc + value, 0)
   const allAvg = (sum / rooms.length).toFixed(2)
 
   return (
@@ -42,13 +42,16 @@ export const Feedbacks = ({feedbacks}) => {
         <div>
           <h3>Önök mondták</h3>
           <ul className="feedback-list">
-            {feedbacks.all.length ?
-              feedbacks.all.map((feedback, index) =>
-                <Feedback
-                  key={index}
-                  {...feedback}
-                />
-              ) : <Loading/>}
+            {Array.isArray(feedbacks.all) ? feedbacks.all.length ?
+              feedbacks.all
+                // Do not show feedbacks with no real content
+                .filter(({content}) => !content.includes("*"))
+                .map((feedback, index) =>
+                  <Feedback
+                    key={index}
+                    {...feedback}
+                  />
+                ) : <Loading/> : "Nincs visszajelzés."}
           </ul>
         </div>
       </Fade>

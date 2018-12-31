@@ -21,8 +21,7 @@ ShallowWrapper {
         <h2>
           Szolgáltatásaink
         </h2>,
-        <withRouter(Component)
-          item={[Function]}
+        <Component
           path="szolgaltatasaink"
         />,
       ],
@@ -44,9 +43,8 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "item": [Function],
           "path": "szolgaltatasaink",
         },
         "ref": null,
@@ -66,8 +64,7 @@ ShallowWrapper {
           <h2>
             Szolgáltatásaink
           </h2>,
-          <withRouter(Component)
-            item={[Function]}
+          <Component
             path="szolgaltatasaink"
           />,
         ],
@@ -89,9 +86,8 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "item": [Function],
             "path": "szolgaltatasaink",
           },
           "ref": null,

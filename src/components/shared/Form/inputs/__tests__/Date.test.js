@@ -1,4 +1,6 @@
-import Date from '../Date'
+import DateLabel from '../Date'
+import {format} from 'date-fns'
+import {hu} from 'date-fns/locale'
 
 describe("Date component", () => {
   const props = {
@@ -6,9 +8,9 @@ describe("Date component", () => {
     label: "label",
     name: "name",
     notification: jest.fn(),
-    value: moment().toDate()
+    value: new Date()
   }
-  const wrapper = mount(<Date {...props}/>)
+  const wrapper = mount(<DateLabel {...props}/>)
 
   it("renders correctly", () => {
     expect(wrapper).toHaveLength(1)
@@ -36,7 +38,7 @@ describe("Date component", () => {
 
     describe("Value", () => {
       it("formatted date if specified", () => {
-        expect(wrapper.find("input").prop("value")).toBe(moment(props.value).format("LL"))
+        expect(wrapper.find("input").prop("value")).toBe(format(props.value, "YYYY. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}))
       })
 
       it("Message if not specified", () => {
