@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "bibic-vendeghazak-web"
+    "default": "bibic-vendeghazak-web",
+    "master": "bibic-vendeghazak-web",
+    "develop": "bibic-vendeghazak-web-beta"
   }
 }
