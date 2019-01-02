@@ -100,7 +100,7 @@ export class Prices extends Component {
           </div>
         </Link> */}
         <p>
-          *Az árak forintban értendők és tartalmazzák a reggeli árát, valamint az idegenforgalmi adót. Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
+          *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
         </p>
       </section>
     )
