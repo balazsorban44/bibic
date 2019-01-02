@@ -16,7 +16,8 @@
     grid-template-columns: repeat(auto-fill, calc(1024px / 3 - 2em))
 
   .gallery-item
-    background-color: $accent-color
+    color: $dark
+    background-color: $light
     img
       min-height: 160px
       user-select: none
@@ -28,10 +29,14 @@
       img
         width: 100%
         margin: auto
+    h3
+      font-size: 1em
+      padding: .5em 1em
+      text-align: left
+      font-style: italic
+      letter-spacing: .05em
     p
-      background-color: $light
-      color: $dark
-      padding: 1em 
+      padding: 0 1em 1em
     
 .services-footer
   width: 100%
