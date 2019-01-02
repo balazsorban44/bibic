@@ -38,6 +38,9 @@ ShallowWrapper {
             }
           />
         </div>,
+        <h3>
+          title
+        </h3>,
         <p>
           desc
         </p>,
@@ -87,6 +90,17 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
+          "children": "title",
+        },
+        "ref": null,
+        "rendered": "title",
+        "type": "h3",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
           "children": "desc",
         },
         "ref": null,
@@ -117,6 +131,9 @@ ShallowWrapper {
               }
             />
           </div>,
+          <h3>
+            title
+          </h3>,
           <p>
             desc
           </p>,
@@ -160,6 +177,17 @@ ShallowWrapper {
             "type": [Function],
           },
           "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "title",
+          },
+          "ref": null,
+          "rendered": "title",
+          "type": "h3",
         },
         Object {
           "instance": null,
