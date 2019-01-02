@@ -11,7 +11,6 @@ const Services = () =>
       path="szolgaltatasaink"
     />
     <div className="services-footer">
-      <p>Az aktív pihenést kedvelőknek ping pong asztal és kerékpárok, a gyermekeknek játszótér áll rendelkezésére.</p>
       <Button
         label="További szolgáltatásaink →"
         to="szolgaltatasok"
