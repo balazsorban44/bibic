@@ -4,7 +4,7 @@ exports[`CarouselItem component renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CarouselItem
-    SIZE_1280="SIZE_1280.jpg"
+    SIZE_1024="SIZE_1024.jpg"
     SIZE_1440="SIZE_1440.jpg"
     SIZE_640="SIZE_640.jpg"
     SIZE_ORIGINAL="SIZE_ORIGINAL.jpg"
@@ -45,11 +45,11 @@ ShallowWrapper {
               srcSet="SIZE_640.jpg"
             />
             <source
-              media="(max-width: 1280px)"
-              srcSet="SIZE_1280.jpg"
+              media="(max-width: 1024px)"
+              srcSet="SIZE_1024.jpg"
             />
             <source
-              media="(max-width: 1920px)"
+              media="(max-width: 1440px)"
               srcSet="SIZE_1440.jpg"
             />
             <img
@@ -113,11 +113,11 @@ ShallowWrapper {
               srcSet="SIZE_640.jpg"
             />
             <source
-              media="(max-width: 1280px)"
-              srcSet="SIZE_1280.jpg"
+              media="(max-width: 1024px)"
+              srcSet="SIZE_1024.jpg"
             />
             <source
-              media="(max-width: 1920px)"
+              media="(max-width: 1440px)"
               srcSet="SIZE_1440.jpg"
             />
             <img
@@ -139,11 +139,11 @@ ShallowWrapper {
                 srcSet="SIZE_640.jpg"
               />,
               <source
-                media="(max-width: 1280px)"
-                srcSet="SIZE_1280.jpg"
+                media="(max-width: 1024px)"
+                srcSet="SIZE_1024.jpg"
               />,
               <source
-                media="(max-width: 1920px)"
+                media="(max-width: 1440px)"
                 srcSet="SIZE_1440.jpg"
               />,
               <img
@@ -172,8 +172,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "media": "(max-width: 1280px)",
-                "srcSet": "SIZE_1280.jpg",
+                "media": "(max-width: 1024px)",
+                "srcSet": "SIZE_1024.jpg",
               },
               "ref": null,
               "rendered": null,
@@ -184,7 +184,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "media": "(max-width: 1920px)",
+                "media": "(max-width: 1440px)",
                 "srcSet": "SIZE_1440.jpg",
               },
               "ref": null,
@@ -278,11 +278,11 @@ ShallowWrapper {
                 srcSet="SIZE_640.jpg"
               />
               <source
-                media="(max-width: 1280px)"
-                srcSet="SIZE_1280.jpg"
+                media="(max-width: 1024px)"
+                srcSet="SIZE_1024.jpg"
               />
               <source
-                media="(max-width: 1920px)"
+                media="(max-width: 1440px)"
                 srcSet="SIZE_1440.jpg"
               />
               <img
@@ -346,11 +346,11 @@ ShallowWrapper {
                 srcSet="SIZE_640.jpg"
               />
               <source
-                media="(max-width: 1280px)"
-                srcSet="SIZE_1280.jpg"
+                media="(max-width: 1024px)"
+                srcSet="SIZE_1024.jpg"
               />
               <source
-                media="(max-width: 1920px)"
+                media="(max-width: 1440px)"
                 srcSet="SIZE_1440.jpg"
               />
               <img
@@ -372,11 +372,11 @@ ShallowWrapper {
                   srcSet="SIZE_640.jpg"
                 />,
                 <source
-                  media="(max-width: 1280px)"
-                  srcSet="SIZE_1280.jpg"
+                  media="(max-width: 1024px)"
+                  srcSet="SIZE_1024.jpg"
                 />,
                 <source
-                  media="(max-width: 1920px)"
+                  media="(max-width: 1440px)"
                   srcSet="SIZE_1440.jpg"
                 />,
                 <img
@@ -405,8 +405,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "media": "(max-width: 1280px)",
-                  "srcSet": "SIZE_1280.jpg",
+                  "media": "(max-width: 1024px)",
+                  "srcSet": "SIZE_1024.jpg",
                 },
                 "ref": null,
                 "rendered": null,
@@ -417,7 +417,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "media": "(max-width: 1920px)",
+                  "media": "(max-width: 1440px)",
                   "srcSet": "SIZE_1440.jpg",
                 },
                 "ref": null,
