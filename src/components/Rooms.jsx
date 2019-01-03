@@ -112,7 +112,7 @@ export class RoomSlider extends Component {
 }
 
 export const Slide = ({
-  active, index, fileName, SIZE_768, SIZE_1280, SIZE_1440
+  active, index, fileName, SIZE_640, SIZE_1024, SIZE_1440
 }) =>
   <li
     className={active ? "room-first-slide" : "room-placeholder-slide"}
@@ -120,8 +120,8 @@ export const Slide = ({
   >
     <picture>
       <source
-        media="(min-width: 768px)"
-        srcSet={SIZE_1280}
+        media="(min-width: 640px)"
+        srcSet={SIZE_1024}
       />
       <source
         media="(min-width: 1024px)"
@@ -129,7 +129,7 @@ export const Slide = ({
       />
       <img
         alt={fileName}
-        src={SIZE_768}
+        src={SIZE_640}
       />
     </picture>
   </li>
