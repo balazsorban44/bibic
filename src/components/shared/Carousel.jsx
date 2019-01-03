@@ -63,7 +63,7 @@ export default withRouter(withStore(Carousel))
 
 
 export const CarouselItem = ({
-  title, desc, SIZE_640, SIZE_1280, SIZE_1440, SIZE_ORIGINAL, className
+  title, desc, SIZE_640, SIZE_1024, SIZE_1440, SIZE_ORIGINAL, className
 }) =>
   <div className={className}>
     <span>
@@ -82,11 +82,11 @@ export const CarouselItem = ({
           srcSet={SIZE_640}
         />
         <source
-          media="(max-width: 1280px)"
-          srcSet={SIZE_1280}
+          media="(max-width: 1024px)"
+          srcSet={SIZE_1024}
         />
         <source
-          media="(max-width: 1920px)"
+          media="(max-width: 1440px)"
           srcSet={SIZE_1440}
         />
         <img

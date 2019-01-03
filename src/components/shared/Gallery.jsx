@@ -61,7 +61,7 @@ export const GalleryImage = ({sizes: {
 }, alt}) =>
   <picture>
     <source
-      media="(min-width: 960px)"
+      media="(min-width: 540px)"
       srcSet={SIZE_1024}
     />
     <source
