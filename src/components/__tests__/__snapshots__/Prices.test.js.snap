@@ -1,0 +1,1651 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prices component renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Prices />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h2>
+          Árak
+        </h2>,
+        <Fade
+          cascade={true}
+          up={true}
+        >
+          <ul
+            className="price-list"
+          >
+            <li>
+              <div
+                className="price-content"
+              >
+                <h3>
+                  6000
+                  <span>
+                    -Forinttól
+                    <sup>
+                      *
+                    </sup>
+                  </span>
+                   
+                </h3>
+                <h4>
+                  Többágyas szoba
+                </h4>
+                <h5>
+                  két- vagy több fő részére
+                </h5>
+              </div>
+              <Link
+                className="price-button"
+                replace={false}
+                to="foglalas"
+              >
+                Foglalás
+              </Link>
+            </li>
+            <li>
+              <div
+                className="price-content"
+              >
+                <h3>
+                  6000 
+                  <span>
+                    Forint/órától
+                    <sup>
+                      *
+                    </sup>
+                  </span>
+                </h3>
+                <h4>
+                  Rendezvényterem
+                </h4>
+                <h5>
+                  terembérlés
+                </h5>
+              </div>
+              <Link
+                className="price-button"
+                replace={false}
+                to="uzenet?tema=rendezvenyterem"
+              >
+                Írjon nekünk
+              </Link>
+            </li>
+            <li>
+              <div
+                className="price-content"
+              >
+                <h3>
+                  90000
+                  <span>
+                    Forinttól
+                    <sup>
+                      *
+                    </sup>
+                  </span>
+                   
+                </h3>
+                <h4>
+                  Teljes ház
+                </h4>
+                <h5>
+                  maximum 21 fő
+                </h5>
+              </div>
+              <Link
+                className="price-button"
+                replace={false}
+                to="uzenet?tema=teljeshaz"
+              >
+                Írjon nekünk
+              </Link>
+            </li>
+          </ul>
+        </Fade>,
+        <p>
+          *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
+        </p>,
+      ],
+      "id": "arak",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Árak",
+        },
+        "ref": null,
+        "rendered": "Árak",
+        "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "cascade": true,
+          "children": <ul
+            className="price-list"
+          >
+            <li>
+              <div
+                className="price-content"
+              >
+                <h3>
+                  6000
+                  <span>
+                    -Forinttól
+                    <sup>
+                      *
+                    </sup>
+                  </span>
+                   
+                </h3>
+                <h4>
+                  Többágyas szoba
+                </h4>
+                <h5>
+                  két- vagy több fő részére
+                </h5>
+              </div>
+              <Link
+                className="price-button"
+                replace={false}
+                to="foglalas"
+              >
+                Foglalás
+              </Link>
+            </li>
+            <li>
+              <div
+                className="price-content"
+              >
+                <h3>
+                  6000 
+                  <span>
+                    Forint/órától
+                    <sup>
+                      *
+                    </sup>
+                  </span>
+                </h3>
+                <h4>
+                  Rendezvényterem
+                </h4>
+                <h5>
+                  terembérlés
+                </h5>
+              </div>
+              <Link
+                className="price-button"
+                replace={false}
+                to="uzenet?tema=rendezvenyterem"
+              >
+                Írjon nekünk
+              </Link>
+            </li>
+            <li>
+              <div
+                className="price-content"
+              >
+                <h3>
+                  90000
+                  <span>
+                    Forinttól
+                    <sup>
+                      *
+                    </sup>
+                  </span>
+                   
+                </h3>
+                <h4>
+                  Teljes ház
+                </h4>
+                <h5>
+                  maximum 21 fő
+                </h5>
+              </div>
+              <Link
+                className="price-button"
+                replace={false}
+                to="uzenet?tema=teljeshaz"
+              >
+                Írjon nekünk
+              </Link>
+            </li>
+          </ul>,
+          "up": true,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    6000
+                    <span>
+                      -Forinttól
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                     
+                  </h3>
+                  <h4>
+                    Többágyas szoba
+                  </h4>
+                  <h5>
+                    két- vagy több fő részére
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="foglalas"
+                >
+                  Foglalás
+                </Link>
+              </li>,
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    6000 
+                    <span>
+                      Forint/órától
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                  </h3>
+                  <h4>
+                    Rendezvényterem
+                  </h4>
+                  <h5>
+                    terembérlés
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="uzenet?tema=rendezvenyterem"
+                >
+                  Írjon nekünk
+                </Link>
+              </li>,
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    90000
+                    <span>
+                      Forinttól
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                     
+                  </h3>
+                  <h4>
+                    Teljes ház
+                  </h4>
+                  <h5>
+                    maximum 21 fő
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="uzenet?tema=teljeshaz"
+                >
+                  Írjon nekünk
+                </Link>
+              </li>,
+            ],
+            "className": "price-list",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="price-content"
+                  >
+                    <h3>
+                      6000
+                      <span>
+                        -Forinttól
+                        <sup>
+                          *
+                        </sup>
+                      </span>
+                       
+                    </h3>
+                    <h4>
+                      Többágyas szoba
+                    </h4>
+                    <h5>
+                      két- vagy több fő részére
+                    </h5>
+                  </div>,
+                  <Link
+                    className="price-button"
+                    replace={false}
+                    to="foglalas"
+                  >
+                    Foglalás
+                  </Link>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h3>
+                        6000
+                        <span>
+                          -Forinttól
+                          <sup>
+                            *
+                          </sup>
+                        </span>
+                         
+                      </h3>,
+                      <h4>
+                        Többágyas szoba
+                      </h4>,
+                      <h5>
+                        két- vagy több fő részére
+                      </h5>,
+                    ],
+                    "className": "price-content",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          "6000",
+                          <span>
+                            -Forinttól
+                            <sup>
+                              *
+                            </sup>
+                          </span>,
+                          " ",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "6000",
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              "-Forinttól",
+                              <sup>
+                                *
+                              </sup>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            "-Forinttól",
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "*",
+                              },
+                              "ref": null,
+                              "rendered": "*",
+                              "type": "sup",
+                            },
+                          ],
+                          "type": "span",
+                        },
+                        " ",
+                      ],
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Többágyas szoba",
+                      },
+                      "ref": null,
+                      "rendered": "Többágyas szoba",
+                      "type": "h4",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "két- vagy több fő részére",
+                      },
+                      "ref": null,
+                      "rendered": "két- vagy több fő részére",
+                      "type": "h5",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Foglalás",
+                    "className": "price-button",
+                    "replace": false,
+                    "to": "foglalas",
+                  },
+                  "ref": null,
+                  "rendered": "Foglalás",
+                  "type": [Function],
+                },
+              ],
+              "type": "li",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="price-content"
+                  >
+                    <h3>
+                      6000 
+                      <span>
+                        Forint/órától
+                        <sup>
+                          *
+                        </sup>
+                      </span>
+                    </h3>
+                    <h4>
+                      Rendezvényterem
+                    </h4>
+                    <h5>
+                      terembérlés
+                    </h5>
+                  </div>,
+                  <Link
+                    className="price-button"
+                    replace={false}
+                    to="uzenet?tema=rendezvenyterem"
+                  >
+                    Írjon nekünk
+                  </Link>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h3>
+                        6000 
+                        <span>
+                          Forint/órától
+                          <sup>
+                            *
+                          </sup>
+                        </span>
+                      </h3>,
+                      <h4>
+                        Rendezvényterem
+                      </h4>,
+                      <h5>
+                        terembérlés
+                      </h5>,
+                    ],
+                    "className": "price-content",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          "6000 ",
+                          <span>
+                            Forint/órától
+                            <sup>
+                              *
+                            </sup>
+                          </span>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "6000 ",
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              "Forint/órától",
+                              <sup>
+                                *
+                              </sup>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            "Forint/órától",
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "*",
+                              },
+                              "ref": null,
+                              "rendered": "*",
+                              "type": "sup",
+                            },
+                          ],
+                          "type": "span",
+                        },
+                      ],
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Rendezvényterem",
+                      },
+                      "ref": null,
+                      "rendered": "Rendezvényterem",
+                      "type": "h4",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "terembérlés",
+                      },
+                      "ref": null,
+                      "rendered": "terembérlés",
+                      "type": "h5",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Írjon nekünk",
+                    "className": "price-button",
+                    "replace": false,
+                    "to": "uzenet?tema=rendezvenyterem",
+                  },
+                  "ref": null,
+                  "rendered": "Írjon nekünk",
+                  "type": [Function],
+                },
+              ],
+              "type": "li",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="price-content"
+                  >
+                    <h3>
+                      90000
+                      <span>
+                        Forinttól
+                        <sup>
+                          *
+                        </sup>
+                      </span>
+                       
+                    </h3>
+                    <h4>
+                      Teljes ház
+                    </h4>
+                    <h5>
+                      maximum 21 fő
+                    </h5>
+                  </div>,
+                  <Link
+                    className="price-button"
+                    replace={false}
+                    to="uzenet?tema=teljeshaz"
+                  >
+                    Írjon nekünk
+                  </Link>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h3>
+                        90000
+                        <span>
+                          Forinttól
+                          <sup>
+                            *
+                          </sup>
+                        </span>
+                         
+                      </h3>,
+                      <h4>
+                        Teljes ház
+                      </h4>,
+                      <h5>
+                        maximum 21 fő
+                      </h5>,
+                    ],
+                    "className": "price-content",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          "90000",
+                          <span>
+                            Forinttól
+                            <sup>
+                              *
+                            </sup>
+                          </span>,
+                          " ",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "90000",
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              "Forinttól",
+                              <sup>
+                                *
+                              </sup>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            "Forinttól",
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "*",
+                              },
+                              "ref": null,
+                              "rendered": "*",
+                              "type": "sup",
+                            },
+                          ],
+                          "type": "span",
+                        },
+                        " ",
+                      ],
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Teljes ház",
+                      },
+                      "ref": null,
+                      "rendered": "Teljes ház",
+                      "type": "h4",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "maximum 21 fő",
+                      },
+                      "ref": null,
+                      "rendered": "maximum 21 fő",
+                      "type": "h5",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Írjon nekünk",
+                    "className": "price-button",
+                    "replace": false,
+                    "to": "uzenet?tema=teljeshaz",
+                  },
+                  "ref": null,
+                  "rendered": "Írjon nekünk",
+                  "type": [Function],
+                },
+              ],
+              "type": "li",
+            },
+          ],
+          "type": "ul",
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "*Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
+        },
+        "ref": null,
+        "rendered": "*Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
+        "type": "p",
+      },
+    ],
+    "type": "section",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2>
+            Árak
+          </h2>,
+          <Fade
+            cascade={true}
+            up={true}
+          >
+            <ul
+              className="price-list"
+            >
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    6000
+                    <span>
+                      -Forinttól
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                     
+                  </h3>
+                  <h4>
+                    Többágyas szoba
+                  </h4>
+                  <h5>
+                    két- vagy több fő részére
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="foglalas"
+                >
+                  Foglalás
+                </Link>
+              </li>
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    6000 
+                    <span>
+                      Forint/órától
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                  </h3>
+                  <h4>
+                    Rendezvényterem
+                  </h4>
+                  <h5>
+                    terembérlés
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="uzenet?tema=rendezvenyterem"
+                >
+                  Írjon nekünk
+                </Link>
+              </li>
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    90000
+                    <span>
+                      Forinttól
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                     
+                  </h3>
+                  <h4>
+                    Teljes ház
+                  </h4>
+                  <h5>
+                    maximum 21 fő
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="uzenet?tema=teljeshaz"
+                >
+                  Írjon nekünk
+                </Link>
+              </li>
+            </ul>
+          </Fade>,
+          <p>
+            *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
+          </p>,
+        ],
+        "id": "arak",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Árak",
+          },
+          "ref": null,
+          "rendered": "Árak",
+          "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "cascade": true,
+            "children": <ul
+              className="price-list"
+            >
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    6000
+                    <span>
+                      -Forinttól
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                     
+                  </h3>
+                  <h4>
+                    Többágyas szoba
+                  </h4>
+                  <h5>
+                    két- vagy több fő részére
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="foglalas"
+                >
+                  Foglalás
+                </Link>
+              </li>
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    6000 
+                    <span>
+                      Forint/órától
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                  </h3>
+                  <h4>
+                    Rendezvényterem
+                  </h4>
+                  <h5>
+                    terembérlés
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="uzenet?tema=rendezvenyterem"
+                >
+                  Írjon nekünk
+                </Link>
+              </li>
+              <li>
+                <div
+                  className="price-content"
+                >
+                  <h3>
+                    90000
+                    <span>
+                      Forinttól
+                      <sup>
+                        *
+                      </sup>
+                    </span>
+                     
+                  </h3>
+                  <h4>
+                    Teljes ház
+                  </h4>
+                  <h5>
+                    maximum 21 fő
+                  </h5>
+                </div>
+                <Link
+                  className="price-button"
+                  replace={false}
+                  to="uzenet?tema=teljeshaz"
+                >
+                  Írjon nekünk
+                </Link>
+              </li>
+            </ul>,
+            "up": true,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <li>
+                  <div
+                    className="price-content"
+                  >
+                    <h3>
+                      6000
+                      <span>
+                        -Forinttól
+                        <sup>
+                          *
+                        </sup>
+                      </span>
+                       
+                    </h3>
+                    <h4>
+                      Többágyas szoba
+                    </h4>
+                    <h5>
+                      két- vagy több fő részére
+                    </h5>
+                  </div>
+                  <Link
+                    className="price-button"
+                    replace={false}
+                    to="foglalas"
+                  >
+                    Foglalás
+                  </Link>
+                </li>,
+                <li>
+                  <div
+                    className="price-content"
+                  >
+                    <h3>
+                      6000 
+                      <span>
+                        Forint/órától
+                        <sup>
+                          *
+                        </sup>
+                      </span>
+                    </h3>
+                    <h4>
+                      Rendezvényterem
+                    </h4>
+                    <h5>
+                      terembérlés
+                    </h5>
+                  </div>
+                  <Link
+                    className="price-button"
+                    replace={false}
+                    to="uzenet?tema=rendezvenyterem"
+                  >
+                    Írjon nekünk
+                  </Link>
+                </li>,
+                <li>
+                  <div
+                    className="price-content"
+                  >
+                    <h3>
+                      90000
+                      <span>
+                        Forinttól
+                        <sup>
+                          *
+                        </sup>
+                      </span>
+                       
+                    </h3>
+                    <h4>
+                      Teljes ház
+                    </h4>
+                    <h5>
+                      maximum 21 fő
+                    </h5>
+                  </div>
+                  <Link
+                    className="price-button"
+                    replace={false}
+                    to="uzenet?tema=teljeshaz"
+                  >
+                    Írjon nekünk
+                  </Link>
+                </li>,
+              ],
+              "className": "price-list",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="price-content"
+                    >
+                      <h3>
+                        6000
+                        <span>
+                          -Forinttól
+                          <sup>
+                            *
+                          </sup>
+                        </span>
+                         
+                      </h3>
+                      <h4>
+                        Többágyas szoba
+                      </h4>
+                      <h5>
+                        két- vagy több fő részére
+                      </h5>
+                    </div>,
+                    <Link
+                      className="price-button"
+                      replace={false}
+                      to="foglalas"
+                    >
+                      Foglalás
+                    </Link>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h3>
+                          6000
+                          <span>
+                            -Forinttól
+                            <sup>
+                              *
+                            </sup>
+                          </span>
+                           
+                        </h3>,
+                        <h4>
+                          Többágyas szoba
+                        </h4>,
+                        <h5>
+                          két- vagy több fő részére
+                        </h5>,
+                      ],
+                      "className": "price-content",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            "6000",
+                            <span>
+                              -Forinttól
+                              <sup>
+                                *
+                              </sup>
+                            </span>,
+                            " ",
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "6000",
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [
+                                "-Forinttól",
+                                <sup>
+                                  *
+                                </sup>,
+                              ],
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              "-Forinttól",
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "*",
+                                },
+                                "ref": null,
+                                "rendered": "*",
+                                "type": "sup",
+                              },
+                            ],
+                            "type": "span",
+                          },
+                          " ",
+                        ],
+                        "type": "h3",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Többágyas szoba",
+                        },
+                        "ref": null,
+                        "rendered": "Többágyas szoba",
+                        "type": "h4",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "két- vagy több fő részére",
+                        },
+                        "ref": null,
+                        "rendered": "két- vagy több fő részére",
+                        "type": "h5",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Foglalás",
+                      "className": "price-button",
+                      "replace": false,
+                      "to": "foglalas",
+                    },
+                    "ref": null,
+                    "rendered": "Foglalás",
+                    "type": [Function],
+                  },
+                ],
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="price-content"
+                    >
+                      <h3>
+                        6000 
+                        <span>
+                          Forint/órától
+                          <sup>
+                            *
+                          </sup>
+                        </span>
+                      </h3>
+                      <h4>
+                        Rendezvényterem
+                      </h4>
+                      <h5>
+                        terembérlés
+                      </h5>
+                    </div>,
+                    <Link
+                      className="price-button"
+                      replace={false}
+                      to="uzenet?tema=rendezvenyterem"
+                    >
+                      Írjon nekünk
+                    </Link>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h3>
+                          6000 
+                          <span>
+                            Forint/órától
+                            <sup>
+                              *
+                            </sup>
+                          </span>
+                        </h3>,
+                        <h4>
+                          Rendezvényterem
+                        </h4>,
+                        <h5>
+                          terembérlés
+                        </h5>,
+                      ],
+                      "className": "price-content",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            "6000 ",
+                            <span>
+                              Forint/órától
+                              <sup>
+                                *
+                              </sup>
+                            </span>,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "6000 ",
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [
+                                "Forint/órától",
+                                <sup>
+                                  *
+                                </sup>,
+                              ],
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              "Forint/órától",
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "*",
+                                },
+                                "ref": null,
+                                "rendered": "*",
+                                "type": "sup",
+                              },
+                            ],
+                            "type": "span",
+                          },
+                        ],
+                        "type": "h3",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Rendezvényterem",
+                        },
+                        "ref": null,
+                        "rendered": "Rendezvényterem",
+                        "type": "h4",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "terembérlés",
+                        },
+                        "ref": null,
+                        "rendered": "terembérlés",
+                        "type": "h5",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Írjon nekünk",
+                      "className": "price-button",
+                      "replace": false,
+                      "to": "uzenet?tema=rendezvenyterem",
+                    },
+                    "ref": null,
+                    "rendered": "Írjon nekünk",
+                    "type": [Function],
+                  },
+                ],
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="price-content"
+                    >
+                      <h3>
+                        90000
+                        <span>
+                          Forinttól
+                          <sup>
+                            *
+                          </sup>
+                        </span>
+                         
+                      </h3>
+                      <h4>
+                        Teljes ház
+                      </h4>
+                      <h5>
+                        maximum 21 fő
+                      </h5>
+                    </div>,
+                    <Link
+                      className="price-button"
+                      replace={false}
+                      to="uzenet?tema=teljeshaz"
+                    >
+                      Írjon nekünk
+                    </Link>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h3>
+                          90000
+                          <span>
+                            Forinttól
+                            <sup>
+                              *
+                            </sup>
+                          </span>
+                           
+                        </h3>,
+                        <h4>
+                          Teljes ház
+                        </h4>,
+                        <h5>
+                          maximum 21 fő
+                        </h5>,
+                      ],
+                      "className": "price-content",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            "90000",
+                            <span>
+                              Forinttól
+                              <sup>
+                                *
+                              </sup>
+                            </span>,
+                            " ",
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "90000",
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [
+                                "Forinttól",
+                                <sup>
+                                  *
+                                </sup>,
+                              ],
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              "Forinttól",
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "*",
+                                },
+                                "ref": null,
+                                "rendered": "*",
+                                "type": "sup",
+                              },
+                            ],
+                            "type": "span",
+                          },
+                          " ",
+                        ],
+                        "type": "h3",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Teljes ház",
+                        },
+                        "ref": null,
+                        "rendered": "Teljes ház",
+                        "type": "h4",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "maximum 21 fő",
+                        },
+                        "ref": null,
+                        "rendered": "maximum 21 fő",
+                        "type": "h5",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Írjon nekünk",
+                      "className": "price-button",
+                      "replace": false,
+                      "to": "uzenet?tema=teljeshaz",
+                    },
+                    "ref": null,
+                    "rendered": "Írjon nekünk",
+                    "type": [Function],
+                  },
+                ],
+                "type": "li",
+              },
+            ],
+            "type": "ul",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "*Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
+          },
+          "ref": null,
+          "rendered": "*Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
+          "type": "p",
+        },
+      ],
+      "type": "section",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
