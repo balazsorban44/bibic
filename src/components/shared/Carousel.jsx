@@ -13,7 +13,9 @@ export class Carousel extends Component {
 
   render() {
     let {match: {path}} = this.props
-    const {title, galleries} = this.props
+    const {
+      title, subtitle, galleries
+    } = this.props
     path = path.replace("/", "")
     const children = galleries[path] ?
       Object
@@ -35,7 +37,10 @@ export class Carousel extends Component {
         className="carousel-wrapper"
         id={path}
       >
-        <h2>{title}</h2>
+        <div className="title">
+          <h2>{title}</h2>
+          {subtitle && <h3>{subtitle}</h3> }
+        </div>
         <CarouselWrapper defaultWait={10000}>
           {children}
         </CarouselWrapper>
