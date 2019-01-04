@@ -45,6 +45,7 @@ const App = () =>
           <Carousel
             className="foods"
             itemClassName="food"
+            subtitle="Vendégházunkban éttermet nem üzemeltetünk, ezért az ételek kiválasztása előre szükséges, ételeket kizárólag szállóvendégeink részére készítünk, a falusi vendégasztal keretén belül."
             title="Ételeink"
           />
         }
