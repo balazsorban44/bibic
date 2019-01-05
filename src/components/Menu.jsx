@@ -1,7 +1,7 @@
 import React, {
   lazy, Suspense, Component
 } from 'react'
-import {Link as RouteLink} from 'react-router-dom'
+import {Link as RouteLink, withRouter} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
@@ -130,15 +130,33 @@ export class Menu extends Component {
 export default Menu
 
 
-export const BackMenu = () =>
-  /**
-   * REVIEW: Not working with react-reveal
-   * <Fade up>
-   */
-  <RouteLink
-    className="back-to-home"
-    to="/"
-  >
-      ← Vissza a főoldalra
-  </RouteLink>
-  // </Fade>
+export const BackMenu = withRouter(props => {
+  const {location: {search}, history: {goBack}} = props
+  const customReturn = new URLSearchParams(search).get("vissza")
+  const title = customReturn ||"főoldal"
+  return(
+    customReturn ?
+      <button
+        className="back-to-home"
+        onClick={goBack}
+        title={title}
+      >
+        <Title {...{title}}/>
+      </button> :
+      <RouteLink
+        className="back-to-home"
+        title={title}
+        to="/"
+      >
+        <Title {...{title}}/>
+      </RouteLink>
+  )
+})
+
+const Title = ({title}) =>
+  <>
+    ←
+    <span>
+      Vissza ide: {title}
+    </span>
+  </>
