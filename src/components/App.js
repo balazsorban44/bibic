@@ -26,7 +26,6 @@ const Main = lazy(() => import("./Main"))
 const App = () =>
   <>
     <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackMenu/>} />
-    <ChatFAB/>
     <Switch>
       <Route
         exact
@@ -34,6 +33,7 @@ const App = () =>
         render={() =>
           <>
             <Top/>
+            <ChatFAB/>
             <Suspense fallback={<Loading/>}>
               <Main/>
             </Suspense>
