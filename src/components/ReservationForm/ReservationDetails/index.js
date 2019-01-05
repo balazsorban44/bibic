@@ -26,7 +26,8 @@ const ReservationDetails = ({maxPeople}) =>
       className="services"
       footnote={
         <>
-        az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet <Link to="etelek">főbb ételeinket ide kattintva találja →</Link>
+        az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet <Link to="etelek?vissza=foglalás">
+        főbb ételeinket ide kattintva találja →</Link>
         </>
       }
       title="igényelt ellátás"

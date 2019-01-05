@@ -39,11 +39,11 @@ export class Carousel extends Component {
       >
         <div className="title">
           <h2>{title}</h2>
-          {subtitle && <h3>{subtitle}</h3> }
         </div>
         <CarouselWrapper defaultWait={10000}>
           {children}
         </CarouselWrapper>
+        {subtitle && <h3>{subtitle}</h3> }
       </section>
     )}
 }
