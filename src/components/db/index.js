@@ -129,14 +129,21 @@ export class Database extends Component {
 
   fetchOverlaps = async () => {
     try {
-      let overlaps = await fetch(`${CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${this.state.reservation.roomId}`)
-      overlaps = await overlaps.json()
-      this.setState({overlaps:
-        overlaps
-          .reduce((acc, {start, end}) => [
-            ...acc,
-            ...eachDayOfInterval({start, end: endOfDay(subDays(end, 1))})
-          ], [])})
+      const {roomId} = this.state.reservation
+      if (roomId) {
+        const overlaps = await (
+          await fetch(
+            `${CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${this.state.reservation.roomId}`
+          )
+        ).json()
+
+        this.setState({overlaps:
+          overlaps
+            .reduce((acc, {start, end}) => [
+              ...acc,
+              ...eachDayOfInterval({start, end: endOfDay(subDays(end, 1))})
+            ], [])})
+      }
     } catch (error) {
       sendNotification("error", error.message)
     }
