@@ -82,6 +82,7 @@ export const submitReservation = (reservation, isReserving, resetReservation, cl
             .add({
               ...reservation,
               id: `${format(from, "YYYYMMdd", {awareOfUnicodeTokens: true})}-sz${roomId}`,
+              roomId: [roomId],
               lastHandledBy: "",
               timestamp: TIMESTAMP,
               handled: false,
