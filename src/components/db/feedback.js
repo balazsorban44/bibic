@@ -45,7 +45,7 @@ export const submitFeedback = async (feedback, setLoading) => {
         const {FEEDBACKS_FS_REF, TIMESTAMP} = await import("../../lib/firebase")
         await FEEDBACKS_FS_REF.doc(id).set({
           ratings,
-          roomId: parseInt(customId.split("sz")[1], 10),
+          roomId: customId.split("sz")[1].split("-").map(r => parseInt(r, 10)),
           id: customId,
           content: content || "*".repeat(avg),
           timestamp: TIMESTAMP,
