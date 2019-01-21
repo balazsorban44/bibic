@@ -16,7 +16,7 @@ import {fetchData, subscribeToDatabase} from './fetch'
 import {
   initialState, initialMessage, initialReservation
 } from './initialState'
-import {querystringDecode, querystring} from '@firebase/util'
+import QueryString from "query-string"
 import {
   eachDayOfInterval, subDays, endOfDay
 } from 'date-fns'
@@ -120,9 +120,9 @@ export class Database extends Component {
   updateReservation = (key, value) => {
     if (isQueryString(key)) {
       const {history} = this.props
-      const search = querystringDecode(history.location.search)
+      const search = QueryString.parse(history.location.search)
       search[translate(key)] = key === "foodService" ? translate(value) : value
-      history.push(`foglalas?${querystring(search)}`)
+      history.push(`foglalas?${QueryString.stringify(search)}`)
     } else this.setState(({reservation}) => ({reservation: {...reservation,
       [key]: value}}))
   }
@@ -166,9 +166,9 @@ export class Database extends Component {
   updateMessage = (key, value) => {
     if (isQueryString(key)) {
       const {history} = this.props
-      const search = querystringDecode(history.location.search)
+      const search = QueryString.parse(history.location.search)
       search[translate(key)] = key === "subject" ? translate(value) : value
-      history.push(`uzenet?${ querystring(search)}`)
+      history.push(`uzenet?${ QueryString.stringify(search)}`)
     } else this.setState(({message}) => ({message: {...message,
       [key]: value}}))
   }
@@ -195,7 +195,7 @@ export class Database extends Component {
     if (queryString) {
       const reservation = {...this.state.reservation}
       const message = {...this.state.message}
-      queryString = querystringDecode(queryString)
+      queryString = QueryString.parse(queryString)
       Object.entries(queryString).forEach(([key, value]) => {
         key = translate(key)
         value = key === "foodService" || key === "subject" ? translate(value) : value
