@@ -72,7 +72,7 @@ ShallowWrapper {
         <a
           href="mailto:szallasfoglalas@bibicvendeghazak.hu"
         >
-          szallasfoglalas@bibicvendeghazak.hu
+          szallasfoglalas kukac bibicvendeghazak pont hu
         </a>,
       ],
       "className": "footnote",
@@ -360,11 +360,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "szallasfoglalas@bibicvendeghazak.hu",
+          "children": "szallasfoglalas kukac bibicvendeghazak pont hu",
           "href": "mailto:szallasfoglalas@bibicvendeghazak.hu",
         },
         "ref": null,
-        "rendered": "szallasfoglalas@bibicvendeghazak.hu",
+        "rendered": "szallasfoglalas kukac bibicvendeghazak pont hu",
         "type": "a",
       },
     ],
@@ -431,7 +431,7 @@ ShallowWrapper {
           <a
             href="mailto:szallasfoglalas@bibicvendeghazak.hu"
           >
-            szallasfoglalas@bibicvendeghazak.hu
+            szallasfoglalas kukac bibicvendeghazak pont hu
           </a>,
         ],
         "className": "footnote",
@@ -719,11 +719,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "szallasfoglalas@bibicvendeghazak.hu",
+            "children": "szallasfoglalas kukac bibicvendeghazak pont hu",
             "href": "mailto:szallasfoglalas@bibicvendeghazak.hu",
           },
           "ref": null,
-          "rendered": "szallasfoglalas@bibicvendeghazak.hu",
+          "rendered": "szallasfoglalas kukac bibicvendeghazak pont hu",
           "type": "a",
         },
       ],
