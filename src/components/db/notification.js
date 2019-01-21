@@ -16,7 +16,7 @@ export const sendNotification = (type, message) => {
     toast.warn("Kérjük, hogy az érkezés és távozás kiválasztásához használja a naptárat.")
     break
   case "wrongInput":
-    toast.error(`${message} Ha úgy gondolja más a hiba oka, kérjük írjon az alábbi címre: hiba@bibicvedeghazak.hu`, {autoClose: 7500})
+    toast.error(`${message} Ha úgy gondolja más a hiba oka, kérjük írjon az alábbi címre: hiba kukac bibicvedeghazak pont hu`, {autoClose: 7500})
     break
   case "no-reservation-found":
     toast.error("Hiba! Ez a foglalás nem létezik.", {autoClose: 7500})
@@ -32,9 +32,9 @@ export const sendNotification = (type, message) => {
         <span style={{fontSize: "1rem"}}>
         Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:<br/>
           <a
-            href="mailto:info@bibicvendeghazak.hu"
+            href="mailto:info&#64;bibicvendeghazak.hu"
             style={{color: "white"}}
-          >info@bibicvendeghazak.hu</a><br/>
+          >info kukac bibicvendeghazak pont hu</a><br/>
           <a
             href="tel:+36305785730"
             style={{color: "white"}}
@@ -53,9 +53,9 @@ export const sendNotification = (type, message) => {
         Néhány másodperc múlva visszakerül a főoldalra.
         További kérdésével fordulhat:<br/>
           <a
-            href="mailto:info@bibicvendeghazak.hu"
+            href="mailto:info&#64;bibicvendeghazak.hu"
             style={{color: "white"}}
-          >info@bibicvendeghazak.hu</a><br />
+          >info kukac bibicvendeghazak pont hu</a><br />
           <a
             href="tel:+36305785730"
             style={{color: "white"}}
@@ -69,7 +69,7 @@ export const sendNotification = (type, message) => {
         fontSize: "1.2rem"}}
       >Hiba: {message}<br/>
         <span style={{fontSize: "1rem"}}>
-    Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés&body=${message}`}>hiba@bibicvedeghazak.hu</a>
+    Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba&#64;bibicvedeghazak.hu?subject=Hibajelentés&body=${message}`}>hiba kukac bibicvedeghazak pont hu</a>
         </span>
       </p>, {autoClose: 10000})
     break
