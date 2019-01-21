@@ -8,7 +8,7 @@ jest.mock("../../../lib/firebase", () => ({FEEDBACKS_FS_REF: {doc: jest.fn().moc
 
 const validFeedback = {
   id: "id",
-  customId: "customId",
+  customId: "sz1-2",
   ratings: {
     coffee: 5,
     cleanliness: 5,

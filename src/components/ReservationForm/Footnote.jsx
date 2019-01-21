@@ -44,7 +44,7 @@ const Footnote = () => <span className="footnote">Elfogadott fizetési módok
     </li>
   </ul>
   FIGYELEM! Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:
-  <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
+  <a href="mailto:szallasfoglalas&#64;bibicvendeghazak.hu">szallasfoglalas kukac bibicvendeghazak pont hu</a>
 </span>
 
 export default Footnote

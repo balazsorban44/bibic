@@ -1,12 +1,13 @@
 {
   "name": "web",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "dependencies": {
     "date-fns": "^2.0.0-alpha.26",
     "deep-equal": "^1.0.1",
     "firebase": "^5.7.1",
     "google-map-react": "^1.1.2",
+    "query-string": "^6.2.0",
     "react": "^16.7.0",
     "react-date-range": "balazsorban44/react-date-range#patch-1",
     "react-dom": "^16.7.0",
@@ -39,7 +40,7 @@
     "deploy": "npm run build && firebase deploy",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test --coverage --coverageReporters html --watch",
-    "test:coverage": "react-scripts test --coverage --coverageReporters text-lcov | npx coveralls && rm -rf coverage"
+    "test:coverage": "yarn test --coverage --coverageReporters text-lcov | npx coveralls && rm -rf coverage"
   },
   "browserslist": [
     ">0.2%",
