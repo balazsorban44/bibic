@@ -30,7 +30,7 @@
     "node-sass": "^4.11.0",
     "react-scripts": "2.1.4",
     "source-map-explorer": "^1.6.0",
-    "stylelint": "^9.9.0",
+    "stylelint": "^10.0.0",
     "stylelint-config-recommended": "^2.1.0"
   },
   "scripts": {
