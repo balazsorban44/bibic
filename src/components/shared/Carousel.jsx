@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import withRouter from 'react-router/withRouter'
+import {withRouter} from 'react-router'
 import Slide from "react-reveal/Slide"
 import makeCarousel from "react-reveal/makeCarousel"
 import {withStore} from '../db'
@@ -13,7 +13,9 @@ export class Carousel extends Component {
 
   render() {
     let {match: {path}} = this.props
-    const {title, galleries} = this.props
+    const {
+      title, subtitle, galleries
+    } = this.props
     path = path.replace("/", "")
     const children = galleries[path] ?
       Object
@@ -35,10 +37,13 @@ export class Carousel extends Component {
         className="carousel-wrapper"
         id={path}
       >
-        <h2>{title}</h2>
+        <div className="title">
+          <h2>{title}</h2>
+        </div>
         <CarouselWrapper defaultWait={10000}>
           {children}
         </CarouselWrapper>
+        {subtitle && <h3>{subtitle}</h3> }
       </section>
     )}
 }
@@ -63,7 +68,7 @@ export default withRouter(withStore(Carousel))
 
 
 export const CarouselItem = ({
-  title, desc, SIZE_640, SIZE_1280, SIZE_1440, SIZE_ORIGINAL, className
+  title, desc, SIZE_640, SIZE_1024, SIZE_1440, SIZE_ORIGINAL, className
 }) =>
   <div className={className}>
     <span>
@@ -82,11 +87,11 @@ export const CarouselItem = ({
           srcSet={SIZE_640}
         />
         <source
-          media="(max-width: 1280px)"
-          srcSet={SIZE_1280}
+          media="(max-width: 1024px)"
+          srcSet={SIZE_1024}
         />
         <source
-          media="(max-width: 1920px)"
+          media="(max-width: 1440px)"
           srcSet={SIZE_1440}
         />
         <img

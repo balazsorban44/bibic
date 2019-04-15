@@ -1,5 +1,5 @@
 import React, {Component, createContext} from 'react'
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router'
 import {isQueryString, translate} from '../../utils/language'
 import {
   submitReservation, getPrice, normalizeReservation
@@ -16,8 +16,10 @@ import {fetchData, subscribeToDatabase} from './fetch'
 import {
   initialState, initialMessage, initialReservation
 } from './initialState'
-import {querystringDecode, querystring} from '@firebase/util'
-import {eachDayOfInterval} from 'date-fns'
+import QueryString from "query-string"
+import {
+  eachDayOfInterval, subDays, endOfDay
+} from 'date-fns'
 
 const Store = createContext()
 /**
@@ -118,19 +120,30 @@ export class Database extends Component {
   updateReservation = (key, value) => {
     if (isQueryString(key)) {
       const {history} = this.props
-      const search = querystringDecode(history.location.search)
+      const search = QueryString.parse(history.location.search)
       search[translate(key)] = key === "foodService" ? translate(value) : value
-      history.push(`foglalas?${querystring(search)}`)
+      history.push(`foglalas?${QueryString.stringify(search)}`)
     } else this.setState(({reservation}) => ({reservation: {...reservation,
       [key]: value}}))
   }
 
   fetchOverlaps = async () => {
     try {
-      let overlaps = await fetch(`${CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${this.state.reservation.roomId}`)
-      overlaps = await overlaps.json()
-      this.setState({overlaps:
-        overlaps.reduce((acc, interval) => [...acc, ...eachDayOfInterval(interval)], [])})
+      const {roomId} = this.state.reservation
+      if (roomId) {
+        const overlaps = await (
+          await fetch(
+            `${CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${this.state.reservation.roomId}`
+          )
+        ).json()
+
+        this.setState({overlaps:
+          overlaps
+            .reduce((acc, {start, end}) => [
+              ...acc,
+              ...eachDayOfInterval({start, end: endOfDay(subDays(end, 1))})
+            ], [])})
+      }
     } catch (error) {
       sendNotification("error", error.message)
     }
@@ -153,9 +166,9 @@ export class Database extends Component {
   updateMessage = (key, value) => {
     if (isQueryString(key)) {
       const {history} = this.props
-      const search = querystringDecode(history.location.search)
+      const search = QueryString.parse(history.location.search)
       search[translate(key)] = key === "subject" ? translate(value) : value
-      history.push(`uzenet?${ querystring(search)}`)
+      history.push(`uzenet?${ QueryString.stringify(search)}`)
     } else this.setState(({message}) => ({message: {...message,
       [key]: value}}))
   }
@@ -182,7 +195,7 @@ export class Database extends Component {
     if (queryString) {
       const reservation = {...this.state.reservation}
       const message = {...this.state.message}
-      queryString = querystringDecode(queryString)
+      queryString = QueryString.parse(queryString)
       Object.entries(queryString).forEach(([key, value]) => {
         key = translate(key)
         value = key === "foodService" || key === "subject" ? translate(value) : value

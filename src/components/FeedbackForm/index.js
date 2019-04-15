@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {withStore} from '../db'
 import {Send, FormGroup} from '../shared/Form'
-import {querystringDecode} from '@firebase/util'
+import QueryString from "query-string"
 import {translate, isQueryString} from '../../utils/language'
 import errorState from "../../assets/images/other/empty-state.svg"
 import successState from "../../assets/images/other/success-state.svg"
 import {Loading} from '../shared/Elements'
-import ToastContainer from '../ToastContainer';
+import ToastContainer from '../ToastContainer'
 export class FeedbackForm extends Component {
 
   state = {
@@ -28,7 +28,7 @@ export class FeedbackForm extends Component {
 
   componentDidMount = async () => {
     window.scrollTo(0, 0)
-    const query = querystringDecode(this.props.location.search)
+    const query = QueryString.parse(this.props.location.search)
     let isOneClick
     const feedback = {}
     Object.entries(query).forEach(([key, value]) => {
@@ -74,7 +74,7 @@ export class FeedbackForm extends Component {
 
     const {
       feedback: {
-        content, feedbackId, ratings
+        content, customId, ratings
       },
       success, error
     } = this.state
@@ -104,7 +104,7 @@ export class FeedbackForm extends Component {
               action=""
               className="form feedback-form"
             >
-              <h2>Visszajelzés <span>(foglalási azonosító: {feedbackId})</span></h2>
+              <h2>Visszajelzés <span>(foglalási azonosító: {customId})</span></h2>
               <FormGroup
                 className="services"
                 footnote="1 = legrosszabb, 5 = legjobb"

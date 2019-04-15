@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <_default />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -25,7 +26,6 @@ ShallowWrapper {
           Hmm... Ez az oldal sajnos üres.
         </p>,
         <Link
-          replace={false}
           to="/"
         >
           Vissza a főoldalra
@@ -63,7 +63,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "Vissza a főoldalra",
-          "replace": false,
           "to": "/",
         },
         "ref": null,
@@ -87,7 +86,6 @@ ShallowWrapper {
             Hmm... Ez az oldal sajnos üres.
           </p>,
           <Link
-            replace={false}
             to="/"
           >
             Vissza a főoldalra
@@ -125,7 +123,6 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "Vissza a főoldalra",
-            "replace": false,
             "to": "/",
           },
           "ref": null,
@@ -140,11 +137,18 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
-          "getDerivedStateFromProps": true,
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,

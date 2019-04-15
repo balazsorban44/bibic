@@ -2,35 +2,38 @@ import React, {
   lazy, Suspense, Component
 } from 'react'
 import {Link as RouteLink} from 'react-router-dom'
+import {withRouter} from "react-router"
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
 import Fade from "react-reveal/Fade"
 import {BASE_URL} from '../utils/constants'
 
+
+
 const RoomMenu = lazy(() => import("./RoomMenu"))
 
+const menu = [
+  {to:"bemutatkozas", name: "Bemutatkozás"},
+  {to:"szolgaltatasok", name: "Szolgáltatások"},
+  {to:"szobak", name: "Szobák"},
+  {to:"arak", name: "Árak"},
+  {
+    to:"etelek", name: "Ételek", component: RouteLink
+  },
+  {
+    to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+  },
+  {to:"visszajelzesek", name: "Visszajelzések"},
+  {to:"kapcsolat", name: "Kapcsolat"}
+]
 
 export class Menu extends Component {
 
   state = {
     isMenuOpen: false,
     isScrolled: false,
-    isRoomMenuOpen: true,
-    menu: [
-      {to:"bemutatkozas", name: "Bemutatkozás"},
-      {to:"szolgaltatasok", name: "Szolgáltatások"},
-      {to:"szobak", name: "Szobák"},
-      {to:"arak", name: "Árak"},
-      {
-        to:"etelek", name: "Ételek", component: RouteLink
-      },
-      {
-        to:"rendezvenyek", name: "Rendezvények", component: RouteLink
-      },
-      {to:"visszajelzesek", name: "Visszajelzések"},
-      {to:"kapcsolat", name: "Kapcsolat"}
-    ]
+    isRoomMenuOpen: true
   }
 
   componentDidMount() {
@@ -60,7 +63,7 @@ export class Menu extends Component {
 
   render() {
     const {
-      isMenuOpen, isScrolled, isRoomMenuOpen, width, menu
+      isMenuOpen, isScrolled, isRoomMenuOpen, width
     } = this.state
     const isBigScreen = width > 768
     return (
@@ -94,7 +97,7 @@ export class Menu extends Component {
               cascade
               down
             >
-              <ul>
+              <ul className="nav-menu">
                 {menu.map(({
                   name, to, component: Component=Link, offset
                 }) =>
@@ -130,15 +133,33 @@ export class Menu extends Component {
 export default Menu
 
 
-export const BackMenu = () =>
-  /**
-   * REVIEW: Not working with react-reveal
-   * <Fade up>
-   */
-  <RouteLink
-    className="back-to-home"
-    to="/"
-  >
-      ← Vissza a főoldalra
-  </RouteLink>
-  // </Fade>
+export const BackMenu = withRouter(props => {
+  const {location: {search}, history: {goBack}} = props
+  const customReturn = new URLSearchParams(search).get("vissza")
+  const title = customReturn ||"főoldal"
+  return(
+    customReturn ?
+      <button
+        className="back-to-home"
+        onClick={goBack}
+        title={title}
+      >
+        <Title {...{title}}/>
+      </button> :
+      <RouteLink
+        className="back-to-home"
+        title={title}
+        to="/"
+      >
+        <Title {...{title}}/>
+      </RouteLink>
+  )
+})
+
+const Title = ({title}) =>
+  <>
+    ←
+    <span>
+      Vissza ide: {title}
+    </span>
+  </>

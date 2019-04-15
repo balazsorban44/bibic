@@ -1,36 +1,37 @@
 {
   "name": "web",
-  "version": "1.0.2",
+  "version": "1.0.10",
   "private": true,
   "dependencies": {
     "date-fns": "^2.0.0-alpha.26",
     "deep-equal": "^1.0.1",
-    "firebase": "^5.7.1",
-    "google-map-react": "^1.1.2",
-    "react": "^16.7.0",
+    "firebase": "^5.9.4",
+    "google-map-react": "^1.1.4",
+    "query-string": "^6.4.2",
+    "react": "^16.8.6",
     "react-date-range": "balazsorban44/react-date-range#patch-1",
-    "react-dom": "^16.7.0",
+    "react-dom": "^16.8.6",
     "react-reveal": "^1.2.2",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scroll": "^1.7.10",
-    "react-scrolllock": "^3.0.2",
-    "react-toastify": "^4.5.1"
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scroll": "^1.7.11",
+    "react-scrolllock": "^4.0.1",
+    "react-toastify": "^5.0.1"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1",
-    "eslint-config-prettier": "^3.3.0",
+    "coveralls": "^3.0.3",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.12.0",
+    "eslint-plugin-react": "^7.12.4",
     "firebase-mock": "^2.2.10",
-    "jest-fetch-mock": "^2.0.1",
+    "jest-fetch-mock": "^2.1.2",
     "node-sass": "^4.11.0",
-    "react-scripts": "2.1.2",
-    "source-map-explorer": "^1.6.0",
-    "stylelint": "^9.9.0",
-    "stylelint-config-recommended": "^2.1.0"
+    "react-scripts": "2.1.8",
+    "source-map-explorer": "^1.8.0",
+    "stylelint": "^10.0.0",
+    "stylelint-config-recommended": "^2.2.0"
   },
   "scripts": {
     "analyze": "source-map-explorer --html build/static/js/main.* > index.html",
@@ -39,7 +40,7 @@
     "deploy": "npm run build && firebase deploy",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test --coverage --coverageReporters html --watch",
-    "test:coverage": "react-scripts test --coverage --coverageReporters text-lcov | npx coveralls && rm -rf coverage"
+    "test:coverage": "yarn test --coverage --coverageReporters text-lcov | npx coveralls && rm -rf coverage"
   },
   "browserslist": [
     ">0.2%",

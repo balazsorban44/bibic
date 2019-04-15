@@ -13,7 +13,6 @@ firebase.initializeApp({
 
 
 export const FS = firebase.firestore()
-FS.settings({timestampsInSnapshots: true})
 
 export const DB = firebase.database()
 export const ROOMS_REF = DB.ref("rooms")
