@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import withRouter from 'react-router/withRouter'
+import {withRouter} from 'react-router'
 import Slide from "react-reveal/Slide"
 import makeCarousel from "react-reveal/makeCarousel"
 import {withStore} from '../db'

@@ -1,36 +1,39 @@
 import React, {
   lazy, Suspense, Component
 } from 'react'
-import {Link as RouteLink, withRouter} from 'react-router-dom'
+import {Link as RouteLink} from 'react-router-dom'
+import {withRouter} from "react-router"
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
 import Fade from "react-reveal/Fade"
 import {BASE_URL} from '../utils/constants'
 
+
+
 const RoomMenu = lazy(() => import("./RoomMenu"))
 
+const menu = [
+  {to:"bemutatkozas", name: "Bemutatkozás"},
+  {to:"szolgaltatasok", name: "Szolgáltatások"},
+  {to:"szobak", name: "Szobák"},
+  {to:"arak", name: "Árak"},
+  {
+    to:"etelek", name: "Ételek", component: RouteLink
+  },
+  {
+    to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+  },
+  {to:"visszajelzesek", name: "Visszajelzések"},
+  {to:"kapcsolat", name: "Kapcsolat"}
+]
 
 export class Menu extends Component {
 
   state = {
     isMenuOpen: false,
     isScrolled: false,
-    isRoomMenuOpen: true,
-    menu: [
-      {to:"bemutatkozas", name: "Bemutatkozás"},
-      {to:"szolgaltatasok", name: "Szolgáltatások"},
-      {to:"szobak", name: "Szobák"},
-      {to:"arak", name: "Árak"},
-      {
-        to:"etelek", name: "Ételek", component: RouteLink
-      },
-      {
-        to:"rendezvenyek", name: "Rendezvények", component: RouteLink
-      },
-      {to:"visszajelzesek", name: "Visszajelzések"},
-      {to:"kapcsolat", name: "Kapcsolat"}
-    ]
+    isRoomMenuOpen: true
   }
 
   componentDidMount() {
@@ -60,7 +63,7 @@ export class Menu extends Component {
 
   render() {
     const {
-      isMenuOpen, isScrolled, isRoomMenuOpen, width, menu
+      isMenuOpen, isScrolled, isRoomMenuOpen, width
     } = this.state
     const isBigScreen = width > 768
     return (
@@ -94,7 +97,7 @@ export class Menu extends Component {
               cascade
               down
             >
-              <ul>
+              <ul className="nav-menu">
                 {menu.map(({
                   name, to, component: Component=Link, offset
                 }) =>

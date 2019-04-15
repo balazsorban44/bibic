@@ -1,5 +1,5 @@
 import React, {Component, createContext} from 'react'
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router'
 import {isQueryString, translate} from '../../utils/language'
 import {
   submitReservation, getPrice, normalizeReservation
