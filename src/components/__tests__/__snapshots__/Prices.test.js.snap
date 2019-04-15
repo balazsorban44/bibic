@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Prices />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -51,7 +52,6 @@ ShallowWrapper {
               </div>
               <Link
                 className="price-button"
-                replace={false}
                 to="foglalas"
               >
                 Foglalás
@@ -79,7 +79,6 @@ ShallowWrapper {
               </div>
               <Link
                 className="price-button"
-                replace={false}
                 to="uzenet?tema=rendezvenyterem"
               >
                 Írjon nekünk
@@ -108,7 +107,6 @@ ShallowWrapper {
               </div>
               <Link
                 className="price-button"
-                replace={false}
                 to="uzenet?tema=teljeshaz"
               >
                 Írjon nekünk
@@ -167,7 +165,6 @@ ShallowWrapper {
               </div>
               <Link
                 className="price-button"
-                replace={false}
                 to="foglalas"
               >
                 Foglalás
@@ -195,7 +192,6 @@ ShallowWrapper {
               </div>
               <Link
                 className="price-button"
-                replace={false}
                 to="uzenet?tema=rendezvenyterem"
               >
                 Írjon nekünk
@@ -224,7 +220,6 @@ ShallowWrapper {
               </div>
               <Link
                 className="price-button"
-                replace={false}
                 to="uzenet?tema=teljeshaz"
               >
                 Írjon nekünk
@@ -263,7 +258,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="foglalas"
                 >
                   Foglalás
@@ -291,7 +285,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="uzenet?tema=rendezvenyterem"
                 >
                   Írjon nekünk
@@ -320,7 +313,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="uzenet?tema=teljeshaz"
                 >
                   Írjon nekünk
@@ -359,7 +351,6 @@ ShallowWrapper {
                   </div>,
                   <Link
                     className="price-button"
-                    replace={false}
                     to="foglalas"
                   >
                     Foglalás
@@ -479,7 +470,6 @@ ShallowWrapper {
                   "props": Object {
                     "children": "Foglalás",
                     "className": "price-button",
-                    "replace": false,
                     "to": "foglalas",
                   },
                   "ref": null,
@@ -516,7 +506,6 @@ ShallowWrapper {
                   </div>,
                   <Link
                     className="price-button"
-                    replace={false}
                     to="uzenet?tema=rendezvenyterem"
                   >
                     Írjon nekünk
@@ -633,7 +622,6 @@ ShallowWrapper {
                   "props": Object {
                     "children": "Írjon nekünk",
                     "className": "price-button",
-                    "replace": false,
                     "to": "uzenet?tema=rendezvenyterem",
                   },
                   "ref": null,
@@ -671,7 +659,6 @@ ShallowWrapper {
                   </div>,
                   <Link
                     className="price-button"
-                    replace={false}
                     to="uzenet?tema=teljeshaz"
                   >
                     Írjon nekünk
@@ -791,7 +778,6 @@ ShallowWrapper {
                   "props": Object {
                     "children": "Írjon nekünk",
                     "className": "price-button",
-                    "replace": false,
                     "to": "uzenet?tema=teljeshaz",
                   },
                   "ref": null,
@@ -860,7 +846,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="foglalas"
                 >
                   Foglalás
@@ -888,7 +873,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="uzenet?tema=rendezvenyterem"
                 >
                   Írjon nekünk
@@ -917,7 +901,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="uzenet?tema=teljeshaz"
                 >
                   Írjon nekünk
@@ -976,7 +959,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="foglalas"
                 >
                   Foglalás
@@ -1004,7 +986,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="uzenet?tema=rendezvenyterem"
                 >
                   Írjon nekünk
@@ -1033,7 +1014,6 @@ ShallowWrapper {
                 </div>
                 <Link
                   className="price-button"
-                  replace={false}
                   to="uzenet?tema=teljeshaz"
                 >
                   Írjon nekünk
@@ -1072,7 +1052,6 @@ ShallowWrapper {
                   </div>
                   <Link
                     className="price-button"
-                    replace={false}
                     to="foglalas"
                   >
                     Foglalás
@@ -1100,7 +1079,6 @@ ShallowWrapper {
                   </div>
                   <Link
                     className="price-button"
-                    replace={false}
                     to="uzenet?tema=rendezvenyterem"
                   >
                     Írjon nekünk
@@ -1129,7 +1107,6 @@ ShallowWrapper {
                   </div>
                   <Link
                     className="price-button"
-                    replace={false}
                     to="uzenet?tema=teljeshaz"
                   >
                     Írjon nekünk
@@ -1168,7 +1145,6 @@ ShallowWrapper {
                     </div>,
                     <Link
                       className="price-button"
-                      replace={false}
                       to="foglalas"
                     >
                       Foglalás
@@ -1288,7 +1264,6 @@ ShallowWrapper {
                     "props": Object {
                       "children": "Foglalás",
                       "className": "price-button",
-                      "replace": false,
                       "to": "foglalas",
                     },
                     "ref": null,
@@ -1325,7 +1300,6 @@ ShallowWrapper {
                     </div>,
                     <Link
                       className="price-button"
-                      replace={false}
                       to="uzenet?tema=rendezvenyterem"
                     >
                       Írjon nekünk
@@ -1442,7 +1416,6 @@ ShallowWrapper {
                     "props": Object {
                       "children": "Írjon nekünk",
                       "className": "price-button",
-                      "replace": false,
                       "to": "uzenet?tema=rendezvenyterem",
                     },
                     "ref": null,
@@ -1480,7 +1453,6 @@ ShallowWrapper {
                     </div>,
                     <Link
                       className="price-button"
-                      replace={false}
                       to="uzenet?tema=teljeshaz"
                     >
                       Írjon nekünk
@@ -1600,7 +1572,6 @@ ShallowWrapper {
                     "props": Object {
                       "children": "Írjon nekünk",
                       "className": "price-button",
-                      "replace": false,
                       "to": "uzenet?tema=teljeshaz",
                     },
                     "ref": null,
@@ -1634,11 +1605,18 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
-          "getDerivedStateFromProps": true,
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,
