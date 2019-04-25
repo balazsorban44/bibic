@@ -1,0 +1,24 @@
+{
+  "menu": {
+    "intro": "Introduction",
+    "services": "Services",
+    "rooms": "Rooms",
+    "prices": "Prices",
+    "foods": "Foods",
+    "events": "Events",
+    "feedbacks": "Feedback",
+    "contact": "Contact"
+  },
+  "messenger-tooltip": "Find us on Messenger",
+  "back-to": "Back to",
+  "homepage": "home",
+  "reservation": "reservation",
+  "titles": {
+    "foods": "Menu",
+    "events": "Our programs"
+  },
+  "subtitles": {
+    "foods": "We do not operate a restaurant in our guesthouse, so the selection of meals prior to arrival is necessary. We prepare meals for our guests only."
+  },
+  "not-available": "Content not available"
+}

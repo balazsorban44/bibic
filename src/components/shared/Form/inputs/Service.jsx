@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {memo} from 'react'
 
-const Service = ({
+export default memo(({
   label, name, onChange, checked, value
-}) => (
+}) =>
   <div className="service">
     <label htmlFor={value}>{label}</label>
     <input
@@ -12,10 +12,8 @@ const Service = ({
         checked
       }}
       id={value}
-      onChange={({target: {name, value}}) => onChange(name, value)}
+      onChange={({target: {name, value}}) => onChange({[name]: value})}
       type="radio"
     />
   </div>
 )
-
-export default Service

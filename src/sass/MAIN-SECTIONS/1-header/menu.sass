@@ -28,16 +28,30 @@ nav
     flex-direction: column
     justify-content: space-evenly
   a
-    text-transform: uppercase
-    letter-spacing: .05em
     align-items: center
     padding: 1rem 0 1rem 2rem
-    color: $accent-color-dark
-    font-family: "White Festive", sans-serif
-    font-weight: bolder
-    font-size: 2rem
     &:hover
       color: $accent-color
+
+  a, .flag-select
+    text-transform: uppercase
+    letter-spacing: .05em
+    color: $accent-color-dark
+    font-weight: bolder
+    font-size: 2rem
+    font-family: "White Festive", sans-serif
+
+.language-selector
+  display: grid
+  place-items: center
+  order: -1
+
+.flag-select
+  padding: .5rem 0 .5rem 2rem
+.flag-options
+  padding: 0
+.flag-option
+  padding: .5rem 1rem !important
 
 .room-menu
   grid-area: room-nav
@@ -75,7 +89,13 @@ nav
     transform: translateX(-100%)
   .room-menu
     transform: translateX(100%)
-  
+
+.flags-select
+  color: $dark !important
+  font-family: 
+  img
+    display: inline
+
 @import hamburger
 
 @media (min-aspect-ratio: 7/6), (min-width: 768px)
@@ -110,7 +130,7 @@ nav
       a
         padding: 0 .3em
         font-size: 1.75em
-       
+
 
   .room-menu
     background-color: transparent
@@ -145,6 +165,15 @@ nav
       left: 50%
       top: 50%
       position: absolute
+
+  
+  .language-selector
+    order: initial
+    margin-top: 12px
+    
+  .flag-select
+    padding-bottom: .4rem
+
 
 @media (min-width: 1024px)
   .menu nav a

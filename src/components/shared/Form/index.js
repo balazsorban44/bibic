@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  Date, Send, PeopleCount, Children, Service
-} from "./inputs"
+import {Date, Send, PeopleCount, Children, Service} from "./inputs"
 
 
 const FormSection = ({title, children}) =>
@@ -11,9 +9,7 @@ const FormSection = ({title, children}) =>
   </>
 
 
-const FormGroup = ({
-  title, className, children, footnote
-}) =>
+const FormGroup = ({title, className, children, footnote}) =>
   <>
     {title && <h5>{title}</h5>}
     <div className={`form-group ${className}`}>
@@ -23,6 +19,4 @@ const FormGroup = ({
   </>
 
 
-export {
-  FormSection, FormGroup, Date, Send, PeopleCount, Children, Service
-}
+export {FormSection, FormGroup, Date, Send, PeopleCount, Children, Service}

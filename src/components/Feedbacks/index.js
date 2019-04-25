@@ -1,25 +1,27 @@
 import React from 'react'
 import Stars from './Stars'
-import {withStore} from '../db'
-import {Loading} from '../shared/Elements'
+import {UNSAFE_withStore} from 'db'
+import {Loading} from 'components/shared/Elements'
 import Fade from "react-reveal/Fade"
 import {hu} from 'date-fns/locale'
 import {formatDistance} from 'date-fns'
-import {TODAY} from '../../utils/constants'
+import {TODAY} from 'utils/constants'
+import {useTranslation} from 'react-i18next'
 
 export const Feedbacks = ({feedbacks}) => {
+  const [t] = useTranslation("feedbacks")
   const rooms = Object.entries(feedbacks.rooms || {})
   const sum = rooms.reduce((acc, [_, value]) => acc + value, 0)
   const allAvg = (sum / rooms.length).toFixed(2)
 
   return (
     <section id="visszajelzesek">
-      <h2>Visszajelzések</h2>
+      <h2>{t("title")}</h2>
       <Fade up>
         <div>
-          <h3>Értékelések</h3>
+          <h3>{t("ratings")}</h3>
           <Stars
-            title="Összesített"
+            title={t("overall")}
             value={allAvg}
           />
           <div className="room-feedbacks">
@@ -30,7 +32,7 @@ export const Feedbacks = ({feedbacks}) => {
               >
                 <Stars
                   size={18}
-                  title={`Szoba ${roomId}`}
+                  title={t("room", {roomNumber: roomId})}
                   value={avg.toFixed(2)}
                 />
               </div>
@@ -40,7 +42,7 @@ export const Feedbacks = ({feedbacks}) => {
       </Fade>
       <Fade up>
         <div>
-          <h3>Önök mondták</h3>
+          <h3>{t("you-said")}</h3>
           <ul className="feedback-list">
             {Array.isArray(feedbacks.all) ? feedbacks.all.length ?
               feedbacks.all
@@ -51,7 +53,7 @@ export const Feedbacks = ({feedbacks}) => {
                     key={index}
                     {...feedback}
                   />
-                ) : <Loading/> : "Nincs visszajelzés."}
+                ) : <Loading/> : t("no-feedback")}
           </ul>
         </div>
       </Fade>
@@ -59,12 +61,10 @@ export const Feedbacks = ({feedbacks}) => {
   )
 }
 
-export default withStore(Feedbacks)
+export default UNSAFE_withStore(Feedbacks)
 
 
-export const Feedback = ({
-  content, roomId, timestamp
-}) =>
+export const Feedback = ({content, roomId, timestamp}) =>
   <li
     className="feedback-list-element"
     data-room={roomId}

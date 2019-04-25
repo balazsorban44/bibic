@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import Slide from "react-reveal/Slide"
 import makeCarousel from "react-reveal/makeCarousel"
-import {withStore} from '../db'
-import {Loading} from './Elements'
+import {UNSAFE_withStore} from 'db'
+import {Loading} from 'components/shared/Elements'
 
 export class Carousel extends Component {
 
@@ -64,7 +64,7 @@ const CarouselWrapper = makeCarousel(({
     ><span className="arrow-icon"/></span>
   </div>)
 
-export default withRouter(withStore(Carousel))
+export default withRouter(UNSAFE_withStore(Carousel))
 
 
 export const CarouselItem = ({

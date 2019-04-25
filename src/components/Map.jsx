@@ -1,8 +1,8 @@
 import React from 'react'
-import bibic from '../assets/icons/bibic-white.png'
+import bibic from 'assets/icons/bibic-white.png'
 import GoogleMaps from "google-map-react"
 
-import {MAPS_API_KEY, MAPS_STYLE} from '../lib/google-maps'
+import {MAPS_API_KEY, MAPS_STYLE} from 'lib/google-maps'
 
 
 export const Marker = () =>

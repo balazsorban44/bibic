@@ -1,0 +1,19 @@
+{
+  "personal-details": {
+    "footnote": "Kapcsolattartás céljából kötelező"
+  },
+  "details": {
+    "title": "Üzenet részletei",
+    "subject": {
+      "title": "Az üzenet témája",
+      "event-hall": "Rendezvényterem",
+      "full-house": "Teljes ház",
+      "special-request": "Egyedi ajánlat",
+      "other": "Egyéb"
+    },
+    "content": {
+      "title": "Az üzenet tartalma",
+      "placeholder":"Tisztelt Bíbic vendégházak..."
+    }
+  }
+}

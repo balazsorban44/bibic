@@ -1,18 +1,19 @@
-import React, {Component} from 'react'
-import Gallery from './shared/Gallery'
+import React, {useEffect} from 'react'
+import Gallery from 'components/shared/Gallery'
+import { useTranslation } from 'react-i18next';
 
 
-export default class MoreServices extends Component {
+export default function MoreServices() {
+  const [t] = useTranslation("services")
 
-  componentDidMount() {
+  useEffect(() => {
     window.scrollTo(0, 0)
-  }
+  }, [])
 
-  render() {
     return(
       <section id="szolgaltatasok">
-        <h2>Szolgáltatásaink</h2>
+        <h2>{t("title")}</h2>
         <Gallery path="szolgaltatasaink"/>
       </section>
-    )}
+    )
 }

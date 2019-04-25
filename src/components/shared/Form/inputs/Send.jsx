@@ -1,21 +1,13 @@
-import React from 'react'
-import {Loading} from "../../Elements"
+import React, {memo} from 'react'
 
-const Send = ({
-  isLoading, onClick, children
-}) =>
-  <>
-    {isLoading ?
-      <div style={{padding: "24px 0 48px"}} >
-        <Loading/>
-      </div> :
-      <button
-        {...{onClick}}
-        className="submit"
-        type="submit"
-      >{children}
-      </button>
-    }
-  </>
+const Send = memo(({loading, onClick, children}) =>
+  <button
+    disabled={loading}
+    onClick={onClick}
+    className="submit"
+    type="submit"
+  >{children}
+  </button>
+)
 
 export default Send

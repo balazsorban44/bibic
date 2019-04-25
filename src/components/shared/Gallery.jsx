@@ -1,6 +1,6 @@
 import React from 'react'
-import {Loading} from './Elements'
-import {withStore} from '../db'
+import {Loading} from 'components/shared/Elements'
+import {UNSAFE_withStore} from 'db'
 
 export const Gallery = ({
   galleries, count, path
@@ -25,7 +25,7 @@ export const Gallery = ({
 }
 
 
-export default withStore(Gallery)
+export default UNSAFE_withStore(Gallery)
 
 
 export const GalleryItem = ({

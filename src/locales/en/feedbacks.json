@@ -1,0 +1,27 @@
+{
+  "title": "Feedbacks",
+  "ratings": "Ratings",
+  "overall": "Overall",
+  "you-said": "You said",
+  "no-feedback": "No feedback yet.",
+  "room": "Room {{roomNumber}}",
+  "form": {
+    "error": {
+      "text": "An error occured.",
+      "alt": "sending feedback unsuccessful"
+    },
+    "success": {
+      "text": "Feedback successfully sent.",
+      "alt": "sending feedback successful"
+    },
+    "title": ["Feedback", "for reservation"],
+    "services": {
+      "title": "please rate the following",
+      "footnote": "1 = worst, 5 = best"
+    },
+    "message": {
+      "title": "message",
+      "placeholder": "Dear Bíbic vendégházak..."
+    }
+  }
+}

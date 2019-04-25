@@ -1,0 +1,24 @@
+{
+  "title": "Prices",
+  "footnote": "TODO: Translate - *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
+  "options": [
+    {
+      "suffix": "HUF",
+      "name": "Multiple bed",
+      "subtitle": "for 2 or more",
+      "button": "Reserve"
+    },
+    {
+      "suffix": "HUF/hour",
+      "name": "Event hall",
+      "subtitle": "hall booking",
+      "button": "Contact us"
+    },
+    {
+      "suffix": "HUF",
+      "name": "Whole house",
+      "subtitle": "maximum 21 people",
+      "button": "Contact us"
+    }
+  ]
+}

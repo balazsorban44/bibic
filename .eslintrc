@@ -3,25 +3,25 @@
     "prettier",
     "prettier/react"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parser":"babel-eslint",
   "rules": {
     "require-jsdoc":"warn",
-    // "max-len": ["warn", {
-    //   "ignoreTemplateLiterals": true,
-    //   "ignoreStrings": true
-    //   }],
     "no-useless-escape":"error",
     "block-spacing":["warn", "never"],
     "semi": [2, "never"],
     "no-trailing-spaces":"error",
-    // "multiline-comment-style":"error",
     "space-unary-ops":"error",
     "no-mixed-spaces-and-tabs":"error",
     "indent": ["error", 2],
     "no-multiple-empty-lines":"error",
     "no-console":["warn", { "allow": ["warn", "error"]}],
     "object-property-newline":["error", {"allowAllPropertiesOnSameLine": true}],
-    "object-curly-newline":["error", {"minProperties": 3}],
+    "object-curly-newline":["error", {"multiline": true}],
     "object-curly-spacing":"error",
     "prefer-template":"warn",
     "arrow-spacing":"error",

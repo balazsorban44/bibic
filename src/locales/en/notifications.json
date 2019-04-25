@@ -1,0 +1,22 @@
+{
+  "use-calendar": "Please use the calendar to pick the date of arrival and departure.",
+  "calendar-select-success": "Date selected.",
+  "same-day": "The reservation must contain at least one night. Please choose another date.",
+  "wrong-input": "{{message}} If you think the problem is something else, please tell us here: hiba at bibicvedeghazak dot hu",
+  "feedback-sent": "Feedback sent.",
+  "database-error": "Database error. {{message}} Please contact us at hiba at bibicvendeghazak dot hu, or call us on: +36305785730",
+  "personal-detail": "{{message}}",
+  "fetch-overlaps": "{{message}}",
+  "reservation": {
+    "overlap": "This interval overlaps with an existing reservation. Try to select another interval, or another room.",
+    "success": "Reservation submitted. We will get back to you shortly. You will soon be redirected to the homepage."
+  },
+  "message": {
+    "success": "Message sent. We will get back to you shortly. You will soon be redirected to the homepage."
+  },
+  "feedback": {
+    "submit-error": "{{message}}",
+    "no-reservation-found": "Error! This reservation does not exist.",
+    "success": "Feedback sent. Thanks! You will soon be redirected to the homepage."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "personal-details": {
+    "footnote": "Required for contact"
+  },
+  "details": {
+    "title": "Message",
+    "subject": {
+      "title": "Subject",
+      "event-hall": "Event hall",
+      "full-house": "Whole house",
+      "special-request": "Special request",
+      "other": "Other"
+    },
+    "content": {
+      "title": "Content",
+      "placeholder":"Dear Bíbic vendégházak..."
+    }
+  }
+}

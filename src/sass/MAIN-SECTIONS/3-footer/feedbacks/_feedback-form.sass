@@ -1,16 +1,16 @@
 .feedback-form
-
+  .submit
+    margin-top: .25em
   h2
     margin: 1em 0 0 !important
     span
       display: block
-      font-size: .5em
-      opacity: .9
+      font-size: .75em
 .feedback-rating-slider
   margin: .5em 1em
+  font-family: "Coolvetica", monospace
   h3
     margin-bottom: .5em
-    font-family: "Coolvetica", monospace
     letter-spacing: .05em
     font-weight: lighter
     font-size: .8em
@@ -24,8 +24,9 @@
 
   li
     margin-bottom: .5em
-    width: 24px
-    height: 24px
+    width: 32px
+    height: 32px
+    margin: 0 8px
     display: flex
     justify-content: center
     align-items: center
@@ -33,8 +34,11 @@
     background-color: lighten($accent-color, 30)
     cursor: pointer
     border-radius: 50%
+    opacity: .8
+    transition: .2s ease-out
 
 .rating-value-active
+  opacity: 1 !important
   background-color: $accent-color !important
 
 @media (min-width: 768px)

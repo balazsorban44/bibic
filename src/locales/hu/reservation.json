@@ -1,0 +1,38 @@
+{
+  "title": "Foglalás",
+  "select": "Válasszon szobát",
+  "room-selected": "{{roomNumber}}. szoba kiválasztva",
+  "room-facilities": "a szoba szolgáltatásai",
+  "personal-details": {
+    "footnote": "kötelező (számla kiállításához szükséges)"
+  },
+  "details": {
+    "title": "Foglalás adatai",
+    "calendar": {
+      "title": "érkezés/távozás",
+      "footnote": "Érkezés: {{from}}-tól, Távozás: {{to}}-ig"
+    },
+    "people": {
+      "title": "személyek (maximum {{maxPeople}} fő)",
+      "footnote": "6 év alatt ingyenes"
+    },
+    "food": {
+      "title": "igényelt ellátás",
+      "footnote": [
+        "az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet",
+        "főbb ételeinket ide kattintva találja"
+      ]
+    },
+    "message": {
+      "title": "megjegyzés",
+      "placeholder": "pl.: étel egyeztetés, speciális kívánság, egyéb kérdés"
+    }
+  },
+  "payment-methods": {
+    "title": "Elfogadott fizetési módok",
+    "options": ["Készpénz", "Előreutalás", "Visa", "Mastercard", "OTP SZÉP"],
+    "altOptions": ["Készpénzes fizetés", "Előreutalás", "Visa elfogadóhely", "Mastercard elfogadóhely", "OTP SZÉP Kártya elfogadóhely"],
+    "footnote": "FIGYELEM! Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre"
+  },
+  "reservation-email": "szallasfoglalas kukac bibicvendeghazak pont hu"
+}

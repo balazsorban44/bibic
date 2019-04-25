@@ -5,6 +5,7 @@ import Services from './Services'
 import Prices from './Prices'
 import Rooms from "./Rooms"
 import Map from "./Map"
+import Footer from "./Footer"
 
 export default () =>
   <>
@@ -14,4 +15,5 @@ export default () =>
     <Prices/>
     <Feedbacks/>
     <Map/>
+    <Footer/>
   </>

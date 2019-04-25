@@ -1,0 +1,8 @@
+{
+  "title": "Üdvözöljük",
+  "name": "{{name, fullName}}",
+  "positions": {
+    "host": "Bíbic Vendégházak házigazdája",
+    "owner": "Tulajdonos"
+  }
+}

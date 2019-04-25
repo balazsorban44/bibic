@@ -1,0 +1,27 @@
+{
+  "title": "Visszajelzések",
+  "ratings": "Értékelések",
+  "overall": "Összesített",
+  "you-said": "Önök mondták",
+  "no-feedback": "Nincs visszajelzés.",
+  "room": "Szoba {{roomNumber}}",
+  "form": {
+    "error": {
+      "text": "Hiba történt.",
+      "alt": "sikertelen visszajelzés"
+    },
+    "success": {
+      "text": "Visszajelzés sikeresen elküldve.",
+      "alt": "sikeres visszajelzés"
+    },
+    "title": ["Visszajelzés", "foglalási azonosító"],
+    "services": {
+      "title": "kérjük értékelje az alábbiakat",
+      "footnote": "1 = legrosszabb, 5 = legjobb"
+    },
+    "message": {
+      "title": "üzenet",
+      "placeholder": "Kedves Bíbic vendégházak..."
+    }
+  }
+}

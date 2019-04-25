@@ -1,51 +1,69 @@
 {
   "name": "web",
-  "version": "1.0.10",
+  "version": "1.1.0-beta",
   "private": true,
   "dependencies": {
     "date-fns": "^2.0.0-alpha.26",
     "deep-equal": "^1.0.1",
-    "firebase": "^5.9.4",
+    "firebase": "^5.10.0",
     "google-map-react": "^1.1.4",
+    "i18next": "^15.0.9",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-date-range": "balazsorban44/react-date-range#patch-1",
     "react-dom": "^16.8.6",
+    "react-flags-select": "^1.1.10",
+    "react-i18next": "^10.8.1",
+    "react-loadable": "^5.5.0",
     "react-reveal": "^1.2.2",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scroll": "^1.7.11",
     "react-scrolllock": "^4.0.1",
-    "react-toastify": "^5.0.1"
+    "react-toastify": "^5.1.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.7",
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
     "coveralls": "^3.0.3",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "firebase-mock": "^2.2.10",
+    "jest-dom": "^3.1.3",
     "jest-fetch-mock": "^2.1.2",
     "node-sass": "^4.11.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^3.0.0",
+    "react-testing-library": "^6.1.2",
     "source-map-explorer": "^1.8.0",
-    "stylelint": "^10.0.0",
-    "stylelint-config-recommended": "^2.2.0"
+    "stylelint": "^10.0.1",
+    "stylelint-config-recommended": "^2.2.0",
+    "typescript": "^3.4.5"
   },
   "scripts": {
-    "analyze": "source-map-explorer --html build/static/js/main.* > index.html",
+    "analyze": "source-map-explorer --html build/static/js/$S* > index.html",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "npm run build && firebase deploy",
+    "deploy:beta": "npm run build && firebase -P develop deploy",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test --coverage --coverageReporters html --watch",
     "test:coverage": "yarn test --coverage --coverageReporters text-lcov | npx coveralls && rm -rf coverage"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*{js,jsx}",

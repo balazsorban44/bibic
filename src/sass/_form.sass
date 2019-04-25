@@ -23,7 +23,20 @@
     letter-spacing: .1em
     font-weight: lighter
 
+.message-box
+  width: calc(100% - 2em)
+  textarea
+    border:
+      top: 2px solid $dark
+      left: 2px solid $dark
+      right: 2px solid $dark
+    font-family: "Coolvetica", sans-serif
+    letter-spacing: .1em
+    width: 100%
+    padding: .5em
+
 .input-box
+  position: relative
   margin: 1em
   min-height: 32px
   display: flex
@@ -34,12 +47,11 @@
   border-bottom: 2px solid black
   
   label
-    margin-right: .5em
+    padding-right: .5em
     font-weight: bolder
   input
     letter-spacing: .1em
     flex-grow: 1
-    margin-left: .2em
     padding: .5em
     transition: .3s background-color
     font-family: "Coolvetica", sans-serif
@@ -68,7 +80,7 @@
   label
     color: transparentize($error, .1)
   &::after
-    position: relative
+    position: absolute
     content: '!'
     font-size: .8em
     font-weight: bold
@@ -83,16 +95,13 @@
     align-items: center
     border-radius: 50%
     padding: 4px
-    margin-left: 4px
+    margin-top: .5em
+    margin-left: -.5em
+  h6
+    color: $error
+    position: absolute
+    top: 8px
 
-.message 
-  textarea
-    padding: .5em
-    width: calc(100% - 3em - 4px)
-    border: 2px solid $dark
-    margin: 1em 1em 0
-    font-family: "Coolvetica", sans-serif
-    letter-spacing: .1em
 
 
 
@@ -141,11 +150,9 @@
   &:hover
     background-color: $accent-color-dark
     transform: scale(1.1)
-
-.submit-loading
-  pointer-events: none
-  opacity: .8
-
+  &:disabled
+    cursor: wait
+    opacity: .6
 
 
 @media (min-width: 720px)
@@ -171,7 +178,7 @@
     padding-top: 1em
     min-width: 90%
     
-  .message 
-    textarea
-      width: calc(100% - 1em - 4px)
-      margin:  0
+  // .message 
+  //   textarea
+  //     width: calc(100% - 1em - 4px)
+  //     margin:  0

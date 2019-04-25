@@ -1,6 +1,6 @@
 import React from 'react'
-import {Loading} from './Elements'
-import {withStore} from '../db'
+import {Loading} from 'components/shared/Elements'
+import {UNSAFE_withStore} from 'db'
 import Fade from "react-reveal/Fade"
 
 const Paragraphs = ({path, paragraphs}) =>
@@ -20,4 +20,4 @@ const Paragraphs = ({path, paragraphs}) =>
     }
   </>
 
-export default withStore(Paragraphs)
+export default UNSAFE_withStore(Paragraphs)
