@@ -19,7 +19,7 @@
     "react-router-dom": "^5.0.0",
     "react-scroll": "^1.7.11",
     "react-scrolllock": "^4.0.1",
-    "react-toastify": "^5.0.1"
+    "react-toastify": "^5.1.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
