@@ -1,14 +1,12 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {withStore} from '../../db'
 import {PeopleCount, Children} from '../../shared/Form'
 
 
 const People = ({
-  reservation: {
-    adults, children
-  }, updateReservation, maxPeople
+  reservation: {adults, children}, updateReservation, maxPeople
 }) =>
-  <Fragment>
+  <>
     <PeopleCount
       label="felnőtt"
       max={maxPeople - children.length}
@@ -26,6 +24,6 @@ const People = ({
       onChange={updateReservation}
       values={children}
     />
-  </Fragment>
+  </>
 
 export default withStore(People)

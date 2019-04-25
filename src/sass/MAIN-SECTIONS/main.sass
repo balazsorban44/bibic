@@ -67,7 +67,7 @@
   
 
 .back-to-home
-  padding: .5em
+  padding: .5em .75em
   color: $light
   font-family: "White Festive"
   font-weight: bolder
@@ -79,3 +79,7 @@
   &:hover
     transform: scale(1.05)
     color: $light
+
+@media (max-width: 768px)
+  .back-to-home
+    display: none

@@ -24,7 +24,7 @@ nav
     display: flex
     flex: 1
   ul
-    margin: 10vh 0
+    margin: 0
     flex-direction: column
     justify-content: space-evenly
   a
@@ -66,7 +66,11 @@ nav
           background-color: darken(nth($rooms, $i), 20)
         a
           color: $light !important
+          
 .menu-hidden
+  pointer-events: none
+  .hamburger
+    pointer-events: all
   nav
     transform: translateX(-100%)
   .room-menu
@@ -102,7 +106,7 @@ nav
     height: auto
     grid-template-rows: auto
     nav
-      padding: 1em 7.5vw
+      padding: 1em 0
       a
         padding: 0 .3em
         font-size: 1.75em
@@ -121,6 +125,11 @@ nav
   .menu-hidden
     nav, .room-menu
       transform: none
+
+  .menu
+    pointer-events: none
+    li
+      pointer-events: all
 
   .menu-logo
     background-color: $light

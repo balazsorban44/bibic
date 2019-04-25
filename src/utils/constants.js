@@ -1,13 +1,17 @@
-import moment from "moment"
+import {addDays, startOfDay} from "date-fns"
 
-const BASE_URL="https://bibicvendeghazak.hu"
-const CLOUD_FUNCTION_BASE_URL = "https://europe-west1-bibic-vendeghazak-api.cloudfunctions.net"
-const TODAY = moment()
-const TOMORROW = TODAY.add(1, "day").startOf("day")
+export const BASE_URL="https://bibicvendeghazak.hu"
+export const CLOUD_FUNCTION_BASE_URL = "https://europe-west1-bibic-vendeghazak-api.cloudfunctions.net"
+export const TODAY = startOfDay(new Date())
+export const TOMORROW = addDays(TODAY, 1)
 
 
-export {
-  BASE_URL,
-  CLOUD_FUNCTION_BASE_URL,
-  TODAY, TOMORROW
+export const routes = {
+  HOME: "/",
+  FEEDBACK_FORM: "/visszajelzes",
+  RESERVE: "/foglalas",
+  FOODS: "/etelek",
+  EVENTS: "/rendezvenyek",
+  MESSAGE: "/uzenet",
+  SERVICES: "/szolgaltatasok"
 }

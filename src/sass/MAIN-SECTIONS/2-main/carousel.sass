@@ -1,82 +1,137 @@
-.carousel-section
+.carousel-wrapper
   padding: 0
-  min-height: 100vh
+  min-height: 0
+  height: 100vh
+  position: static
+  display: grid
+  grid-template-rows: auto 1fr
   h2
+    margin: 1rem 0 0
+    padding: 0
     text-align: center
-    margin-bottom: -.5rem
+  h3
+    font-size: 1rem
+    margin: 1rem auto .5rem
+    font-style: italic
+    font-family: 'Times New Roman', Times, serif
+
 .carousel
-  margin: auto
-.slider-control-centerright, .slider-control-centerleft, .slider-control-bottomcenter
-  display: none
+  position: relative
+  >div, .react-reveal
+    display: flex
+    flex: 1
 
 .carousel-item
-  position: relative
-  display: flex
-  flex-direction: column
+  display: grid
+  grid-template-rows: repeat(2, 1fr)
+  span
+    position: absolute
+    width: 100%
+    height: 100%
+    &:after
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: linear-gradient(transparent 65%, black 100%)
+      z-index: -1
+      opacity: .7
+
+// .carousel-item-picture
+//   padding-top: 64px
 
 .carousel-item-desc
-  color: $light
-  background-color: $accent-color-3
-  z-index: 1
-  top: 0
+  padding: 1em
+  h4
+    font-size: 1.2em
+    font-weight: bold
+    letter-spacing: .1em
+    text-align: left
+
+.carousel-item-bg
+  position: absolute
+  z-index: -1
+  opacity: .5
   width: 100%
   height: 100%
-  padding: .5rem 0
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-  h4
-    align-self: center
-    font-size: 2em
-    font-family: "White Festive"
-    letter-spacing: .05em
-  p
-    margin: 0
-    font-family: "Coolvetica"
-    padding: 0 1.5rem
+  object-fit: cover
+  filter: blur(4px)
 
-@media (min-width: 576px)
+.carousel-arrow
+  box-shadow: 0 0 5px black
+  --size: 48px
+  cursor: pointer
+  width: var(--size)
+  height: var(--size)
+  display: grid
+  place-items: center
+  background-color: $accent-color
+  border-radius: 50%
+  margin: 6px 1rem
+  position: absolute
+  z-index: 1000
+  top: -64px
+
+.arrow-icon
+  width: 0
+  height: 0
+  border-style: solid
+  border-width: 6px 0 6px 12px
+  border-color: transparent transparent transparent #fff
+
+.carousel-arrow-prev .arrow-icon
+  transform: rotate(180deg)
+
+.carousel-arrow-next
+  right: 0
+
+
+@media (min-aspect-ratio: 3/4)
+  .carousel-wrapper
+    height: 100vh
+    h3
+      max-width: 50vw
+      margin-bottom: 3rem
   .carousel-item
-    max-width: 576px
+    max-width: 640px
+    max-height: 540px
     margin: 0 auto
+    position: relative
+    width: 100%
+    grid-template-rows: 1fr
+    span
+      display: none
+
+  .carousel-item-desc
+    background: linear-gradient(rgba(0,0,0, .8), transparent)
+    padding-right: 25%
+
+  .carousel-item-picture
+    z-index: -1
+    padding-top: 0
+    height: 100%
+    width: 100%
+    position: absolute
+    img
+      object-fit: cover
+      width: 100%
+      height: 100%
+      max-width: none
 
 
 @media (min-width: 860px)
-  .carousel-section
-    padding: 0 2.5% 2.5%
+  .carousel
+    overflow: hidden
+    width: 860px
+    margin: 0 auto 10vh
+  .carousel-arrow
+    top: calc(50% - 1em)
+    transform: translateY(-50%)
+
+  .carousel-item-desc
     display: flex
     flex-direction: column
-    justify-content: center
-    h2
-      margin: 0
-      padding: 0
-  .carousel-item
-    
-    display: grid
-    max-width: none
-    max-width: 860px
-    grid-template-columns: 576px 1fr
-    picture
-      max-width: 576px
-  .carousel-item-desc
-    width: auto
-    height: auto
-    background-color: $accent-color-3
-    justify-content: center
-    h4, p
-      display: inline-block
-    h4
-      margin: 0
-      text-align: left
-      padding-left: 1rem
-      padding-bottom: 1rem
-
-@media (min-width: 1024px)
-
-  .slider-control-topright, .slider-control-topleft
-    display: none
-  .slider-control-centerright, .slider-control-centerleft
-    display: block
-  .carousel-item
-    border-radius: 1em
-    overflow: hidden
+    justify-content: flex-end
+    background: linear-gradient(transparent, rgba(0,0,0, .7) 80%)

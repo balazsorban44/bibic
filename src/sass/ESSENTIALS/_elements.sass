@@ -2,6 +2,7 @@
   border: 1px solid $light
   border-radius: 2em
   padding: .5em 1.5em
+  
 .gallery
   display: flex
   margin: 0 auto
@@ -22,30 +23,3 @@
     width: 12px
     height: 12px
     margin-right: .5em
-
-.slider-arrow
-  width: 24px
-  height: 24px
-  display: flex
-  justify-content: center
-  align-items: center
-  padding: 8px
-  cursor: pointer
-  margin-top: -48px
-
-.slider-arrow-prev
-  transform: rotate(180deg)
-    
-@media (orientation: landscape) and (min-width: 1024px)
-  .swipe-icon
-    opacity: .5
-    z-index: 10
-    width: 36px
-    height: 36px
-    margin-top: 1em
-    left: 50%
-    transform: translateX(-100%)
-    animation: swipe 3.5s infinite alternate-reverse
-    animation-timing-function: ease-in-out
-    transition: opacity 1s ease-out
-

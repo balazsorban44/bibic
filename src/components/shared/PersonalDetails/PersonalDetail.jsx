@@ -15,7 +15,7 @@ export default class PersonalDetail extends Component {
     if (this.state.value === "" && value !== "") this.setState({value})
   }
 
-  handleChange = ({target: {name, value}}) => this.setState({name,value})
+  handleChange = ({target: {value}}) => this.setState({value})
 
   handleBlur = ({target: {name, value}}) => {
     let error = false
@@ -28,8 +28,11 @@ export default class PersonalDetail extends Component {
     }
 
     this.setState({error})
-    // do not fire notification, if the user did not fill in any info, or the info was corrected
-    if (error && value !== "") sendNotification("error", this.props.errorMessage)
+    // REVIEW: do not fire notification, if the user did not fill in any info, or the info was corrected
+
+    if (error && value !== "") {
+      sendNotification("error", this.props.errorMessage)
+    }
   }
 
   render() {

@@ -1,6 +1,6 @@
 <br>
 
-# Bíbic vendégházak / web [![Build Status](https://travis-ci.org/bibic-vendeghazak/web.svg?branch=develop)](https://travis-ci.org/bibic-vendeghazak/web) [![Coverage](https://raw.githubusercontent.com/bibic-vendeghazak/web/develop/docs/badge.svg?sanitize=true)](https://bibic-vendeghazak.github.io/web)
+# Bíbic vendégházak / web [![Build Status](https://travis-ci.org/bibic-vendeghazak/web.svg?branch=master)](https://travis-ci.org/bibic-vendeghazak/web) [![Coveralls github branch](https://img.shields.io/coveralls/bibic-vendeghazak/web/master.svg)](https://coveralls.io/github/bibic-vendeghazak/web) [![Greenkeeper badge](https://badges.greenkeeper.io/bibic-vendeghazak/web.svg)](https://greenkeeper.io/)
 
 
 <br>

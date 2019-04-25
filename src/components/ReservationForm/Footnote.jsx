@@ -2,7 +2,7 @@ import React from 'react'
 import BANK from '../../assets/icons/bank.png'
 import CASH from '../../assets/icons/cash.png'
 import MASTERCARD from '../../assets/icons/mastercard.png'
-import SZEP from '../../assets/icons/szep.png'
+import SZEP from '../../assets/icons/szep.jpg'
 import VISA from '../../assets/icons/visa.png'
 
 const Footnote = () => <span className="footnote">Elfogadott fizetési módok
@@ -44,7 +44,7 @@ const Footnote = () => <span className="footnote">Elfogadott fizetési módok
     </li>
   </ul>
   FIGYELEM! Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:
-  <a href="mailto:szallasfoglalas@bibicvendeghazak.hu">szallasfoglalas@bibicvendeghazak.hu</a>
+  <a href="mailto:szallasfoglalas&#64;bibicvendeghazak.hu">szallasfoglalas kukac bibicvendeghazak pont hu</a>
 </span>
 
 export default Footnote

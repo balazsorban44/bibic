@@ -21,22 +21,21 @@ export default class Children extends Component {
     this.props.onChange(name, values)
   }
 
-  handleSelect = ({target: {
-    name: index, value
-  }}) => {
+  handleSelect = ({target: {name: index, value}}) => {
     const values = [...this.props.values]
-    values[index] = value
+
+    values[index] = this.state.ageGroups.includes(value) ? value : "6-12"
 
     this.props.onChange("children", values)
   }
 
   render() {
     const {
-      hasFootnote, name, label, max, values
+      hasFootnote, name, label, max
     } = this.props
+    const values = [...this.props.values].slice(0, max)
 
     const {ageGroups} = this.state
-    values.splice(max)
 
     return (
       <Fragment>

@@ -4,7 +4,7 @@ import {Loading} from './shared/Elements'
 import {withStore} from "./db"
 import Fade from "react-reveal/Fade"
 
-const Rooms = ({
+export const Rooms = ({
   galleries, rooms, roomServices
 }) =>
   <section id="szobak">
@@ -13,7 +13,7 @@ const Rooms = ({
       {rooms.length ? rooms.map((room, key) =>
         <Fade key={key}>
           <Room
-            pictures={galleries["szobak"] ? galleries["szobak"][key] : []}
+            pictures={galleries["szobak"] ? galleries["szobak"][key] : undefined}
             services={roomServices}
             {...room}
           />
@@ -26,7 +26,7 @@ const Rooms = ({
 
 export default withStore(Rooms)
 
-const Room = ({
+export const Room = ({
   id, name, description, pictures, services
 }) =>
   <li
@@ -34,7 +34,7 @@ const Room = ({
     id={`szoba-${id}`}
   >
     <h3 className="room-title" >{name}</h3>
-    <RoomSlider {...{pictures}} />
+    <RoomSlider pictures={Object.values(pictures)} />
     <p className="room-description" >{description}</p>
     <div className="room-services">
       {services.length ?
@@ -58,120 +58,91 @@ const Room = ({
   </li>
 
 
-class RoomSlider extends Component {
+export class RoomSlider extends Component {
+  static defaultProps = {delay: 10000, pictures: []}
 
-  state = {
-    positionX: 0,
-    shouldSnap: false,
-    activeSlideIndex: 0,
-    intervalId: null
+  state = {activeIndex: 0, max: 0}
+
+  componentDidMount() {
+    const {delay, pictures} = this.props
+    this.setState({max: pictures.length}, () => {
+      this.interval = setInterval(this.handleTick, delay)
+    })
   }
 
-
-  componentDidMount() {this.setTicker()}
-
-  componentWillUnmount() {this.clearTicker()}
-
-
-  ticker = () => this.handleSlide()
-
-  setTicker = () => this.setState({intervalId: setInterval(this.ticker, 10000)})
-
-  clearTicker = () => clearInterval(this.state.intervalId)
-
-
-  handleTouchStart = e => {
-    this.clearTicker()
-    const {positionX} = this.state
-    const width = window.innerWidth
-    this.setState({startX: positionX === width ? width : e.touches[0].pageX,
-      shouldSnap: false})
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
-  handleTouchEnd = () => {
-    const {positionX} = this.state
-    const width = window.innerWidth
-    this.setState({positionX: positionX > width/3 ? width : 0,
-      shouldSnap: true}, () => this.state.positionX !== 0 && this.handleSlide())
-    this.setTicker()
-  }
-
-  handleTouch = e => {
-    this.setState({positionX: this.state.startX-e.touches[0].pageX})
-  }
-
-  handleSlide = _e => {
-    this.clearTicker()
-    this.setState(({activeSlideIndex: prevIndex}) =>
-      ({activeSlideIndex: prevIndex+1 >= Object.keys(this.props.pictures).length ? 0 : prevIndex+1})
-    , this.setTicker
-    )
+  handleTick = () => {
+    this.setState(({activeIndex: prevIndex}) => {
+      const incrementedIndex = prevIndex + 1
+      return ({activeIndex: incrementedIndex >= this.state.max ? 0 : incrementedIndex})
+    })
   }
 
   render() {
     const {pictures} = this.props
-    const {
-      positionX, shouldSnap, activeSlideIndex
-    } = this.state
-
+    const {activeIndex, max} = this.state
     return(
       <div className="room-slider-container">
         <ul className="room-slider">
-          {Object.entries(pictures)
-            .sort((a, b) => a[1].order - b[1].order)
-            .map(([key, picture], index) => {
-              const isFirst = index === activeSlideIndex
-              return (
-                <li
-                  {...{key}}
-                  /*
-                   * onMouseEnter={this.clearTicker}
-                   * onMouseLeave={this.setTicker}
-                   */
-                  className={!isFirst ? "room-placeholder-slide" : "room-first-slide"}
-                  style={{zIndex: isFirst ? 99 : 10-index}}
-                >
-                  <Slide
-                    {...{picture}}
-                    style={{transform: isFirst ? `translateX(${-positionX}px)` : "none",
-                      transition: (isFirst && shouldSnap) ? ".625s" : "0s"}}
-                  />
-                </li>
-              )
-            }
+          {pictures
+            .sort((a, b) => a.order - b.order)
+            .map((picture, index) =>
+              <Slide
+                active={activeIndex===index}
+                index={index}
+                key={index}
+                {...picture}
+              />
             )}
         </ul>
-        <div className="room-slider-dots">
-          {pictures && Object.keys(pictures).map((key, index) =>
-            <span
-              {...{key}}
-              className={`room-slider-dot ${activeSlideIndex===index ? "active-slide": ""}`}
-            >•</span>
-          )}
-        </div>
-        <div
+        <Dots
+          activeIndex={activeIndex}
+          length={max}
+        />
+        <button
           className="button room-slider-next-btn"
-          onClick={this.handleSlide}
+          onClick={this.handleTick}
         />
       </div>
     )
   }
 }
 
-const Slide = ({picture: {
-  fileName, SIZE_768, SIZE_1280, SIZE_1440
-}}) =>
-  <picture>
-    <source
-      media="(min-width: 768px)"
-      srcSet={SIZE_1280}
-    />
-    <source
-      media="(min-width: 1024px)"
-      srcSet={SIZE_1440}
-    />
-    <img
-      alt={fileName}
-      src={SIZE_768}
-    />
-  </picture>
+export const Slide = ({
+  active, index, fileName, SIZE_640, SIZE_1024, SIZE_1440
+}) =>
+  <li
+    className={active ? "room-first-slide" : "room-placeholder-slide"}
+    style={{zIndex: active ? 99 : -index}}
+  >
+    <picture>
+      <source
+        media="(min-width: 640px)"
+        srcSet={SIZE_1024}
+      />
+      <source
+        media="(min-width: 1024px)"
+        srcSet={SIZE_1440}
+      />
+      <img
+        alt={fileName}
+        src={SIZE_640}
+      />
+    </picture>
+  </li>
+
+
+export const Dots = ({length, activeIndex}) =>
+  <div className="room-slider-dots">
+    {Array(length).fill().map((_e, i) =>
+      <span
+        children="•"
+        className={
+          `room-slider-dot ${activeIndex===i ?"active-slide": ""}`}
+        key={i}
+      />
+    )}
+  </div>

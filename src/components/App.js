@@ -1,110 +1,86 @@
-import React from 'react'
-import {
-  Route, Link, Switch
-} from 'react-router-dom'
-import Menu, {BackMenu} from './Menu'
+import React, {lazy, Suspense} from 'react'
+import {Route, Switch} from 'react-router-dom'
 
-import asyncComponent from "./AsyncComponent"
-import Introduction from './Introduction'
-import Hero from './Hero'
-
-import {ToastContainer} from 'react-toastify'
+import {BackMenu} from './Menu'
 import ChatFAB from './ChatFAB'
+import {routes} from '../utils/constants'
+import Top from "./Top"
+import NotFound from "./NotFound"
+import {Loading} from './shared/Elements'
 
-// NOTE: Asynchronously fetching Components that do not need to load at startup
-const ReservationForm = asyncComponent(() => import("./ReservationForm"))
-const Sunflower = asyncComponent(() => import('./Sunflower'))
-const Services = asyncComponent(() => import('./Services'))
-const Prices = asyncComponent(() => import('./Prices'))
-const Message = asyncComponent(() => import("./Message"))
-const Rooms = asyncComponent(() => import("./Rooms"))
-const Carousel = asyncComponent(() => import("./shared/Carousel"))
-const MoreServices = asyncComponent(() => import("./MoreServices"))
+
+/**
+ * NOTE: Asynchronously fetching Components
+ * that do not need to be loaded at startup
+ */
+
+import ReservationForm from "./ReservationForm"
+import FeedbackForm from "./FeedbackForm"
+import MessageForm from "./MessageForm"
+import Carousel from "./shared/Carousel"
+import MoreServices from "./MoreServices"
+
+const Main = lazy(() => import("./Main"))
+
 
 const App = () =>
   <>
-    <ToastContainer
-      closeOnClick
-      position="bottom-center"
-      style={{
-        position: "fixed",
-        zIndex: 10001,
-        bottom: 0
-      }}
-    />
-    <Route render={({location: {pathname}}) => pathname !== '/' && <BackMenu/>} />
-    <ChatFAB/>
+    <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackMenu/>} />
     <Switch>
       <Route
         exact
-        path="/"
-        render={Main}
+        path={routes.HOME}
+        render={() =>
+          <>
+            <Top/>
+            <ChatFAB/>
+            <Suspense fallback={<Loading/>}>
+              <Main/>
+            </Suspense>
+          </>
+        }
       />
       <Route
         component={() =>
           <Carousel
             className="foods"
             itemClassName="food"
+            subtitle="Vendégházunkban éttermet nem üzemeltetünk, ezért az ételek kiválasztása előre szükséges, ételeket kizárólag szállóvendégeink részére készítünk, a falusi vendégasztal keretén belül."
             title="Ételeink"
           />
         }
         exact
-        path="/etelek"
+        path={routes.FOODS}
       />
       <Route
         component={() =>
           <Carousel
             className="events"
             itemClassName="event"
-            title="Korábbi rendezvények"
+            title="Rendezvények"
           />}
         exact
-        path="/rendezvenyek"
+        path={routes.EVENTS}
       />
       <Route
         component={ReservationForm}
         exact
-        path="/foglalas"
+        path={routes.RESERVE}
       />
       <Route
-        component={Message}
-        path="/uzenet"
+        component={MessageForm}
+        path={routes.MESSAGE}
       />
       <Route
-        component={() =>
-          <>
-            <BackMenu/>
-            <MoreServices/>
-          </>
-        }
-        path="/szolgaltatasok"
+        component={FeedbackForm}
+        path={routes.FEEDBACK_FORM}
+      />
+      <Route
+        component={MoreServices}
+        path={routes.SERVICES}
       />
       <Route component={NotFound}/>
     </Switch>
-  </>
-
-
-const NotFound = () =>
-  <div className="not-found">
-    <h2>
-      404
-    </h2>
-    <p>
-      Hmm... Ez az oldal sajnos üres.
-    </p>
-    <Link to ="/">Vissza a főoldalra</Link>
-  </div>
-
-
-const Main = () =>
-  <>
-    <Menu/>
-    <Hero/>
-    <Introduction/>
-    <Sunflower/>
-    <Services/>
-    <Rooms/>
-    <Prices/>
   </>
 
 

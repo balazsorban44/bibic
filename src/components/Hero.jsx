@@ -1,18 +1,18 @@
 import React, {Component} from 'react'
-import logo from '../assets/icons/logo.png'
 import {Link} from 'react-scroll'
-import {Loading} from './shared/Elements'
-import {withStore} from './db'
 import Fade from "react-reveal/Fade"
 import Zoom from "react-reveal/Zoom"
 import makeCarousel from 'react-reveal/makeCarousel'
 
+import hero1 from "../assets/images/hero/1.jpg"
+import hero2 from "../assets/images/hero/2.jpg"
+import logo from '../assets/icons/logo.png'
 
-const CarouselUI = ({children}) => <div className="hero-slider">{children}</div>
+
+export const CarouselUI = ({children}) => <div className="hero-slider">{children}</div>
 const Carousel = makeCarousel(CarouselUI)
 
-
-class Hero extends Component {
+export class Hero extends Component {
 
   state = {isBigScreen: false}
 
@@ -35,28 +35,22 @@ class Hero extends Component {
 
 
   render() {
-    const {hero} = this.props
     return (
       <section className="hero">
-        {hero.length ?
-          <Carousel maxTurns={Infinity}>
-            {hero.map(src =>
-              <Fade key={src}>
-                <div className="hero-slide">
-                  <img
-                    alt="Hero kép"
-                    src={src}
-                  />
-                </div>
-              </Fade>
-            )}
-          </Carousel> :
-          <Loading fullPage/>
-        }
+        <Carousel maxTurns={Infinity}>
+          {[hero1, hero2].map(src =>
+            <Fade key={src}>
+              <div className="hero-slide">
+                <img
+                  alt="Hero kép"
+                  src={src}
+                />
+              </div>
+            </Fade>
+          )}
+        </Carousel>
         <span className="hero-slider-overlay"/>
-        <Zoom
-          when={hero.length}
-        >
+        <Zoom>
           <a
             className="hero-logo"
             href="/"
@@ -79,5 +73,5 @@ class Hero extends Component {
 }
 
 
-export default withStore(Hero)
+export default Hero
 

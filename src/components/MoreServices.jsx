@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Gallery from './shared/Gallery'
-import {ServiceItem} from './Services'
 
 
 export default class MoreServices extends Component {
@@ -13,10 +12,7 @@ export default class MoreServices extends Component {
     return(
       <section id="szolgaltatasok">
         <h2>Szolgáltatásaink</h2>
-        <Gallery
-          item={ServiceItem}
-          path="szolgaltatasaink"
-        />
+        <Gallery path="szolgaltatasaink"/>
       </section>
     )}
 }

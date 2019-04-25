@@ -37,9 +37,7 @@ export default class PeopleCount extends Component {
     const {name} = e.target
     let {target: {value}} = e
     value = parseInt(value, 10)
-    const {
-      min, max
-    } = this.state
+    const {min, max} = this.state
     if (value < min) {
       value = min
     } else if (value > max) {

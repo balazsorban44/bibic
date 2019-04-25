@@ -2,7 +2,7 @@ import React from 'react'
 import {Service} from '../../shared/Form'
 import {withStore} from '../../db'
 
-
+// REVIEW: Fetch service types dinamically?
 const FoodService = ({reservation: {foodService}, updateReservation}) =>
   <>
     <Service

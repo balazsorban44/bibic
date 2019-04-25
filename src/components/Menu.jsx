@@ -1,11 +1,17 @@
-import React, {Component} from 'react'
+import React, {
+  lazy, Suspense, Component
+} from 'react'
 import {Link as RouteLink} from 'react-router-dom'
+import {withRouter} from "react-router"
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
-import {withStore} from './db'
 import Fade from "react-reveal/Fade"
 import {BASE_URL} from '../utils/constants'
+
+
+
+const RoomMenu = lazy(() => import("./RoomMenu"))
 
 const menu = [
   {to:"bemutatkozas", name: "Bemutatkozás"},
@@ -18,11 +24,11 @@ const menu = [
   {
     to:"rendezvenyek", name: "Rendezvények", component: RouteLink
   },
-  //{to:"visszajelzesek", name: "Visszajelzések", component: RouteLink},
+  {to:"visszajelzesek", name: "Visszajelzések"},
   {to:"kapcsolat", name: "Kapcsolat"}
 ]
 
-class Menu extends Component {
+export class Menu extends Component {
 
   state = {
     isMenuOpen: false,
@@ -53,7 +59,6 @@ class Menu extends Component {
 
   handleMenuToggle = () => this.setState(({isMenuOpen}) => ({isMenuOpen: !isMenuOpen}))
 
-
   handleHideMenu = () => this.setState({isMenuOpen: false, isRoomMenuOpen: false})
 
   render() {
@@ -61,12 +66,8 @@ class Menu extends Component {
       isMenuOpen, isScrolled, isRoomMenuOpen, width
     } = this.state
     const isBigScreen = width > 768
-    const {hero, rooms} = this.props
     return (
-      <Fade
-        down
-        when={hero.length}
-      >
+      <Fade down>
         <div
           className={`menu ${isScrolled ? "menu-scrolled" : ""} ${isMenuOpen ? "" : "menu-hidden"}`}
         >
@@ -95,18 +96,17 @@ class Menu extends Component {
             <Fade
               cascade
               down
-              when={hero.length}
             >
-              <ul>
+              <ul className="nav-menu">
                 {menu.map(({
                   name, to, component: Component=Link, offset
                 }) =>
                   <li key={to}>
                     <Component
-                      offset={isBigScreen ? offset!==undefined ? offset : -64 : 0}
+                      offset={isBigScreen ? offset !== undefined ? offset : -64 : 0}
                       onClick={this.handleHideMenu}
                       onMouseEnter={() => to==="szobak" && this.handleShowRoomMenu()}
-                      smooth={Component===Link ? true : undefined}
+                      smooth={Component === Link ? true : undefined}
                       to={to}
                     >
                       {name}
@@ -116,38 +116,50 @@ class Menu extends Component {
               </ul>
             </Fade>
           </nav>
-          <ul className={`room-menu ${isRoomMenuOpen ? "room-menu-show" : ""}`}>
-            {rooms.map(({id}) =>
-              <li
-                key={id}
-              >
-                <Link
-                  offset={isBigScreen ? -106 : 0}
-                  onClick={this.handleHideMenu}
-                  to={`szoba-${id}`}
-                >
-                  {id}
-                </Link>
-              </li>
-            )}
-          </ul>
+          <Suspense fallback={null}>
+            <ul className={`room-menu ${isRoomMenuOpen ? "room-menu-show" : ""}`}>
+              <RoomMenu
+                isBigScreen={isBigScreen}
+                onClick={this.handleHideMenu}
+              />
+            </ul>
+          </Suspense>
         </div>
       </Fade>
     )
   }
 }
 
-export default withStore(Menu)
+export default Menu
 
-export const BackMenu = () =>
-  /**
-   * REVIEW: Not working with react-reveal
-   * <Fade up>
-   */
-  <RouteLink
-    className="back-to-home"
-    to="/"
-  >
-      ← Vissza a főoldalra
-  </RouteLink>
-  // </Fade>
+
+export const BackMenu = withRouter(props => {
+  const {location: {search}, history: {goBack}} = props
+  const customReturn = new URLSearchParams(search).get("vissza")
+  const title = customReturn ||"főoldal"
+  return(
+    customReturn ?
+      <button
+        className="back-to-home"
+        onClick={goBack}
+        title={title}
+      >
+        <Title {...{title}}/>
+      </button> :
+      <RouteLink
+        className="back-to-home"
+        title={title}
+        to="/"
+      >
+        <Title {...{title}}/>
+      </RouteLink>
+  )
+})
+
+const Title = ({title}) =>
+  <>
+    ←
+    <span>
+      Vissza ide: {title}
+    </span>
+  </>

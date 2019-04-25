@@ -8,12 +8,12 @@ import PersonalDetails from '../shared/PersonalDetails'
 import ReservationDetails from './ReservationDetails'
 import Footnote from './Footnote'
 
+import "./reservation.sass"
+import ToastContainer from '../ToastContainer';
 
-class ReservationForm extends Component {
+export class ReservationForm extends Component {
 
-  componentDidMount() {
-    window.scrollTo(0, 0)
-  }
+  componentDidMount() {window.scrollTo(0, 0)}
 
   handleSubmitReservation = e => {
     e.preventDefault()
@@ -22,14 +22,17 @@ class ReservationForm extends Component {
 
   render() {
     const {
-      reservation: {price, ...reservation}, isReserving, updateReservation
+      rooms, reservation: {price, ...reservation}, isReserving, updateReservation
     } = this.props
-    return(
+    const roomId = reservation.roomId
+    const maxPeople = (rooms.length && roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople) || 1
 
+    return(
       <form
         action=""
         className="form"
       >
+        <ToastContainer/>
         <h2>Foglalás</h2>
         <RoomSelector/>
         <RoomServices/>
@@ -41,7 +44,7 @@ class ReservationForm extends Component {
           />
         </FormSection>
         <FormSection title="Foglalás adatai">
-          <ReservationDetails/>
+          <ReservationDetails maxPeople={maxPeople}/>
         </FormSection>
         <Send
           isLoading={isReserving}

@@ -1,0 +1,117 @@
+@import "../../sass/ESSENTIALS/vars"
+@import "../../sass/form"
+
+.people-count, .service
+  label
+    flex-grow: 1
+
+.children-age
+  flex-grow: 1
+  display: flex
+  justify-content: flex-end
+  flex-wrap: wrap
+
+.child-age
+  max-width: 140px
+  select
+    padding: .5em
+
+.service
+  justify-content: space-between !important
+  align-items: center !important
+  @extend .input-box
+  label
+    cursor: pointer
+    font-size: .8em
+  input
+    cursor: pointer
+    flex-grow: 0 !important
+    width: 16px
+    height: 16px
+
+.room-picker
+  display: flex
+  justify-content: space-evenly
+  margin: 1em 0
+  .button
+    display: flex
+    justify-content: center
+    align-items: center
+    opacity: .5
+    color: $light
+    border-radius: 50%
+    border: none
+    width: 48px
+    height: 48px
+    font-family: "Coolvetica", sans-serif
+    transition: .2s ease-out
+
+.room-picker-room
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.room-active .button, .room-picker .button:hover
+  opacity: 1
+
+.room-services
+  pointer-events: none
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  justify-items: center
+  margin: 1em 0
+
+.room-service
+  display: flex
+  flex-direction: column
+  align-items: center
+  opacity: .05
+  margin: .2em 0
+  span
+    font-size: .5em
+    font-family: "Coolvetica", sans-serif
+    text-transform: lowercase
+  img
+    width: 32px
+    height: 32px
+
+.service-in-room
+  opacity: 1
+
+
+.payment-methods
+  user-select: none
+  margin: .5em 0 .5em -1em
+  display: grid
+  grid-gap: 6px
+  grid-template-columns: repeat(5, 1fr)
+  li
+    display: grid
+    place-items: center
+    h6
+      opacity: .6
+      font-family: sans-serif
+      margin: 4px 0 0
+  img
+    border-radius: 6px
+    width: 40px
+
+
+@media (min-width: 720px)
+
+  .room-services
+    margin-left: 2em
+    justify-items: stretch
+  .room-service
+    min-width: 33.333%
+    
+    flex-direction: row
+    span
+      margin-left: 1em
+      font-size: 1em
+
+  .room-services
+    @extend .form-group
+    margin-left: 0
+
+@import "calendar"

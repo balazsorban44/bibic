@@ -1,10 +1,12 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
 
-const RoomSelector = ({rooms, reservation: {roomId},
-  updateReservation}) =>
-  <Fragment>
+export const RoomSelector = ({
+  rooms, reservation: {roomId},
+  updateReservation
+}) =>
+  <>
     <h4>Válasszon szobát {roomId && `(${roomId}. Szoba kiválasztva)`}</h4>
     {rooms.length ?
       <div className="room-picker">
@@ -29,6 +31,6 @@ const RoomSelector = ({rooms, reservation: {roomId},
       </div> :
       <Loading/>
     }
-  </Fragment>
+  </>
 
 export default withStore(RoomSelector)

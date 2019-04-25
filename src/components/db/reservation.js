@@ -1,38 +1,39 @@
-import React from 'react'
-import moment from "moment"
-import {toast} from 'react-toastify'
 import {validateReservation} from '../../utils/validate'
 import {sendNotification} from './notification'
+import {
+  areIntervalsOverlapping, differenceInCalendarDays, format, startOfDay, setHours
+} from "date-fns"
 
 
-export const getPrice = (room, {
-  roomId, adults, children, foodService, from, to
-}) => {
+export const getPrice = (room, reservation) => {
   let price = 0
-  adults = room.prices.table[foodService][adults]
-  if (!adults) return price
-  children = children.filter(child => child==="6-12").length
-  if (children) {
-    price = adults[children].price
-  } else {
-    price = adults[0].price
-  }
-  // If interval chosen, price times the days
-  if (from && to) {
-    return price*moment(to).diff(moment(from), "days")
+  if (room && reservation) {
+    const {
+      foodService, from, to
+    } = reservation
+    let {adults, children} = reservation
+    adults = room.prices.table[foodService][adults]
+    if (!adults) return price
+    children = children.filter(child => child==="6-12").length
+    if (children) {
+      price = adults[children].price
+    } else {
+      price = adults[0].price
+    }
+    // If interval chosen, price times the days
+    if (from && to) {
+      return price*differenceInCalendarDays(to, from)
+    } else return price
   }
   return price
 }
 
-export const isAvailable = (roomId, from, to) =>
+export const isAvailable = (roomId, range) =>
   fetch(`https://europe-west1-bibic-vendeghazak-api.cloudfunctions.net/getOverlaps?roomId=${roomId}`)
     .then(res => res.json())
-    .then(overlaps => !overlaps.some(({start, end}) => moment
-      .range(start, end)
-      .overlaps(moment
-        .range(moment(from), moment(to))
-      )
-    ))
+    .then(overlaps =>
+      !overlaps.some(interval => areIntervalsOverlapping(interval, range))
+    )
 
 
 /**
@@ -40,11 +41,14 @@ export const isAvailable = (roomId, from, to) =>
  * @param {object} reservation The reservation to be verified
  * @return {boolean}
  */
-const isValidReservation = (reservation, rooms) => {
+export const isValidReservation = (reservation, rooms) => {
 
-  const {roomId} = reservation
-  const roomLength = Object.keys(rooms).length
-  const maxPeople = roomId && rooms[roomId-1] && rooms[roomId-1].prices.metadata.maxPeople
+  if (!reservation || !reservation.roomId || !rooms.length) {
+    sendNotification("error", "wrong parameters")
+    return false
+  }
+  const roomLength = rooms.length
+  const maxPeople = rooms[reservation.roomId-1].prices.metadata.maxPeople
 
   const error = validateReservation({
     roomLength, maxPeople, ...reservation
@@ -57,92 +61,97 @@ const isValidReservation = (reservation, rooms) => {
   }
 }
 
-
-export const submitReservation = (reservation, setReserving, reset, goToMain, rooms) => {
-  setReserving(true)
-  const {
-    from, to, message, roomId, children
-  } = reservation
-  reservation.from = moment(from).startOf("day").hours(14).toDate()
-  reservation.to = moment(to).startOf("day").hours(10).toDate()
-  reservation.message = message !== "" ? message : "Nincs üzenet"
-
-  const newChildren = []
-  children.forEach(child => {
-    if (newChildren.find(({name}) => name===child)) {
-      newChildren[newChildren.findIndex(({name}) => name===child)].count+=1
-    } else {
-      newChildren.push({name: child,
-        count: 1})
-    }
-  })
-
-  reservation.children = newChildren
-
+/**
+ * First validates, then sends the reservation to the server
+ * @param {object} reservation the reservation to be submitted
+ * @param {function} isReserving to set the state if reserving
+ * @param {function} resetReservation reset to default values
+ * @param {function} closeReservation close reservation form
+ * @param {array} rooms rooms to choose from
+ */
+export const submitReservation = (reservation, isReserving, resetReservation, closeReservation, rooms) => {
   if (isValidReservation(reservation, rooms)) {
-    isAvailable(roomId, from, to).then(available => {
+    isReserving(true)
+    const {
+      roomId, from, to
+    } = reservation
+    isAvailable(roomId, {start: from, end: to}).then(available => {
       if (available === true) {
-        import("../../lib/firebase").then(({RESERVATIONS_FS_REF, TIMESTAMP}) => {
-
+        import("../../lib/firebase").then(({RESERVATIONS_FS_REF, TIMESTAMP}) =>
           RESERVATIONS_FS_REF
             .add({
               ...reservation,
-              id: `${moment(from).format("YYYYMMDD")}-sz${roomId}`,
+              id: `${format(from, "YYYYMMdd", {awareOfUnicodeTokens: true})}-sz${roomId}`,
+              roomId: [roomId],
               lastHandledBy: "",
               timestamp: TIMESTAMP,
-              handled: false
+              handled: false,
+              archived: false
             })
             .then(() => {
-              setReserving(false)
-              toast.success(
-                <p style={{padding: ".5rem",
-                  fontSize: "1.2rem"}}
-                >Foglalását rögzítettük. <br/>
-                  <span style={{fontSize: "1rem"}}>
-                    Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:<br/>
-                    <a
-                      href="mailto:info@bibicvendeghazak.hu"
-                      style={{color: "white"}}
-                    >info@bibicvendeghazak.hu</a><br/>
-                    <a
-                      href="tel:+36305785730"
-                      style={{color: "white"}}
-                    >+36 30 578 5730</a>
-                  </span>
-                </p>, {autoClose: 7500})
-
+              isReserving(false)
+              sendNotification("reservationSubmitted")
               setTimeout(() => {
-                goToMain()
-                reset()
+                closeReservation()
+                resetReservation()
+                return true
               }, 7500)
             })
-            .catch(({code, message}) => {
-              setReserving(false)
-              toast.error(
-                <p style={{padding: ".5rem",
-                  fontSize: "1.2rem"}}
-                >Hiba: {code} - {message}<br/>
-                  <span style={{fontSize: "1rem"}}>
-                Ha a probléma tartósan fennáll, jelezze itt: <a href={`mailto:hiba@bibicvedeghazak.hu?subject=Hibajelentés (${code})&body=${message}`}>hiba@bibicvedeghazak.hu</a>
-                  </span>
-                </p>, {autoClose: 10000})
+            .catch(e => {
+              isReserving(false)
+              sendNotification("error", e.message)
+              return false
             })
-        })
-
+        )
       } else {
-        setReserving(false)
-        toast.error(
-          <p
-            style={{padding: ".5rem",
-              fontSize: "1.2rem"}}
-          >
-          Sajnáljuk<br/>
-            <span style={{fontSize: "1rem"}}>
-            Az adott intervallumban már van foglalásunk. Kérjük próbálkozzon másik dátumokkal, vagy másik szobával.
-            </span>
-          </p>, {autoClose: 10000})
+        isReserving(false)
+        sendNotification("overlap")
+        return false
       }
-    })} else {
-    setReserving(false)
+    }).catch(e => {
+      isReserving(false)
+      sendNotification("error", e.message)
+      return false
+    })
+
+  } else {
+    isReserving(false)
+    return false
   }
+}
+
+/**
+ * Some properties in the reservation is handled
+ * differently on the client then on the server for
+ * simplicity. Before submitting though, the client
+ * should match the server to pass validation.
+ * @param {object} reservation - client side formatting
+ * @returns {object} - normalized reservation matching the server
+ */
+export const normalizeReservation = reservation => {
+  // Copy reservation to prevent modifying the original one
+  const normalized = {...reservation}
+  const {
+    from, to, message, children
+  } = reservation
+
+  // Normalize dates
+  normalized.from = setHours(startOfDay(from), 14)
+  normalized.to = setHours(startOfDay(to), 10)
+
+  // Normalize message
+  normalized.message = message !== "" ? message : "Nincs üzenet"
+
+  // Normalize children
+  normalized.children = children.reduce((acc, name) => {
+    const i = acc.findIndex(({name: child}) => child === name)
+    if (i !== -1) {
+      acc[i].count +=1
+    } else {
+      acc.push({name, count: 1})
+    }
+    return acc
+  }, [])
+
+  return normalized
 }

@@ -1,53 +1,67 @@
 import React from 'react'
 import {Loading} from './Elements'
 import {withStore} from '../db'
-import {withRouter} from 'react-router-dom/'
-const Gallery = ({
-  path, galleries, count,
-  item: Item, itemClassName,
-  component: Component, componentProps
+
+export const Gallery = ({
+  galleries, count, path
 }) => {
+  path = path.replace("/", "")
+
   const children = galleries[path] ?
     Object
       .values(galleries[path])
       .slice(0, count)
       .map((itemProps, key) =>
-        Item ?
-          <Item
-            key={key}
-            {...{
-              ...itemProps,
-              itemClassName
-            }}
-          /> :
-          <GalleryItem
-            key={key}
-            {...itemProps}
-          />
+        <GalleryItem
+          key={key}
+          {...itemProps}
+        />
       ) :
     <Loading/>
 
   return (
-    Component ?
-      <Component {...componentProps}>
-        {children}
-      </Component> :
-      <div className="gallery">
-        {children}
-      </div>
+    <div className="gallery">{children}</div>
   )
 }
 
 
-export default withRouter(withStore(Gallery))
+export default withStore(Gallery)
 
 
-const GalleryItem = ({
+export const GalleryItem = ({
   SIZE_1024, SIZE_1440, SIZE_640, desc, title
 }) =>
+  desc ?
+    <div className="gallery-item">
+      <div className="img-wrapper">
+        <GalleryImage
+          alt={desc}
+          sizes={{
+            SIZE_640,
+            SIZE_1024,
+            SIZE_1440
+          }}
+        />
+      </div>
+      <h3>{title}</h3>
+      <p>{desc}</p>
+    </div> :
+    <GalleryImage
+      alt={title}
+      sizes={{
+        SIZE_640,
+        SIZE_1024,
+        SIZE_1440
+      }}
+    />
+
+
+export const GalleryImage = ({sizes: {
+  SIZE_640, SIZE_1024, SIZE_1440
+}, alt}) =>
   <picture>
     <source
-      media="(min-width: 960px)"
+      media="(min-width: 540px)"
       srcSet={SIZE_1024}
     />
     <source
@@ -55,7 +69,7 @@ const GalleryItem = ({
       srcSet={SIZE_1440}
     />
     <img
-      alt={desc !== "" ? desc : title}
+      alt={alt}
       src={SIZE_640}
     />
   </picture>
