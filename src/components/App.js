@@ -14,7 +14,7 @@ import {Loading} from './shared/Elements'
  * that do not need to be loaded at startup
  */
 
-import ReservationForm from "./ReservationForm"
+import {useTranslation} from 'react-i18next'
 import FeedbackForm from "./FeedbackForm"
 import MessageForm from "./MessageForm"
 import Carousel from "./shared/Carousel"
@@ -25,6 +25,7 @@ const Main = lazy(() => import("./Main"))
 
 const App = () =>
   <>
+  const [t] = useTranslation("common")
     <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackMenu/>} />
     <Switch>
       <Route
@@ -45,8 +46,8 @@ const App = () =>
           <Carousel
             className="foods"
             itemClassName="food"
-            subtitle="Vendégházunkban éttermet nem üzemeltetünk, ezért az ételek kiválasztása előre szükséges, ételeket kizárólag szállóvendégeink részére készítünk, a falusi vendégasztal keretén belül."
-            title="Ételeink"
+              subtitle={t("subtitles.foods")}
+              title={t("titles.foods")}
           />
         }
         exact
@@ -57,7 +58,7 @@ const App = () =>
           <Carousel
             className="events"
             itemClassName="event"
-            title="Rendezvények"
+              title={t("titles.events")}
           />}
         exact
         path={routes.EVENTS}

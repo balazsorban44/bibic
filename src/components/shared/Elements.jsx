@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 // For the slider elements
 import {colors} from '../../utils/colors'
+import { withTranslation } from 'react-i18next';
 
-export class Loading extends Component {
+export const Loading =  withTranslation("common")(class extends Component {
 
   state = {isTimedOut: false}
 
@@ -32,13 +33,13 @@ export class Loading extends Component {
       // TODO: Add better empty state
       this.state.isTimedOut ?
         <p className="not-available">
-          A tartalom nem elérhető
+          {this.props.t("not-available")}.
         </p> :
         <div style={style}>
           <div className="loading"><div className="spinner"/></div>
         </div>
     )
   }
-}
+})
 
 export const Button = ({label, to}) => <Link {...{to}} >{label}</Link>

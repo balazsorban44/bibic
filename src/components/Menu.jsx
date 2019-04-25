@@ -1,31 +1,30 @@
-import React, {
-  lazy, Suspense, Component
-} from 'react'
+import React, {lazy, Suspense, Component} from 'react'
 import {Link as RouteLink} from 'react-router-dom'
 import {withRouter} from "react-router"
-import {Link} from 'react-scroll'
-import bibic from '../assets/icons/bibic.png'
-import logo from '../assets/icons/logo.png'
+import bibic from 'assets/icons/bibic.min.png'
+import logo from 'assets/icons/logo.min.png'
 import Fade from "react-reveal/Fade"
-import {BASE_URL} from '../utils/constants'
+import { withTranslation, useTranslation } from 'react-i18next';
+import withLazy from 'components/shared/withLazy';
 
-
+const LanguageSelector = 
+  () => withLazy(lazy(() => import('./LanguageSelector')))(undefined, {fallback: null})
 
 const RoomMenu = lazy(() => import("./RoomMenu"))
 
 const menu = [
-  {to:"bemutatkozas", name: "Bemutatkozás"},
-  {to:"szolgaltatasok", name: "Szolgáltatások"},
-  {to:"szobak", name: "Szobák"},
-  {to:"arak", name: "Árak"},
+  {to:"bemutatkozas", name: "intro"},
+  {to:"szolgaltatasok", name: "services"},
+  {to:"szobak", name: "rooms"},
+  {to:"arak", name: "prices"},
   {
-    to:"etelek", name: "Ételek", component: RouteLink
+    to:"etelek", name: "foods", component: RouteLink
   },
   {
-    to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+    to:"rendezvenyek", name: "events", component: RouteLink
   },
-  {to:"visszajelzesek", name: "Visszajelzések"},
-  {to:"kapcsolat", name: "Kapcsolat"}
+  {to:"visszajelzesek", name: "feedbacks"},
+  {to:"kapcsolat", name: "contact"}
 ]
 
 export class Menu extends Component {
@@ -33,15 +32,18 @@ export class Menu extends Component {
   state = {
     isMenuOpen: false,
     isScrolled: false,
-    isRoomMenuOpen: true
+    isRoomMenuOpen: true,
+    Link: null
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener("scroll", this.isScrolled, false)
     window.addEventListener("resize", this.isResized, false)
     this.isScrolled()
     this.isResized()
     if (window.innerWidth > 768) this.setState({isRoomMenuOpen: false})
+    const {Link} = await import("react-scroll")
+    this.setState({Link})
   }
 
   componentWillUnmount() {
@@ -63,8 +65,9 @@ export class Menu extends Component {
 
   render() {
     const {
-      isMenuOpen, isScrolled, isRoomMenuOpen, width
+      isMenuOpen, isScrolled, isRoomMenuOpen, width, Link
     } = this.state
+    const {t} = this.props
     const isBigScreen = width > 768
     return (
       <Fade down>
@@ -79,7 +82,7 @@ export class Menu extends Component {
           </Fade>
           <a
             className={`menu-logo ${isScrolled ? "menu-logo-scrolled" : ""}`}
-            href={BASE_URL}
+            href={process.env.REACT_APP_BASE_URL}
           >
             <picture>
               <source
@@ -98,7 +101,7 @@ export class Menu extends Component {
               down
             >
               <ul className="nav-menu">
-                {menu.map(({
+                {Link && menu.map(({
                   name, to, component: Component=Link, offset
                 }) =>
                   <li key={to}>
@@ -109,10 +112,11 @@ export class Menu extends Component {
                       smooth={Component === Link ? true : undefined}
                       to={to}
                     >
-                      {name}
+                      {t(`menu.${name}`)}
                     </Component>
                   </li>
                 )}
+                  <LanguageSelector/>
               </ul>
             </Fade>
           </nav>
@@ -130,13 +134,14 @@ export class Menu extends Component {
   }
 }
 
-export default Menu
+export default withTranslation("common")(Menu)
 
 
-export const BackMenu = withRouter(props => {
+export const BackButton = withRouter(props => {
+  const [t] = useTranslation("common")
   const {location: {search}, history: {goBack}} = props
   const customReturn = new URLSearchParams(search).get("vissza")
-  const title = customReturn ||"főoldal"
+  const title = t(customReturn || "homepage")
   return(
     customReturn ?
       <button
@@ -156,10 +161,14 @@ export const BackMenu = withRouter(props => {
   )
 })
 
-const Title = ({title}) =>
-  <>
-    ←
-    <span>
-      Vissza ide: {title}
-    </span>
-  </>
+const Title = ({title}) => {
+  const [t] = useTranslation("common")
+  return (
+    <>
+      ←
+      <span>
+        {t("back-to")} {t(title)}
+      </span>
+    </>
+  )
+}
