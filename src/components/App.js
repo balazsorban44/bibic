@@ -1,12 +1,12 @@
-import React, {lazy, Suspense} from 'react'
+import React, {lazy} from 'react'
 import {Route, Switch} from 'react-router-dom'
+import routes from 'utils/routes'
 
-import {BackMenu} from './Menu'
+import Menu, {BackButton} from './Menu'
 import ChatFAB from './ChatFAB'
-import {routes} from '../utils/constants'
-import Top from "./Top"
+import Introduction from './Introduction'
+import Hero from './Hero'
 import NotFound from "./NotFound"
-import {Loading} from './shared/Elements'
 
 
 /**
@@ -15,74 +15,98 @@ import {Loading} from './shared/Elements'
  */
 
 import {useTranslation} from 'react-i18next'
-import FeedbackForm from "./FeedbackForm"
-import MessageForm from "./MessageForm"
-import Carousel from "./shared/Carousel"
-import MoreServices from "./MoreServices"
 
-const Main = lazy(() => import("./Main"))
+import Loadable from 'react-loadable'
+import withLazy from './shared/withLazy'
+import {Loading} from './shared/Elements'
 
+const ReservationForm = Loadable({
+  loader: () => import("./forms/Reservation"),
+  loading: Loading
+})
+const MessageForm = Loadable({
+  loader: () => import("./forms/Message"),
+  loading: Loading
+})
+const FeedbackForm = Loadable({
+  loader: () => import("./forms/Feedback"),
+  loading: Loading
+})
+const MoreServices = Loadable({
+  loader: () => import("./MoreServices"),
+  loading: Loading
+})
+const Carousel = Loadable({
+  loader: () => import("components/shared/Carousel"),
+  loading: Loading
+})
 
-const App = () =>
-  <>
+const Main = withLazy(lazy(() => import("./Main")))
+
+/**
+ *
+ */
+export default function App () {
   const [t] = useTranslation("common")
-    <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackMenu/>} />
-    <Switch>
-      <Route
-        exact
-        path={routes.HOME}
-        render={() =>
-          <>
-            <Top/>
-            <ChatFAB/>
-            <Suspense fallback={<Loading/>}>
+  return (
+    <>
+      <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackButton/>} />
+      <Switch>
+        <Route
+          exact
+          path={routes.HOME}
+          render={() =>
+            <>
+              <Hero/>
+              <Menu/>
+              <Introduction/>
+              <ChatFAB/>
               <Main/>
-            </Suspense>
-          </>
-        }
-      />
-      <Route
-        component={() =>
-          <Carousel
-            className="foods"
-            itemClassName="food"
+            </>
+          }
+        />
+        <Route
+          component={() =>
+            <Carousel
+              className="foods"
+              itemClassName="food"
               subtitle={t("subtitles.foods")}
               title={t("titles.foods")}
-          />
-        }
-        exact
-        path={routes.FOODS}
-      />
-      <Route
-        component={() =>
-          <Carousel
-            className="events"
-            itemClassName="event"
+            />
+          }
+          exact
+          path={routes.FOODS}
+        />
+        <Route
+          component={() =>
+            <Carousel
+              className="events"
+              itemClassName="event"
               title={t("titles.events")}
-          />}
-        exact
-        path={routes.EVENTS}
-      />
-      <Route
-        component={ReservationForm}
-        exact
-        path={routes.RESERVE}
-      />
-      <Route
-        component={MessageForm}
-        path={routes.MESSAGE}
-      />
-      <Route
-        component={FeedbackForm}
-        path={routes.FEEDBACK_FORM}
-      />
-      <Route
-        component={MoreServices}
-        path={routes.SERVICES}
-      />
-      <Route component={NotFound}/>
-    </Switch>
-  </>
+            />}
+          exact
+          path={routes.EVENTS}
+        />
+        <Route
+          component={ReservationForm}
+          exact
+          path={routes.RESERVE}
+        />
+        <Route
+          component={MessageForm}
+          path={routes.MESSAGE}
+        />
+        <Route
+          component={FeedbackForm}
+          path={routes.FEEDBACK_FORM}
+        />
+        <Route
+          component={MoreServices}
+          path={routes.SERVICES}
+        />
+        <Route component={NotFound}/>
+      </Switch>
+    </>
+  )
+}
 
-
-export default App
