@@ -1,0 +1,39 @@
+{
+  "personal-details": {
+    "title": "Személyi adatok"
+  },
+  "fields": {
+    "name": "teljes név",
+    "email": "e-mail",
+    "phone": "telefon",
+    "address": "lakcím",
+    "from": "érkezés",
+    "to": "távozás",
+    "date-label": "{{value, dateLabel}}",
+    "adults": "felnőtt",
+    "children": "gyerek",
+    "age-group": "{{ageGroup}} év",
+    "selected-child": "{{number}}. gyerek",
+    "breakfast": "reggeli",
+    "half-board": "félpanzió"
+  },
+  "errors": {
+    "name": "Érvénytelen név",
+    "email": "Érvénytelen e-mail",
+    "phone": "Érvénytelen telefonszám",
+    "address": "Érvénytelen lakcím",
+    "period": "A foglalás legalább egy éjszakát kell, hogy tartalmazzon",
+    "from": "Legkorábbi érkezés holnap.",
+    "to": "Legkorábbi távozos holnapután.",
+    "date-label": "Érvénytelen {{value, dateLabel}}",
+    "adults": "Érvénytelen felnőtt",
+    "children": "Érvénytelen gyerek",
+    "age-group": "Érvénytelen {{ageGroup}} év",
+    "selected-child": "Érvénytelen {{number}}. gyerek",
+    "breakfast": "Érvénytelen reggeli",
+    "half-board": "Érvénytelen félpanzió",
+    "content": "Kérjük ne hagyja üresen az üzenet tartalmát.",
+    "customId": "A foglalás nem található. Helyesen írta be az URL-t? Kérjük vegye fel velünk a kapcsolatot."
+  },
+  "send": "Küldés"
+}

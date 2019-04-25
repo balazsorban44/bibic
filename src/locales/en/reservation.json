@@ -1,0 +1,38 @@
+{
+  "title": "Reservation",
+  "select": "Select a room",
+  "room-selected": "Room {{roomNumber}} selected",
+  "room-facilities": "room's facilities",
+  "personal-details": {
+    "footnote": "required for invoice issuance"
+  },
+  "details": {
+    "title": "Reservation details",
+    "calendar": {
+      "title": "arrival/departure",
+      "footnote": "arrive from {{from}}, depart until {{to}}"
+    },
+    "people": {
+      "title": "people (maximum {{maxPeople}})",
+      "footnote": "Free for children under 6 years"
+    },
+    "food": {
+      "title": "meal plan",
+      "footnote": [
+        "food should be pre-selected as we do not operate a restaurant",
+        "you can find our menu here"
+      ]
+    },
+    "message": {
+      "title": "comment",
+      "placeholder": "eg.: meal plan, special request, other question"
+    }
+  },
+  "payment-methods": {
+    "title": "Accepted payment methods",
+    "options": ["Cash", "Transfer in advance", "Visa", "Mastercard", "OTP SZÉP"],
+    "altOptions": ["Pay with cash", "Transfer in advance", "We accept Visa", "We accept Mastercard", "We accept OTP SZÉP"],
+    "footnote": "ATTENTION! Please note that sending in the reservation is not subject to payment. Your reservation must be approved by us beforehand. Payment is made in person or by wire transfer. For more details, you can ask in the comment section or contact us at the address below"
+  },
+  "reservation-email": "szallasfoglalas at bibicvendeghazak dot hu"
+}

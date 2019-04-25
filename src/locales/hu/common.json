@@ -1,0 +1,24 @@
+{
+  "menu": {
+    "intro": "Bemutatkozás",
+    "services": "Szolgáltatások",
+    "rooms": "Szobák",
+    "prices": "Árak",
+    "foods": "Ételek",
+    "events": "Rendezvények",
+    "feedbacks": "Visszajelzések",
+    "contact": "Kapcsolat"
+  },
+  "messenger-tooltip": "Megtalál minket a Messengeren is",
+  "back-to": "Vissza ide:",
+  "homepage": "főoldal",
+  "reservation": "foglalás",
+  "titles": {
+    "foods": "Ételeink",
+    "events": "Rendezvényeink"
+  },
+  "subtitles": {
+    "foods": "Vendégházunkban éttermet nem üzemeltetünk, ezért az ételek kiválasztása előre szükséges, ételeket kizárólag szállóvendégeink részére készítünk, a falusi vendégasztal keretén belül."
+  },
+  "not-available": "A tartalom nem elérhető"
+}

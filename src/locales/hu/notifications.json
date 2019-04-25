@@ -1,0 +1,21 @@
+{
+  "use-calendar": "Kérjük, hogy az érkezés és távozás kiválasztásához használja a naptárat.",
+  "calendar-select-success": "Dátum kiválasztva.",
+  "same-day": "A foglalás minimum 1 éjszakát kell hogy tartalmazzon. Kérjük válasszon másik dátumot.",
+  "wrong-input": "{{message}} Ha úgy gondolja más a hiba oka, kérjük írjon az alábbi címre: hiba kukac bibicvedeghazak pont hu",
+  "database-error": "Adatbázis hiba. {{message}} Kérjük vegye fel velünk a kapcsolatot a hiba kukac bibicvendeghazak pont hu címen, vagy telefonon: +36305785730",
+  "personal-detail": "{{message}}",
+  "fetch-overlaps": "{{message}}",
+  "reservation": {
+    "overlap": "Az adott intervallum már tartalmaz foglalást. Próbálkozhat másik intervallummal, vagy másik szobával.",
+    "success": "Foglalás elküldve. Rövid időn belül válaszolunk. Hamarosan visszakerül a főoldalra."
+  },
+  "message": {
+    "success": "Üzenet elküldve. Rövid időn belül válaszolunk. Hamarosan visszakerül a főoldalra."
+  },
+  "feedback": {
+    "submit-error": "{{message}}",
+    "no-reservation-found":"Hiba! Ez a foglalás nem létezik.",
+    "success": "Visszajelzés elküldve. Köszönjük! Hamarosan visszakerül a főoldalra."
+  }
+}
