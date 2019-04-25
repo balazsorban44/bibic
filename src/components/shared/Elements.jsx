@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 // For the slider elements
-import {colors} from '../../utils/colors'
+import colors from 'utils/colors'
 import { withTranslation } from 'react-i18next';
 
 export const Loading =  withTranslation("common")(class extends Component {

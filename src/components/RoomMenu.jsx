@@ -1,5 +1,5 @@
 import React from 'react'
-import {withStore} from "./db"
+import {UNSAFE_withStore} from "db"
 import {Link} from 'react-scroll'
 
 
@@ -18,4 +18,4 @@ export const RoomMenu = ({
     </li>
   )
 
-export default withStore(RoomMenu)
+export default UNSAFE_withStore(RoomMenu)

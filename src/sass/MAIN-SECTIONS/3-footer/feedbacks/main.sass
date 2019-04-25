@@ -77,10 +77,19 @@
 @import 'stars'
 
 .feedback-done
-  display: grid
-  justify-items: center
-  align-content: center
+  display: flex
+  justify-content: center
+  align-items: center
   min-height: 100vh
+  margin: 0 20vw
   h1
     font-family: monospace
     font-size: $accent-color-dark
+  img
+    padding: .5em
+    margin-left: .5em
+    background-color: $success
+    border-radius: 50%
+    width: 28px
+  .error
+    background-color: $error

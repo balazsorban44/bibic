@@ -1,7 +1,7 @@
 import React from 'react'
-import Paragraphs from './shared/Paragraphs'
-import Gallery from './shared/Gallery'
-import CERTIFICATES_BG from "../assets/images/bg/intro.jpg"
+import Gallery from 'components/shared/Gallery'
+import Paragraphs from 'components/shared/Paragraphs'
+import CERTIFICATES_BG from "assets/images/bg/intro.jpg"
 const Sunflower = () =>
   <section id="napraforgo">
     <Paragraphs path="tanusitvanyok"/>

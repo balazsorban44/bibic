@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
-import {Link} from 'react-scroll'
 import Fade from "react-reveal/Fade"
 import Zoom from "react-reveal/Zoom"
 import makeCarousel from 'react-reveal/makeCarousel'
 
-import hero1 from "../assets/images/hero/1.jpg"
-import hero2 from "../assets/images/hero/2.jpg"
-import logo from '../assets/icons/logo.png'
+import hero1 from "assets/images/hero/1.min.jpg"
+import hero2 from "assets/images/hero/2.min.jpg"
+import logo from 'assets/icons/logo.min.png'
 
 
 export const CarouselUI = ({children}) => <div className="hero-slider">{children}</div>
@@ -14,11 +13,13 @@ const Carousel = makeCarousel(CarouselUI)
 
 export class Hero extends Component {
 
-  state = {isBigScreen: false}
+  state = {isBigScreen: false, Link: null}
 
   async componentDidMount() {
     this.handleResize()
     window.addEventListener("resize", this.handleResize, false)
+    const {Link} = await import("react-scroll")
+    this.setState({Link})
   }
 
 
@@ -35,6 +36,7 @@ export class Hero extends Component {
 
 
   render() {
+    const {Link} = this.state
     return (
       <section className="hero">
         <Carousel maxTurns={Infinity}>
@@ -61,12 +63,14 @@ export class Hero extends Component {
             />
           </a>
         </Zoom>
-        <Link
-          className="scroll-icon"
-          offset={this.getOffset()}
-          smooth
-          to="bemutatkozas"
-        />
+        {Link &&
+          <Link
+            className="scroll-icon"
+            offset={this.getOffset()}
+            smooth
+            to="bemutatkozas"
+          />
+        }
       </section>
     )
   }

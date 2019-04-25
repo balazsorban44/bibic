@@ -1,5 +1,5 @@
-@import "../../sass/ESSENTIALS/vars"
-@import "../../sass/form"
+@import "../../../sass/ESSENTIALS/vars"
+@import "../../../sass/form"
 
 .people-count, .service
   label
@@ -12,7 +12,8 @@
   flex-wrap: wrap
 
 .child-age
-  max-width: 140px
+  max-width: 170px
+  margin: 1em
   select
     padding: .5em
 
@@ -21,13 +22,14 @@
   align-items: center !important
   @extend .input-box
   label
+    padding: .75em
     cursor: pointer
     font-size: .8em
   input
     cursor: pointer
     flex-grow: 0 !important
-    width: 16px
-    height: 16px
+    width: 20px
+    height: 20px
 
 .room-picker
   display: flex
