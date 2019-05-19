@@ -12,9 +12,9 @@ firebase.initializeApp({
 })
 
 
+export const FS = firebase.firestore()
 export const DB = firebase.database()
 
-export const FS = firebase.firestore()
 export const RESERVATIONS_FS_REF = FS.collection("reservations")
 export const MESSAGES_FS_REF = FS.collection("messages")
 export const FEEDBACKS_FS_REF = FS.collection("feedbacks")
