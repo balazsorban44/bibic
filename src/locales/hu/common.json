@@ -10,6 +10,8 @@
     "contact": "Kapcsolat"
   },
   "messenger-tooltip": "Megtalál minket a Messengeren is",
+  "beta": "Tesztoldal",
+  "beta-tooltip": "FIGYELEM! Ön a tesztoldalt böngészi. A foglalás és más interakciók valós következménnyel nem járnak, csupán tesztelés céljából elérhetőek. Ha foglalni szeretne, vagy kérdést tenne fel, azt a bibicvendeghazak.hu oldalon teheti meg.",
   "back-to": "Vissza ide:",
   "homepage": "főoldal",
   "reservation": "foglalás",

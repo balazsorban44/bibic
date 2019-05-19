@@ -10,6 +10,8 @@
     "contact": "Contact"
   },
   "messenger-tooltip": "Find us on Messenger",
+  "beta": "Preview",
+  "beta-tooltip": "WARNING! You are now browsing our testing page. Reservation and other interactions will not have a real effect. If you would like to book a room, or ask us, plase visit bibicvendeghazak.hu",
   "back-to": "Back to",
   "homepage": "home",
   "reservation": "reservation",
