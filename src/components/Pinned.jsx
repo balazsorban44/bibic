@@ -1,7 +1,8 @@
 import React from 'react'
 import chat from 'assets/icons/chat.svg'
 import Fade from "react-reveal/Fade"
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next'
+
 
 export const ChatFAB = () => {
   const [t] = useTranslation("common")
@@ -23,8 +24,26 @@ export const ChatFAB = () => {
         </a>
       </div>
     </Fade>
+
+
   )
+
 }
 
+const show =
+  "location" in window &&
+  ![
+    "bibicvendeghazak.hu"
+    // "localhost"
+  ].includes(window.location.hostname)
 
-export default ChatFAB
+export const BetaWarning = show ? () => {
+  const [t] = useTranslation("common")
+
+  return (
+    <div className="beta-warning">
+      <span className="tooltip">{t("beta-tooltip")}</span>
+      <h5>{t("beta")}</h5>
+    </div>
+  )
+} : () => null

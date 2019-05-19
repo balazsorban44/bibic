@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom'
 import routes from 'utils/routes'
 
 import Menu, {BackButton} from './Menu'
-import ChatFAB from './ChatFAB'
+import {ChatFAB, BetaWarning} from './Pinned'
 import Introduction from './Introduction'
 import Hero from './Hero'
 import NotFound from "./NotFound"
@@ -50,6 +50,7 @@ export default function App () {
   const [t] = useTranslation("common")
   return (
     <>
+      <BetaWarning/>
       <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackButton/>} />
       <Switch>
         <Route
