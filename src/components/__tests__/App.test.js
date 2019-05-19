@@ -6,7 +6,7 @@ import {Database} from "../db"
 import NotFound from "../NotFound"
 import MoreServices from "../MoreServices"
 import {Carousel} from "../shared/Carousel"
-import Link from "react-router-dom/Link"
+import {Link} from "react-router-dom"
 import Main from "../Main"
 
 global.scrollTo = jest.fn()
