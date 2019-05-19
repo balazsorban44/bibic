@@ -8,7 +8,7 @@ global.scrollTo = jest.fn()
 
 describe("FeedbackForm component", () => {
   const props = {submitFeedback: jest.fn().mockResolvedValue({error: true, success: true})}
-  let wrapper = shallow(<FeedbackForm {...props}/>)
+  let wrapper = shallow(<FeedbackForm {...{...props, location: {search: "?id="}}}/>)
 
 
   beforeEach(() => {
@@ -41,9 +41,7 @@ describe("FeedbackForm component", () => {
 
   it("submitting invoked", () => {
     wrapper.find(Send).simulate("click", {preventDefault: jest.fn()})
-    expect(props.submitFeedback).toBeCalledWith({
-      content: "",
-      id: null,
+    expect(props.submitFeedback).toBeCalledWith({id: "",
       ratings: {
         cleanliness: 0,
         coffee: 0,
@@ -51,8 +49,7 @@ describe("FeedbackForm component", () => {
         food: 0,
         services: 0,
         staff: 0
-      }
-    })
+      }})
     // expect(wrapper.state("success")).toBe(true)
     // expect(wrapper.state("error")).toBe(true)
   })
