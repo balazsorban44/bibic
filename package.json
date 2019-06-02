@@ -29,7 +29,7 @@
     "jest-fetch-mock": "^2.1.2",
     "node-sass": "^4.12.0",
     "react-scripts": "3.0.1",
-    "source-map-explorer": "^1.8.0",
+    "source-map-explorer": "^2.0.0",
     "stylelint": "^10.0.1",
     "stylelint-config-recommended": "^2.2.0"
   },
