@@ -4,9 +4,9 @@
  * @returns {string}
  */
 export const toPrice = value => (
-  (value || 0).toLocaleString('hu-HU', {
-    style: 'currency',
-    currency: 'HUF',
+  (value || 0).toLocaleString("hu-HU", {
+    style: "currency",
+    currency: "HUF",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   })

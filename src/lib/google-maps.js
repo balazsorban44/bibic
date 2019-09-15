@@ -1,4 +1,4 @@
-export const MAPS_API_KEY = 'AIzaSyDvnPguJofFhvUbJiNYkR2rlzSvIeZhco8'
+export const MAPS_API_KEY = "AIzaSyDvnPguJofFhvUbJiNYkR2rlzSvIeZhco8"
 export const MAPS_STYLE = [
   {
     "featureType": "water",

@@ -1,0 +1,66 @@
+@import "../vars"
+
+.select-box
+  position: relative
+  margin: 1em
+  min-height: 32px
+  display: flex
+  align-items: baseline
+  justify-content: flex-end
+  font-family: "Coolvetica", sans-serif
+  letter-spacing: .1em
+  border-bottom: 2px solid black
+  
+  label
+    padding-right: 2.5em
+    font-weight: bolder
+  select
+    letter-spacing: .1em
+    flex-grow: 1
+    transition: .3s background-color
+    font-family: "Coolvetica", sans-serif
+    text-align: right
+    border: none
+    &::placeholder
+      color: transparentize(grey, .6)
+    &:focus
+      background-color: transparentize($dark, .95)
+
+.select-error
+  box-sizing: border-box
+  border-bottom: 2px solid transparentize($error, .1)
+  label
+    color: transparentize($error, .1)
+  &::before
+    content: '!'
+    font-size: .8em
+    font-weight: bold
+    font-family: sans-serif
+    letter-spacing: 0
+    color: $light
+    background-color: transparentize($error, .1)
+    width: 10px
+    height: 10px
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 50%
+    padding: 4px
+    margin-right: .5em
+  .footnote-asterix::after
+    content: ""
+  h6
+    color: $error
+    position: absolute
+    top: 8px
+
+.footnote-asterix::after
+  content: "*"
+
+
+@media (min-width: 720px)
+
+  .footnote
+    padding-top: 1em
+    min-width: 90%
+    

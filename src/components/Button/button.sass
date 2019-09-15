@@ -1,0 +1,74 @@
+@import "../../sass/ESSENTIALS/vars"
+
+@font-face
+  font-family: "White Festive"
+  src:  url("../../assets/fonts/WhiteFestive.otf")
+
+.btn
+  border: none
+  border-radius: 1em
+  text-transform: uppercase
+  border-radius: 1.5em
+  font-weight: bolder
+  font-family: White Festive, sans-serif
+  padding: .2em 2em 0
+  font-size: 1.5em
+  letter-spacing: .05em
+  cursor: pointer
+  transition: .3s
+  color: $light
+  background-color: $accent-color
+  text-decoration: none
+  &:hover
+    filter: brightness(.9)    
+    box-shadow: 0 0 10px black
+
+
+@for $i from 1 through length($rooms)
+  .btn-color-room-#{$i} 
+    background-color: nth($rooms, $i)
+    color: $light
+
+.btn-color-accent-dark
+  background-color: $accent-color-dark
+  color: $light
+.btn-color-accent-2
+  background-color: $accent-color-2
+  color: $light
+.btn-color-accent-3
+  background-color: $accent-color-3
+  color: $light
+.btn-color-accent-4
+  background-color: $accent-color-4
+  color: $light
+.btn-color-accent-5
+  background-color: $accent-color-5
+  color: $light
+.btn-color-destructive
+  background-color: $error
+  color: $light
+.btn-color-success
+  background-color: $success
+  color: $light
+.btn-color-warning
+  background-color: $warning
+  color: $light
+
+
+.btn-size-small
+  padding: .15em .75em
+  font-size: 1.25em
+
+.btn-size-large
+  padding: .5em 1.5em
+
+.btn-circle
+  position: relative
+  padding: 0
+  width: 64px
+  height: 64px
+  border-radius: 50%
+
+.btn-full-width
+  display: "flex"
+  justify-content: "center"

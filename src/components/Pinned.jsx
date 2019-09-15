@@ -1,7 +1,7 @@
-import React from 'react'
-import chat from 'assets/icons/chat.svg'
+import React from "react"
+import chat from "assets/icons/chat.svg"
 import Fade from "react-reveal/Fade"
-import {useTranslation} from 'react-i18next'
+import {useTranslation} from "react-i18next"
 
 
 export const ChatFAB = () => {

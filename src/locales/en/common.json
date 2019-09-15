@@ -22,5 +22,9 @@
   "subtitles": {
     "foods": "We do not operate a restaurant in our guesthouse, so the selection of meals prior to arrival is necessary. We prepare meals for our guests only."
   },
-  "not-available": "Content not available"
+  "not-available": "Content not available",
+  "404": "Uh oh... This page does not exist.",
+  "relative-date": "{{value, relative-date}}",
+  "reserved-rooms": "Reviewer's room",
+  "reserved-rooms_plural": "Reviewer's rooms"
 }

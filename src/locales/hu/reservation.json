@@ -25,6 +25,7 @@
     },
     "message": {
       "title": "megjegyzés",
+      "label": "",
       "placeholder": "pl.: étel egyeztetés, speciális kívánság, egyéb kérdés"
     }
   },

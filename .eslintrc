@@ -1,7 +1,9 @@
 {
   "extends": [
     "prettier",
-    "prettier/react"
+    "react-app",
+    "prettier/react",
+    "plugin:jsx-a11y/strict"
   ],
   "settings": {
     "react": {
@@ -10,7 +12,8 @@
   },
   "parser":"babel-eslint",
   "rules": {
-    "require-jsdoc":"warn",
+    "quotes": "error",
+    // "require-jsdoc":"warn",
     "no-useless-escape":"error",
     "block-spacing":["warn", "never"],
     "semi": [2, "never"],
@@ -35,8 +38,7 @@
     "prefer-const":"error",
     "array-bracket-newline":"error",
     "react/sort-comp": "error",
-    "react/jsx-max-props-per-line":"error",
-    "react/jsx-first-prop-new-line":"error",
+    "react/jsx-max-props-per-line":["error", {"maximum": 2, "when": "multiline"}],
     "react/jsx-closing-bracket-location": "error",
     "react/jsx-handler-names":"error",
     "react/jsx-sort-props":"error",
@@ -52,8 +54,7 @@
     }
   },
   "env": {
-    "browser": true,
-    "node": true
+    "browser": true
   },
   "plugins": [
     "prettier",

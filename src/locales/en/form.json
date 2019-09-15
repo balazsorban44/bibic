@@ -3,7 +3,7 @@
     "title": "Personal details"
   },
   "fields": {
-    "name": "full name",
+    "name": "name",
     "email": "e-mail",
     "phone": "phone",
     "address": "address",
@@ -15,7 +15,15 @@
     "age-group": "{{ageGroup}} years",
     "selected-child": "child {{number}}",
     "breakfast": "breakfast",
-    "half-board": "half board"
+    "half-board": "half board",
+    "content": "content",
+    "message": "message",
+    "coffee": "coffee",
+    "cleanliness": "cleanliness",
+    "comfort": "comfort",
+    "food": "food",
+    "services": "services",
+    "staff": "staff"
   },
   "errors": {
     "name": "Invalid full name",
@@ -24,7 +32,7 @@
     "address": "Invalid address",
     "period": "Reservation must contain at least one night",
     "from": "Earliest arrival is tomorrow.",
-    "to": "Earliest departure is the day after tomorrow.",
+    "to": "Earliest departure is the day after tomorrow",
     "date-label": "Invalid {{value, dateLabel}}",
     "adults": "Invalid adults",
     "children": "Invalid children",
@@ -32,8 +40,9 @@
     "selected-child": "Invalid child {{number}}",
     "breakfast": "Invalid breakfast",
     "half-board": "Invalid half board",
-    "content": "Content must not be empty.",
-    "customId": "Cannot find reservation. Is the URL right? Please contact us."
+    "content": "Please fill out the content",
+    "customId": "Cannot find reservation",
+    "rating": "Invalid rating"
   },
   "send": "Send"
 }

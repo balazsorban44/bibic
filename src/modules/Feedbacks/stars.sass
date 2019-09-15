@@ -1,0 +1,23 @@
+@import '../../sass/ESSENTIALS/vars'
+
+.stars-header
+  display: flex
+  align-items: baseline
+  justify-content: space-between
+  width: 5 * 24px
+  h5
+    margin-left: .5em
+
+.stars
+  display: flex
+
+  &[data-stars]
+    .star polygon
+      fill: #ffd055
+      opacity: 1
+    
+  @for $i from 1 through 5
+    &[data-stars="#{$i}"]
+      .star:nth-child(#{$i}) ~ .star polygon
+        fill: $light
+        opacity: .5

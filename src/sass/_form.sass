@@ -1,5 +1,5 @@
 .form
-  max-width: 720px
+  max-width: 760px
   margin: 0 auto
   h2
     margin: 2em auto 1em
@@ -23,44 +23,6 @@
     letter-spacing: .1em
     font-weight: lighter
 
-.message-box
-  width: calc(100% - 2em)
-  textarea
-    border:
-      top: 2px solid $dark
-      left: 2px solid $dark
-      right: 2px solid $dark
-    font-family: "Coolvetica", sans-serif
-    letter-spacing: .1em
-    width: 100%
-    padding: .5em
-
-.input-box
-  position: relative
-  margin: 1em
-  min-height: 32px
-  display: flex
-  align-items: baseline
-  justify-content: flex-end
-  font-family: "Coolvetica", sans-serif
-  letter-spacing: .1em
-  border-bottom: 2px solid black
-  
-  label
-    padding-right: .5em
-    font-weight: bolder
-  input
-    letter-spacing: .1em
-    flex-grow: 1
-    padding: .5em
-    transition: .3s background-color
-    font-family: "Coolvetica", sans-serif
-    text-align: right
-    border: none
-    &::placeholder
-      color: transparentize(grey, .6)
-    &:focus
-      background-color: transparentize($dark, .95)
 
 .number-controls button
   margin: 0 0 .5em .5em
@@ -73,34 +35,6 @@
   height: 32px
   letter-spacing: 0
   font-weight: bolder
-
-.input-error
-  box-sizing: border-box
-  border-bottom: 2px solid transparentize($error, .1)
-  label
-    color: transparentize($error, .1)
-  &::after
-    position: absolute
-    content: '!'
-    font-size: .8em
-    font-weight: bold
-    font-family: sans-serif
-    letter-spacing: 0
-    color: $light
-    background-color: transparentize($error, .1)
-    width: 10px
-    height: 10px
-    display: flex
-    justify-content: center
-    align-items: center
-    border-radius: 50%
-    padding: 4px
-    margin-top: .5em
-    margin-left: -.5em
-  h6
-    color: $error
-    position: absolute
-    top: 8px
 
 
 
@@ -124,8 +58,6 @@
   &::before
     content: "*"
 
-.footnote-asterix::after
-  content: "*"
 
 
 
@@ -153,9 +85,10 @@
   &:disabled
     cursor: wait
     opacity: .6
+  &:focus
+    transform: scale(1.1)
 
-
-@media (min-width: 720px)
+@media (min-width: 760px)
   .form
     h4, h5
       margin-left: 0
@@ -170,14 +103,7 @@
     background-color: transparentize($accent-color, .95)
     border-radius: 12px
     padding: 1em
-  .input-box
-    position: relative
-    min-width: calc(50% - 2em)
 
-  .footnote
-    padding-top: 1em
-    min-width: 90%
-    
   // .message 
   //   textarea
   //     width: calc(100% - 1em - 4px)

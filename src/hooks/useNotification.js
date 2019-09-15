@@ -1,40 +1,27 @@
-import {useRef, useEffect, useCallback} from 'react'
-import {useTranslation} from 'react-i18next'
+import {useTranslation} from "react-i18next"
+import toast from "cogo-toast"
+import {useCallback} from "react"
 
-const defaultConfig = {
-  closeOnClick: true,
-  position:"bottom-center",
-  style:{
-    position: "fixed",
-    zIndex: 10001,
-    bottom: 0
-  }
-}
 
-export default () => {
-  const toastRef = useRef(null)
-  useEffect(() => {
-    if (!toastRef.current) {
-      (async () => {
-        const {toast} = await import("react-toastify")
-        await import('react-toastify/dist/ReactToastify.css')
-        toast.configure(defaultConfig)
-        toastRef.current = toast
-      })()
-    }
-  }, [])
-
+/** Hook to make use of notifications */
+export default function useNotification() {
   const [t] = useTranslation("notifications")
 
-  const notify = useCallback((name, {type="info", message, ...options}) => {
-    if (["success", "error", "warn", "info"].includes(type)) {
-      const text = t(name, {message})
-      if (toastRef.current[type]) toastRef.current[type](text, options)
-      else alert(text)
-    } else if(type==="custom") {
-      //TODO:
-    }
+  const notify = useCallback((type, messageType, options) => {
+    const base = `${messageType}.${type}`
+
+    const message = t(`${base}.body`, options)
+    const headingPath = `${base}.title`
+    const heading = t(headingPath)
+    toast[type](
+      message,
+      {
+        heading: heading !== headingPath ? heading : undefined,
+        position: "bottom-right",
+        hideAfter: 7.5
+      }
+    )
   }, [t])
 
-  return {notify}
+  return notify
 }

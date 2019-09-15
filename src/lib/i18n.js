@@ -1,39 +1,45 @@
 import i18n from "i18next"
 import * as resources from "locales"
 import {PREFERRED_LANGUAGE} from "utils/language"
+import {initReactI18next} from "react-i18next"
+import {TODAY} from "utils/constants"
 
-let formatDate, hu
-i18n.init({
-  lng: PREFERRED_LANGUAGE(),
-  fallbackLng: "hu",
-  resources,
-  fallbackNS: ["common", "form"],
-  interpolation: {
-    format: (value, type, lng) => {
+let formatDate, hu, formatDistance
 
-      switch (type) {
-      case "fullName":
-        switch (lng) {
-        case "hu":
-          return `${value.surname} ${value.firstName}`
-        default:
-          return `${value.firstName} ${value.surname}`
+
+i18n
+  .use(initReactI18next)
+  .init({
+    lng: PREFERRED_LANGUAGE(),
+    fallbackLng: "hu",
+    resources,
+    fallbackNS: ["common", "form"],
+    interpolation: {
+      format: (value, type, lng) => {
+
+        switch (type) {
+        case "fullName": {
+          const {family, given} = value
+          return lng === "hu" ? `${family} ${given}` : `${given} ${family}`
         }
-      case "dateLabel":
-        switch(lng) {
-        case "hu":
-          return value ? formatDate(value, "YYYY. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}) : "Nincs megadva"
+        case "dateLabel":
+          switch(lng) {
+          case "hu":
+            return value ? formatDate(value, "yyyy. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}) : "Nincs megadva"
+          default:
+            return value ? formatDate(value, "MMMM d, yyyy", {awareOfUnicodeTokens: true}) : "No value"
+          }
+        case "relative-date":
+          return lng === "hu" ? formatDistance(value, TODAY, {locale: hu}) : formatDistance(value, TODAY)
         default:
-          return value ? formatDate(value, "MMMM d, YYYY", {awareOfUnicodeTokens: true}) : "No value"
+          break
         }
-      default:
-        break
       }
     }
-  }
-}).then(async () => {
-  formatDate = (await import("date-fns")).format
-  hu = await import("date-fns/locale/hu")
-})
+  }).then(async () => {
+    formatDate = (await import("date-fns/format")).default
+    formatDistance = (await import("date-fns/formatDistance")).default
+    hu = (await import("date-fns/locale/hu"))
+  })
 
 export default i18n

@@ -1,1 +1,80 @@
-// TODO:
+@import "../vars"
+
+.input-box
+  position: relative
+  margin: 1em
+  min-height: 32px
+  display: flex
+  align-items: baseline
+  justify-content: flex-end
+  font-family: "Coolvetica", sans-serif
+  letter-spacing: .1em
+  border-bottom: 2px solid black
+  
+  label
+    padding-right: .5em
+    font-weight: bolder
+  input
+    letter-spacing: .1em
+    flex-grow: 1
+    padding: .5em
+    transition: .3s background-color
+    font-family: "Coolvetica", sans-serif
+    text-align: right
+    border: none
+    &::placeholder
+      color: transparentize(grey, .6)
+    &:focus
+      background-color: transparentize($dark, .95)
+
+.input-error
+  box-sizing: border-box
+  border-bottom: 2px solid transparentize($error, .1)
+  animation: shake .5s
+  label
+    color: transparentize($error, .1)
+  // &::after
+  //   position: absolute
+  //   content: '!'
+  //   font-size: .8em
+  //   font-weight: bold
+  //   font-family: sans-serif
+  //   letter-spacing: 0
+  //   color: $light
+  //   background-color: transparentize($error, .1)
+  //   width: 10px
+  //   height: 10px
+  //   display: flex
+  //   justify-content: center
+  //   align-items: center
+  //   border-radius: 50%
+  //   padding: 4px
+  //   margin-top: .5em
+  //   margin-left: -.5em
+  .footnote-asterix::after
+    content: ""
+  h6
+    color: $error
+    position: absolute
+    top: 8px
+
+.footnote-asterix::after
+  content: "*"
+
+
+@media (min-width: 720px)
+  .input-box
+    position: relative
+    min-width: calc(50% - 2em)
+
+  .footnote
+    padding-top: 1em
+    min-width: 90%
+  
+@keyframes shake
+  0%, 100%
+    transform: translateX(0)
+  33%, 66%
+    transform: translateX(5px)
+  50%, 75%
+    transform: translateX(-5px)

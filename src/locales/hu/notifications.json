@@ -11,7 +11,21 @@
     "success": "Foglalás elküldve. Rövid időn belül válaszolunk. Hamarosan visszakerül a főoldalra."
   },
   "message": {
-    "success": "Üzenet elküldve. Rövid időn belül válaszolunk. Hamarosan visszakerül a főoldalra."
+    "validation": {
+      "error": {
+        "body": "A következő mezők érvénytelenül, vagy nem lettek kitöltve: {{fields}}"
+      }
+    },
+    "submit": {
+      "success": {
+        "title": "Üzenet elküldve",
+        "body": "Üzenetét ({{id}}) megkaptuk. Rövid időn belül válaszolunk. Hamarosan visszakerül a főoldalra."
+      },
+      "error": {
+        "title": "Üzenet küldése sikertelen",
+        "body": "Hiba: {{message}}"
+      }
+    }
   },
   "feedback": {
     "submit-error": "{{message}}",

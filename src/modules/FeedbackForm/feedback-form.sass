@@ -1,0 +1,35 @@
+@import "../../sass/ESSENTIALS/vars"
+
+
+@keyframes shake
+  0%, 100%
+    transform: translateX(0)
+  33%, 66%
+    transform: translateX(5px)
+  50%, 75%
+    transform: translateX(-5px)
+
+.feedback-rating-slider-error
+  color: $error
+  animation: shake 1s
+
+
+.message-box
+  margin-top: 2.5em
+  width: calc(100% - 2em)
+  label
+    position: absolute
+    left: 0
+    margin: -1.5em .5em .5em 0
+  textarea
+    border-top-left-radius: 8px
+    border-top-right-radius: 8px
+    border: 1px solid transparentize($dark, .8)
+    border-bottom: none
+    font-family: "Coolvetica", sans-serif
+    letter-spacing: .1em
+    width: 100%
+    padding: .5em
+
+.message-box .input-error textarea
+  border: 2px solid $error !important

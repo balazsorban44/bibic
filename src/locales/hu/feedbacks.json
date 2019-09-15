@@ -7,11 +7,11 @@
   "room": "Szoba {{roomNumber}}",
   "form": {
     "error": {
-      "text": "Hiba történt.",
+      "text": "Hiba történt. ({{message}})",
       "alt": "sikertelen visszajelzés"
     },
     "success": {
-      "text": "Visszajelzés sikeresen elküldve.",
+      "text": "Visszajelzés ({{message}}) sikeresen elküldve.",
       "alt": "sikeres visszajelzés"
     },
     "title": ["Visszajelzés", "foglalási azonosító"],

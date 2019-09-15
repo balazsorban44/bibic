@@ -4,11 +4,11 @@
   },
   "details": {
     "title": "Message",
-    "subject": {
-      "title": "Subject",
-      "event-hall": "Event hall",
-      "full-house": "Whole house",
-      "special-request": "Special request",
+    "subjects": {
+      "title": "subject",
+      "eventHall": "Event hall",
+      "fullHouse": "Whole house",
+      "special": "Special request",
       "other": "Other"
     },
     "content": {

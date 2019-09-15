@@ -1,7 +1,7 @@
 {
   "title": "Welcome",
   "name": "{{name, fullName}}",
-  "positions": {
+  "roles": {
     "host": "Host of Bíbic Vendégházak",
     "owner": "Owner"
   }

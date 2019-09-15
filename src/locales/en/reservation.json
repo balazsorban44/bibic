@@ -25,6 +25,7 @@
     },
     "message": {
       "title": "comment",
+      "label": "",
       "placeholder": "eg.: meal plan, special request, other question"
     }
   },

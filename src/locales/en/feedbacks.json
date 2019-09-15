@@ -2,16 +2,16 @@
   "title": "Feedbacks",
   "ratings": "Ratings",
   "overall": "Overall",
-  "you-said": "You said",
+  "you-said": "Your reviews",
   "no-feedback": "No feedback yet.",
   "room": "Room {{roomNumber}}",
   "form": {
     "error": {
-      "text": "An error occured.",
+      "text": "An error occured. ({{message}})",
       "alt": "sending feedback unsuccessful"
     },
     "success": {
-      "text": "Feedback successfully sent.",
+      "text": "Feedback ({{message}}) successfully sent. ",
       "alt": "sending feedback successful"
     },
     "title": ["Feedback", "for reservation"],

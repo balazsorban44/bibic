@@ -1,12 +1,6 @@
 // ------------------------------ TYPOGRAPHY ------------------------------ //
 
-@font-face
-  font-family: "White Festive"
-  src:  url($fonts + "WhiteFestive.otf")
-
-@font-face
-  font-family: "Coolvetica"
-  src:  url($fonts + "Coolvetica.woff")
+@import "fonts"
 
 
 a
@@ -15,7 +9,7 @@ a
   &:hover
     color: $light
 
-section
+section, .carousel-wrapper
   font-family: "Coolvetica", sans-serif
   color: $light
   
@@ -28,14 +22,9 @@ section
     padding: 2.5% 0 1%
     text-transform: uppercase
 
-  h3, h4, p
+  h4, p
     font-weight: lighter
 
-  h3, h4
-    text-align: center
-
-  h3
-    font-size: 25px
     
   p
     line-height: 1.6

@@ -21,31 +21,32 @@ const Input = ({
 
   const handleChange = ({target: {value}}) => setLocalValue(value)
 
-  const handleBlur = () => onChange({[name]: localValue})
+  const handleBlur = e => {
+    const event = {...e}
+    event.target.value = localValue
+    onChange(event)
+  }
 
   return (
-    <div
-      className={`input-box ${className} ${error ? "input-error" : ""}`}
-      {...props}
-    >
+    <div {...props} className={`input-box ${className} ${error ? "input-error" : ""}`}>
       {label ?
         <label
           className={required ? "footnote-asterix" : ""}
-          htmlFor={name}
+          htmlFor={name || type}
         >{label}
         </label>
         : null
       }
       <Component
         disabled={disabled}
-        name={type || name}
+        id={name}
+        name={name}
         onBlur={handleBlur}
         onChange={handleChange}
-        placeholder={label || placeholder}
+        placeholder={placeholder}
         value={localValue}
         {...inputProps}
       />
-      {error ? <h6>{error}</h6> : null}
     </div>
   )
 }

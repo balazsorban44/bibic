@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app'
+import * as firebase from "firebase/app"
 import "firebase/database"
 import "firebase/firestore"
 
@@ -14,12 +14,11 @@ let config = {
   appId: "1:456228212717:web:19b58c6bdc4ef10c"
 }
 
+const hostname = window && window.location && window.location.hostname
 
 // Production
-if (
-  "location" in window &&
-  "bibicvendeghazak.hu" === window.location.hostname
-) {
+const {REACT_APP_STAGE} = process.env
+if (hostname === "bibicvendeghazak.hu" || REACT_APP_STAGE === "prod") {
   config = {
     apiKey: "AIzaSyB4-Y2_RCdrOouJJxUJkBBXGyj4hNdjDs0",
     authDomain: "bibic-vendeghazak-api.firebaseapp.com",

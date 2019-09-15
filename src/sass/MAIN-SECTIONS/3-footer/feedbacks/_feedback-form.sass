@@ -1,4 +1,6 @@
 .feedback-form
+  .form-group
+    justify-content: space-between
   .submit
     margin-top: .25em
   h2
@@ -6,36 +8,39 @@
     span
       display: block
       font-size: .75em
+      margin-bottom: 1em
+
 .feedback-rating-slider
-  margin: .5em 1em
+  flex: 1
+  margin: 1.5em
   font-family: "Coolvetica", monospace
   h3
-    margin-bottom: .5em
+    margin-bottom: 1em
     letter-spacing: .05em
     font-weight: lighter
     font-size: .8em
-  ul
+  .rating-values
     display: grid
-    grid-gap: 1em
     justify-items: center
     grid-template-columns: repeat(5 ,1fr)
     align-items: center
     position: relative
+    &:focus
+      outline: 1px solid black
 
-  li
-    margin-bottom: .5em
-    width: 32px
-    height: 32px
-    margin: 0 8px
-    display: flex
-    justify-content: center
-    align-items: center
-    color: $light
-    background-color: lighten($accent-color, 30)
-    cursor: pointer
-    border-radius: 50%
-    opacity: .8
-    transition: .2s ease-out
+.rating-value
+  margin-bottom: .5em
+  width: 32px
+  height: 32px
+  display: flex
+  justify-content: center
+  align-items: center
+  color: $light
+  background-color: lighten($accent-color, 30)
+  cursor: pointer
+  border-radius: 50%
+  opacity: .8
+  transition: .2s ease-out
 
 .rating-value-active
   opacity: 1 !important

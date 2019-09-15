@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackButton default to homepage 1`] = `
+<div>
+  <a
+    class="back-to-home"
+    href="/"
+    title="home"
+  >
+    ←
+    <span>
+      Back to
+       
+      home
+    </span>
+  </a>
+   
+</div>
+`;

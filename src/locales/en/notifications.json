@@ -12,7 +12,22 @@
     "success": "Reservation submitted. We will get back to you shortly. You will soon be redirected to the homepage."
   },
   "message": {
-    "success": "Message sent. We will get back to you shortly. You will soon be redirected to the homepage."
+    "validation": {
+      "error": {
+        "title": "Required fields",
+        "body": "{{fields}} are required, but were not filled out."
+      }
+    },
+    "submit": {
+      "success": {
+        "title": "Message sent",
+        "body": "Message ({{id}}) has been received. We will get back to you shortly. You will be soon redirected to the homepage."
+      },
+      "error": {
+        "title": "Message was not sent",
+        "body": "Error: {{message}}"
+      }
+    }
   },
   "feedback": {
     "submit-error": "{{message}}",

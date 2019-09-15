@@ -1,0 +1,83 @@
+@for $i from 1 through length($rooms)
+  #szoba-#{$i} 
+    .room-slider-dot
+      color: nth($rooms, $i)
+
+.room-slider-container
+  grid-area: slider
+  display: grid
+  grid-template-areas: "slide slide" "dots next"
+  justify-items: start
+  margin-bottom: 24px
+
+.room-slider
+  grid-area: slide
+  position: relative
+  
+  justify-self: flex-end
+
+.room-first-slide
+  box-shadow: 0 0 30px 2px black
+  animation: animate-forward .6s forwards
+
+.room-placeholder-slide
+  position: absolute
+  animation: animate-back .6s forwards
+  background-color: $accent-color-dark  
+
+.room-first-slide, .room-slider-dots, .room-slider-next-btn
+  position: relative
+  z-index: 100
+
+.room-slider-dots, .room-slider-next-btn
+  margin-top: -24px
+
+.room-slider-dots
+  grid-area: dots
+  align-self: flex-start
+  padding: 0 .5em
+  pointer-events: none
+
+.room-slider-dot
+  margin: 3px
+  padding: 3px
+  width: 24px
+  height: 24px
+  transition: color .625s
+  color: $accent-color
+  text-shadow: 1px 2px 4px black
+
+.active-slide
+  color: $light !important
+
+.room-slider-next-btn
+  justify-self: end
+  grid-area: next
+  box-shadow: 0 0 10px black
+  position: relative
+  width: 48px
+  height: 48px
+  margin-right: -6px
+  border-radius: 50%
+  display: flex
+  justify-content: center
+  align-content: center
+  &:after
+    content: ''
+    width: 24px
+    height: 24px
+    position: relative
+    background:
+      image:  url("../../assets/icons/arrow_thick.svg")
+      repeat: no-repeat
+      size: cover
+
+@media (min-aspect-ratio: 9/6), (min-width: 640px)
+  .room-slider-next-btn
+    margin-right: 24px
+  .room-slider-container
+    margin: -24px 0 0 24px
+  .room-placeholder-slide
+    top: 24px
+    right: 24px
+    left: -64px

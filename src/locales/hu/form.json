@@ -3,7 +3,7 @@
     "title": "Személyi adatok"
   },
   "fields": {
-    "name": "teljes név",
+    "name": "név",
     "email": "e-mail",
     "phone": "telefon",
     "address": "lakcím",
@@ -15,16 +15,24 @@
     "age-group": "{{ageGroup}} év",
     "selected-child": "{{number}}. gyerek",
     "breakfast": "reggeli",
-    "half-board": "félpanzió"
+    "half-board": "félpanzió",
+    "content": "tartalom",
+    "message": "üzenet",
+    "coffee": "kávé",
+    "cleanliness": "tisztaság",
+    "comfort": "komfort",
+    "food": "étel",
+    "services": "szolgáltatások",
+    "staff": "személyzet"
   },
   "errors": {
     "name": "Érvénytelen név",
     "email": "Érvénytelen e-mail",
-    "phone": "Érvénytelen telefonszám",
+    "phone": "Érvénytelen szám",
     "address": "Érvénytelen lakcím",
     "period": "A foglalás legalább egy éjszakát kell, hogy tartalmazzon",
-    "from": "Legkorábbi érkezés holnap.",
-    "to": "Legkorábbi távozos holnapután.",
+    "from": "Legkorábbi érkezés holnap",
+    "to": "Legkorábbi távozos holnapután",
     "date-label": "Érvénytelen {{value, dateLabel}}",
     "adults": "Érvénytelen felnőtt",
     "children": "Érvénytelen gyerek",
@@ -32,8 +40,9 @@
     "selected-child": "Érvénytelen {{number}}. gyerek",
     "breakfast": "Érvénytelen reggeli",
     "half-board": "Érvénytelen félpanzió",
-    "content": "Kérjük ne hagyja üresen az üzenet tartalmát.",
-    "customId": "A foglalás nem található. Helyesen írta be az URL-t? Kérjük vegye fel velünk a kapcsolatot."
+    "content": "Kérjük töltse ki az alábbi mezőt",
+    "customId": "A foglalás nem található",
+    "rating": "Érvénytelen értékelés"
   },
   "send": "Küldés"
 }

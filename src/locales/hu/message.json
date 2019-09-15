@@ -4,11 +4,11 @@
   },
   "details": {
     "title": "Üzenet részletei",
-    "subject": {
-      "title": "Az üzenet témája",
-      "event-hall": "Rendezvényterem",
-      "full-house": "Teljes ház",
-      "special-request": "Egyedi ajánlat",
+    "subjects": {
+      "title": "téma",
+      "eventHall": "Rendezvényterem",
+      "fullHouse": "Teljes ház",
+      "special": "Egyedi ajánlat",
       "other": "Egyéb"
     },
     "content": {

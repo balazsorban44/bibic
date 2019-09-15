@@ -1,5 +1,5 @@
 import QueryString from "query-string"
-import {validator} from "./validate"
+import {validators} from "./validate"
 import {TOMORROW} from "./constants"
 import {isDate} from "date-fns"
 import {filterObject} from "utils"
@@ -70,7 +70,7 @@ export const valueToState = (key, value) => {
   case "mealPlan":
     return ["breakfast", "halfBoard"].includes(value) ? value : "breakfast"
   case "subject":
-    return validator.subject({subject: value}) ? value : "other"
+    return validators.subject({subject: value}) ? value : "other"
   case "coffee":
   case "cleanliness":
   case "comfort":

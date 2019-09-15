@@ -1,11 +1,10 @@
-import {TOMORROW, TODAY, NUMBER_OF_ROOMS} from './constants'
+import {TOMORROW, TODAY, NUMBER_OF_ROOMS} from "./constants"
 import {
   isAfter,
   differenceInCalendarDays,
   startOfDay,
   endOfDay
-} from 'date-fns'
-import getPrice from 'db/reservation/getPrice'
+} from "date-fns"
 
 
 const nameRe = new RegExp(/[\s.áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z-]+/)
@@ -13,37 +12,53 @@ const emailRe = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^
 const phoneRe = new RegExp(/^\+?[0-9-\s]+/)
 const addressRe = new RegExp(/[\s.\-,/áéíóöőúüűÁÉÍÓÖŐÚÜŰa-zA-Z0-9]+/)
 
-export const validator = {
-  roomId: ({roomId=0}) => (0 < roomId) && (roomId <= NUMBER_OF_ROOMS),
-  name: ({name}, _, strict) => (!strict && name === "") || nameRe.test(name),
-  email: ({email}, _, strict) => (!strict && email === "") || emailRe.test(email),
-  phone: ({phone}, _, strict) => (!strict && phone === "") || phoneRe.test(phone),
-  address: ({address}, _, strict) => (!strict && address === "") || addressRe.test(address),
-  mPhone: ({phone}) => phone === "" || phoneRe.test(phone),
-  mAddress: ({address}) => address === "" || addressRe.test(address),
-  message: ({message}) => typeof message === "string",
-  from: ({from}) => isAfter(from, TODAY),
-  to: ({to}) => isAfter(to, TOMORROW),
-  period: ({from, to}) => differenceInCalendarDays(endOfDay(to), startOfDay(from)) >= 1,
-  adults: ({adults}) => typeof adults === "number" && adults,
-  children: ({children}) => Array.isArray(children) &&
-    children.every(child => ["0-6", "6-12"].includes(child)),
-  peopleCount: ({adults, children}, {maxPeople}) => adults + children.length <= maxPeople,
-  subject: ({subject}) => ["eventHall", "fullHouse", "special", "other"].includes(subject),
-  mealPlan: ({mealPlan}) => ["breakfast", "halfBoard"].includes(mealPlan),
-  coffee: ({coffee}) => validator.rating(coffee),
-  cleanliness: ({cleanliness}) => validator.rating(cleanliness),
-  comfort: ({comfort}) => validator.rating(comfort),
-  food: ({food}) => validator.rating(food),
-  services: ({services}) => validator.rating(services),
-  staff: ({staff}) => validator.rating(staff),
-  rating: rating => rating >= 0 && rating < 6,
-  content: ({content}) => typeof content === "string" && content.length,
-  id: ({id}) => typeof id === "string",
-  customId: ({customId}) => typeof customId === "string" && customId.startsWith("sz-"),
-  price: ({price, ...reservation}, {room}) => typeof price === "number" && price === getPrice(reservation, room)
+
+export const subjects = {
+  EVENT_HALL: "eventHall",
+  FULL_HOUSE: "fullHouse",
+  SPECIAL: "special",
+  OTHER:  "other"
 }
 
+export const mealPlans = {
+  BREAKFAST: "breakfast",
+  HALF_BOARD: "halfBoard"
+}
 
-export const validate = (validations, reservation, validatorDependencies) =>
-  validations.filter(name => !validator[name](reservation, validatorDependencies, true))
+export const rating = value => typeof value === "number" && value > 0 && value < 6
+export const reservationId = value => typeof value === "string"
+export const lng = value => ["en", "hu"].includes(value)
+
+export const validators = (_, submitting) => ({
+  roomId: typeof _.roomId === "number" && 0 < _.roomId && _.roomId <= NUMBER_OF_ROOMS,
+  name:  typeof _.name && (submitting ? nameRe.test(_.name) : true),
+  email: typeof _.email && (submitting ? emailRe.test(_.email) : true),
+  phone: typeof _.phone && (submitting ? phoneRe.test(_.phone) : true),
+  address: typeof _.address && (submitting ? addressRe.test(_.address) : true),
+  country:  true,
+  message:  typeof _.message === "string",
+  from:  isAfter(_.from, TODAY),
+  to:  isAfter(_.to, TOMORROW),
+  period:  differenceInCalendarDays(endOfDay(_.to), startOfDay(_.from)) >= 1,
+  adults:  typeof _.adults === "number" && !!_.adults,
+  children:  Array.isArray(_.children) && _.children.every(child => ["0-6", "6-12"].includes(child)),
+  subject:  Object.values(subjects).includes(_.subject),
+  mealPlan:  Object.values(mealPlans).includes(_.mealPlan),
+  coffee: rating(_.coffee),
+  cleanliness: rating(_.cleanliness),
+  comfort: rating(_.comfort),
+  food: rating(_.food),
+  services: rating(_.services),
+  staff: rating(_.staff),
+  content:  typeof _.content === "string" && _.content !== "",
+  id:  typeof _.id === "string",
+  customId:  typeof _.customId === "string" && _.customId.startsWith("sz-"),
+  // TODO:
+  price:  true,
+  // price: ({price, ...reservation}, {room}) => typeof _.price === "number" && price === getPrice(reservation, room),
+  lng: lng(_.lng)
+})
+
+
+export const validate = (validations, reservation, validatorsDependencies) =>
+  validations.filter(name => !validators[name](reservation, validatorsDependencies, true))

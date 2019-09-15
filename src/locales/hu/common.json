@@ -22,5 +22,9 @@
   "subtitles": {
     "foods": "Vendégházunkban éttermet nem üzemeltetünk, ezért az ételek kiválasztása előre szükséges, ételeket kizárólag szállóvendégeink részére készítünk, a falusi vendégasztal keretén belül."
   },
-  "not-available": "A tartalom nem elérhető"
+  "not-available": "A tartalom nem elérhető",
+  "404": "Hmm... Ez az oldal sajnos nem létezik.",
+  "relative-date": "{{value, relative-date}}",
+  "reserved-rooms": "A foglaló szobája",
+  "reserved-rooms_plural": "A foglaló szobái"
 }
