@@ -1,25 +1,18 @@
-import React, {Suspense, useEffect, lazy, useState} from "react"
+import React, {Suspense, useEffect, useState} from "react"
 
 import {useNotification} from "hooks"
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 import {TOMORROW} from "utils/constants"
-import colors from "utils/colors"
 
 import {enGB} from "date-fns/locale"
 import {useTranslation} from "react-i18next"
 import {Input} from "ui"
+import colors from "ui/utils/colors"
 
 const formatFromTo = ({startDate: from, endDate: to}) => ({from, to})
 
 
-/*
- *  NOTE: Implemented locally
- * @see https://github.com/Adphorus/react-date-range/pull/246
- */
-
-
-const DateRangePicker =
-  lazy(() => import("lib/react-date-range/components/DateRangePicker"))
+const DateRangePicker = () => <div>FIXME:</div>
 
 
 export default ({onChange, roomId, from, to}) => {
@@ -54,13 +47,6 @@ export default ({onChange, roomId, from, to}) => {
     }
     fetchOverlaps()
   }, [notify, roomId])
-
-
-  useEffect(() => {
-    const fetchDateRangePickerCSS = async () =>
-      await import("lib/react-date-range/theme/default.css")
-    fetchDateRangePickerCSS()
-  }, [])
 
   const [locale, setLocale] = useState(enGB)
 
@@ -100,7 +86,7 @@ export default ({onChange, roomId, from, to}) => {
     startDate: temp.from || from.value,
     endDate: temp.to || to.value,
     key: "selection",
-    color: colors.accent.primary
+    color: colors.accentColor
   }
 
 

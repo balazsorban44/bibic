@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Button from "ui/Button"
 
 export class RoomSlider extends Component {
   static defaultProps = {delay: 10000, pictures: []}
@@ -44,8 +45,9 @@ export class RoomSlider extends Component {
           activeIndex={activeIndex}
           length={max}
         />
-        <button
-          className="button room-slider-next-btn"
+        <Button
+          circle
+          className="room-slider-next-btn"
           onClick={this.handleTick}
         />
       </div>

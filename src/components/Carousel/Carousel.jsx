@@ -2,7 +2,7 @@ import React from "react"
 
 import Slide from "react-reveal/Slide"
 
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 import useScrollTo from "hooks/useScrollTo"
 
 import CarouselWrapper from "./CarouselWrapper"

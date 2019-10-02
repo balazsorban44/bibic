@@ -2,10 +2,10 @@ import React from "react"
 import {useTranslation} from "react-i18next"
 import {RoomSlider} from "./RoomSlider"
 import {Link} from "react-router-dom"
-import Button from "components/Button/Button"
-import Text from "components/Text"
+import Button from "ui/Button"
+import Text from "ui/Text"
 import useGallery from "hooks/data/useGallery"
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 import useRoomFacility from "hooks/data/useRoomFacility"
 
 export const Room = ({id, name, description}) => {
@@ -31,13 +31,13 @@ export const Room = ({id, name, description}) => {
       <div className="room-services">
         {facilities
           .map(({key, name, icon}) =>
-            <img
-              alt={name}
+            <div
               className="room-service service-in-room"
               key={key}
-              src={icon}
               title={name}
-            />
+            >
+              <img alt={name} src={icon} />
+            </div>
           )
         }
       </div>
@@ -45,7 +45,6 @@ export const Room = ({id, name, description}) => {
         className="room-reserve-btn"
         color={`room-${id}`}
         component={Link}
-        fullWidth
         size="large"
         style={{justifySelf: "center"}}
         to={`foglalas?roomId=${id}`}

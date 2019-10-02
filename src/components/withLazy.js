@@ -1,5 +1,5 @@
 import React, {Suspense} from "react"
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 
 const withLazy = Component => (props, {fallback}=null) => (
   <Suspense fallback={fallback || <Loading/>}>

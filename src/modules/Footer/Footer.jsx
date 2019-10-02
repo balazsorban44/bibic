@@ -9,6 +9,7 @@ import youtube from "assets/icons/youtube.svg"
 
 import {useTranslation} from "react-i18next"
 import Map from "./Map"
+import Button from "ui/Button"
 
 const Contact = () => {
   const [t] = useTranslation("footer")
@@ -32,19 +33,40 @@ const Contact = () => {
             </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517" rel="noopener noreferrer" target="_blank" >
+            <Button
+              circle
+              color="none"
+              component="a"
+              href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <img alt="" src={facebook}/>
-            </a>
+            </Button>
           </li>
           <li>
-            <a href="https://www.instagram.com/explore/tags/bibicvendeghaz/" rel="noopener noreferrer" target="_blank" >
+            <Button
+              circle
+              color="none"
+              component="a"
+              href="https://www.instagram.com/explore/tags/bibicvendeghaz/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <img alt="" src={instagram}/>
-            </a>
+            </Button>
           </li>
           <li>
-            <a href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517" rel="noopener noreferrer" target="_blank" >
+            <Button
+              circle
+              color="none"
+              component="a"
+              href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <img alt="" src={youtube}/>
-            </a>
+            </Button>
           </li>
         </ul>
       </div>

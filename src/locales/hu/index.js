@@ -1,6 +1,6 @@
 import common from "./common.json"
 import introduction from "./introduction.json"
-import services from "./services.json"
+import facilities from "./facilities.json"
 import rooms from "./rooms.json"
 import prices from "./prices.json"
 import feedbacks from "./feedbacks.json"
@@ -14,7 +14,7 @@ import form from "./form.json"
 export default {
   common,
   introduction,
-  services,
+  facilities,
   rooms,
   prices,
   feedbacks,

@@ -16,7 +16,7 @@ const Link = lazy(() => import("react-scroll/modules/components/Link"))
 
 const menu = [
   {to:"bemutatkozas", name: "intro"},
-  {to:"szolgaltatasok", name: "services"},
+  {to:"szolgaltatasok", name: "facilities"},
   {to:"szobak", name: "rooms"},
   {to:"arak", name: "prices"},
   {to:"etelek", name: "foods", component: RouteLink},
@@ -66,7 +66,7 @@ export default function Menu() {
             onClick={toggleMenu}
           ><span/><span/><span/></div>
         </Fade>
-        <a
+        <div
           className="menu-logo"
           href={process.env.REACT_APP_BASE_URL}
         >
@@ -80,7 +80,7 @@ export default function Menu() {
               src={bibic}
             />
           </picture>
-        </a>
+        </div>
         <nav>
           <Suspense fallback={null}>
             <Fade

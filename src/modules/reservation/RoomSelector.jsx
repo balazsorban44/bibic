@@ -1,8 +1,8 @@
 import React, {memo} from "react"
 import {useTranslation} from "react-i18next"
 
-import Loading from "components/Loading"
-import Button from "components/Button/Button"
+import Loading from "ui/Loading"
+import Button from "ui/Button"
 import useRoom from "hooks/data/useRoom"
 
 export default memo(({onChange, selected, adults, childrenProp: children}) => {

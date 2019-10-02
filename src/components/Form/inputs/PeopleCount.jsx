@@ -1,16 +1,8 @@
 import React from "react"
 import {useTranslation} from "react-i18next"
+import Button from "ui/Button"
 
-export default ({
-  required=false,
-  min=0,
-  max=0,
-  name="",
-  label="",
-  placeholder="",
-  value=0,
-  onChange
-}) => {
+const PeopleCount = ({required, min, max, name, label, placeholder, value, onChange}) => {
 
   const handleChange = ({target: {name, value: v}}) => {
     v = parseInt(v, 10)
@@ -28,17 +20,35 @@ export default ({
         <input id={name} readOnly value={value}/>
       </label>
       <div className="number-controls">
-        <button
-          {...{name}}
+        <Button
+          circle
+          name={name}
           onClick={handleChange}
+          size="small"
           value={value - 1}
-        >-</button>
-        <button
-          {...{name}}
+        >-</Button>
+        <Button
+          circle
+          name={name}
           onClick={handleChange}
+          size="small"
           value={value + 1}
-        >+</button>
+        >
+          +
+        </Button>
       </div>
     </div>
   )
 }
+
+PeopleCount.defaultProps = {
+  required: false,
+  min: 0,
+  max: 0,
+  name: "",
+  label: "",
+  placeholder: "",
+  value: 0
+}
+
+export default PeopleCount

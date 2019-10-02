@@ -7,10 +7,11 @@ import {Send, FormGroup} from "components/Form"
 import {Input} from "ui"
 import useForm from "another-use-form-hook"
 import {validators, rating as validateRating, reservationId as validateReservationId, lng as validateLng} from "utils/validate"
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 import getParams from "utils/getParams"
 import "./feedback-form.sass"
 import useLanguage from "hooks/data/useLanguage"
+import Text from "ui/Text"
 
 
 const FeedbackForm = ({location: {search}}) => {
@@ -80,7 +81,9 @@ const FeedbackForm = ({location: {search}}) => {
   return(
     result.type ?
       <FeedbackDone>
-        <h1>{t(`form.${result.type}.text`, {message: result.message})}</h1>
+        <Text variant="h1">
+          {t(`form.${result.type}.text`, {message: result.message})}
+        </Text>
         <img
           alt={t(`form.${result.type}.alt`)}
           className={result.type}

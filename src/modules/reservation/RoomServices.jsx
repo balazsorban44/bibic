@@ -1,7 +1,7 @@
 import React from "react"
 import {useTranslation} from "react-i18next"
 
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 import useSubscription from "hooks/useSubscription"
 
 export default ({selected}) => {

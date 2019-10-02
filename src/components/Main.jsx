@@ -1,6 +1,6 @@
 import React from "react"
 import Sunflower from "modules/Sunflower"
-import Services from "modules/Services"
+import Services from "modules/Facilities"
 import Rooms from "modules/Rooms"
 import Prices from "modules/Prices"
 import Feedbacks from "modules/Feedbacks"

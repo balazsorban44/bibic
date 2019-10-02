@@ -14,6 +14,7 @@ import {validators, mealPlans} from "utils/validate"
 import {TOMORROW} from "utils/constants"
 import getParams from "utils/getParams"
 import useRoom from "hooks/data/useRoom"
+import Text from "ui/Text"
 
 
 const onNotify = (...args) => console.log(...args)
@@ -87,15 +88,19 @@ export default function Reservation({location: {search}}) {
           {...{from, to, adults, children, mealPlan, message}}
         />
       </FormSection>
-      <Send
-        disabled={loading}
-        onClick={handleSubmit}
-      >
-        {t("send")}
-        <span className="footnote-asterix">
-          {toPrice(r.price.value)}
-        </span>
-      </Send>
+      <div className="center" style={{margin: 16}}>
+        <Send
+          disabled={loading}
+          onClick={handleSubmit}
+        >
+          <Text variant="h3">
+            {t("send")}
+          </Text>
+          <span className="footnote-asterix">
+            {toPrice(r.price.value)}
+          </span>
+        </Send>
+      </div>
       <Footnote/>
     </form>
   )

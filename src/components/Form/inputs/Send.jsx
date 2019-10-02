@@ -1,11 +1,12 @@
-import React, {memo} from "react"
+import React from "react"
+import Button from "ui/Button"
 
-const Send = memo(props =>
-  <button
-    className="submit"
+const Send = props =>
+  <Button
+    circle
+    size="xl"
     type="submit"
     {...props}
   />
-)
 
 export default Send

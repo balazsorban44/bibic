@@ -5,5 +5,5 @@ export default {
   FOODS: "/etelek",
   EVENTS: "/rendezvenyek",
   MESSAGE: "/uzenet",
-  SERVICES: "/szolgaltatasok"
+  FACILITIES: "/szolgaltatasok"
 }

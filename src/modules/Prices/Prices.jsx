@@ -6,8 +6,9 @@ import routes from "utils/routes"
 
 
 import "./prices.sass"
-import Button from "components/Button/Button"
-import Text from "components/Text"
+import Button from "ui/Button"
+import Text from "ui/Text"
+import Section from "ui/Section"
 
 const options = [
   {title: 6000, to: routes.RESERVE},
@@ -19,8 +20,10 @@ const options = [
 export default function Prices() {
   const [t] = useTranslation("prices")
   return (
-    <section id="arak">
-      <h2>{t("title")}</h2>
+    <Section
+      id="arak"
+      title={t("title")}
+    >
       <Fade cascade up>
         <ul className="price-list">
           {options.map(({title, to}, index) => {
@@ -54,6 +57,6 @@ export default function Prices() {
         </div>
       </Link>
       <p>{t("footnote")}</p>
-    </section>
+    </Section>
   )
 }

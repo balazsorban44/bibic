@@ -12,7 +12,7 @@ import Providers from "modules/context"
 import {ChatFAB} from "components/Pinned"
 import BackButton from "components/BackButton"
 import NotFound from "components/NotFound"
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
 import withLazy from "components/withLazy"
 
 
@@ -35,7 +35,7 @@ const FeedbackForm = Loadable({
 })
 
 const ServicesPage = Loadable({
-  loader: () => import("modules/Services/ServicesPage"),
+  loader: () => import("modules/Facilities/FacilitiesPage"),
   loading: Loading
 })
 
@@ -60,8 +60,8 @@ function App () {
             <>
               <Landing/>
               <Introduction/>
-              <ChatFAB/>
               <Main/>
+              <ChatFAB/>
             </>
           }
         />
@@ -102,7 +102,7 @@ function App () {
         />
         <Route
           component={ServicesPage}
-          path={routes.SERVICES}
+          path={routes.FACILITIES}
         />
         <Route component={NotFound}/>
       </Switch>

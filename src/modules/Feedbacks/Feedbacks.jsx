@@ -5,9 +5,10 @@ import Fade from "react-reveal/Fade"
 import Stars from "./Stars"
 
 import "./feedbacks.sass"
-import Text from "components/Text"
+import Text from "ui/Text"
 import useSubscription from "hooks/useSubscription"
-import Loading from "components/Loading"
+import Loading from "ui/Loading"
+import Section from "ui/Section"
 
 export default function Feedbacks() {
   const [t] = useTranslation("feedbacks")
@@ -25,8 +26,10 @@ export default function Feedbacks() {
   })
 
   return (
-    <section id="visszajelzesek">
-      <h2>{t("title")}</h2>
+    <Section
+      id="visszajelzesek"
+      title={t("title")}
+    >
       <Fade left>
         <div>
           <Text variant="h3">{t("ratings")}</Text>
@@ -59,7 +62,7 @@ export default function Feedbacks() {
           }
         </ul>
       </div>
-    </section>
+    </Section>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from "react"
-import Text from "./Text"
+import Text from "../ui/Text"
 
 export const GalleryImage = ({sizes: {SIZE_640, SIZE_1024, SIZE_1440}, alt}) =>
   <picture>

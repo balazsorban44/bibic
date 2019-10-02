@@ -21,4 +21,3 @@
 #### This project was built on the fantastic  [Create React App](https://github.com/facebook/create-react-app) 🎉
 
 ### created by [Balázs Orbán](https://new.balazsorban.com) ✍
-

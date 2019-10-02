@@ -38,8 +38,8 @@ i18n
     }
   }).then(async () => {
     formatDate = (await import("date-fns/format")).default
+    hu = (await import("date-fns/locale/hu")).default
     formatDistance = (await import("date-fns/formatDistance")).default
-    hu = (await import("date-fns/locale/hu"))
   })
 
 export default i18n
