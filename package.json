@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "date-fns": "^2.0.0-alpha.26",
-    "deep-equal": "^1.0.1",
+    "deep-equal": "^2.0.1",
     "firebase": "^6.0.2",
     "google-map-react": "^1.1.4",
     "query-string": "^6.2.0",
