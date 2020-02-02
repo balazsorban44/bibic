@@ -16,7 +16,7 @@ describe("Calendar component", () => {
   const props = {
     overlaps: [{start: new Date(), end: addWeeks(new Date(), 1)}],
     fetchOverlaps: jest.fn(),
-    rooms: [{unavailable: format(addMonths(new Date(), 1), "YYYY-MM-dd", {awareOfUnicodeTokens: true})}],
+    rooms: [{unavailable: format(addMonths(new Date(), 1), "yyyy-MM-dd", {awareOfUnicodeTokens: true})}],
     reservation: {
       roomId: 1,
       from: new Date(),
@@ -46,8 +46,8 @@ describe("Calendar component", () => {
       wrapper.childAt(0).instance().handleSelect(change)
       expect(spy).toBeCalledWith(change)
       expect(props.updateReservation).toBeCalledTimes(2)
-      expect(props.updateReservation).toBeCalledWith("from", format(change.selection.startDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
-      expect(props.updateReservation).toBeCalledWith("to", format(change.selection.endDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
+      expect(props.updateReservation).toBeCalledWith("from", format(change.selection.startDate, "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
+      expect(props.updateReservation).toBeCalledWith("to", format(change.selection.endDate, "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
       expect(sendNotification).toBeCalledWith("calendarSelectSuccess")
     })
 
@@ -87,8 +87,8 @@ describe("Calendar component", () => {
      *   const endDate = TOMORROW.clone().add(3, "week").toDate()
      *   dateRangePicker.simulate("change", {selection: {startDate, endDate}})
      *   expect(props.updateReservation).toBeCalledTimes(2)
-     *   expect(props.updateReservation).toBeCalledWith("from", format(startDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
-     *   expect(props.updateReservation).toBeCalledWith("to", format(endDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
+     *   expect(props.updateReservation).toBeCalledWith("from", format(startDate, "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
+     *   expect(props.updateReservation).toBeCalledWith("to", format(endDate, "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
      *   expect(sendNotification).toBeCalledWith("calendarSelectSuccess")
      * })
      */

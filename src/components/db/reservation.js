@@ -12,14 +12,13 @@ export const getPrice = (room, reservation) => {
       foodService, from, to
     } = reservation
     let {adults, children} = reservation
+
     adults = room.prices.table[foodService][adults]
+
     if (!adults) return price
     children = children.filter(child => child==="6-12").length
-    if (children) {
-      price = adults[children].price
-    } else {
-      price = adults[0].price
-    }
+
+    price = adults[children || 0]?.price ?? 0
     // If interval chosen, price times the days
     if (from && to) {
       return price*differenceInCalendarDays(to, from)
@@ -81,7 +80,7 @@ export const submitReservation = (reservation, isReserving, resetReservation, cl
           RESERVATIONS_FS_REF
             .add({
               ...reservation,
-              id: `${format(from, "YYYYMMdd", {awareOfUnicodeTokens: true})}-sz${roomId}`,
+              id: `${format(from, "yyyyMMdd", {awareOfUnicodeTokens: true})}-sz${roomId}`,
               roomId: [roomId],
               lastHandledBy: "",
               timestamp: TIMESTAMP,

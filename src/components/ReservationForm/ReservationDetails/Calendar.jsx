@@ -39,8 +39,8 @@ class Calendar extends Component {
 
   handleSelect = ({selection: {startDate, endDate}}) => {
     const {updateReservation} = this.props
-    updateReservation("from", format(startDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
-    updateReservation("to", format(endDate, "YYYY-MM-dd", {awareOfUnicodeTokens: true}))
+    updateReservation("from", format(new Date(startDate), "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
+    updateReservation("to", format(new Date(endDate), "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
     sendNotification("calendarSelectSuccess")
   }
 

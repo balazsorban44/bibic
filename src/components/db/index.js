@@ -141,7 +141,7 @@ export class Database extends Component {
           overlaps
             .reduce((acc, {start, end}) => [
               ...acc,
-              ...eachDayOfInterval({start, end: endOfDay(subDays(end, 1))})
+              ...eachDayOfInterval({start: new Date(start), end: endOfDay(subDays(new Date(end), 1))})
             ], [])})
       }
     } catch (error) {

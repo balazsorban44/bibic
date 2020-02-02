@@ -38,7 +38,7 @@ describe("Date component", () => {
 
     describe("Value", () => {
       it("formatted date if specified", () => {
-        expect(wrapper.find("input").prop("value")).toBe(format(props.value, "YYYY. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}))
+        expect(wrapper.find("input").prop("value")).toBe(format(props.value, "yyyy. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}))
       })
 
       it("Message if not specified", () => {

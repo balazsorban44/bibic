@@ -19,7 +19,7 @@ const Date = ({
       id={name}
       readOnly
       {...{name}}
-      value={value ? format(value, "YYYY. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}) : "Nincs megadva"}
+      value={value ? format(value, "yyyy. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}) : "Nincs megadva"}
     />
   </div>
 )
