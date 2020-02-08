@@ -7,9 +7,9 @@ import {
 import {valueToState} from '../../utils/validate'
 import {CLOUD_FUNCTION_BASE_URL} from '../../utils/constants'
 
-import deepEqual from "deep-equal"
+import {withNotification} from 'lib/notification'
 
-import {sendNotification} from "./notification"
+import {initialState} from './initialState'
 import {submitMessage} from './message'
 import {submitFeedback, subscribeToFeedbacks} from './feedback'
 import {fetchData, subscribeToDatabase} from './fetch'
@@ -71,7 +71,7 @@ export class Database extends Component {
       this.updateByURL(this.props.location.search, true)
 
     } catch (error) {
-      sendNotification("error", "Adatbázis hiba. Kérjük vegye fel velünk a kapcsolatot.")
+      this.props.notify({type: "error", content: error.message})
     }
 
   }
@@ -236,4 +236,4 @@ export class Database extends Component {
 }
 
 
-export default withRouter(Database)
+export default withRouter(withNotification(Database))
