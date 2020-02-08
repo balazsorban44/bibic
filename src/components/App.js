@@ -7,6 +7,7 @@ import {routes} from '../utils/constants'
 import Top from "./Top"
 import NotFound from "./NotFound"
 import {Loading} from './shared/Elements'
+import Footer from './Footer'
 
 
 /**
@@ -81,6 +82,7 @@ const App = () =>
       />
       <Route component={NotFound}/>
     </Switch>
+      <Footer/>
   </>
 
 
