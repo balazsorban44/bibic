@@ -83,7 +83,7 @@ const Footer = () => {
         </ul>
       </div>
       <div id="copyright">
-        <h4>{t("footer.rights-reserved")}</h4>
+        <h4>{`${t("footer.rights-reserved")} ${new Date().getFullYear()}.`}</h4>
         <h4>
           {t("footer.pictures-and-design")}
           <a
