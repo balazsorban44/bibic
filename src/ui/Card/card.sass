@@ -1,0 +1,51 @@
+@import "ui/_vars"
+
+.card
+    border-radius: 50%
+    position: relative
+    width: $card-size-sm
+    height: $card-size-sm
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+    .btn
+        background-color: $light
+        color: $accent-color-dark
+            
+
+.card-color-1
+    background-color: $price-1
+.card-color-2
+    background-color: $price-2
+.card-color-3
+    background-color: $price-3
+.card-color-4
+    background-color: $price-4
+
+
+@media (min-width: 580px)
+    .card
+        width: auto
+        height: auto
+        background-color: $light
+        border-radius: 1em
+        min-height: $card-size-lg
+        padding-top: $card-size-lg / 2
+        margin-top: $card-size-lg / 2 !important
+        .btn
+            color: $light
+
+    .card-color-1
+        .card-header, .card-actions .btn
+            background-color: $price-1
+    .card-color-2
+        .card-header, .card-actions .btn
+            background-color: $price-2
+    .card-color-3
+        .card-header, .card-actions .btn
+            background-color: $price-3
+    .card-color-4
+        .card-header, .card-actions .btn
+            background-color: $price-4

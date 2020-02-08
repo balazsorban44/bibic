@@ -1,5 +1,10 @@
+#szobak h2
+  padding-top: 1rem
+
 .room
   margin: 10% 5%
+  h3
+    text-align: center
 
   .room-services
     position: relative
@@ -10,13 +15,11 @@
     display: flex
     background-color: transparent
     flex-wrap: wrap
+    justify-content: flex-end
 
   .room-service
     margin: .5em
-    width: 18px
-    height: 18px
     filter: invert(1)
-    min-width: 0
 
 .room-title
   position: relative
@@ -31,6 +34,9 @@
   position: relative
   z-index: 100
   text-align: center
+
+.room-reserve-btn
+  margin-bottom: 1em
 
 .room-unavailable-reserve-btn
   opacity: .3
@@ -70,6 +76,7 @@
       grid-area: services
 
   .room-reserve-btn
+    margin-bottom: 0
     grid-area: res-btn
 
   .room-title
@@ -79,23 +86,13 @@
 
   .room-description
     padding: 0
-    text-align: left
-    margin-right: 1em
+    text-align: right
     grid-area: desc
     
-@media (min-width: 1280px)
+@media (min-width: 1024px)
   .room
-    max-width: 1024px
+    max-width: 960px
     grid-template-columns: 1fr 1fr 60%
-  // .room-reserve-btn
-  //   margin-right: 2.5em
-//   .rooms
-//     margin: 2.5%
-//     display: grid
-//     grid-gap: 2.5%
-//     grid-template-columns: repeat(2, 1fr)
-//   .room
-//     margin: 0
 
 
 @import 'room-slider'

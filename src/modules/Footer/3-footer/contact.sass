@@ -1,3 +1,4 @@
+
 #logos
   display: none
 #reachout
@@ -10,26 +11,28 @@
 
   a
     font-family: "Coolvetica", sans-serif
-    transition: .3s
+    // transition: .3s
     border-bottom: none
     color: $dark
-    &:hover
-      color: $accent-color-2
+    transition: none
+    &:focus
+      background-color: $light
+      color: $accent-color-dark
   img
     width: 48px
     height: 48px
-    transition: .3s
+    // transition: .3s
   span
     display: none
 
 
 @media (min-width: 640px)
-  #logos, #reachout a
-    img
-      transition: .2s
+  // #logos, #reachout a
+  //   img
+  //     transition: .2s
 
-  #logos img:hover, #reachout a:hover img
-    transform: scale(.9)
+  // #logos img:hover, #reachout a:hover img
+  //   transform: scale(.9)
 
   
   #reachout

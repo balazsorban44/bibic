@@ -1,0 +1,53 @@
+@import 'ui/_vars'
+
+#napraforgo
+  background:
+    color: #614902
+    size: cover
+  position: relative
+  overflow: hidden
+  
+  .gallery
+    margin: 2em 0
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    img
+      background-color: transparentize($accent-color-dark, .1)
+      color: $light
+      font-size: .6em
+      text-align: center
+      align-items: center
+      margin: .25em
+      min-width: 160px
+      border: 4px solid $accent-color-3
+      height: 200px
+
+
+@media (min-width: 480px)
+  #napraforgo
+    p
+      margin: auto
+      max-width: 90%
+
+@media (min-width: 760px)
+  #napraforgo
+    background-color: #cc9900
+
+@media (min-aspect-ratio: 3/2)
+  #napraforgo
+    background: linear-gradient(0deg, transparent, transparentize(#000000, .2)), url("./sunflower.jpg")
+    background-size: cover
+    p
+      max-width: 720px
+    display: flex
+    align-items: flex-end
+    flex-direction: column
+    background-color: transparent
+    .gallery
+      justify-content: flex-end
+      img
+        transition: .2s
+        margin-right: 1em
+        &:hover
+          transform: scale(1.05)

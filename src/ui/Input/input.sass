@@ -2,13 +2,13 @@
 
 .input-box
   position: relative
-  margin: 1em
   min-height: 32px
   display: flex
   align-items: baseline
   justify-content: flex-end
   font-family: "Coolvetica", sans-serif
   letter-spacing: .1em
+  padding-bottom: 2px
   border-bottom: 2px solid black
   
   label
@@ -21,11 +21,17 @@
     transition: .3s background-color
     font-family: "Coolvetica", sans-serif
     text-align: right
+    font-size: .9em
     border: none
     &::placeholder
       color: transparentize(grey, .6)
+  textarea, input
     &:focus
-      background-color: transparentize($dark, .95)
+      background-color: transparent !important
+      outline: 2px solid $accent-color-dark !important
+      color: $dark !important
+      &::placeholder
+        color: transparent
 
 .input-error
   box-sizing: border-box
@@ -66,10 +72,6 @@
   .input-box
     position: relative
     min-width: calc(50% - 2em)
-
-  .footnote
-    padding-top: 1em
-    min-width: 90%
   
 @keyframes shake
   0%, 100%

@@ -1,40 +1,36 @@
 import React from "react"
-import {withRouter, Link} from "react-router-dom"
+import {useHistory, useLocation, Link} from "react-router-dom"
 import {useTranslation} from "react-i18next"
+import Button from "ui/Button"
+import Icon from "ui/Icon"
+import arrow_thick from "assets/icons/arrow_thick.svg"
 
-const BackButton = withRouter(props => {
-  const [t] = useTranslation("common")
-  const {location: {search}, history: {goBack}} = props
-  const customReturn = new URLSearchParams(search).get("vissza")
-  const title = t(customReturn || "homepage")
-  return(
-    customReturn ?
-      <button
-        className="back-to-home"
-        onClick={goBack}
-        title={title}
-      >
-        <Title {...{title}}/>
-      </button> :
-      <Link
-        className="back-to-home"
-        title={title}
-        to="/"
-      >
-        <Title {...{title}}/>
-      </Link>
-  )
-})
+const BackButton = props => {
+  const {goBack} = useHistory()
+  const {search} = useLocation()
 
-const Title = ({title}) => {
+  const notToHome = new URLSearchParams(search).get("vissza")
+
   const [t] = useTranslation("common")
   return (
-    <>
-      ←
-      <span>
-        {t("back-to")} {t(title)}
-      </span>
-    </>
+    <Button
+      {...(notToHome
+        ? {onClick: goBack}
+        : {
+          component: Link,
+          to: "/"
+        }
+        )}
+      leftIcon={
+        <Icon
+          src={arrow_thick}
+          style={{transform: "rotate(180deg)"}}
+        />
+      }
+      {...props}
+    >
+      {t("back-to")}: {t(notToHome || "homepage")}
+    </Button>
   )
 }
 

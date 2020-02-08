@@ -6,7 +6,7 @@ import Fade from "react-reveal/Fade"
 import {useTranslation} from "react-i18next"
 import withLazy from "components/withLazy"
 import {useScrolled, useSize} from "hooks"
-
+import "./menu.sass"
 const LanguageSelector =
   () => withLazy(lazy(() => import("components/LanguageSelector")))(undefined, {fallback: null})
 
@@ -64,29 +64,31 @@ export default function Menu() {
           <div
             className={`hamburger ${menuOpen ? "hamburger-clicked" : ""}`}
             onClick={toggleMenu}
+            onKeyUp={e => e.key === "Enter" && toggleMenu()}
+            role="button"
+            tabIndex={0}
           ><span/><span/><span/></div>
         </Fade>
         <div
           className="menu-logo"
           href={process.env.REACT_APP_BASE_URL}
         >
-          <picture>
-            <source
-              media="(min-aspect-ratio: 7/6) and (min-width: 1024px)"
-              srcSet={logo}
-            />
-            <img
-              alt="logo"
-              src={bibic}
-            />
-          </picture>
+          <h1>
+            <picture>
+              <source
+                media="(min-aspect-ratio: 7/6) and (min-width: 1024px)"
+                srcSet={logo}
+              />
+              <img
+                alt={t("title")}
+                src={bibic}
+              />
+            </picture>
+          </h1>
         </div>
-        <nav>
-          <Suspense fallback={null}>
-            <Fade
-              cascade
-              down
-            >
+        {menuOpen || mdUp ?
+          <nav>
+            <Suspense fallback={null}>
               <ul className="nav-menu">
                 {menu.map(({name, to, component: Component=Link, offset=-64}) =>
                   <li key={to}>
@@ -94,7 +96,9 @@ export default function Menu() {
                       offset={mdUp ? offset : 0}
                       onClick={hideMenu}
                       onMouseEnter={() => to==="szobak" && showRoomMenu()}
+                      role="link"
                       smooth={Component === Link || undefined}
+                      tabIndex={0}
                       to={to}
                     >
                       {t(`menu.${name}`)}
@@ -103,9 +107,9 @@ export default function Menu() {
                 )}
                 <LanguageSelector/>
               </ul>
-            </Fade>
-          </Suspense>
-        </nav>
+            </Suspense>
+          </nav> : null
+        }
         <Suspense fallback={null}>
           <RoomMenu
             mdUp={mdUp}

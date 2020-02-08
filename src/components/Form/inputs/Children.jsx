@@ -5,25 +5,25 @@ import {useTranslation} from "react-i18next"
 
 const ageGroups = ["0-6", "6-12"]
 
-export default ({values, max, name, onChange, required, label}) => {
+export default ({values, max, name, onChange, label}) => {
   const [t] = useTranslation("reservation")
 
   const handleChange = ({children: value}) => {
-
-    let v = [...values]
-    if (v.length < value) {
-      v.push("6-12")
-      v = v.slice(0, max)
+    let newChildren = [...values]
+    if (newChildren.length < value) {
+      newChildren.push("6-12")
+      newChildren = newChildren.slice(0, max)
     }
-    if (v.length > value) v.pop()
 
-    onChange({children: v})
+    if (newChildren.length > value) newChildren.pop()
+
+    onChange({children: newChildren})
   }
 
   const handleSelect = ({target: {name: index, value}}) => {
-    const v = [...values]
-    v[index] = ageGroups.includes(value) ? value : "6-12"
-    onChange({children: v})
+    const newChildren = [...values]
+    newChildren[index] = ageGroups.includes(value) ? value : "6-12"
+    onChange({children: newChildren})
   }
 
 
@@ -33,9 +33,10 @@ export default ({values, max, name, onChange, required, label}) => {
   return (
     <>
       <PeopleCount
-        {...{required, name, label, max}}
+        {...{name, label, max}}
         onChange={handleChange}
         placeholder={0}
+        required
         value={v.length}
       />
       <div className="children-age">

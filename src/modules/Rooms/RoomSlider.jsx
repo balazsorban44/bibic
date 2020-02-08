@@ -1,59 +1,59 @@
-import React, {Component} from "react"
+import React, {useState, useEffect, useCallback} from "react"
 import Button from "ui/Button"
+import {useTranslation} from "react-i18next"
+import {useRoomGallery} from "hooks/data/useGallery"
 
-export class RoomSlider extends Component {
-  static defaultProps = {delay: 10000, pictures: []}
 
-  state = {activeIndex: 0, max: 0}
+export const RoomSlider = ({room, delay}) => {
+  const pictures = useRoomGallery(room)[0]
+    .sort((a, b) => a.order - b.order)
 
-  componentDidMount() {
-    const {delay, pictures} = this.props
-    this.setState({max: pictures.length}, () => {
-      this.interval = setInterval(this.handleTick, delay)
-    })
-  }
 
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  handleTick = () => {
-    this.setState(({activeIndex: prevIndex}) => {
-      const incrementedIndex = prevIndex + 1
-      return ({activeIndex: incrementedIndex >= this.state.max ? 0 : incrementedIndex})
-    })
-  }
-
-  render() {
-    const {pictures} = this.props
-    const {activeIndex, max} = this.state
-    return(
-      <div className="room-slider-container">
-        <ul className="room-slider">
-          {pictures
-            .sort((a, b) => a.order - b.order)
-            .map((picture, index) =>
-              <Slide
-                active={activeIndex===index}
-                index={index}
-                key={index}
-                {...picture}
-              />
-            )}
-        </ul>
-        <Dots
-          activeIndex={activeIndex}
-          length={max}
-        />
-        <Button
-          circle
-          className="room-slider-next-btn"
-          onClick={this.handleTick}
-        />
-      </div>
+  const handleTick = useCallback(() => {
+    setActiveIndex(prevIndex =>
+      prevIndex + 1 === pictures.length ? 0 : prevIndex + 1
     )
-  }
+  }, [pictures.length])
+
+  useEffect(() => {
+    const tick = setInterval(handleTick, delay)
+    return () => clearInterval(tick)
+  }, [delay, handleTick])
+
+  const [t] = useTranslation("common")
+
+  return(
+    <div className="room-slider-container">
+      <ul className="room-slider">
+        {pictures
+          .map((picture, index) =>
+            <Slide
+              active={activeIndex===index}
+              index={index}
+              key={index}
+              {...picture}
+            />
+          )}
+      </ul>
+      <Dots
+        activeIndex={activeIndex}
+        length={pictures.length}
+      />
+      <Button
+        alt={t("next-slide")}
+        circle
+        className="room-slider-next-btn"
+        onClick={handleTick}
+      />
+    </div>
+  )
 }
+
+
+RoomSlider.defaultProps = {delay: 10000}
+
 
 export const Slide = ({active, index, fileName, SIZE_640, SIZE_1024, SIZE_1440}) =>
   <li
@@ -79,7 +79,7 @@ export const Slide = ({active, index, fileName, SIZE_640, SIZE_1024, SIZE_1440})
 
 export const Dots = ({length, activeIndex}) =>
   <div className="room-slider-dots">
-    {Array(length).fill().map((_e, i) =>
+    {Array.from({length}).map((_, i) =>
       <span
         children="•"
         className={

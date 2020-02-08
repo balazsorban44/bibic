@@ -23,7 +23,6 @@ const People = ({maxPeople, adults, children, onChange}) => {
       max={maxPeople - adults}
       name="children"
       onChange={onChange}
-      required
       values={children}
     />
   ]

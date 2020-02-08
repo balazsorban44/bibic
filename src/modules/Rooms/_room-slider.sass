@@ -1,3 +1,34 @@
+@keyframes animate-back
+  0%
+    filter: none
+    opacity: 1
+    z-index: 99
+    bottom: 0
+  40%
+    transform: scale(.95) translateX(90%)
+  100%
+    transform: scale(.9)
+    z-index: 9
+    opacity: .9
+    filter: blur(2px)
+    bottom: -20%
+    opacity: .4
+
+@keyframes animate-forward
+  0%
+    transform: scale(.9)
+    z-index: 9
+    opacity: .9
+    filter: blur(2px)
+    bottom: -20%
+  40%
+    transform: scale(.95)
+  100%
+    bottom: 0
+    transform: none
+    z-index: 99
+
+
 @for $i from 1 through length($rooms)
   #szoba-#{$i} 
     .room-slider-dot
@@ -12,8 +43,7 @@
 
 .room-slider
   grid-area: slide
-  position: relative
-  
+  position: relative  
   justify-self: flex-end
 
 .room-first-slide

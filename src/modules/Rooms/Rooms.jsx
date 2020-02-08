@@ -20,7 +20,7 @@ const Rooms = () => {
       title={
         <Text
           data-subtitle={t("subtitle")}
-          variant="h2"
+          component="h2"
         >
           {t("title")}
         </Text>

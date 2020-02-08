@@ -1,35 +1,44 @@
 import React from "react"
-import {useTranslation} from "react-i18next"
 
 import Loading from "ui/Loading"
+import Icon from "ui/Icon"
+import clsx from "clsx"
 import useSubscription from "hooks/useSubscription"
 
-export default ({selected}) => {
-  const [t] = useTranslation("reservation")
-  const [value, loading] = useSubscription({ref: "roomServices", initialState: []})
+export default ({
+  roomId,
+  iconProps={width: 24},
+  showCaption = true,
+  title = null
+}) => {
+  const [facilities, loading] = useSubscription({ref: "roomServices"})
+
+  if (loading) {
+    return <Loading/>
+  }
 
   return (
     <>
-      <h5>{t("room-facilities")}</h5>
-        <div className="room-services">
-          {loading ? <Loading/> :
-            Object.entries(value).map(([key, {inRoom, name, icon}]) =>
-              <div
-                className={`room-service ${
-                  Object.values(inRoom).includes(selected) ?
-                    "service-in-room" :
-                    ""
-                }`}
-                key={key}
-              >
-                <img
-                  alt={name}
-                  src={icon}
-                />
-                <span>{name}</span>
-              </div>
+      {title}
+      <div className="room-services">
+        {Object.entries(facilities).map(([key, {inRoom, name, icon}]) =>
+          <div
+            className={clsx(
+              "room-service",
+              {"service-in-room": Object.values(inRoom).includes(roomId)}
             )}
-        </div>
+            key={key}
+          >
+            <Icon
+              alt={name}
+              src={icon}
+              title={name}
+              {...iconProps}
+            />
+            {showCaption ? <span>{name}</span> : null}
+          </div>
+        )}
+      </div>
     </>
   )
 }

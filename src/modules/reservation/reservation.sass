@@ -1,6 +1,22 @@
-@import "../../sass/ESSENTIALS/vars"
+@import "ui/_vars"
 @import "../../sass/form"
 
+#foglalas
+  background-color: $light
+  h2
+    color: $accent-color-dark
+    text-shadow: none
+  h4, h5
+    color: $accent-color-dark
+
+.submit-reservation
+  margin: 16px
+  display: flex
+  justify-content: center
+  button 
+    display: flex
+    span
+      display: block
 
 @for $i from 1 through length($rooms)
   #szoba-#{$i} 
@@ -16,14 +32,15 @@
     flex-grow: 1
 
 .children-age
+  grid-column: 1/-1
   flex-grow: 1
   display: flex
   justify-content: flex-end
   flex-wrap: wrap
 
 .child-age
-  max-width: 170px
-  margin: 1em
+  min-width: auto
+  margin: 1em .5em
   select
     padding: .5em
 
@@ -61,7 +78,7 @@
 .room-picker-room
   opacity: .5
 
-.room-active, .room-picker-room:hover
+.room-active, .room-picker-room:hover,  .room-picker-room:focus
   opacity: 1
 
 .room-services
@@ -123,5 +140,3 @@
   .room-services
     // @extend .form-group
     margin-left: 0
-
-@import "calendar"

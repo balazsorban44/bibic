@@ -24,7 +24,7 @@ const Paragraphs = ({
 
 const Paragraph = props => ({text}, index) =>
   <Fade bottom key={index}>
-    <Text variant="p" {...props}>
+    <Text component="p" {...props}>
       {text}
     </Text>
   </Fade>

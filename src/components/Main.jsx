@@ -1,15 +1,15 @@
 import React from "react"
 import Sunflower from "modules/Sunflower"
-import Services from "modules/Facilities"
-import Rooms from "modules/Rooms"
+import Facilities from "modules/Facilities"
 import Prices from "modules/Prices"
+import Rooms from "modules/Rooms"
 import Feedbacks from "modules/Feedbacks"
 import Footer from "modules/Footer"
 
 export default () =>
   <>
     <Sunflower/>
-    <Services/>
+    <Facilities/>
     <Rooms/>
     <Prices/>
     <Feedbacks/>

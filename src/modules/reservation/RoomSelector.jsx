@@ -4,13 +4,19 @@ import {useTranslation} from "react-i18next"
 import Loading from "ui/Loading"
 import Button from "ui/Button"
 import useRoom from "hooks/data/useRoom"
+import clsx from "clsx"
+import {useHistory, useLocation} from "react-router"
+import RoomServices from "./RoomServices"
+import Text from "ui/Text"
 
-export default memo(({onChange, selected, adults, childrenProp: children}) => {
+export default memo(({onChange, roomId, adults, childrenProp: children}) => {
   const [t] = useTranslation("reservation")
 
   const [rooms, loading] = useRoom()
 
-  const handleChange = id => {
+  const history = useHistory()
+  const location = useLocation()
+  const handleChange = id => () => {
     /*
      * Correct adults and children, if selected room
      * has less place than the currently selected
@@ -21,28 +27,41 @@ export default memo(({onChange, selected, adults, childrenProp: children}) => {
     while(a + c.length > maxPeople) c.pop()
     while(a > maxPeople) a-=1
 
+    const searchParams = new URLSearchParams(location.search)
+    searchParams.set("roomId", id)
+    history.push(`${location.pathname }?${ searchParams.toString()}`)
+
     onChange({roomId: parseInt(id, 10), adults: a, children: c}, [])
   }
 
   return (
     <>
-      <h4>{t("select")} {selected ? `(${t("room-selected", {roomNumber: selected})})` : ""}</h4>
+      <h4>{t("select")} {roomId ? `(${t("room-roomId", {roomNumber: roomId})})` : ""}</h4>
       {loading ? <Loading/> :
         <div className="room-picker">
-          {Object.values(rooms).map(RoomToSelect({selected, handleChange}))}
+          {Object.values(rooms).map(({id}) =>
+            <RoomToSelect active={roomId === id} id={id} key={id} onClick={handleChange(id)}/>
+          )}
         </div>
       }
+      <RoomServices
+        roomId={roomId}
+        title={<Text component="h5">{t("room-facilities")}</Text>}
+      />
     </>
   )
 })
 
-const RoomToSelect = ({selected, handleChange}) => ({id}) =>
+const RoomToSelect = ({id, active, onClick}) =>
   <Button
-    children={id}
     circle
-    className={`room-picker-room ${selected === id ? "room-active" : ""}`}
+    className={clsx(
+      "room-picker-room",
+      {"room-active": active}
+    )}
     color={`room-${id}`}
     id={`szoba-${id}`}
     key={id}
-    onClick={() => handleChange(id)}
-  />
+    onClick={onClick}
+    type="button"
+  >{id}</Button>

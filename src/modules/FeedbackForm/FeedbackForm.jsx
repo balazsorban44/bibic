@@ -81,7 +81,7 @@ const FeedbackForm = ({location: {search}}) => {
   return(
     result.type ?
       <FeedbackDone>
-        <Text variant="h1">
+        <Text component="h1">
           {t(`form.${result.type}.text`, {message: result.message})}
         </Text>
         <img

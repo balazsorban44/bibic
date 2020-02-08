@@ -17,27 +17,31 @@ export const GalleryImage = ({sizes: {SIZE_640, SIZE_1024, SIZE_1440}, alt}) =>
     />
   </picture>
 
-export const GalleryItem = ({SIZE_1024, SIZE_1440, SIZE_640, desc, title}) =>
-  desc ?
-    <div className="gallery-item">
-      <div className="img-wrapper">
-        <GalleryImage
-          alt={desc}
-          sizes={{
-            SIZE_640,
-            SIZE_1024,
-            SIZE_1440
-          }}
-        />
+export const GalleryItem = ({SIZE_1024, SIZE_1440, SIZE_640, desc, title, fileName}) =>
+  desc
+    ? (
+      <div className="gallery-item">
+        <div className="img-wrapper">
+          <GalleryImage
+            alt={desc || fileName}
+            sizes={{
+              SIZE_640,
+              SIZE_1024,
+              SIZE_1440
+            }}
+          />
+        </div>
+        <Text component="h3">{title}</Text>
+        <Text component="p">{desc}</Text>
       </div>
-      <Text variant="h4">{title}</Text>
-      <Text variant="p">{desc}</Text>
-    </div> :
-    <GalleryImage
-      alt={title}
-      sizes={{
-        SIZE_640,
-        SIZE_1024,
-        SIZE_1440
-      }}
-    />
+      )
+    : (
+      <GalleryImage
+        alt={title || fileName}
+        sizes={{
+          SIZE_640,
+          SIZE_1024,
+          SIZE_1440
+        }}
+      />
+    )

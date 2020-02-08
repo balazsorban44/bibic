@@ -3,7 +3,8 @@ import {differenceInCalendarDays} from "date-fns"
 
 /**Get the price of a room */
 export default function getPrice(reservation, room) {
-  let price= 0
+
+  let price = 0
   if (!room || !reservation) return price
   else {
     const {mealPlan, from, to} = reservation

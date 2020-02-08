@@ -1,0 +1,48 @@
+@import "ui/_vars"
+
+
+#szolgaltatasok
+  .gallery
+    margin: 5em auto
+  .gallery-item
+    margin: 1em 0
+    background-color: $light
+    img
+      min-height: 160px
+      user-select: none
+    .img-wrapper
+      overflow: hidden
+      max-height: calc(320px * 0.54)
+      display: flex
+      align-items: flex-end
+      img
+        width: 100%
+        margin: auto
+    h3, p
+      color: $accent-color-dark
+    h3
+      text-shadow: none
+      font-size: 1.5em
+      padding: .5em
+      letter-spacing: .05em
+    p
+      font-size: 1em
+      padding: 0 1em 1em
+
+@media (min-width: 640px)
+  #szolgaltatasok
+    .gallery
+      margin: 2em 0
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-evenly
+    .gallery-item
+      max-width: 30%
+      img
+        min-height: 0
+    .more
+      position: absolute
+      right: 0
+      margin-right: 15%
+      bottom: 0
+      margin-bottom: calc(2.5% + .15em)

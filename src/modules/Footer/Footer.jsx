@@ -10,11 +10,14 @@ import youtube from "assets/icons/youtube.svg"
 import {useTranslation} from "react-i18next"
 import Map from "./Map"
 import Button from "ui/Button"
+import "./footer.sass"
+import {Link} from "ui/Text"
+import Section from "ui/Section"
 
-const Contact = () => {
+const Footer = () => {
   const [t] = useTranslation("footer")
   return (
-    <footer id="kapcsolat">
+    <Section component="footer" id="kapcsolat" title={t("title")}>
       <div className="contact">
         <ul id="reachout">
           <li>
@@ -70,25 +73,19 @@ const Contact = () => {
           </li>
         </ul>
       </div>
+      <Map/>
       <div id="copyright">
-        <h4>{t("all-rights-reserved")}.</h4>
-        {/* NOTE: Background and foreground colors do not have a sufficient contrast ratio. */}
-        <h4>
-          {t("images-design")} :  <a href="https://www.facebook.com/gergo.boos" rel="noopener noreferrer" target="_blank" >Boós Gergő</a>
-        </h4>
-        <h4>
-          {t("code-design")} : <a href="https://balazsorban.com" rel="noopener noreferrer" target="_blank" >Orbán Balázs</a>
-        </h4>
-        <h6>{t("version")}: {process.env.REACT_APP_VERSION}</h6>
+        <h3>
+          {t("code-design")} : <Link href="https://balazsorban.com" rel="noopener noreferrer" target="_blank" >Orbán Balázs</Link>
+        </h3>
+        <h3>
+          {t("images-design")} :  <Link href="https://www.facebook.com/gergo.boos" rel="noopener noreferrer" target="_blank" >Boós Gergő</Link>
+        </h3>
+        <p>{t("all-rights-reserved")}.</p>
+        {/* <h3>{t("version")}: {process.env.REACT_APP_VERSION}</h3> */}
       </div>
-    </footer>
+    </Section>
   )
 }
-
-const Footer = () =>
-  <>
-    <Map/>
-    <Contact/>
-  </>
 
 export default Footer

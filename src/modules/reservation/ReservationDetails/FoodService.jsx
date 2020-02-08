@@ -1,36 +1,45 @@
-import React, {memo} from "react"
+import React from "react"
 import {useTranslation} from "react-i18next"
 import {Input} from "ui"
+import useForm from "another-use-form-hook"
+import {mealPlans} from "utils/validate"
 
 // REVIEW: Fetch service types dinamically?
-export default memo(({onChange, value}) => {
-  const [t] = useTranslation("reservation")
+const FoodService = () => {
+  const {handleChange: _handleChange, fields} = useForm({name: "reservation"})
 
-  const handleChange = value => {
-    onChange({mealPlan: Object.values(value)[0]})
+
+  const handleChange = (e) => {
+    console.log(e.target.name, e.target.value)
+    _handleChange(e)
   }
-
+  const [t] = useTranslation("reservation")
   return (
     <>
       <Input
+        checked={fields.mealPlan.value === mealPlans.BREAKFAST}
         className="service"
-        inputProps={{checked: value==="breakfast"}}
+        id={mealPlans.BREAKFAST}
         label={t("fields.breakfast")}
-        name="breakfast"
+        local={false}
+        name="mealPlan"
         onChange={handleChange}
         type="radio"
-        value="breakfast"
+        value={mealPlans.BREAKFAST}
       />
       <Input
-        checked={value==="halfBoard"}
+        checked={fields.mealPlan.value === mealPlans.HALF_BOARD}
         className="service"
-        inputProps={{checked: value==="halfBoard"}}
+        id={mealPlans.HALF_BOARD}
         label={t("fields.half-board")}
-        name="halfBoard"
+        local={false}
+        name="mealPlan"
         onChange={handleChange}
         type="radio"
-        value="halfBoard"
+        value={mealPlans.HALF_BOARD}
       />
     </>
   )
-})
+}
+
+export default FoodService

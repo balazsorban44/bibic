@@ -1,5 +1,5 @@
-import useSubscription from "../useSubscription"
+import useSubscription from "hooks/useSubscription"
 
-const useRoom = () => useSubscription({ref: "rooms", initialState: []})
+const useRoom = () => useSubscription({ref: "rooms"})
 
 export default useRoom

@@ -2,8 +2,8 @@ import React from "react"
 import chat from "assets/icons/chat.svg"
 import Fade from "react-reveal/Fade"
 import {useTranslation} from "react-i18next"
-import Button from "../ui/Button"
-
+import Button from "ui/Button"
+import "./pinned.sass"
 
 export const ChatFAB = () => {
   const [t] = useTranslation("common")

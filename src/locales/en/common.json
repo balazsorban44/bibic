@@ -1,4 +1,5 @@
 {
+  "title": "Bíbic guest houses",
   "menu": {
     "intro": "Introduction",
     "facilities": "Facilities",
@@ -26,5 +27,6 @@
   "404": "Uh oh... This page does not exist.",
   "relative-date": "{{value, relative-date}}",
   "reserved-rooms": "Reviewer's room",
-  "reserved-rooms_plural": "Reviewer's rooms"
+  "reserved-rooms_plural": "Reviewer's rooms",
+  "next-slide": "Next slide"
 }

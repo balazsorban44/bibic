@@ -1,4 +1,5 @@
 {
+  "title": "Bíbic vendégházak",
   "menu": {
     "intro": "Bemutatkozás",
     "facilities": "Szolgáltatások",
@@ -12,7 +13,7 @@
   "messenger-tooltip": "Megtalál minket a Messengeren is",
   "beta": "Tesztoldal",
   "beta-tooltip": "FIGYELEM! Ön a tesztoldalt böngészi. A foglalás és más interakciók valós következménnyel nem járnak, csupán tesztelés céljából elérhetőek. Ha foglalni szeretne, vagy kérdést tenne fel, azt a bibicvendeghazak.hu oldalon teheti meg.",
-  "back-to": "Vissza ide:",
+  "back-to": "Vissza ide",
   "homepage": "főoldal",
   "reservation": "foglalás",
   "titles": {
@@ -26,5 +27,6 @@
   "404": "Hmm... Ez az oldal sajnos nem létezik.",
   "relative-date": "{{value, relative-date}}",
   "reserved-rooms": "A foglaló szobája",
-  "reserved-rooms_plural": "A foglaló szobái"
+  "reserved-rooms_plural": "A foglaló szobái",
+  "next-slide": "Következő kép"
 }

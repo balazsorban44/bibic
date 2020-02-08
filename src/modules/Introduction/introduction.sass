@@ -5,8 +5,59 @@
 .profile
   display: grid
   justify-items: center
+  
   img
     margin-bottom: 1em
     width: 192px
     height: 192px
     border-radius: 50%
+
+.history
+  margin-top: 5% !important
+
+@media (min-width: 768px)
+  .history
+    max-width: 540px
+    margin: 0 auto
+    p
+      margin: 1em 0
+    p::first-letter
+      margin-left: 1em
+      
+
+  .profile
+    h3
+      grid-area: title
+    a 
+      grid-area: link
+    h4
+      grid-area: subtitle
+    
+    grid-gap: 0 2em
+    grid-template-areas: "img ." "img title" "img link" "img subtitle" "img ."
+    img
+      grid-area: img
+      margin-bottom: 0
+      justify-self: end
+    h3,h4,a
+      justify-self: start
+
+    &:first-of-type
+      margin-left: -35vw
+    &:last-of-type
+      margin-left: -20vw
+    &:nth-of-type(odd)
+      h3,h4
+        margin-left: -.25em
+      
+    &:nth-of-type(even)
+      margin: -3.5vw -35vw -3.5vw 0
+      h3,h4
+        margin-right: -.25em
+      h3,h4,a
+        justify-self: end
+
+      img
+        justify-self: start
+      grid-template-areas: ". img" "title img" "link img" "subtitle img" ". img"
+      

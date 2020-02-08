@@ -6,9 +6,9 @@ import {FormGroup} from "components/Form"
 import Calendar from "./Calendar"
 import {useTranslation} from "react-i18next"
 import {Input} from "ui"
+import "./message-box.sass"
 
-
-export default ({onChange, roomId, from, to, adults, children, mealPlan, maxPeople, inputs}) => {
+export default ({onChange, calendarProps, adults, children, mealPlan, maxPeople, inputs}) => {
   const [t] = useTranslation("reservation")
   const [tForm] = useTranslation("form")
 
@@ -20,10 +20,8 @@ export default ({onChange, roomId, from, to, adults, children, mealPlan, maxPeop
         title={t("details.calendar.title")}
       >
         <Calendar
-          from={from}
+          {...calendarProps}
           onChange={onChange}
-          roomId={roomId}
-          to={to}
         />
       </FormGroup>
       <FormGroup
@@ -41,13 +39,13 @@ export default ({onChange, roomId, from, to, adults, children, mealPlan, maxPeop
         className="services"
         footnote={
           <>
-            {t("details.food.footnote.0")}
-            <Link to="etelek?vissza=reservation">{t("details.food.footnote.1")} →</Link>
+            {t("details.food.footnote.0")} <Link to="etelek?vissza=reservation">{t("details.food.footnote.1")}</Link>
           </>
         }
         title={t("details.food.title")}
       >
         <FoodService
+
           onChange={onChange}
           value={mealPlan.value}
         />
@@ -59,7 +57,6 @@ export default ({onChange, roomId, from, to, adults, children, mealPlan, maxPeop
         <Input
           {...inputs.text("message", {
             generateProps: ({name, error}) => ({
-              key: name,
               error,
               label: tForm(`${error ? "errors" : "fields"}.${name}`)
             })
@@ -74,7 +71,7 @@ export default ({onChange, roomId, from, to, adults, children, mealPlan, maxPeop
           className="message-box"
           component="textarea"
           inputProps={{rows: 8}}
-          label={t("details.message.label") /*NOTE: This is set to an empty string in the locales. "" SHAME! 💩
+          label={t("details.message.label")} /*NOTE: This is set to an empty string in the locales. "" SHAME! 💩
           name="message"
           onChange={onChange}
           placeholder={`(${t("details.message.placeholder")})`}

@@ -1,130 +1,63 @@
-import React, {Suspense, useEffect, useState} from "react"
+import React from "react"
 
 import {useNotification} from "hooks"
-import Loading from "ui/Loading"
 import {TOMORROW} from "utils/constants"
 
-import {enGB} from "date-fns/locale"
 import {useTranslation} from "react-i18next"
 import {Input} from "ui"
-import colors from "ui/utils/colors"
+import clsx from "clsx"
+import "./calendar.sass"
+import DateRangePicker from "@wojtekmaj/react-daterange-picker/dist/entry.nostyle"
+import {isSameDay} from "date-fns"
+import useOverlaps from "hooks/useOverlaps"
 
-const formatFromTo = ({startDate: from, endDate: to}) => ({from, to})
 
-
-const DateRangePicker = () => <div>FIXME:</div>
-
-
-export default ({onChange, roomId, from, to}) => {
-  const [t, i18n] = useTranslation("reservation")
+export default ({onChange, roomId, from, to, overlapError, nightError}) => {
+  const [t] = useTranslation("reservation")
   const notify = useNotification()
+  const overlaps = useOverlaps(roomId)
 
-  const [overlaps, setOverlaps] = useState([])
+  const handleDisabledDates = ({date}) => overlaps.some(overlap => isSameDay(date, overlap))
 
-  useEffect(() => {
-    const fetchOverlaps = async () => {
-      try {
-        if (roomId) {
-          const {eachDayOfInterval, endOfDay, subDays} = await import("date-fns")
-          const data = await (await fetch(`${process.env.REACT_APP_CLOUD_FUNCTION_BASE_URL}/getOverlaps?roomId=${roomId}`)).json()
-          const overlaps = []
-          data.forEach(({start, end}) => {
-            overlaps.push(
-              ...eachDayOfInterval({
-                start: new Date(start),
-                end: endOfDay(subDays(new Date(end), 1))
-              })
-            )
-          })
+  const handleSelect = ([from, to]) => onChange({from, to}, ["overlap", "night"])
 
-          setOverlaps(overlaps)
+  const intervalError = overlapError || nightError
 
-        }
-      } catch (error) {
-        console.error(error)
-        notify("error", "fetch-overlaps", {message: error.message})
-      }
-    }
-    fetchOverlaps()
-  }, [notify, roomId])
-
-  const [locale, setLocale] = useState(enGB)
-
-
-  useEffect(() => {
-    const fetchCalendarLocale = async () => {
-      let locale
-      try {
-        switch (i18n.language) {
-        case "hu":
-          locale = await import("date-fns/locale/hu")
-          break
-        case "en":
-        default: break
-        }
-      } catch (error) {
-        console.error(error)
-      } finally {
-        locale && setLocale(locale)
-      }
-    }
-    fetchCalendarLocale()
-  }, [i18n.language])
-
-
-  const [temp, setTemp] = useState({})
-  const handleSelect = ({selection}) => {
-    if (temp.from && temp.to) {
-      onChange(formatFromTo(selection), ["period"])
-      setTemp({})
-    } else setTemp(formatFromTo(selection))
-    notify("success", "calendar-select-success")
-  }
-
-
-  const selected = {
-    startDate: temp.from || from.value,
-    endDate: temp.to || to.value,
-    key: "selection",
-    color: colors.accentColor
-  }
-
-
+  const handleFocusCapture = () => intervalError ? notify("error", "period") : notify("warn", "use-calendar")
   return (
-    <div style={{display: "flex", flexDirection: "column", flex: 1}}>
-      <div style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))"}}>
-        <Input
-          error={from.error}
-          label={t("fields.from")}
-          name="from"
-          onClick={() => notify("warn", "use-calendar")}
-          readOnly
-          required
-          value={t("fields.date-label", {value: selected.startDate})}
-        />
-        <Input
-          error={to.error}
-          label={t("fields.to")}
-          name="to"
-          onClick={() => notify("warn", "use-calendar")}
-          readOnly
-          required
-          value={t("fields.date-label", {value: selected.endDate})}
-        />
-      </div>
-      <Suspense fallback={<Loading />}>
-        <DateRangePicker
-          className={from.error && to.error ? "invalid-period" : ""}
-          direction="vertical"
-          disabledDates={overlaps}
-          inputRanges={[]}
-          locale={locale}
-          minDate={TOMORROW}
-          onChange={handleSelect}
-          ranges={[selected]}
-          staticRanges={[]}
-        />
-      </Suspense>
-    </div>
+    <>
+      <Input
+        error={from.error || intervalError}
+        label={t("fields.from")}
+        name="from"
+        onFocusCapture={handleFocusCapture}
+        readOnly
+        required
+        value={t("fields.date-label", {value: from.value})}
+      />
+      <Input
+        error={to.error || intervalError}
+        label={t("fields.to")}
+        name="to"
+        onFocusCapture={handleFocusCapture}
+        readOnly
+        required
+        value={t("fields.date-label", {value: to.value})}
+      />
+      <DateRangePicker
+        className={clsx(
+          "date-range-picker",
+          {"invalid-interval" : overlapError || nightError}
+        )}
+        isOpen
+        locale="hu-HU"
+        minDate={TOMORROW}
+        onChange={handleSelect}
+        showFixedNumberOfWeeks
+        tileClassName="date-tile"
+        tileDisabled={handleDisabledDates}
+        value={[from.value, to.value]}
+      />
+    </>
   )
 }

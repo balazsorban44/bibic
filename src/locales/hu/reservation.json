@@ -1,7 +1,7 @@
 {
   "title": "Foglalás",
   "select": "Válasszon szobát",
-  "room-selected": "{{roomNumber}}. szoba kiválasztva",
+  "room-roomId": "{{roomNumber}}. szoba kiválasztva",
   "room-facilities": "a szoba szolgáltatásai",
   "personal-details": {
     "footnote": "kötelező (számla kiállításához szükséges)"

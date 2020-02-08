@@ -20,7 +20,7 @@ interface TextProps extends HTMLHeadingElement, HTMLParagraphElement {
    * Type of text element to use 
    * @default "p"
    */
-  variant: TextVariant = "p"
+  component: TextVariant = "p"
   align: TextAlignment = "left"
 }
 

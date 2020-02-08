@@ -15,8 +15,7 @@ export default function Feedbacks() {
 
   const [feedbacks, feedbacksLoading] = useSubscription({
     collection: "feedbacks",
-    where: ["accepted", "==", true],
-    initialState: []
+    where: ["accepted", "==", true]
   })
 
   const [roomRatings, roomRatingsLoading] = useSubscription({
@@ -32,7 +31,7 @@ export default function Feedbacks() {
     >
       <Fade left>
         <div>
-          <Text variant="h3">{t("ratings")}</Text>
+          <Text component="h3">{t("ratings")}</Text>
           <Stars
             title={t("overall")}
             value={roomRatings.avg}
@@ -43,25 +42,23 @@ export default function Feedbacks() {
           </div>
         </div>
       </Fade>
-      <div className="feedback-list-container">
-        <Fade right>
-          <Text variant="h3">{t("you-said")}</Text>
-        </Fade>
-        <ul className="feedback-list">
-          {!feedbacksLoading && feedbacks.length ?
-            feedbacks
-              .filter(({content}) => !/^\**$/.test(content)) // Content is more than *
-              .map( feedback =>
-                <Fade key={feedback.id} right>
-                  <Feedback {...feedback}/>
-                </Fade>
-              ) :
-            <Fade right>
-              {t("no-feedback")}
-            </Fade>
-          }
-        </ul>
-      </div>
+      <Fade right>
+        <div className="feedback-list-container">
+          <Text component="h3">{t("you-said")}</Text>
+          <ul className="feedback-list">
+            {!feedbacksLoading && feedbacks.length ?
+              feedbacks
+                .filter(({content}) => !/^\**$/.test(content)) // Content is more than *
+                .map( feedback =>
+                  <Feedback key={feedback.id} {...feedback}/>
+                ) :
+              <Text>
+                {t("no-feedback")}
+              </Text>
+            }
+          </ul>
+        </div>
+      </Fade>
     </Section>
   )
 }
@@ -84,13 +81,17 @@ export const Feedback = ({content, rooms, timestamp}) => {
 
   return (
     <li className="feedback-list-item">
-      <div className="rooms" title={t("reserved-rooms", {count: rooms.length})}>
+      <div
+        className="rooms"
+        //  title={t("reserved-rooms", {count: rooms.length})}
+        title={content}
+      >
         {rooms.map(room =>
           <span className={`room-circle room-circle-${room}`} key={room}>{room}</span>
         )}
       </div>
-      <p>{content}</p>
-      <h6>{t("relative-date", {value: timestamp.toDate()})}</h6>
+      {/* <Text>{content}</Text> */}
+      <Text component="h6">{t("relative-date", {value: timestamp.toDate()})}</Text>
     </li>
   )
 }

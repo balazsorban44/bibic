@@ -6,6 +6,7 @@ import {GalleryItem} from "components/Gallery"
 import Carousel from "components/Carousel"
 import Section from "ui/Section"
 import {Link} from "react-router-dom"
+import "./facilities.sass"
 
 const Facilities = () => {
   const [t] = useTranslation("facilities")
@@ -21,11 +22,14 @@ const Facilities = () => {
         slider={false}
         type="szolgaltatasaink"
       />
-      <div className="facilities-footer">
-        <Button component={Link} to="szolgaltatasok">
-          {t("more")}
-        </Button>
-      </div>
+      <Button
+        className="more"
+        component={Link}
+        size="large"
+        to="szolgaltatasok"
+      >
+        {t("more")}
+      </Button>
     </Section>
   )
 }

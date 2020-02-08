@@ -2,7 +2,18 @@
 
 .not-found
   position: relative
-  display: grid
-  align-content: center
-  justify-content: center
-  height: 100vh
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  min-height: 100vh
+  justify-content: space-evenly
+  p
+    margin-bottom: 1em
+    
+.not-found-img
+  width: 50vw
+  pointer-events: none
+  user-select: none
+  max-width: 240px
+  align-self: flex-end
+  filter: brightness(10)

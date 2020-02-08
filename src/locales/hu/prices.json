@@ -3,7 +3,7 @@
   "footnote": "*Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
   "options": [
     {
-      "suffix": "-forinttól",
+      "suffix": "forinttól",
       "name": "Többágyas szoba",
       "subtitle": "két- vagy több fő részére",
       "button": "Foglalás"

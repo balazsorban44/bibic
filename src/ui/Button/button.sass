@@ -1,22 +1,17 @@
-@import "../../sass/ESSENTIALS/vars"
-
-@font-face
-  font-family: "White Festive"
-  src:  url("../../assets/fonts/WhiteFestive.otf")
+@import "ui/_vars"
 
 .btn
   border: none
-  border-radius: 1em
   text-transform: uppercase
   border-radius: 1.5em
   font-weight: bolder
   font-family: White Festive, sans-serif
-  padding: .2em 2em 0
+  padding: .2em 1em 0
   font-size: 1.5em
   letter-spacing: .05em
   line-height: 1
   cursor: pointer
-  transition: .2s ease-in
+  transition: background-color .2s ease-in
   color: $light
   background-color: $accent-color
   text-decoration: none
@@ -73,7 +68,7 @@
   border-radius: 50%
   width: 48px
   height: 48px
-  display: "flex"
+  display: flex
   justify-content: center
   align-items: center
 
@@ -91,5 +86,11 @@
   height: 36px
 
 .btn-full-width
-  display: "flex"
-  justify-content: "center"
+  display: flex
+  justify-content: center
+
+.btn-icon img
+  display: inline-block
+  vertical-align: middle
+  height: 100%
+  margin-top: -.25em

@@ -1,0 +1,32 @@
+@import "ui/_vars"
+
+.card-header
+    display: flex
+    align-items: baseline
+    h3
+        font-size: 4em
+        letter-spacing: 0
+        font-weight: lighter
+    span
+        font-size: 2.5rem
+        font-family: White Festive, sans-serif
+        color: $light
+
+@media (min-width: 580px)
+    .card-header
+        position: absolute
+        width: $card-size-lg
+        height: $card-size-lg
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        border-radius: 50%
+        top: - $card-size-lg / 2
+        h3
+            font-weight: lighter
+            text-shadow: none
+            font-size: 3.75em
+            line-height: 1
+            margin-bottom: -.25em
+        span
+            font-size: 1.35em

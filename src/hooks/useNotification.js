@@ -16,7 +16,7 @@ export default function useNotification() {
     toast[type](
       message,
       {
-        heading: heading !== headingPath ? heading : undefined,
+        heading: heading === headingPath ? undefined : heading,
         position: "bottom-right",
         hideAfter: 7.5
       }

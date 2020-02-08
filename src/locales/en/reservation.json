@@ -1,7 +1,7 @@
 {
   "title": "Reservation",
   "select": "Select a room",
-  "room-selected": "Room {{roomNumber}} selected",
+  "room-roomId": "Room {{roomNumber}} selected",
   "room-facilities": "room's facilities",
   "personal-details": {
     "footnote": "required for invoice issuance"
@@ -10,7 +10,7 @@
     "title": "Reservation details",
     "calendar": {
       "title": "arrival/departure",
-      "footnote": "arrive from {{from}}, depart until {{to}}"
+      "footnote": "arrival after {{from}}, departure before {{to}}"
     },
     "people": {
       "title": "people (maximum {{maxPeople}})",

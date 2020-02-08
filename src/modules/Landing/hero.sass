@@ -1,3 +1,5 @@
+@import "ui/_vars"
+
 .hero
   position: relative
   overflow: hidden
@@ -33,7 +35,7 @@
   height: 1.5em
   align-self: end
   margin-top: 2.5vh
-  background-image: url($icons + "/arrow_down.svg")
+  background-image: url("../../assets/icons/arrow_down.svg")
   animation: scroll-arrow 2s infinite
   opacity: 0
   
@@ -60,3 +62,4 @@
 
   .hero-slide img
     transform: none
+    max-width: none

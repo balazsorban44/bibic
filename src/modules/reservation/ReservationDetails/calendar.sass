@@ -1,0 +1,71 @@
+@import "ui/_vars"
+
+.react-daterange-picker__calendar
+  font-family: 'Coolvetica', sans-serif
+  position: relative !important
+  top: 0 !important
+  padding: 1em
+  background-color: $light
+  border-radius: 1em
+
+.react-calendar__month-view__weekdays
+  padding: 1em 0
+  color: #666
+  font-size: .8em
+
+.date-tile
+  background-color: transparent
+  border: none
+  cursor: pointer
+  height: 46px
+  box-sizing: border-box
+  &:hover
+    border: 1px solid $accent-color
+  &:focus
+    color: $dark
+    z-index: 1
+  &:disabled
+    cursor: not-allowed
+    background-color: lightgrey
+    color: #888
+    outline: none
+    &:hover
+      background-color: lightgrey
+    // background-color: $accent-color-dark
+    // outline: none !important
+    
+.react-calendar__tile--rangeStart, .react-calendar__tile--active, .react-calendar__tile--rangeEnd
+  background-color: $accent-color
+  color: $light
+
+.react-daterange-picker__wrapper
+  display: none
+
+
+.react-calendar__month-view__weekdays__weekday
+  display: flex
+  justify-content: center
+  abbr
+    text-decoration: none
+
+.react-calendar__tile--now
+  border-bottom: 4px solid transparentize($accent-color, .9 )
+
+.react-calendar__tile--active
+  &:hover
+    background-color: $accent-color-dark
+  &:focus
+    color: $light
+
+
+
+.react-calendar__tile--rangeStart
+  border-top-left-radius: 50%
+  border-bottom-left-radius: 50%
+.react-calendar__tile--rangeEnd
+  border-top-right-radius: 50%
+  border-bottom-right-radius: 50%
+
+.invalid-period
+  box-sizing: border-box
+  outline: 4px solid $error

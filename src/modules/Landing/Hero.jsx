@@ -8,6 +8,8 @@ import hero2 from "assets/images/hero/2.min.jpg"
 import logo from "assets/icons/logo.min.png"
 import {useSize} from "hooks"
 
+import "./hero.sass"
+
 const Link = lazy(() => import("react-scroll/modules/components/Link"))
 
 const Carousel = makeCarousel(

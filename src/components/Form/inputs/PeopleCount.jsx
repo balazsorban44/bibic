@@ -1,38 +1,52 @@
 import React from "react"
 import {useTranslation} from "react-i18next"
 import Button from "ui/Button"
+import "./people-count.sass"
+import {Input} from "ui"
 
-const PeopleCount = ({required, min, max, name, label, placeholder, value, onChange}) => {
+const PeopleCount = ({min, max, name, value, required, onChange}) => {
 
-  const handleChange = ({target: {name, value: v}}) => {
-    v = parseInt(v, 10)
-    if (v < min) onChange({[name]: min})
-    else if (v > max) onChange({[name]: max})
-    else onChange({[name]: v})
+  const handleChange = type => () => {
+    let newValue = value
+    switch (type) {
+    case "decrease":
+      newValue = value - 1
+      if (newValue < min) return onChange({[name]: min})
+      break
+    case "increase":
+      newValue = value + 1
+      if (newValue > max) return onChange({[name]: max})
+      break
+    default: {}
+    }
+    onChange({[name]: newValue})
   }
 
   const [t] = useTranslation("form")
 
   return (
-    <div className="input-box people-count">
-      <label htmlFor={name}>
-        {t(`fields.${name}`)}
-        <input id={name} readOnly value={value}/>
-      </label>
+    <div className="people-count">
+      <Input
+        id={name}
+        inputProps={{readOnly: true}}
+        label={t(`fields.${name}`)}
+        required={required}
+        value={value}
+      />
       <div className="number-controls">
         <Button
           circle
           name={name}
-          onClick={handleChange}
+          onClick={handleChange("decrease")}
           size="small"
-          value={value - 1}
+          type="button"
         >-</Button>
         <Button
           circle
           name={name}
-          onClick={handleChange}
+          onClick={handleChange("increase")}
           size="small"
-          value={value + 1}
+          type="button"
         >
           +
         </Button>

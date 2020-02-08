@@ -7,14 +7,15 @@ import routes from "utils/routes"
 
 import Landing from "modules/Landing"
 import Introduction from "modules/Introduction"
-import Providers from "modules/context"
 
 import {ChatFAB} from "components/Pinned"
 import BackButton from "components/BackButton"
 import NotFound from "components/NotFound"
 import Loading from "ui/Loading"
 import withLazy from "components/withLazy"
-
+import {withProviders} from "modules/context/Providers"
+import "ui/ResetCSS"
+import Section from "ui/Section"
 
 /**
  * NOTE: Asynchronously fetching Components
@@ -49,9 +50,8 @@ const Main = withLazy(lazy(() => import("components/Main")))
 function App () {
   const [t] = useTranslation("common")
   return (
-    <Providers>
+    <Section main>
       {/* <BetaWarning/> */}
-      <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackButton/>} />
       <Switch>
         <Route
           exact
@@ -106,8 +106,8 @@ function App () {
         />
         <Route component={NotFound}/>
       </Switch>
-    </Providers>
+    </Section>
   )
 }
 
-export default App
+export default withProviders(App)

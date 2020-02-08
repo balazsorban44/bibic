@@ -1,8 +1,7 @@
-import React, {useMemo} from "react"
+import React from "react"
 import {FormSection, Send} from "components/Form"
 import {toPrice} from "utils/language"
 import RoomSelector from "./RoomSelector"
-import RoomServices from "./RoomServices"
 import PersonalDetails from "components/Form/PersonalDetails"
 import ReservationDetails from "./ReservationDetails"
 import Footnote from "./Footnote"
@@ -10,98 +9,77 @@ import Footnote from "./Footnote"
 import "./reservation.sass"
 import {useTranslation} from "react-i18next"
 import useForm from "another-use-form-hook"
-import {validators, mealPlans} from "utils/validate"
-import {TOMORROW} from "utils/constants"
-import getParams from "utils/getParams"
 import useRoom from "hooks/data/useRoom"
 import Text from "ui/Text"
+import Section from "ui/Section"
+import {getPrice} from "./data"
 
 
-const onNotify = (...args) => console.log(...args)
-const onSubmit = (...args) => console.log(args)
+export default function Reservation() {
 
-export default function Reservation({location: {search}}) {
-  const [t] = useTranslation("reservation")
+  const {fields, handleChange, handleSubmit, loading, inputs} = useForm({name: "reservation"})
 
-  const params = getParams(search, "roomId")
-
-  const initialState = useMemo( () => ({
-    roomId: parseInt(params.roomId, 10),
-    from: TOMORROW,
-    to: TOMORROW,
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-    message: "",
-    adults: 1,
-    children: [],
-    mealPlan: mealPlans.BREAKFAST,
-    price: 0
-  }), [params.roomId])
-
-  const [rooms] = useRoom()
-
-
-  const {fields, handleChange, handleSubmit, loading, inputs} = useForm({
-    initialState,
-    validators,
-    onNotify,
-    onSubmit
-  })
-
-
-  const {from, to, adults, children, mealPlan, message, ...r} = fields
+  const {from, to, night, overlap, adults, children, mealPlan, message, ...r} = fields
 
   const roomId = parseInt(r.roomId.value, 10)
 
+
+  const [rooms] = useRoom()
   const room = rooms[roomId-1]
+
+  const price = getPrice(Object.entries(fields).reduce((acc, [key, e]) => ({...acc, [key]: e.value})), room)
 
   const maxPeople = room ? room.prices.metadata.maxPeople : 1
 
+  const [t] = useTranslation("reservation")
+
   return(
-    <form
-      action=""
-      className="form"
-      onSubmit={(e) => e.preventDefault()}
-    >
-      <h2>{t("title")}</h2>
-      <RoomSelector
-        adults={adults.value}
-        childrenProp={children.value}
-        onChange={handleChange}
-        selected={roomId}
-      />
-      <RoomServices selected={roomId}/>
-      <FormSection title={t("personal-details.title")}>
-        <PersonalDetails
-          footnote={t("personal-details.footnote")}
-          inputs={inputs}
-        />
-      </FormSection>
-      <FormSection title={t("details.title")}>
-        <ReservationDetails
-          inputs={inputs}
-          maxPeople={maxPeople}
+    <Section id="foglalas" main title={t("title")}>
+      <form
+        className="form"
+        onSubmit={handleSubmit}
+      >
+        <RoomSelector
+          adults={adults.value}
+          childrenProp={children.value}
           onChange={handleChange}
           roomId={roomId}
-          {...{from, to, adults, children, mealPlan, message}}
         />
-      </FormSection>
-      <div className="center" style={{margin: 16}}>
-        <Send
-          disabled={loading}
-          onClick={handleSubmit}
-        >
-          <Text variant="h3">
-            {t("send")}
-          </Text>
-          <span className="footnote-asterix">
-            {toPrice(r.price.value)}
-          </span>
-        </Send>
-      </div>
-      <Footnote/>
-    </form>
+        <FormSection title={t("personal-details.title")}>
+          <PersonalDetails
+            footnote={t("personal-details.footnote")}
+            inputs={inputs}
+          />
+        </FormSection>
+        <FormSection title={t("details.title")}>
+          <ReservationDetails
+            adults={adults}
+            calendarProps={{roomId, from, to, nightError: night?.error, overlapError: overlap?.error}}
+            children={children}
+            inputs={inputs}
+            maxPeople={maxPeople}
+            mealPlan={mealPlan}
+            message={message}
+            onChange={handleChange}
+          />
+        </FormSection>
+        <div className="submit-reservation">
+          <Send
+            disabled={loading}
+            onClick={handleSubmit}
+          >
+            <div>
+              <Text component="h3">
+                {t("send")}
+              </Text>
+              <span className="footnote-asterix">
+                {toPrice(price)}
+              </span>
+            </div>
+          </Send>
+        </div>
+        <Footnote/>
+      </form>
+    </Section>
   )
 }

@@ -8,7 +8,7 @@ import hegedusne from "assets/images/profiles/hegedusne.jpg"
 import gombkoto from "assets/images/profiles/gombkoto.jpg"
 
 import Loading from "ui/Loading"
-import Text from "ui/Text"
+import Text, { Link } from "ui/Text"
 import Section from "ui/Section"
 
 import "./introduction.sass"
@@ -51,17 +51,18 @@ const Profile = ({t}) => ({name, email, src, role}) =>
   <Zoom duration={600} key={email}>
     <li className="profile">
       <img
-        alt={name}
+        alt={name.family + " " + name.given}
         className="profile-img"
         src={src}
       />
-      <Text variant="h3">
+      <Text component="h3">
         {t("name", {name})}
       </Text>
-      <Text variant="h4">
-        <a href={`mailto:${email}`}>✉ {email} </a>
-      </Text>
-      <Text variant="h5">
+
+      <Link href={`mailto:${email}`}>
+        {email}
+      </Link>
+      <Text component="h4">
         {t(`roles.${role}`)}
       </Text>
     </li>

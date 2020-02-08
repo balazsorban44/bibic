@@ -1,3 +1,14 @@
+@import "ui/_vars"
+
+.flag-select
+  padding: .5rem 0 .5rem 2rem
+.flag-options
+  padding: 0
+.flag-option
+  padding: .5rem 1rem !important
+  &:focus
+    background: $accent-color !important
+
 .menu
   display: grid
   position: fixed
@@ -16,6 +27,8 @@ nav, .room-menu
   transition: .5s
 
 nav
+  position: relative
+  z-index: 1
   grid-area: main-nav
   background-color: $light
   display: flex
@@ -25,13 +38,7 @@ nav
     flex: 1
   ul
     margin: 0
-    flex-direction: column
-    justify-content: space-evenly
-  a
-    align-items: center
-    padding: 1rem 0 1rem 2rem
-    &:hover
-      color: $accent-color
+    display: block
 
   a, .flag-select
     text-transform: uppercase
@@ -41,17 +48,23 @@ nav
     font-size: 2rem
     font-family: "White Festive", sans-serif
 
+  a
+    align-items: center
+    height: 48px
+    padding-left: 2rem
+    &:hover
+      text-decoration: underline
+      color: $accent-color
+      &:focus
+        text-decoration: none
+        color: white
+
+
 .language-selector
   display: grid
   place-items: center
-  order: -1
 
-.flag-select
-  padding: .5rem 0 .5rem 2rem
-.flag-options
-  padding: 0
-.flag-option
-  padding: .5rem 1rem !important
+
 
 .room-menu
   grid-area: room-nav
@@ -92,11 +105,10 @@ nav
 
 .flags-select
   color: $dark !important
-  font-family: 
   img
     display: inline
 
-@import hamburger
+@import "./hamburger"
 
 @media (min-aspect-ratio: 7/6), (min-width: 768px)
   .menu
@@ -108,6 +120,7 @@ nav
       flex-wrap: wrap
     nav
       ul
+        display: flex
         justify-content: center
         align-items: flex-end
         margin: 0
@@ -135,7 +148,6 @@ nav
   .room-menu
     background-color: transparent
     transform: translateY(-100%) !important
-    z-index: -1
     a
       display: flex
       font-size: 1.25em

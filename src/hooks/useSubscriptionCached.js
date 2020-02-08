@@ -65,7 +65,7 @@ const useSubscription = ({
 
   const unsubscribe = () => {
     const subscription = subscriptions.find(s => s.id === id)
-    return subscription && subscription.unsubscribe()
+    return subscription?.()
   }
 
   return [state, loading, unsubscribe]

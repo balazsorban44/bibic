@@ -1,14 +1,16 @@
-@import '../../sass/ESSENTIALS/vars'
+@import '../../ui/vars'
 
 #visszajelzesek
   // min-height: 0
   padding: 0 5% 10%
   h3
     text-align: left
-    margin: .5em 0
+    margin: .5em 
+  .room-circle
+    color: $light
 
 .room-feedbacks
-  display: grid
+  display: inline-grid
   grid-template-columns: repeat(2, 1fr)
   grid-gap: 1em
   margin-top: 1em
@@ -20,22 +22,16 @@ $visible-items: 2
   box-sizing: border-box
   max-height: calc(#{$visible-items} * (54px / 2 + 2.75em))
   border-radius: 12px
-  display: grid
-  grid-gap: 1em
-  overflow-y: scroll
-  max-width: 90vw
 
 .feedback-list-item
-  max-width: 80vw
+  margin: 12px 0
   border: 1px solid $light
-  cursor: pointer
   height: 54px
   .rooms
     display: flex
   padding: .75em .75em 1em
   display: flex
   flex-direction: column
-  overflow: hidden
   background-color: $light
   border-radius: 4px
   position: relative
@@ -89,17 +85,19 @@ $visible-items: 2
       background-color: nth($rooms, $i)
 
 
-@media (min-width: 1024px)
+@media (min-width: 720px)
   #visszajelzesek
+    display: grid
     padding: 0 10vw 5%
     grid-template-columns: repeat(2, 1fr)
+    grid-gap: 1em
 
-    h2
-      grid-column: 1 / -1
+  h2
+    grid-column: 1 / -1
+
   .feedback-list
     justify-self: end
     padding-right: 1em
-    max-height: calc(#{$visible-items} * (54px + 2.75em))
-    max-width: calc(30vw + 4em)
+
   .feedback-list-item
-    max-width: 30vw
+    margin-right: 1em
