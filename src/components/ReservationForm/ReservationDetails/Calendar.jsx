@@ -4,8 +4,8 @@ import {useTranslation} from 'react-i18next'
 import {colors} from 'utils/colors'
 import {Date as DateInput} from 'components/shared/Form'
 import {TOMORROW, CLOUD_FUNCTION_BASE_URL} from 'utils/constants'
-import {DateRangePicker} from "lib/react-date-range"
-import 'lib/react-date-range/theme/default.css'
+import {DateRangePicker} from "react-date-range"
+import 'react-date-range/dist/theme/default.css'
 import {dateFnsLocales} from 'lib/i18n'
 import {eachDayOfInterval, endOfDay, subDays} from 'date-fns'
 
