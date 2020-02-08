@@ -3,59 +3,69 @@ import {Link} from 'react-router-dom'
 import {Loading} from './shared/Elements'
 import {withStore} from "./db"
 import Fade from "react-reveal/Fade"
+import {useTranslation} from 'react-i18next'
 
 export const Rooms = ({
   galleries, rooms, roomServices
-}) =>
-  <section id="szobak">
-    <h2>Szobák</h2>
-    <ul className="rooms">
-      {rooms.length ? rooms.map((room, key) =>
-        <Fade key={key}>
-          <Room
-            pictures={galleries["szobak"] ? galleries["szobak"][key] : undefined}
-            services={roomServices}
-            {...room}
-          />
-        </Fade>
-      ) :
-        <Loading fullPage/>
-      }
-    </ul>
-  </section>
+}) => {
+  const [t] = useTranslation()
+  return (
+    <section id="szobak">
+      <h2>{t("rooms.title")} <span>{t("rooms.subtitle")}</span></h2>
+      <ul className="rooms">
+        {rooms.length ? rooms.map((room, key) =>
+          <Fade key={key}>
+            <Room
+              pictures={galleries["szobak"] ? galleries["szobak"][key] : undefined}
+              services={roomServices}
+              {...room}
+            />
+          </Fade>
+        ) :
+          <Loading fullPage/>
+        }
+      </ul>
+    </section>
+  )
+}
 
 export default withStore(Rooms)
 
 export const Room = ({
-  id, name, description, pictures, services
-}) =>
-  <li
-    className={`room szoba-${id}`}
-    id={`szoba-${id}`}
-  >
-    <h3 className="room-title" >{name}</h3>
-    <RoomSlider pictures={Object.values(pictures)} />
-    <p className="room-description" >{description}</p>
-    <div className="room-services">
-      {services.length ?
-        services
-          .filter(([_key, {inRoom}]) => Object.values(inRoom).includes(id))
-          .map(([key, {name, icon}]) =>
-            <img
-              alt={name}
-              className="room-service service-in-room"
-              key={key}
-              src={icon}
-              title={name}
-            />
-          ) :
-        <Loading/>
-      }
-    </div>
-    <div className="button room-reserve-btn">
-      <Link to={`foglalas?szoba=${id}`}>Lefoglalom</Link>
-    </div>
-  </li>
+  id, description, pictures, services
+}) => {
+  const [t] = useTranslation()
+  const name = t("room", {id})
+  return (
+    <li
+      className={`room szoba-${id}`}
+      id={`szoba-${id}`}
+    >
+      <h3 className="room-title" >{name}</h3>
+      <RoomSlider pictures={Object.values(pictures)} />
+      <p className="room-description" >{description}</p>
+      <div className="room-services">
+        {services.length ?
+          services
+            .filter(([_key, {inRoom}]) => Object.values(inRoom).includes(id))
+            .map(([key, {name, icon}]) =>
+              <img
+                alt={name}
+                className="room-service service-in-room"
+                key={key}
+                src={icon}
+                title={name}
+              />
+            ) :
+          <Loading/>
+        }
+      </div>
+      <div className="button room-reserve-btn">
+        <Link to={`foglalas?roomId=${id}`}>{t("reserve")}</Link>
+      </div>
+    </li>
+  )
+}
 
 
 export class RoomSlider extends Component {

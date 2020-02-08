@@ -1,8 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import PeopleCount from "./PeopleCount"
+import {withTranslation} from 'react-i18next'
 
 
-export default class Children extends Component {
+class Children extends Component {
 
   state = {ageGroups: ["0-6", "6-12"]}
 
@@ -31,7 +32,7 @@ export default class Children extends Component {
 
   render() {
     const {
-      hasFootnote, name, label, max
+      hasFootnote, name, label, max, t
     } = this.props
     const values = [...this.props.values].slice(0, max)
 
@@ -58,7 +59,7 @@ export default class Children extends Component {
                 className="input-box child-age"
                 key={index}
               >
-                <label htmlFor={index}>{index+1}. gyerek</label>
+                <label htmlFor={index}>{index+1}{"."} {t("child")}</label>
                 <select
                   name={index}
                   onChange={this.handleSelect}
@@ -69,7 +70,7 @@ export default class Children extends Component {
                       <option
                         key={ageGroup}
                         value={ageGroup}
-                      >{ageGroup} év
+                      >{ageGroup} {t("year")}
                       </option>
                     )
                   }
@@ -82,3 +83,5 @@ export default class Children extends Component {
     )
   }
 }
+
+export default withTranslation()(Children)

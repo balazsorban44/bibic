@@ -2,56 +2,59 @@ import React from 'react'
 import {Link} from "react-router-dom"
 import {withStore} from './db'
 import Fade from "react-reveal/Fade"
+import {useTranslation} from 'react-i18next'
 
-export const Prices = () =>
-  <section id="arak">
-    <h2>Árak</h2>
-    <Fade
-      cascade
-      up
-    >
+export const Prices = () => {
+  const [t] = useTranslation()
+  return (
+    <section id="arak">
+      <h2>{t("prices.title")}</h2>
+      <Fade
+        cascade
+        up
+      >
 
-      <ul className="price-list">
-        <li>
-          <div className="price-content">
-            <h3>6000<span>-Forinttól<sup>*</sup></span> </h3>
-            <h4>Többágyas szoba</h4>
-            <h5>két- vagy több fő részére</h5>
-          </div>
-          <Link
-            className="price-button"
-            to="foglalas"
-          >
-              Foglalás
-          </Link>
-        </li>
-        <li>
-          <div className="price-content">
-            <h3>6000 <span>Forint/órától<sup>*</sup></span></h3>
-            <h4>Rendezvényterem</h4>
-            <h5>terembérlés</h5>
-          </div>
-          <Link
-            className="price-button"
-            to="uzenet?tema=rendezvenyterem"
-          >
-              Írjon nekünk
-          </Link>
-        </li>
-        <li>
-          <div className="price-content">
-            <h3>90000<span>Forinttól<sup>*</sup></span> </h3>
-            <h4>Teljes ház</h4>
-            <h5>maximum 21 fő</h5>
-          </div>
-          <Link
-            className="price-button"
-            to="uzenet?tema=teljeshaz"
-          >
-              Írjon nekünk
-          </Link>
-        </li>
-        {/* <li>
+        <ul className="price-list">
+          <li>
+            <div className="price-content">
+              <h3>{6000}<span>{t("prices.huf-and-up")}<sup>{"*"}</sup></span></h3>
+              <h4>{t("prices.multibed-room")}</h4>
+              <h5>{t("prices.2-or-more-people")}</h5>
+            </div>
+            <Link
+              className="price-button"
+              to="foglalas"
+            >
+              {t("reserve")}
+            </Link>
+          </li>
+          <li>
+            <div className="price-content">
+              <h3>{6000}<span>{t("prices.huf-per-hour")}<sup>{"*"}</sup></span></h3>
+              <h4>{t("prices.event-hall")}</h4>
+              <h5>{t("prices.hall-rent")}</h5>
+            </div>
+            <Link
+              className="price-button"
+              to="uzenet?subject=eventHall"
+            >
+              {t("prices.write-us")}
+            </Link>
+          </li>
+          <li>
+            <div className="price-content">
+              <h3>{90000}<span>{t("prices.huf-and-up")}<sup>{"*"}</sup></span></h3>
+              <h4>{t("prices.entire-house")}</h4>
+              <h5>{t("prices.max-21-people")}</h5>
+            </div>
+            <Link
+              className="price-button"
+              to="uzenet?subject=entireHouse"
+            >
+              {t("prices.write-us")}
+            </Link>
+          </li>
+          {/* <li>
             <div className="price-content">
               <h3>Csomag<span className="word-break">ajánlatok</span></h3>
             </div>
@@ -59,21 +62,23 @@ export const Prices = () =>
               Több
             </a>
           </li> */}
-        {/* NOTE: Lists do not contain only <li> elements and script supporting elements (<script> and <template>).
+          {/* NOTE: Lists do not contain only <li> elements and script supporting elements (<script> and <template>).
  */}
-      </ul>
-    </Fade>
-    {/* <Link to="uzenet?tema=kulonajanlat">
-          <div className="special">
-            <h4>KÜLÖN</h4>
-            <h5>AJÁNLAT</h5>
-            <span></span>
-          </div>
-        </Link> */}
-    <p>
-          *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
-    </p>
-  </section>
+        </ul>
+      </Fade>
+      <Link to="uzenet?subject=special">
+        <div className="special">
+          <h4>{t("prices.exclusive-deal.0")}</h4>
+          <h5>{t("prices.exclusive-deal.1")}</h5>
+          <span></span>
+        </div>
+      </Link>
+      <p>
+        {t("prices.disclaimer")}
+      </p>
+    </section>
+  )
+}
 
 
 export default withStore(Prices)

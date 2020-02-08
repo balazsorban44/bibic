@@ -1,12 +1,14 @@
 import React, {
   lazy, Suspense, Component
 } from 'react'
-import {Link as RouteLink, withRouter} from 'react-router-dom'
+import {Link as RouteLink, withRouter, useHistory} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
 import Fade from "react-reveal/Fade"
 import {BASE_URL} from '../utils/constants'
+import {withTranslation, useTranslation} from 'react-i18next'
+import LanguageSelector from './LanguageSelector'
 
 const RoomMenu = lazy(() => import("./RoomMenu"))
 
@@ -18,18 +20,18 @@ export class Menu extends Component {
     isScrolled: false,
     isRoomMenuOpen: true,
     menu: [
-      {to:"bemutatkozas", name: "Bemutatkozás"},
-      {to:"szolgaltatasok", name: "Szolgáltatások"},
-      {to:"szobak", name: "Szobák"},
-      {to:"arak", name: "Árak"},
+      {name: "intro", to:"bemutatkozas"},
+      {name: "facilities", to:"szolgaltatasok"},
+      {name: "rooms", to:"szobak"},
+      {name: "prices", to:"arak"},
       {
-        to:"etelek", name: "Ételek", component: RouteLink
+        name: "menu", to:"etelek", component: RouteLink
       },
       {
-        to:"rendezvenyek", name: "Rendezvények", component: RouteLink
+        name: "events", to:"rendezvenyek", component: RouteLink
       },
-      {to:"visszajelzesek", name: "Visszajelzések"},
-      {to:"kapcsolat", name: "Kapcsolat"}
+      {name: "feedback", to:"visszajelzesek"},
+      {name: "contact", to:"kapcsolat"}
     ]
   }
 
@@ -100,16 +102,18 @@ export class Menu extends Component {
                 }) =>
                   <li key={to}>
                     <Component
+                      href={`#${to}`}
                       offset={isBigScreen ? offset !== undefined ? offset : -64 : 0}
                       onClick={this.handleHideMenu}
                       onMouseEnter={() => to==="szobak" && this.handleShowRoomMenu()}
                       smooth={Component === Link ? true : undefined}
                       to={to}
                     >
-                      {name}
+                      {this.props.t(`menu.${name}`)}
                     </Component>
                   </li>
                 )}
+                <LanguageSelector/>
               </ul>
             </Fade>
           </nav>
@@ -127,36 +131,46 @@ export class Menu extends Component {
   }
 }
 
-export default Menu
+export default withTranslation()(Menu)
 
 
-export const BackMenu = withRouter(props => {
-  const {location: {search}, history: {goBack}} = props
-  const customReturn = new URLSearchParams(search).get("vissza")
-  const title = customReturn ||"főoldal"
-  return(
-    customReturn ?
+export const BackMenu = () => {
+  const {goBack, location: {search}} = useHistory()
+  const customReturn = new URLSearchParams(search).get("backTo")
+  const [t] = useTranslation()
+  const title = customReturn || t("menu.homepage")
+
+  if (customReturn) {
+    return (
       <button
         className="back-to-home"
         onClick={goBack}
         title={title}
       >
-        <Title {...{title}}/>
-      </button> :
+        <Title title={title}/>
+      </button>
+    )
+  } else {
+    return (
       <RouteLink
         className="back-to-home"
         title={title}
         to="/"
       >
-        <Title {...{title}}/>
+        <Title title={title}/>
       </RouteLink>
-  )
-})
+    )
+  }
+}
 
-const Title = ({title}) =>
-  <>
-    ←
-    <span>
-      Vissza ide: {title}
-    </span>
-  </>
+const Title = ({title}) => {
+  const [t] = useTranslation()
+  return (
+    <>
+      {"←"}
+      <span>
+        {t("menu.back-to", {title})}
+      </span>
+    </>
+  )
+}

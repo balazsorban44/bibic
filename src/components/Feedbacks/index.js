@@ -6,20 +6,22 @@ import Fade from "react-reveal/Fade"
 import {hu} from 'date-fns/locale'
 import {formatDistance} from 'date-fns'
 import {TODAY} from '../../utils/constants'
+import {useTranslation} from 'react-i18next'
 
 export const Feedbacks = ({feedbacks}) => {
   const rooms = Object.entries(feedbacks.rooms || {})
   const sum = rooms.reduce((acc, [_, value]) => acc + value, 0)
   const allAvg = (sum / rooms.length).toFixed(2)
+  const [t] = useTranslation()
 
   return (
     <section id="visszajelzesek">
-      <h2>Visszajelzések</h2>
+      <h2>{t("feedbacks.title")}</h2>
       <Fade up>
         <div>
-          <h3>Értékelések</h3>
+          <h3>{t("feedbacks.ratings")}</h3>
           <Stars
-            title="Összesített"
+            title={t("feedbacks.overall")}
             value={allAvg}
           />
           <div className="room-feedbacks">
@@ -30,7 +32,7 @@ export const Feedbacks = ({feedbacks}) => {
               >
                 <Stars
                   size={18}
-                  title={`Szoba ${roomId}`}
+                  title={t("room", {id: roomId})}
                   value={avg.toFixed(2)}
                 />
               </div>
@@ -40,7 +42,7 @@ export const Feedbacks = ({feedbacks}) => {
       </Fade>
       <Fade up>
         <div>
-          <h3>Önök mondták</h3>
+          <h3>{t("feedbacks.your-reviews")}</h3>
           <ul className="feedback-list">
             {Array.isArray(feedbacks.all) ? feedbacks.all.length ?
               feedbacks.all
@@ -51,7 +53,7 @@ export const Feedbacks = ({feedbacks}) => {
                     key={index}
                     {...feedback}
                   />
-                ) : <Loading/> : "Nincs visszajelzés."}
+                ) : <Loading/> : t("feedbacks.no-reviews")}
           </ul>
         </div>
       </Fade>

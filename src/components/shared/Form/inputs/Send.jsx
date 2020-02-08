@@ -1,21 +1,23 @@
 import React from 'react'
 import {Loading} from "../../Elements"
+import {useTranslation} from 'react-i18next'
 
-const Send = ({
-  isLoading, onClick, children
-}) =>
-  <>
-    {isLoading ?
+const Send = ({isLoading, context = "general", ...props}) => {
+  const [t] = useTranslation()
+  if (isLoading) {
+    return(
       <div style={{padding: "24px 0 48px"}} >
         <Loading/>
-      </div> :
-      <button
-        {...{onClick}}
-        className="submit"
-        type="submit"
-      >{children}
-      </button>
-    }
-  </>
+      </div>
+    )
+  }
+  return (
+    <button
+      className="submit"
+      title={props.disabled ? t("form.send-disabled", {context}) : ""}
+      {...props}
+    />
+  )
+}
 
 export default Send

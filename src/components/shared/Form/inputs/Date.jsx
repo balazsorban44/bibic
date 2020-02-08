@@ -1,27 +1,36 @@
 import React from 'react'
-import {format} from 'date-fns'
-import {hu} from 'date-fns/locale'
+
+import {useTranslation} from 'react-i18next'
+import {useNotification} from 'lib/notification'
 
 
-const Date = ({
-  notification, name, label, value, hasFootnote
-}) => (
-  <div
-    className="input-box"
-    onClick={() => notification("useCalendarAsInput")}
-  >
-    <label
-      className={hasFootnote ? "footnote-asterix" : ""}
-    >
-      {label}
-    </label>
-    <input
-      id={name}
-      readOnly
-      {...{name}}
-      value={value ? format(value, "yyyy. MMMM d.", {locale: hu, awareOfUnicodeTokens: true}) : "Nincs megadva"}
-    />
-  </div>
-)
+const DateInput = ({name, value, hasFootnote, error}) => {
+  const [t] = useTranslation()
+  const label = t(`reservation.${name}.label`)
 
-export default Date
+  value = value ? t("date", {date: {
+    value,
+    format: "yyyy. MMMM d."
+  }}) : t("reservation.not-provided")
+
+  const notify = useNotification()
+
+  const handleClick = () => notify({type: "warn", content: "use-the-calendar"})
+
+  return (
+    <div className="input-box" onClick={handleClick} >
+      <label className={`${hasFootnote ? "footnote-asterix" : ""} ${error ? "input-error" : ""}`} >
+        {label}
+      </label>
+      <input
+        disabled
+        id={name}
+        name={name}
+        readOnly
+        value={value}
+      />
+    </div>
+  )
+}
+
+export default DateInput

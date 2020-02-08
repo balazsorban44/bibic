@@ -1,34 +1,26 @@
 import React, {Component} from 'react'
+import {withTranslation} from 'react-i18next'
 
-export default class PeopleCount extends Component {
+class PeopleCount extends Component {
 
   state = {
-    hasFootnote: false,
     min: 0,
     max: 0,
     name: "",
-    label: "",
-    placeholder: "",
     value: 0
   }
 
   static getDerivedStateFromProps = ({
-    value,
-    hasFootnote,
     min,
     max,
     name,
-    label,
-    placeholder
+    value
   }) => (
     {
-      value: parseInt(value, 10),
-      hasFootnote,
       min,
       max,
       name,
-      label,
-      placeholder
+      value: parseInt(value, 10)
     }
   )
 
@@ -50,8 +42,10 @@ export default class PeopleCount extends Component {
 
   render() {
     const {
-      hasFootnote, min, max, name, label, placeholder, value
+      min, max, name, value
     } = this.state
+    const {t, hasFootnote, inputProps} = this.props
+    const label = t(`reservation.${name}.label`)
     return (
       <div className="input-box people-count">
         <label
@@ -61,10 +55,10 @@ export default class PeopleCount extends Component {
           {label}
         </label>
         <input
+          {...inputProps}
           {...{
             min,
             max,
-            placeholder,
             name,
             value
           }}
@@ -87,3 +81,6 @@ export default class PeopleCount extends Component {
     )
   }
 }
+
+
+export default withTranslation()(PeopleCount)
