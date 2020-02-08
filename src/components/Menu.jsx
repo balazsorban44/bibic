@@ -1,7 +1,7 @@
 import React, {
   lazy, Suspense, Component
 } from 'react'
-import {Link as RouteLink, withRouter, useHistory} from 'react-router-dom'
+import {Link as RouteLink, useHistory} from 'react-router-dom'
 import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
