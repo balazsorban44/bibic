@@ -80,6 +80,7 @@
     background: darken($lightred, 20)
 
 .special
+  flex-direction: column
   color: $light
   padding: 4em 0
   background-color: transparent !important
@@ -87,7 +88,8 @@
   justify-content: center !important
   align-items: center
   position: relative
-  transform: rotate(15deg)
+  left: 50%
+  transform: rotate(15deg) translateX(-50%)
   a
     color: $light
     font-size: .9em
@@ -101,9 +103,10 @@
     z-index: 1
   h4
     font-size: 4em
-    font-weight: bolder
-  h5
     font-weight: lighter
+  h5
+    margin-top: -.25em
+    font-weight: bolder
   span
     background: darken($lightred, 20)
     position: absolute
@@ -183,7 +186,10 @@
       size: cover
   .special
     position: absolute !important
+    right: 2vw
+    left: auto
     bottom: 2vw
+    transform: rotate(15deg)
     
 
 @media (min-width: 1024px) and (orientation: landscape)
@@ -214,7 +220,8 @@
   .special
     transform: scale(.8) rotate(15deg)
     transform-origin: left
-    left: 2vw
+    right: 4vw
+    bottom: 4vw
     margin: 0
     padding: 0
     cursor: pointer
