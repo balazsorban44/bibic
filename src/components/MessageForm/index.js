@@ -1,80 +1,126 @@
-import React, {Component} from 'react'
-import {
-  FormGroup, FormSection, Send
-} from '../shared/Form'
-import PersonalDetails from '../shared/PersonalDetails'
-import {withStore} from '../db'
+import React, {useMemo, useEffect} from 'react'
+import useForm from "another-use-form-hook"
+import {useTranslation} from 'react-i18next'
+import {FormGroup, FormSection, Send} from 'components/shared/Form'
 
 import "./message.sass"
-import ToastContainer from '../ToastContainer';
+import {validContent, addressRe, nameRe, emailRe, telRe} from 'utils/validate'
+import {useFormNotification} from 'lib/notification'
+import PersonalDetail from 'components/shared/PersonalDetails/PersonalDetail'
+import {useHistory} from 'react-router'
+import Textarea from 'components/shared/Form/inputs/Textarea'
 
-export class Message extends Component {
+const options = {generateProps: p => p}
 
-  componentDidMount() {window.scrollTo(0, 0)}
 
-  handleChange = this.props.updateMessage
+const validators = (fields, submitting) => ({
+  content: validContent(fields.content) || (!submitting && typeof fields.content === "string"),
+  subject: ["eventHall", "fullHouse", "special", "other"].includes(fields.subject),
+  address: addressRe.test(fields.address) || (!submitting && fields.address === ""),
+  name: nameRe.test(fields.name) || (!submitting && fields.name === ""),
+  email: emailRe.test(fields.email) || (!submitting && fields.email === ""),
+  tel: telRe.test(fields.tel) || (!submitting && fields.tel === "")
+})
 
-  handleUpdate = ({target: {name, value}}) => this.handleChange(name, value)
+const Message = () => {
 
-  handleSend = e => {
-    e.preventDefault()
-    this.props.submitMessage()
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
+
+
+  const handleNotification = useFormNotification("message")
+
+  const history = useHistory()
+
+  const subject = new URLSearchParams(history.location.search.replace("?", "")).get("subject") || "other"
+
+  const initialState = useMemo(() => ({
+    content: "",
+    subject,
+    address: "",
+    name: "",
+    email: "",
+    tel: ""
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [])
+
+  const [t, i18n] = useTranslation()
+
+  const {loading, inputs, handleSubmit, handleChange} = useForm({
+    initialState,
+    validators,
+    onNotify: handleNotification,
+    onSubmit: async ({fields, notify, setLoading}) => {
+      try {
+        setLoading(true)
+        const {MESSAGES_FS_REF, TIMESTAMP} = await import("lib/firebase")
+        const message = {
+          ...fields,
+          timestamp: TIMESTAMP,
+          lastHandledBy: "",
+          accepted: false,
+          language: i18n.language
+        }
+        console.log(message)
+
+        // await MESSAGES_FS_REF.add(message)
+        notify("submitSuccess")
+      } catch (error) {
+        notify("submitSuccess", error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+  })
+
+  const handleSelect = (e) => {
+    const searchParams = new URLSearchParams(history.location.search.replace("?", ""))
+    searchParams.set("subject", e.target.value)
+    handleChange(e)
+    history.replace(`?${searchParams}`)
   }
 
-  render() {
-    const {message, isMessageLoading} = this.props
-    const {subject, content} = message
-
-    return (
-      <form
-        action=""
-        className="form message-form"
-      >
-        <ToastContainer/>
-        <FormSection title="Személyi adatok">
-          <PersonalDetails
-            disabled={isMessageLoading}
-            onChange={this.handleChange}
-            personalDetails={message}
+  return (
+    <form
+      className="form message-form"
+      onSubmit={handleSubmit}
+    >
+      <FormSection title={t("form.personal-details")}>
+        <FormGroup footnote={t("form.required")}>
+          <PersonalDetail disabled={loading} {...inputs.text("name", options)}/>
+          <PersonalDetail disabled={loading} {...inputs.email("email", options)}/>
+          <PersonalDetail disabled={loading} {...inputs.tel("tel", options)}/>
+          <PersonalDetail disabled={loading} {...inputs.text("address", options)}/>
+        </FormGroup>
+      </FormSection>
+      <FormSection title={t("form.message")}>
+        <FormGroup title={t("message.subject")}>
+          <select {...inputs.select("subject")} disabled={loading} onChange={handleSelect} >
+            <option value="eventHall">{t("message.subjects.eventHall")}</option>
+            <option value="fullHouse">{t("message.subjects.entireHouse")}</option>
+            <option value="special">{t("message.subjects.exclusiveDeal")}</option>
+            <option value="other">{t("message.subjects.other")}</option>
+          </select>
+        </FormGroup>
+        <FormGroup
+          className="message"
+          title={t("form.messageInput.details")}
+        >
+          <Textarea
+            disabled={loading}
+            inputs={inputs}
           />
-        </FormSection>
-        <FormSection title="Üzenet részletei">
-          <FormGroup title="Az üzenet témája">
-            <select
-              disabled={isMessageLoading}
-              id=""
-              name="subject"
-              onChange={this.handleUpdate}
-              value={subject}
-            >
-              <option value="eventHall">Rendezvényterem</option>
-              <option value="fullHouse">Teljes ház</option>
-              <option value="special">Külön ajánlat</option>
-              <option value="other">Egyéb</option>
-            </select>
-          </FormGroup>
-          <FormGroup
-            className="message"
-            title="Az üzenet tartalma"
-          >
-            <textarea
-              disabled={isMessageLoading}
-              name="content"
-              onChange={this.handleUpdate}
-              placeholder="Tisztelt Bíbic vendégházak... (min. 40 karakter)"
-              rows="8"
-              type="text"
-              value={content}
-            />
-          </FormGroup>
-        </FormSection>
-        <Send
-          isMessageLoading={isMessageLoading}
-          onClick={this.handleSend}
-        >Küldés</Send>
-      </form>
-    )
-  }
+        </FormGroup>
+      </FormSection>
+      <Send
+        isLoading={loading}
+        onClick={handleSubmit}
+      >{t("form.send")}</Send>
+    </form>
+  )
 }
 
-export default withStore(Message)
+export default Message
+
+

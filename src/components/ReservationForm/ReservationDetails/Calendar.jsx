@@ -1,102 +1,109 @@
-import React, {Component} from 'react'
-import {withStore} from '../../db'
-import {colors} from '../../../utils/colors'
-import {sendNotification} from '../../db/notification'
-import {Loading} from '../../shared/Elements'
-import {Date as DateLabel} from '../../shared/Form'
-import {TOMORROW} from '../../../utils/constants'
-
-/*
- *  NOTE: Implemented locally
- * @see https://github.com/Adphorus/react-date-range/pull/246
- */
-
-import {format} from 'date-fns'
-import {hu} from 'date-fns/locale'
+import React, {useEffect, useState} from 'react'
+import {useNotification} from 'lib/notification'
+import {useTranslation} from 'react-i18next'
+import {colors} from 'utils/colors'
+import {Date as DateInput} from 'components/shared/Form'
+import {TOMORROW, CLOUD_FUNCTION_BASE_URL} from 'utils/constants'
+import {DateRangePicker} from "lib/react-date-range"
+import 'lib/react-date-range/theme/default.css'
+import {dateFnsLocales} from 'lib/i18n'
+import {eachDayOfInterval, endOfDay, subDays} from 'date-fns'
 
 
-class Calendar extends Component {
+export const useOverlaps = (roomId) => {
 
-  state = {DateRangePicker: null}
+  const [overlaps, setOverlaps] = useState([])
 
-  async componentDidMount() {
-    const {fetchOverlaps, reservation: {roomId}} = this.props
-    fetchOverlaps(roomId)
-    try {
-      const {DateRangePicker} = await import("../../../lib/react-date-range")
-      await import('../../../lib/react-date-range/theme/default.css')
-      this.setState({DateRangePicker})
-    } catch(error) {
-      sendNotification(error.message)
-    }
-  }
-
-  componentDidUpdate = ({reservation: {roomId: prevRoomId}}) => {
-    const {reservation: {roomId}, fetchOverlaps} = this.props
-    if (prevRoomId !== roomId)
-      fetchOverlaps(roomId)
-  }
-
-  handleSelect = ({selection: {startDate, endDate}}) => {
-    const {updateReservation} = this.props
-    updateReservation("from", format(new Date(startDate), "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
-    updateReservation("to", format(new Date(endDate), "yyyy-MM-dd", {awareOfUnicodeTokens: true}))
-    sendNotification("calendarSelectSuccess")
-  }
-
-  render() {
-    const {DateRangePicker} = this.state
-    const {reservation: {from, to}, overlaps} = this.props
-
-    const selected = {
-      startDate: from,
-      endDate: to,
-      key: 'selection',
-      color: colors.accent.primary
-    }
-
-    return (
-      <div style={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1
-      }}
-      >
-        <div
-          style={{display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))"}}
-        >
-          <DateLabel
-            hasFootnote
-            label="érkezés"
-            name="from"
-            notification={sendNotification}
-            value={from}
-          />
-          <DateLabel
-            hasFootnote
-            label="távozás"
-            name="to"
-            notification={sendNotification}
-            value={to}
-          />
-        </div>
-        {DateRangePicker ?
-          <DateRangePicker
-            direction="vertical"
-            disabledDates={overlaps}
-            inputRanges={[]}
-            locale={hu}
-            minDate={TOMORROW}
-            onChange={this.handleSelect}
-            ranges={[selected]}
-            staticRanges={[]}
-          /> :
-          <Loading/>
+  const notify = useNotification()
+  useEffect(() => {
+    (async() => {
+      try {
+        if (!roomId) {
+          return
         }
-      </div>
-    )
-  }
+        const url = new URL("getOverlaps", CLOUD_FUNCTION_BASE_URL)
+        url.searchParams.append("roomId", roomId)
+        const overlaps = await (await fetch(url.toString())).json()
+
+        const reduceToOverlapsList = (acc, {start, end}) => [
+          ...acc,
+          ...eachDayOfInterval({start: new Date(start), end: endOfDay(subDays(new Date(end), 1))})
+        ]
+        setOverlaps(overlaps.reduce(reduceToOverlapsList, []))
+      } catch (error) {
+        notify({type: "error", content: error.message})
+      }
+    })()
+  }, [notify, roomId])
+
+  return overlaps
 }
 
-export default withStore(Calendar)
+const Calendar = ({roomId, from, to, onChange}) => {
+
+  const overlaps = useOverlaps(roomId)
+  const notify = useNotification()
+
+  const handleSelect = ({selection: {startDate: from, endDate: to}}) => {
+    onChange(
+      {from, to},
+      ["from", "to", "period", "overlaps"]
+    )
+    notify({
+      type: "info",
+      content: "date-selected",
+      options: {hideProgressBar: true, autoClose: 1000}
+    })
+  }
+
+  const {i18n} = useTranslation()
+
+  const locale = dateFnsLocales[i18n.language]
+
+  const selected = {
+    startDate: from.value,
+    endDate: to.value,
+    key: 'selection',
+    color: colors.accent.primary
+  }
+
+
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      flex: 1
+    }}
+    >
+      <div
+        style={{display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))"}}
+      >
+        <DateInput
+          error={from.error}
+          hasFootnote
+          name="from"
+          value={selected.startDate}
+        />
+        <DateInput
+          error={to.error}
+          hasFootnote
+          name="to"
+          value={selected.endDate}
+        />
+      </div>
+      <DateRangePicker
+        direction="vertical"
+        disabledDates={overlaps}
+        inputRanges={[]}
+        locale={locale}
+        minDate={TOMORROW}
+        onChange={handleSelect}
+        ranges={[selected]}
+        staticRanges={[]}
+      />
+    </div>
+  )
+}
+
+export default Calendar

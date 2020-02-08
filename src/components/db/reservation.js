@@ -1,123 +1,38 @@
-import {validateReservation} from '../../utils/validate'
-import {sendNotification} from './notification'
 import {
-  areIntervalsOverlapping, differenceInCalendarDays, format, startOfDay, setHours
+  areIntervalsOverlapping, differenceInCalendarDays, startOfDay, setHours
 } from "date-fns"
 
 
-export const getPrice = (room, reservation) => {
-  let price = 0
-  if (room && reservation) {
-    const {
-      foodService, from, to
-    } = reservation
-    let {adults, children} = reservation
+export const getPrice = ({
+  priceTable,
+  foodService,
+  adults, children,
+  from, to
+}) => {
 
-    adults = room.prices.table[foodService][adults]
+  const numberOfAdults = priceTable?.[foodService]?.[adults]
 
-    if (!adults) return price
-    children = children.filter(child => child==="6-12").length
+  if (!numberOfAdults) return 0
 
-    price = adults[children || 0]?.price ?? 0
-    // If interval chosen, price times the days
-    if (from && to) {
-      return price*differenceInCalendarDays(to, from)
-    } else return price
+  const numberOfChildren = children.filter(c => c === "6-12").length
+
+
+  const price = numberOfAdults[numberOfChildren]?.price ?? 0
+
+  if (from && to) {
+    return price * differenceInCalendarDays(to, from)
   }
+
   return price
 }
 
-export const isAvailable = (roomId, range) =>
-  fetch(`https://europe-west1-bibic-vendeghazak-api.cloudfunctions.net/getOverlaps?roomId=${roomId}`)
-    .then(res => res.json())
-    .then(overlaps =>
-      !overlaps.some(interval => areIntervalsOverlapping(interval, range))
-    )
+export const isAvailable = async (roomId, range) => {
+  const response = await fetch(`https://europe-west1-bibic-vendeghazak-api.cloudfunctions.net/getOverlaps?roomId=${roomId}`)
+  const overlaps = await response.json()
 
-
-/**
- * Validates the reservation before sending it to the server
- * @param {object} reservation The reservation to be verified
- * @return {boolean}
- */
-export const isValidReservation = (reservation, rooms) => {
-
-  if (!reservation || !reservation.roomId || !rooms.length) {
-    sendNotification("error", "wrong parameters")
-    return false
-  }
-  const roomLength = rooms.length
-  const maxPeople = rooms[reservation.roomId-1].prices.metadata.maxPeople
-
-  const error = validateReservation({
-    roomLength, maxPeople, ...reservation
-  })
-  if (error) {
-    sendNotification("error", error)
-    return false
-  } else {
-    return true
-  }
+  return !overlaps.some(({start, end}) => areIntervalsOverlapping({start: new Date(start), end: new Date(end)}, range))
 }
 
-/**
- * First validates, then sends the reservation to the server
- * @param {object} reservation the reservation to be submitted
- * @param {function} isReserving to set the state if reserving
- * @param {function} resetReservation reset to default values
- * @param {function} closeReservation close reservation form
- * @param {array} rooms rooms to choose from
- */
-export const submitReservation = (reservation, isReserving, resetReservation, closeReservation, rooms) => {
-  if (isValidReservation(reservation, rooms)) {
-    isReserving(true)
-    const {
-      roomId, from, to
-    } = reservation
-    isAvailable(roomId, {start: from, end: to}).then(available => {
-      if (available === true) {
-        import("../../lib/firebase").then(({RESERVATIONS_FS_REF, TIMESTAMP}) =>
-          RESERVATIONS_FS_REF
-            .add({
-              ...reservation,
-              id: `${format(from, "yyyyMMdd", {awareOfUnicodeTokens: true})}-sz${roomId}`,
-              roomId: [roomId],
-              lastHandledBy: "",
-              timestamp: TIMESTAMP,
-              handled: false,
-              archived: false
-            })
-            .then(() => {
-              isReserving(false)
-              sendNotification("reservationSubmitted")
-              setTimeout(() => {
-                closeReservation()
-                resetReservation()
-                return true
-              }, 7500)
-            })
-            .catch(e => {
-              isReserving(false)
-              sendNotification("error", e.message)
-              return false
-            })
-        )
-      } else {
-        isReserving(false)
-        sendNotification("overlap")
-        return false
-      }
-    }).catch(e => {
-      isReserving(false)
-      sendNotification("error", e.message)
-      return false
-    })
-
-  } else {
-    isReserving(false)
-    return false
-  }
-}
 
 /**
  * Some properties in the reservation is handled

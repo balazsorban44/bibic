@@ -8,7 +8,8 @@ class Children extends Component {
   state = {ageGroups: ["0-6", "6-12"]}
 
 
-  handleChange = (name, value) => {
+  handleChange = (field) => {
+    const value = Object.values(field)[0]
     const {max} = this.props
     let {values} = this.props
 
@@ -19,7 +20,7 @@ class Children extends Component {
     if (values.length > value) {
       values.pop()
     }
-    this.props.onChange(name, values)
+    this.props.onChange({children: values}, ["children", "peopleCount"])
   }
 
   handleSelect = ({target: {name: index, value}}) => {
@@ -27,7 +28,7 @@ class Children extends Component {
 
     values[index] = this.state.ageGroups.includes(value) ? value : "6-12"
 
-    this.props.onChange("children", values)
+    this.props.onChange({children: values}, ["children", "peopleCount"])
   }
 
   render() {

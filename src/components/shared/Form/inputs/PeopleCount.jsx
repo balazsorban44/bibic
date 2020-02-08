@@ -37,7 +37,7 @@ class PeopleCount extends Component {
     }
 
     this.setState({value})
-    this.props.onChange(name, value)
+    this.props.onChange({[name]: value}, [name, "peopleCount"])
   }
 
   render() {

@@ -1,10 +1,13 @@
 import React from 'react'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
+import {useTranslation} from 'react-i18next'
 
-const RoomServices = ({roomServices, reservation: {roomId}}) =>
-  <>
-    <h5>a szoba szolgáltatásai</h5>
+const RoomServices = ({roomServices, roomId}) => {
+  const [t] = useTranslation()
+  return (
+    <>
+      <h5>{t("reservation.room-facilities")}</h5>
       <div className="room-services">
         {roomServices.length ? roomServices.map(([
           key, {
@@ -27,7 +30,9 @@ const RoomServices = ({roomServices, reservation: {roomId}}) =>
           </div>
         ) : <Loading/>}
       </div>
-  </>
+    </>
+  )
+}
 
 export default withStore(RoomServices)
 
