@@ -68,3 +68,14 @@ export const toPrice = value => (
     maximumFractionDigits: 0
   })
 )
+
+export const LOCALES = ["hu", "en", "de"]
+
+export const PREFERRED_LANGUAGE = locale => {
+  if (locale) {
+    locale = locale.toLowerString().slice(0, 2)
+    if (LOCALES.includes(locale)) return locale
+  }
+  const preferredLanguage = (localStorage.getItem("bb:language") || navigator.language).toLowerCase().slice(0, 2)
+  return LOCALES.includes(preferredLanguage) ? preferredLanguage : "en"
+}

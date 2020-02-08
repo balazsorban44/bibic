@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {render} from 'react-dom'
+import "lib/i18n"
 import './sass/main.sass'
 import 'react-toastify/dist/ReactToastify.css'
 import Database from './components/db'
