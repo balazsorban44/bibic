@@ -1,0 +1,230 @@
+{
+	"chat-fab": "You'll find us on Messenger too!",
+	"child": "child",
+	"date": "{{date, date}}",
+	"email": {
+		"error": "hiba at bibicvendeghazak dot hu",
+		"info": "info at bibicvendeghazak dot hu",
+		"reservation": "szallasfoglalas at bibicvendeghazak dot hu"
+	},
+	"events": {
+		"title": "Out events"
+	},
+	"facilities": {
+		"more": "More services →",
+		"title": "Our services"
+	},
+	"feedback": {
+		"error": {
+			"alt": "Sad smiley",
+			"title": "An error occurred."
+		},
+		"our-services": {
+			"footnote": "1 = worst, 5 = best",
+			"title": "our services"
+		},
+		"services": {
+			"cleanliness": "clarity",
+			"coffee": "coffee",
+			"comfort": "comfort",
+			"food": "food",
+			"services": "services",
+			"staff": "staff"
+		},
+		"subtitle": "(booking ID: {{id}})",
+		"success": {
+			"alt": "Pipe",
+			"title": "Thank you for your feedback."
+		},
+		"title": "Feedback"
+	},
+	"feedbacks": {
+		"no-reviews": "No feedback.",
+		"overall": "Overall",
+		"ratings": "Reviews",
+		"title": "Reviews",
+		"your-reviews": "You told about us"
+	},
+	"foods": {
+		"subtitle": "We do not operate a restaurant in our guesthouse, so the selection of meals is necessary in advance, meals are prepared exclusively for our hotel guests, within the framework of the village guest table.",
+		"title": "Our menu"
+	},
+	"footer": {
+		"email": "info at bibicvendeghazak dot hu",
+		"fb-alt": "Facebook",
+		"insta-alt": "Instagram",
+		"mail-alt": "e-mail",
+		"map-alt": "Map",
+		"pictures-and-design": "Pictures & Design:",
+		"rights-reserved": "© All rights reserved.",
+		"tel-alt": "Phone",
+		"version-number": "Version number",
+		"webpage-and-design": "Website & Design:",
+		"yt-alt": "Youtube"
+	},
+	"form": {
+		"address": "address",
+		"content": "message",
+		"customId": "booking ID",
+		"email": "e-mail",
+		"id": "booking ID (auto-generated)",
+		"invalid": "Invalid field: {{fields}}",
+		"invalid_plural": "Invalid fields: {{fields}}",
+		"message": "message",
+		"messageInput": {
+			"details": "Message details",
+			"placeholder": "Dear Bíbic Guest Houses ..."
+		},
+		"name": "Full name",
+		"overlaps": "Room is already occupied in this interval. Please select another room or date.",
+		"period": "The reservation must include at least one night.",
+		"personal-details": "Personal data",
+		"ratings": "Reviews",
+		"required": "Obligatory",
+		"send": "Submit",
+		"send-disabled_general": "Unable to send. Please check the information you entered.",
+		"send-disabled_reservation": "The reservation must include at least one night.",
+		"tel": "Phone Number"
+	},
+	"introduction": {
+		"position": {
+			"host": "Host of Bíbic vendégházak",
+			"owner": "Owner"
+		},
+		"title": "Welcome"
+	},
+	"menu": {
+		"back-to": "Back to {{title}}",
+		"contact": "Contact",
+		"events": "Events",
+		"facilities": "Services",
+		"feedback": "Feedbacks",
+		"homepage": "main page",
+		"intro": "Introduction",
+		"menu": "Menu",
+		"prices": "Prices",
+		"rooms": "Rooms"
+	},
+	"message": {
+		"body": "Content of the message",
+		"subject": "The subject of the message",
+		"subjects": {
+			"entireHouse": "Entire house",
+			"eventHall": "Event hall",
+			"exclusiveDeal": "Special offer",
+			"other": "Other"
+		}
+	},
+	"name": "{{givenName}} {{familyName}}",
+	"not-found": {
+		"back-to-homepage": "Back to the main page",
+		"paragraph": "Hmm ... Sorry, this page is empty."
+	},
+	"notification": {
+		"date-selected": "Date selected.",
+		"error": {
+			"body": "If the error persists, please tell us:",
+			"header": "{{message}}"
+		},
+		"feedback-success": "Feedback sent successfully.",
+		"message-success": {
+			"body": "You will be redirected to the home page in a few seconds. If you have any further questions, please contact:",
+			"header": "Message sent."
+		},
+		"no-reservation-found": "Error! This booking does not exist.",
+		"overlap": "The given interval already contains a reservation. The longest available interval is selected. You may try a new interval or another room.",
+		"reservation-success": {
+			"body": "You will be redirected to the the home page in a few seconds. If you have any further questions, please contact:",
+			"header": "We have received your reservation"
+		},
+		"same-day": "The reservation must be for a minimum of 1 night. Please choose a different date.",
+		"use-the-calendar": "Please use the calendar to select your arrival and departure."
+	},
+	"prices": {
+		"2-or-more-people": "for two or more people",
+		"disclaimer": "",
+		"entire-house": "Entire house",
+		"event-hall": "Event hall",
+		"exclusive-deal": {
+			"0": "SPECIAL",
+			"1": "OFFER"
+		},
+		"hall-rent": "hall rent",
+		"huf-and-up": "HUF and up",
+		"huf-per-hour": "HUF/hour and up",
+		"max-21-people": "up to 21 people",
+		"multibed-room": "Multiple room",
+		"title": "Prices",
+		"write-us": "Contact Us"
+	},
+	"reservation": {
+		"accepted-payment-methods": "Accepted payment methods",
+		"adults": {
+			"label": "adults"
+		},
+		"children": {
+			"label": "children"
+		},
+		"choose-a-room": "Choose a room",
+		"dates": {
+			"footnote": "arrival: 14:00, departure: 10:00",
+			"title": "arrival/departure"
+		},
+		"food": {
+			"breakfast": "breakfast",
+			"footnote": {
+				"0": "meals must be pre-selected as we do not operate a restaurant",
+				"1": "you can find our main dishes by clicking here"
+			},
+			"halfBoard": "half board",
+			"title": "requested food service"
+		},
+		"from": {
+			"label": "arrival"
+		},
+		"guests": {
+			"footnote": "Free under 6 years",
+			"title": "people (maximum {{maxPeople}} people)"
+		},
+		"message": {
+			"placeholder": "(eg food matching, special requests, other questions)",
+			"title": "Comment"
+		},
+		"no-payment-warning": "",
+		"payment-methods": {
+			"cash": {
+				"alt": "Cash",
+				"title": "Cash"
+			},
+			"mastercard": {
+				"alt": "Mastercard"
+			},
+			"otp": {
+				"alt": "OTP Nice"
+			},
+			"visa": {
+				"alt": "Visa"
+			},
+			"wire-transfer": {
+				"alt": "Bankártya",
+				"title": "Bakn transfer"
+			}
+		},
+		"required-for-invoice": "(required to issue an invoice)",
+		"reservation-details": "Booking Details",
+		"reservation-email": "szallasfoglalas at bibicvendeghazak dot hu",
+		"room-chosen": "(Room {{id}} selected)",
+		"room-facilities": "Room's facilities",
+		"title": "Reservation",
+		"to": {
+			"label": "departure"
+		}
+	},
+	"reserve": "Reserve",
+	"room": "Room {{id}}",
+	"rooms": {
+		"subtitle": "Flora house",
+		"title": "Rooms"
+	},
+	"year": "year"
+}

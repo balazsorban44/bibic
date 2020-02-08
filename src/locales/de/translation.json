@@ -1,0 +1,230 @@
+{
+	"chat-fab": "Sie finden uns auch im Messenger!",
+	"child": "Kind",
+	"date": "{{date, date}}",
+	"email": {
+		"error": "hiba et bibicvendeghazak punkt hu",
+		"info": "info et bibicvendeghazak punkt hu",
+		"reservation": "szallasfoglalas et bibicvendeghazak punkt hu"
+	},
+	"events": {
+		"title": "Geschehen"
+	},
+	"facilities": {
+		"more": "Weitere Dienstleistungen →",
+		"title": "Unsere Leistungen"
+	},
+	"feedback": {
+		"error": {
+			"alt": "Trauriger Smiley",
+			"title": "Ein Fehler ist aufgetreten."
+		},
+		"our-services": {
+			"footnote": "1 = am schlechtesten, 5 = am besten",
+			"title": "Unsere Leistungen"
+		},
+		"services": {
+			"cleanliness": "Reinheit",
+			"coffee": "Kaffee",
+			"comfort": "Annehmlichkeiten",
+			"food": "Lebensmittel",
+			"services": "dienstleistungen",
+			"staff": "Personal"
+		},
+		"subtitle": "(Buchungs-ID: {{id}})",
+		"success": {
+			"alt": "Rohr",
+			"title": "Vielen Dank für Ihr Feedback."
+		},
+		"title": "Rückkopplung"
+	},
+	"feedbacks": {
+		"no-reviews": "Kein Feedback.",
+		"overall": "Zusammenfassung",
+		"ratings": "Bewertungen",
+		"title": "Bewertungen",
+		"your-reviews": "Du hast es gesagt"
+	},
+	"foods": {
+		"subtitle": "Wir betreiben in unserer Pension kein Restaurant, daher ist die Auswahl der Mahlzeiten im Voraus erforderlich, die Mahlzeiten werden ausschließlich für unsere Hotelgäste im Rahmen des Dorfgasttisches zubereitet.",
+		"title": "unsere Gerichte"
+	},
+	"footer": {
+		"email": "info et bibicvendeghazak punkt hu",
+		"fb-alt": "Facebook",
+		"insta-alt": "Instagram",
+		"mail-alt": "E-Mail",
+		"map-alt": "Karte",
+		"pictures-and-design": "Bilder & Design:",
+		"rights-reserved": "© Alle Rechte vorbehalten.",
+		"tel-alt": "Telefon",
+		"version-number": "Revision",
+		"webpage-and-design": "Website & Design:",
+		"yt-alt": "Youtube"
+	},
+	"form": {
+		"address": "Adresse",
+		"content": "Nachricht",
+		"customId": "Buchungs-ID",
+		"email": "E-Mail",
+		"id": "Buchungs-ID (s)",
+		"invalid": "Ungültiges Feld: {{fields}}",
+		"invalid_plural": "Ungültige Felder: {{fields}}",
+		"message": "Nachricht",
+		"messageInput": {
+			"details": "Nachrichtendetails",
+			"placeholder": "Liebe Bíbic Gästehäuser ..."
+		},
+		"name": "Vollständiger Name",
+		"overlaps": "Der Raum ist in diesem Intervall bereits belegt. Bitte wählen Sie einen anderen Raum oder ein anderes Datum.",
+		"period": "Die Reservierung muss mindestens eine Nacht umfassen.",
+		"personal-details": "Persönliche Informationen",
+		"ratings": "Bewertungen",
+		"required": "obligatorisch",
+		"send": "einreichen",
+		"send-disabled_general": "Senden nicht möglich. Bitte überprüfen Sie die eingegebenen Informationen.",
+		"send-disabled_reservation": "Die Reservierung muss mindestens eine Nacht umfassen.",
+		"tel": "Telefonnummer"
+	},
+	"introduction": {
+		"position": {
+			"host": "Gehostet von Bíbic Gästehäusern",
+			"owner": "Eigentümer"
+		},
+		"title": "willkommen"
+	},
+	"menu": {
+		"back-to": "Zurück zu {{title}}",
+		"contact": "Beziehung",
+		"events": "Geschehen",
+		"facilities": "dienstleistungen",
+		"feedback": "Bewertungen",
+		"homepage": "Zuhause",
+		"intro": "Debüt",
+		"menu": "Lebensmittel",
+		"prices": "Preise",
+		"rooms": "Zimmer"
+	},
+	"message": {
+		"body": "Inhalt der Nachricht",
+		"subject": "Der Betreff der Nachricht",
+		"subjects": {
+			"entireHouse": "Das ganze Haus",
+			"eventHall": "Konferenzraum",
+			"exclusiveDeal": "Sonderangebot",
+			"other": "andere"
+		}
+	},
+	"name": "{{givenName}} {{familyName}}",
+	"not-found": {
+		"back-to-homepage": "Zurück zur Hauptseite",
+		"paragraph": "Hmm ... Entschuldigung, diese Seite ist leer."
+	},
+	"notification": {
+		"date-selected": "Datum ausgewählt.",
+		"error": {
+			"body": "Wenn der Fehler weiterhin besteht, geben Sie bitte Folgendes an:",
+			"header": "{{message}}"
+		},
+		"feedback-success": "Feedback erfolgreich gesendet.",
+		"message-success": {
+			"body": "Es wird in ein paar Sekunden zur Homepage zurückkehren. Bei weiteren Fragen wenden Sie sich bitte an:",
+			"header": "Nachricht gesendet."
+		},
+		"no-reservation-found": "Fehler! Diese Buchung existiert nicht.",
+		"overlap": "Dieses Intervall enthält bereits eine Reservierung. Das längste verfügbare Intervall wird ausgewählt. Sie können ein neues Intervall oder einen anderen Raum ausprobieren.",
+		"reservation-success": {
+			"body": "Es wird in ein paar Sekunden zur Homepage zurückkehren. Bei weiteren Fragen wenden Sie sich bitte an:",
+			"header": "Ihre Reservierung wurde registriert."
+		},
+		"same-day": "Die Reservierung muss für mindestens 1 Nacht erfolgen. Bitte wählen Sie ein anderes Datum.",
+		"use-the-calendar": "Bitte verwenden Sie den Kalender, um Ihre An- und Abreise auszuwählen."
+	},
+	"prices": {
+		"2-or-more-people": "für zwei oder mehr personen",
+		"disclaimer": "",
+		"entire-house": "Das ganze Haus",
+		"event-hall": "Konferenzraum",
+		"exclusive-deal": {
+			"0": "SPECIAL",
+			"1": "Angebot"
+		},
+		"hall-rent": "Zimmer mieten",
+		"huf-and-up": "-Forinttól",
+		"huf-per-hour": "HUF / Stunde",
+		"max-21-people": "bis zu 21 personen",
+		"multibed-room": "Mehrbettzimmer",
+		"title": "Preise",
+		"write-us": "Sprechen Sie uns an"
+	},
+	"reservation": {
+		"accepted-payment-methods": "Akzeptierte Zahlungsmethoden",
+		"adults": {
+			"label": "Erwachsene"
+		},
+		"children": {
+			"label": "Kinder"
+		},
+		"choose-a-room": "Wähle einen Raum",
+		"dates": {
+			"footnote": "Ankunft: 14:00 Uhr, Abreise: 10:00 Uhr",
+			"title": "Ankunft / Abfahrt"
+		},
+		"food": {
+			"breakfast": "Frühstück",
+			"footnote": {
+				"0": "Mahlzeiten müssen vorgewählt werden, da wir kein Restaurant betreiben",
+				"1": "Unsere Hauptgerichte finden Sie hier"
+			},
+			"halfBoard": "Halbpension",
+			"title": "Pflege erforderlich"
+		},
+		"from": {
+			"label": "Ankunft"
+		},
+		"guests": {
+			"footnote": "Frei unter 6 Jahren",
+			"title": "Personen (maximal {{maxPeople}} Personen)"
+		},
+		"message": {
+			"placeholder": "(zB Speisenabstimmung, Sonderwünsche, sonstige Fragen)",
+			"title": "Bemerkung"
+		},
+		"no-payment-warning": "",
+		"payment-methods": {
+			"cash": {
+				"alt": "Bargeld",
+				"title": "Bargeld"
+			},
+			"mastercard": {
+				"alt": "MasterCard"
+			},
+			"otp": {
+				"alt": "OTP Schön"
+			},
+			"visa": {
+				"alt": "Visum"
+			},
+			"wire-transfer": {
+				"alt": "bankártya",
+				"title": "Bezug auf Voraus"
+			}
+		},
+		"required-for-invoice": "(erforderlich um eine Rechnung auszustellen)",
+		"reservation-details": "Buchungsdetails",
+		"reservation-email": "szallasfoglalas et bibicvendeghazak punkt hu",
+		"room-chosen": "(Raum {{id}} ausgewählt)",
+		"room-facilities": "Zimmerservice",
+		"title": "Reservierung",
+		"to": {
+			"label": "Flucht"
+		}
+	},
+	"reserve": "buchen Sie",
+	"room": "Raum {{id}}",
+	"rooms": {
+		"subtitle": "Flora Haus",
+		"title": "Zimmer"
+	},
+	"year": "Jahr"
+}
