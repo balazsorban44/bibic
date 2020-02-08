@@ -1,0 +1,30 @@
+@import sass/ESSENTIALS/_vars
+
+.language-selector
+  display: grid
+  place-items: center
+  order: -1
+
+.flag-select
+  text-transform: uppercase
+  letter-spacing: .05em
+  color: $accent-color-dark
+  font-weight: bolder
+  font-size: 2rem
+  font-family: "White Festive", sans-serif
+  padding: .5rem 0 .5rem 2rem
+  img
+    display: inline
+// .flag-options
+//   padding: 0
+// .flag-option
+//   padding: .5rem 1rem !important
+
+@media (min-width: 768px)
+
+  .language-selector
+    order: initial
+    margin-top: 12px
+
+  .flag-select
+    padding-bottom: .4rem
