@@ -10,7 +10,7 @@ export const useGallery = () => useContext(GalleryContext)
 
 
 const GALLERIES_QUERY = FS
-  .collection("gallery")
+  .collection("galleries")
   .orderBy("order")
 
 

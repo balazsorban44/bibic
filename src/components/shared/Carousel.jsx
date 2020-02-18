@@ -1,52 +1,47 @@
-import React, {Component} from 'react'
-import {withRouter} from 'react-router'
+import React, {useEffect} from 'react'
 import Slide from "react-reveal/Slide"
 import makeCarousel from "react-reveal/makeCarousel"
-import {withStore} from '../db'
 import {Loading} from './Elements'
+import {useGallery} from 'context/gallery'
 
-export class Carousel extends Component {
+const Carousel = ({title, subtitle, section}) => {
 
-  componentDidMount() {
+  useEffect(() => {
     window.scrollTo(0, 0)
-  }
+  }, [])
 
-  render() {
-    let {match: {path}} = this.props
-    const {
-      title, subtitle, galleries
-    } = this.props
-    path = path.replace("/", "")
-    const children = galleries[path] ?
-      Object
-        .values(galleries[path])
-        .map((itemProps, key) =>
-          <Slide
-            key={key}
-            right
-          >
-            <CarouselItem
-              className="carousel-item"
-              {...itemProps}
-            />
-          </Slide>
-        ) :
-      <Loading/>
-    return(
-      <section
-        className="carousel-wrapper"
-        id={path}
-      >
-        <div className="title">
-          <h2>{title}</h2>
-        </div>
+  const {getGallery, loading} = useGallery()
+  const gallery = getGallery(section)
+  const children = gallery
+    .map((itemProps, key) =>
+      <Slide key={key} right>
+        <CarouselItem
+          className="carousel-item"
+          {...itemProps}
+        />
+      </Slide>
+    )
+
+  return(
+    <section
+      className="carousel-wrapper"
+      id={section}
+    >
+      <div className="title">
+        <h2>{title}</h2>
+      </div>
+      {loading ?
+        <Loading/> :
         <CarouselWrapper defaultWait={10000}>
           {children}
         </CarouselWrapper>
-        {subtitle && <h3>{subtitle}</h3> }
-      </section>
-    )}
+      }
+      {subtitle ? <h3>{subtitle}</h3> : null}
+    </section>
+  )
 }
+
+export default Carousel
 
 const CarouselWrapper = makeCarousel(({
   position, handleClick, children
@@ -63,8 +58,6 @@ const CarouselWrapper = makeCarousel(({
       onClick={handleClick}
     ><span className="arrow-icon"/></span>
   </div>)
-
-export default withRouter(withStore(Carousel))
 
 
 export const CarouselItem = ({

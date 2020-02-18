@@ -5,7 +5,7 @@ import CERTIFICATES_BG from "../assets/images/bg/intro.jpg"
 const Sunflower = () =>
   <section id="napraforgo">
     <Paragraphs section="certificates"/>
-    <Gallery path="tanusitvanyok"/>
+    <Gallery section="certificates"/>
     <div className="cert-bg">
       <img
         alt="certificates background"

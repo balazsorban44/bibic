@@ -9,17 +9,26 @@ import {useGallery} from 'context/gallery'
 export const Rooms = () => {
   const [t] = useTranslation()
   const {rooms, roomServices} = useStore()
-  const {getGallery, loading} = useGallery()
+  const {getGallery} = useGallery()
 
   const pictures = getGallery("rooms")
+    .reduce((acc, picture) => {
+      if (picture.roomId in acc) {
+        acc[picture.roomId].push(picture)
+      } else {
+        acc[picture.roomId] = [picture]
+      }
+      return acc
+    }, {})
+
   return (
     <section id="szobak">
       <h2>{t("rooms.title")} <span>{t("rooms.subtitle")}</span></h2>
       <ul className="rooms">
-        {rooms.length ? rooms.map((room, key) =>
-          <Fade key={key}>
+        {rooms.length ? rooms.map(room =>
+          <Fade key={room.id}>
             <Room
-              pictures={loading ? [] : pictures[key]}
+              pictures={pictures?.[room.id] ?? []}
               services={roomServices}
               {...room}
             />

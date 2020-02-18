@@ -11,7 +11,7 @@ const Services = () => {
       <h2>{t("facilities.title")}</h2>
       <Gallery
         count={3}
-        path="szolgaltatasaink"
+        section="facilities"
       />
       <div className="services-footer">
         <Button
