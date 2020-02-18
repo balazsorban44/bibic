@@ -1,15 +1,9 @@
 import * as firebase from 'firebase/app'
 import "firebase/database"
 import "firebase/firestore"
+import config from 'utils/env'
 
-firebase.initializeApp({
-  apiKey: "AIzaSyB4-Y2_RCdrOouJJxUJkBBXGyj4hNdjDs0",
-  authDomain: "bibic-vendeghazak-api.firebaseapp.com",
-  databaseURL: "https://bibic-vendeghazak-api.firebaseio.com",
-  projectId: "bibic-vendeghazak-api",
-  storageBucket: "bibic-vendeghazak-api.appspot.com",
-  messagingSenderId: "586582307718"
-})
+firebase.initializeApp(config.firebase.initConfig)
 
 
 export const FS = firebase.firestore()
@@ -26,6 +20,7 @@ export const FEEDBACKS_REF = DB.ref("feedbacks")
 export const RESERVATIONS_FS_REF = FS.collection("reservations")
 export const MESSAGES_FS_REF = FS.collection("messages")
 export const FEEDBACKS_FS_REF = FS.collection("feedbacks")
+export const PARAGRAPHS_FS_REF = FS.collection("paragraphs")
 
 
 export const TIMESTAMP_DB = firebase.database.ServerValue.TIMESTAMP

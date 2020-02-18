@@ -6,7 +6,6 @@ import {Link} from 'react-scroll'
 import bibic from '../assets/icons/bibic.png'
 import logo from '../assets/icons/logo.png'
 import Fade from "react-reveal/Fade"
-import {BASE_URL} from '../utils/constants'
 import {withTranslation, useTranslation} from 'react-i18next'
 import LanguageSelector from './LanguageSelector'
 
@@ -78,7 +77,7 @@ export class Menu extends Component {
           </Fade>
           <a
             className={`menu-logo ${isScrolled ? "menu-logo-scrolled" : ""}`}
-            href={BASE_URL}
+            href="/"
           >
             <picture>
               <source

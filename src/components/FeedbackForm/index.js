@@ -3,12 +3,12 @@ import {Send, FormGroup} from 'components/shared/Form'
 import errorState from "assets/images/other/empty-state.svg"
 import successState from "assets/images/other/success-state.svg"
 import {useTranslation} from 'react-i18next'
-import {CLOUD_FUNCTION_BASE_URL} from 'utils/constants'
 import {useFormNotification} from 'lib/notification'
 import useForm from 'another-use-form-hook'
 import {useHistory} from 'react-router'
 import {validContent} from 'utils/validate'
 import Textarea from 'components/shared/Form/inputs/Textarea'
+import config from 'utils/env'
 
 
 const imgSources = {
@@ -67,7 +67,7 @@ const FeedbackForm = () => {
       const searchParams = new URLSearchParams(history.location.search.replace("?", ""))
       try {
         setLoading(true)
-        const url = new URL("/reservationExists", CLOUD_FUNCTION_BASE_URL)
+        const url = new URL("/reservationExists", config.firebase.CLOUD_FUNCTION_URL)
         url.searchParams.set("id", fields.id)
         url.searchParams.set("customId", fields.customId)
 

@@ -1,8 +1,9 @@
 import React from 'react'
-import bibic from '../assets/icons/bibic-white.png'
 import GoogleMaps from "google-map-react"
 
-import {MAPS_API_KEY, MAPS_STYLE} from '../lib/google-maps'
+import config from 'utils/env'
+import styles from 'lib/google-maps.json'
+import bibic from 'assets/icons/bibic-white.png'
 
 
 export const Marker = () =>
@@ -15,15 +16,11 @@ export const Marker = () =>
 export default () =>
   <div className="map">
     <GoogleMaps
-      bootstrapURLKeys={{key: [MAPS_API_KEY]}}
-      center={{lat: 46.3950025,
-        lng: 17.506616}}
-      options={{styles: MAPS_STYLE}}
-      zoom={15}
+      bootstrapURLKeys={{key: [config.googleMaps.API_KEY]}}
+      center={config.googleMaps.center}
+      options={{styles}}
+      zoom={config.googleMaps.zoom}
     >
-      <Marker
-        lat={46.3950025}
-        lng={17.506616}
-      />
+      <Marker {...config.googleMaps.center}/>
     </GoogleMaps>
   </div>

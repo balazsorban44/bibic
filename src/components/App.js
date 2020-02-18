@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom'
 
 import {BackMenu} from './Menu'
 import ChatFAB from './ChatFAB'
-import {routes} from '../utils/constants'
+import {routes} from '../utils/env'
 import Top from "./Top"
 import NotFound from "./NotFound"
 import {Loading} from './shared/Elements'

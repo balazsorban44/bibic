@@ -1,4 +1,4 @@
-import {TOMORROW} from './constants'
+import {TOMORROW} from './env'
 import {
   isAfter, differenceInCalendarDays, startOfDay, endOfDay, addDays, isWithinInterval
 } from 'date-fns'

@@ -8,6 +8,7 @@ import TelImg from "../assets/icons/tel-brown.svg"
 import FBImg from "../assets/icons/facebook.svg"
 import InstaImg from "../assets/icons/instagram.svg"
 import YTImg from "../assets/icons/youtube-brown.svg"
+import config from 'utils/env'
 
 
 const Footer = () => {
@@ -18,10 +19,10 @@ const Footer = () => {
         <ul id="reachout">
           <li>
             <a
-              href="https://www.google.com/maps/place/Bibic+vend%C3%A9gh%C3%A1zak/@46.394617,17.505221,17z/data=!4m10!1m2!3m1!2zQmliaWMgdmVuZMOpZ2jDoXphaw!3m6!1s0x0:0x56f9f832e3ba7da3!5m1!1s2018-06-17!8m2!3d46.3948508!4d17.5067407"
+              href={config.googleMaps.URL}
               rel="noopener noreferrer"
               target="_blank"
-            ><span>7561 Nagybajom, Iskolaköz 3-5.</span>
+            ><span>{config.contact.ADDRESS}</span>
               <img
                 alt={t("footer.map-alt")}
                 src={MapImg}
@@ -29,7 +30,7 @@ const Footer = () => {
             </a>
           </li>
           <li>
-            <a href="mailto:info&#64;bibicvendeghazak.hu"><span>{t("footer.email")}</span>
+            <a href={`mailto:info&#64;${config.app.DOMAIN}`}><span>{t("footer.email")}</span>
               <img
                 alt={t("footer.mail-alt")}
                 src={MailImg}
@@ -37,7 +38,7 @@ const Footer = () => {
             </a>
           </li>
           <li>
-            <a href="tel:+36305785730"><span>+36 30 578 5730</span>
+            <a href={`tel:${config.contact.TEL_SHORT}`}><span>{config.contact.TEL_LONG}</span>
               <img
                 alt={t("footer.tel-alt")}
                 src={TelImg}
@@ -46,7 +47,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517"
+              href={config.contact.FACEBOOK_URL}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -58,7 +59,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.instagram.com/explore/tags/bibicvendeghaz/"
+              href={config.contact.INSTAGRAM_URL}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -70,7 +71,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.facebook.com/Bíbic-Vendegházak-És-Söröző-200199203718517"
+              href={config.contact.YOUTUBE_URL}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -83,11 +84,11 @@ const Footer = () => {
         </ul>
       </div>
       <div id="copyright">
-        <h4>{`${t("footer.rights-reserved")} ${new Date().getFullYear()}.`}</h4>
+        <h4>{`${t("footer.rights-reserved")} ${config.app.YEAR}.`}</h4>
         <h4>
           {t("footer.pictures-and-design")}
           <a
-            href="https://www.facebook.com/gergo.boos"
+            href={config.contact.GERGO_BOOS_URL}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -97,14 +98,14 @@ const Footer = () => {
         <h4>
           {t("footer.webpage-and-design")}
           <a
-            href="https://balazsorban.com"
+            href={config.contact.BALAZS_ORBAN_URL}
             rel="noopener noreferrer"
             target="_blank"
           >
             {t("name", {givenName: "Balázs", familyName: "Orbán"})}
           </a>
         </h4>
-        <h6>{t("footer.version-number")}: %REACT_APP_VERSION%</h6>
+        <h6>{t("footer.version-number")}{":"} {config.app.VERSION}</h6>
       </div>
     </footer>
   )

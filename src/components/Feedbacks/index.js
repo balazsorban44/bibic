@@ -5,7 +5,7 @@ import {Loading} from '../shared/Elements'
 import Fade from "react-reveal/Fade"
 import {hu} from 'date-fns/locale'
 import {formatDistance} from 'date-fns'
-import {TODAY} from '../../utils/constants'
+import {TODAY} from '../../utils/env'
 import {useTranslation} from 'react-i18next'
 
 export const Feedbacks = ({feedbacks}) => {

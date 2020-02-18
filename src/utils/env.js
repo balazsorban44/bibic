@@ -1,3 +1,19 @@
+import {addDays, startOfDay} from "date-fns"
+
+export const TODAY = startOfDay(new Date())
+export const TOMORROW = addDays(TODAY, 1)
+
+export const routes = {
+  HOME: "/",
+  FEEDBACK_FORM: "/visszajelzes",
+  RESERVE: "/foglalas",
+  FOODS: "/etelek",
+  EVENTS: "/rendezvenyek",
+  MESSAGE: "/uzenet",
+  FACILITIES: "/szolgaltatasok",
+  ERROR: "/hiba"
+}
+
 const config = {
   "app": {
     "DOMAIN": process.env.REACT_APP_DOMAIN,
