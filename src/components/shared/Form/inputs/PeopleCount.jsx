@@ -70,12 +70,12 @@ class PeopleCount extends Component {
             {...{name}}
             onClick={this.handleChange}
             value={value - 1}
-          >-</button>
+          >{"-"}</button>
           <button
             {...{name}}
             onClick={this.handleChange}
             value={value + 1}
-          >+</button>
+          >{"+"}</button>
         </div>
       </div>
     )
