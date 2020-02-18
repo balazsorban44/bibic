@@ -18,15 +18,15 @@ import Footer from './Footer'
 import ReservationForm from "./ReservationForm"
 import FeedbackForm from "./FeedbackForm"
 import MessageForm from "./MessageForm"
-import Carousel from "./shared/Carousel"
 import Facilities from "./Facilities"
-import {useTranslation} from 'react-i18next'
+import Foods from './Foods'
+import ErrorPage from './Error'
+import Events from './Events'
 
 const Main = lazy(() => import("./Main"))
 
 
 const App = () => {
-  const [t] = useTranslation()
   return (
     <>
       <Route render={({location: {pathname}}) => pathname !== routes.HOME && <BackMenu/>} />
@@ -45,24 +45,12 @@ const App = () => {
           }
         />
         <Route
-          component={() =>
-            <Carousel
-              className="foods"
-              itemClassName="food"
-              subtitle={t("foods.subtitle")}
-              title={t("foods.title")}
-            />
-          }
+          component={Foods}
           exact
           path={routes.FOODS}
         />
         <Route
-          component={() =>
-            <Carousel
-              className="events"
-              itemClassName="event"
-              title={t("events.title")}
-            />}
+          component={Events}
           exact
           path={routes.EVENTS}
         />
@@ -91,34 +79,6 @@ const App = () => {
       </Switch>
       <Footer/>
     </>
-  )
-}
-
-
-const ErrorPage = ({location}) => {
-  //TODO: Whenever this page is rendered,
-  // send logs to server if insightful,
-  // PS: Check for sensitive information first
-
-  console.log(location)
-
-  const [t] = useTranslation()
-  const {error} = location.state
-  const title = t(`error.${error?.code ?? "generic"}.title`)
-  const body = error?.message
-  return (
-    <main style={{
-      minHeight: "calc(100vh - 8em - 228px)",
-      padding: "4em"
-    }}
-    >
-      <h1>
-        {title}
-      </h1>
-      <p>
-        {body}
-      </p>
-    </main>
   )
 }
 
