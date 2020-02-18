@@ -1,9 +1,9 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useMemo} from 'react'
 import {useTranslation} from 'react-i18next'
 import useForm from 'another-use-form-hook'
 
-import {TOMORROW} from "utils/constants"
-import {toPrice} from 'utils/language'
+import {TOMORROW} from "utils/env"
+import {toLocalePrice} from 'utils/i18n'
 import PersonalDetail from 'components/shared/PersonalDetails/PersonalDetail'
 import {isAvailable, getPrice} from 'components/db/reservation'
 import {FormGroup, FormSection, Send, Service, PeopleCount, Children} from 'components/shared/Form'
@@ -49,7 +49,7 @@ const ReservationForm = ({rooms}) => {
     .filter(c => ageGroups.includes(c))
     ?? []
 
-  const initialState = useRef({
+  const initialState = useMemo(() => ({
     roomId,
     from,
     to,
@@ -61,7 +61,9 @@ const ReservationForm = ({rooms}) => {
     adults,
     children,
     foodService
-  }).current
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [])
+
 
   const maxPeople = rooms?.[roomId - 1]?.prices.metadata.maxPeople || 2
 
@@ -151,15 +153,15 @@ const ReservationForm = ({rooms}) => {
   }
 
 
-  const price = getPrice({
+  const price = toLocalePrice(getPrice({
     priceTable: rooms?.[roomId - 1]?.prices.table,
     from: fields.from.value,
     to: fields.to.value,
     adults: fields.adults.value,
     children: fields.children.value,
     foodService: fields.foodService.value
+  }), i18n.language)
 
-  })
   return(
     <form
       className="form"
@@ -258,7 +260,7 @@ const ReservationForm = ({rooms}) => {
       >
         {t("form.send")}
         <span className="footnote-asterix">
-          {toPrice(price)}
+          {price}
         </span>
       </Send>
       <Footnote/>

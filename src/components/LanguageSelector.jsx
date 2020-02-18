@@ -3,11 +3,11 @@ import {useTranslation} from 'react-i18next'
 import FlagsSelect from "react-flags-select"
 import "./language-selector.sass"
 import "react-flags-select/css/react-flags-select.css"
-import {PREFERRED_LANGUAGE} from 'utils/language'
+import {getPreferredLanguage} from 'utils/i18n'
 
 
 const getCountry = () => {
-  let country = PREFERRED_LANGUAGE().toUpperCase()
+  let country = getPreferredLanguage().toUpperCase()
   if (country === "EN") {
     country = "GB"
   }

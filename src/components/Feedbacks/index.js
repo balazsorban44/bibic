@@ -3,10 +3,10 @@ import Stars from './Stars'
 import {withStore} from '../db'
 import {Loading} from '../shared/Elements'
 import Fade from "react-reveal/Fade"
-import {hu} from 'date-fns/locale'
 import {formatDistance} from 'date-fns'
 import {TODAY} from '../../utils/env'
 import {useTranslation} from 'react-i18next'
+import {useLocale} from 'utils/i18n'
 
 export const Feedbacks = ({feedbacks}) => {
   const rooms = Object.entries(feedbacks.rooms || {})
@@ -64,14 +64,16 @@ export const Feedbacks = ({feedbacks}) => {
 export default withStore(Feedbacks)
 
 
-export const Feedback = ({
-  content, roomId, timestamp
-}) =>
-  <li
-    className="feedback-list-element"
-    data-room={roomId}
-  >
-    <span>{roomId}</span>
-    <p>{content}</p>
-    <h6>{formatDistance(timestamp, TODAY, {locale: hu})}</h6>
-  </li>
+export const Feedback = ({content, roomId, timestamp}) => {
+  const locale = useLocale()
+  return (
+    <li
+      className="feedback-list-element"
+      data-room={roomId}
+    >
+      <span>{roomId}</span>
+      <p>{content}</p>
+      <h6>{formatDistance(timestamp, TODAY, {locale})}</h6>
+    </li>
+  )
+}

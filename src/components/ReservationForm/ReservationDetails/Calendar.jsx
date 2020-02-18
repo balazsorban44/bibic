@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {useNotification} from 'lib/notification'
-import {useTranslation} from 'react-i18next'
 import {colors} from 'utils/colors'
 import {Date as DateInput} from 'components/shared/Form'
-import {TOMORROW, CLOUD_FUNCTION_BASE_URL} from 'utils/constants'
-import {DateRangePicker} from "react-date-range"
-import 'react-date-range/dist/theme/default.css'
-import {dateFnsLocales} from 'lib/i18n'
+import {TOMORROW} from 'utils/env'
+import {DateRangePicker} from "@balazsorban/react-date-range"
+import '@balazsorban/react-date-range/dist/theme/default.css'
 import {eachDayOfInterval, endOfDay, subDays} from 'date-fns'
+import {useLocale} from 'utils/i18n'
+import config from 'utils/env'
 
 
 export const useOverlaps = (roomId) => {
@@ -21,7 +21,7 @@ export const useOverlaps = (roomId) => {
         if (!roomId) {
           return
         }
-        const url = new URL("getOverlaps", CLOUD_FUNCTION_BASE_URL)
+        const url = new URL("getOverlaps", config.firebase.CLOUD_FUNCTION_URL)
         url.searchParams.append("roomId", roomId)
         const overlaps = await (await fetch(url.toString())).json()
 
@@ -56,9 +56,7 @@ const Calendar = ({roomId, from, to, onChange}) => {
     })
   }
 
-  const {i18n} = useTranslation()
-
-  const locale = dateFnsLocales[i18n.language]
+  const locale = useLocale()
 
   const selected = {
     startDate: from.value,
