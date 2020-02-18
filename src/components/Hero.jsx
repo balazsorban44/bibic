@@ -37,7 +37,7 @@ export class Hero extends Component {
   render() {
     return (
       <section className="hero">
-        <Carousel maxTurns={Infinity}>
+        <Carousel defaultWait={10000} maxTurns={Infinity}>
           {[hero1, hero2].map(src =>
             <Fade key={src}>
               <div className="hero-slide">
