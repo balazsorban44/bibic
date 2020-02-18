@@ -1,6 +1,7 @@
 {
 	"chat-fab": "You'll find us on Messenger too!",
 	"child": "child",
+	"content-unavailable": "Content unavailable",
 	"date": "{{date, date}}",
 	"email": {
 		"error": "hiba at bibicvendeghazak dot hu",
@@ -8,7 +9,7 @@
 		"reservation": "szallasfoglalas at bibicvendeghazak dot hu"
 	},
 	"events": {
-		"title": "Out events"
+		"title": "Our events"
 	},
 	"facilities": {
 		"more": "More services →",

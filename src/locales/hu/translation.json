@@ -1,6 +1,7 @@
 {
 	"chat-fab": "Megtalál minket a Messengeren is!",
 	"child": "gyerek",
+	"content-unavailable": "Tartalom nem elérhető",
 	"date": "{{date, date}}",
 	"email": {
 		"error": "hiba kukac bibicvendeghazak pont hu",
