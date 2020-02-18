@@ -28,14 +28,11 @@ export class Database extends Component {
   componentDidMount = async () => {
     try {
       const {
-        PARAGRAPHS_REF, ROOMS_REF,
-        ROOM_SERVICES_REF, GALLERIES_REF,
+        ROOMS_REF,
+        ROOM_SERVICES_REF,
         FEEDBACKS_FS_REF, FEEDBACKS_REF
       } = await import("lib/firebase")
 
-      subscribeToDatabase(PARAGRAPHS_REF, paragraphs => this.setState({paragraphs}), true)
-
-      subscribeToDatabase(GALLERIES_REF, galleries => this.setState({galleries}), true)
 
       subscribeToDatabase(ROOM_SERVICES_REF, services => this.setState({roomServices: Object.entries(services)}))
 
@@ -57,12 +54,7 @@ export class Database extends Component {
 
   render() {
     return (
-      <Store.Provider
-        value={{
-
-          ...this.state
-        }}
-      >
+      <Store.Provider value={this.state}>
         {this.props.children}
       </Store.Provider>
     )

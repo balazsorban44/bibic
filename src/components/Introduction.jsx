@@ -62,7 +62,7 @@ export default () => {
       </ul>
       <div className="history">
         <Suspense fallback={<Loading/>}>
-          <Paragraphs path="bemutatkozas"/>
+          <Paragraphs section="introduction"/>
         </Suspense>
       </div>
     </section>

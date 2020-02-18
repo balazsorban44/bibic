@@ -4,7 +4,7 @@ import Gallery from './shared/Gallery'
 import CERTIFICATES_BG from "../assets/images/bg/intro.jpg"
 const Sunflower = () =>
   <section id="napraforgo">
-    <Paragraphs path="tanusitvanyok"/>
+    <Paragraphs section="certificates"/>
     <Gallery path="tanusitvanyok"/>
     <div className="cert-bg">
       <img

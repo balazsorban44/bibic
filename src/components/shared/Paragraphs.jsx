@@ -1,23 +1,26 @@
 import React from 'react'
 import {Loading} from './Elements'
-import {withStore} from '../db'
 import Fade from "react-reveal/Fade"
+import {useTranslation} from 'react-i18next'
+import {useParagraph} from 'context/paragraph'
 
-const Paragraphs = ({path, paragraphs}) =>
-  <>
-    {paragraphs[path] ?
-      Object
-        .values(paragraphs[path])
-        .map(({text}, index) =>
-          <Fade
-            bottom
-            key={index}
-          >
-            <p>{text}</p>
-          </Fade>
-        ) :
-      <Loading/>
-    }
-  </>
+const Paragraphs = ({section}) => {
+  const {i18n} = useTranslation()
 
-export default withStore(Paragraphs)
+  const {getParagraphs, loading} = useParagraph()
+
+  if (loading) {
+    return (<Loading/>)
+  }
+
+  const paragraphs = getParagraphs(section)
+
+  return paragraphs.map(({key, input, translated}) =>
+    <Fade bottom key={key}>
+      <p>{translated[i18n.language] || input}</p>
+    </Fade>
+  )
+
+}
+
+export default Paragraphs

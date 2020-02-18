@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Loading} from './shared/Elements'
-import {withStore} from "./db"
+import {useStore} from "./db"
 import Fade from "react-reveal/Fade"
 import {useTranslation} from 'react-i18next'
+import {useGallery} from 'context/gallery'
 
-export const Rooms = ({
-  galleries, rooms, roomServices
-}) => {
+export const Rooms = () => {
   const [t] = useTranslation()
+  const {rooms, roomServices} = useStore()
+  const {getGallery, loading} = useGallery()
+
+  const pictures = getGallery("rooms")
   return (
     <section id="szobak">
       <h2>{t("rooms.title")} <span>{t("rooms.subtitle")}</span></h2>
@@ -16,7 +19,7 @@ export const Rooms = ({
         {rooms.length ? rooms.map((room, key) =>
           <Fade key={key}>
             <Room
-              pictures={galleries["szobak"] ? galleries["szobak"][key] : undefined}
+              pictures={loading ? [] : pictures[key]}
               services={roomServices}
               {...room}
             />
@@ -29,11 +32,9 @@ export const Rooms = ({
   )
 }
 
-export default withStore(Rooms)
+export default Rooms
 
-export const Room = ({
-  id, description, pictures, services
-}) => {
+export const Room = ({id, description, pictures, services}) => {
   const [t] = useTranslation()
   const name = t("room", {id})
   return (
@@ -69,20 +70,17 @@ export const Room = ({
 
 
 export class RoomSlider extends Component {
-  static defaultProps = {delay: 10000, pictures: []}
+  static defaultProps = {pictures: []}
 
   state = {activeIndex: 0, max: 0}
 
   componentDidMount() {
-    const {delay, pictures} = this.props
-    this.setState({max: pictures.length}, () => {
-      this.interval = setInterval(this.handleTick, delay)
-    })
+    this.setState({max: this.props.pictures.length})
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.interval)
+  // }
 
   handleTick = () => {
     this.setState(({activeIndex: prevIndex}) => {
