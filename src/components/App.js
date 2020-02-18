@@ -19,7 +19,7 @@ import ReservationForm from "./ReservationForm"
 import FeedbackForm from "./FeedbackForm"
 import MessageForm from "./MessageForm"
 import Carousel from "./shared/Carousel"
-import MoreServices from "./MoreServices"
+import Facilities from "./Facilities"
 import {useTranslation} from 'react-i18next'
 
 const Main = lazy(() => import("./Main"))
@@ -80,13 +80,45 @@ const App = () => {
           path={routes.FEEDBACK_FORM}
         />
         <Route
-          component={MoreServices}
-          path={routes.SERVICES}
+          component={Facilities}
+          path={routes.FACILITIES}
+        />
+        <Route
+          component={ErrorPage}
+          path={routes.ERROR}
         />
         <Route component={NotFound}/>
       </Switch>
       <Footer/>
     </>
+  )
+}
+
+
+const ErrorPage = ({location}) => {
+  //TODO: Whenever this page is rendered,
+  // send logs to server if insightful,
+  // PS: Check for sensitive information first
+
+  console.log(location)
+
+  const [t] = useTranslation()
+  const {error} = location.state
+  const title = t(`error.${error?.code ?? "generic"}.title`)
+  const body = error?.message
+  return (
+    <main style={{
+      minHeight: "calc(100vh - 8em - 228px)",
+      padding: "4em"
+    }}
+    >
+      <h1>
+        {title}
+      </h1>
+      <p>
+        {body}
+      </p>
+    </main>
   )
 }
 
