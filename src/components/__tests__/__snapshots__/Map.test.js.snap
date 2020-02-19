@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Map component renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`Marker component renders correctly 1`] = `ShallowWrapper {}`;
