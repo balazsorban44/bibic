@@ -11,6 +11,7 @@ import Database from 'components/db'
 import App from 'components/App'
 import {ParagraphProvider} from 'context/paragraph'
 import {GalleryProvider} from 'context/gallery'
+import {RoomFacilitiesProvider} from 'context/roomFacilities'
 
 render(
   <BrowserRouter>
@@ -18,7 +19,9 @@ render(
       <Database>
         <ParagraphProvider>
           <GalleryProvider>
-            <App/>
+            <RoomFacilitiesProvider>
+              <App/>
+            </RoomFacilitiesProvider>
           </GalleryProvider>
         </ParagraphProvider>
       </Database>

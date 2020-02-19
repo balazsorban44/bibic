@@ -1,11 +1,11 @@
 import React from 'react'
-import {withStore} from '../db'
+import {useStore} from '../db'
 import {Loading} from '../shared/Elements'
 import {useTranslation} from 'react-i18next'
-import RoomServices from './RoomServices'
+import RoomFacilities from './RoomFacilities'
 
-export const RoomSelector = ({rooms, roomId, onRoomSelect}) => {
-
+export const RoomSelector = ({roomId, onRoomSelect}) => {
+  const {rooms} = useStore()
   const handleRoomSelect = roomId => () => onRoomSelect({roomId})
 
   const [t] = useTranslation()
@@ -25,7 +25,7 @@ export const RoomSelector = ({rooms, roomId, onRoomSelect}) => {
         </div> :
         <Loading/>
       }
-      <RoomServices roomId={roomId}/>
+      <RoomFacilities roomId={roomId}/>
     </>
   )
 }
@@ -46,4 +46,4 @@ const RoomOption = ({active, id, onClick}) => {
   )
 }
 
-export default withStore(RoomSelector)
+export default RoomSelector

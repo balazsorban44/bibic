@@ -5,10 +5,11 @@ import {useStore} from "./db"
 import Fade from "react-reveal/Fade"
 import {useTranslation} from 'react-i18next'
 import {useGallery} from 'context/gallery'
+import {useRoomFacilities} from 'context/roomFacilities'
 
 export const Rooms = () => {
   const [t] = useTranslation()
-  const {rooms, roomServices} = useStore()
+  const {rooms} = useStore()
   const {getGallery} = useGallery()
 
   const pictures = getGallery("rooms")
@@ -29,7 +30,6 @@ export const Rooms = () => {
           <Fade key={room.id}>
             <Room
               pictures={pictures?.[room.id] ?? []}
-              services={roomServices}
               {...room}
             />
           </Fade>
@@ -43,9 +43,11 @@ export const Rooms = () => {
 
 export default Rooms
 
-export const Room = ({id, description, pictures, services}) => {
+export const Room = ({id, description, pictures}) => {
   const [t] = useTranslation()
   const name = t("room", {id})
+  const {getRoomFacilities} = useRoomFacilities()
+  const roomFacilities = getRoomFacilities(id)
   return (
     <li
       className={`room szoba-${id}`}
@@ -55,10 +57,10 @@ export const Room = ({id, description, pictures, services}) => {
       <RoomSlider pictures={Object.values(pictures)} />
       <p className="room-description" >{description}</p>
       <div className="room-services">
-        {services.length ?
-          services
-            .filter(([_key, {inRoom}]) => Object.values(inRoom).includes(id))
-            .map(([key, {name, icon}]) =>
+        {roomFacilities.length
+          ? roomFacilities.map(({key, icon}) => {
+            const name = t(`room-facilities.${key}`)
+            return (
               <img
                 alt={name}
                 className="room-service service-in-room"
@@ -66,8 +68,9 @@ export const Room = ({id, description, pictures, services}) => {
                 src={icon}
                 title={name}
               />
-            ) :
-          <Loading/>
+            )
+          })
+          : <Loading/>
         }
       </div>
       <div className="button room-reserve-btn">
