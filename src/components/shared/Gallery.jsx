@@ -1,6 +1,7 @@
 import React from 'react'
 import {Loading} from './Elements'
 import {useGallery} from 'context/gallery'
+import {useTranslation} from 'react-i18next'
 
 export const Gallery = ({count, section}) => {
 
@@ -28,30 +29,32 @@ export default Gallery
 
 
 export const GalleryItem = ({SIZE_1024, SIZE_1440, SIZE_640, desc, title}) => {
-
   const sizes = {
     SIZE_640,
     SIZE_1024,
     SIZE_1440
   }
 
+  const {i18n: {language}} = useTranslation()
+  const alt = title?.[language] ?? desc?.[language]
+
   if (desc) {
     return (
       <div className="gallery-item">
         <div className="img-wrapper">
           <GalleryImage
-            alt={desc}
+            alt={alt}
             sizes={sizes}
           />
         </div>
-        <h3>{title}</h3>
-        <p>{desc}</p>
+        <h3>{title[language]}</h3>
+        <p>{desc[language]}</p>
       </div>
     )
   }
 
   return (
-    <GalleryImage alt={title} sizes={sizes} />
+    <GalleryImage alt={alt} sizes={sizes} />
   )
 }
 
@@ -59,18 +62,9 @@ export const GalleryItem = ({SIZE_1024, SIZE_1440, SIZE_640, desc, title}) => {
 export const GalleryImage = ({sizes, alt}) => {
   return (
     <picture>
-      <source
-        media="(min-width: 540px)"
-        srcSet={sizes.SIZE_1024}
-      />
-      <source
-        media="(min-width: 1280px)"
-        srcSet={sizes.SIZE_1440}
-      />
-      <img
-        alt={alt}
-        src={sizes.SIZE_640}
-      />
+      <source media="(min-width: 540px)" srcSet={sizes.SIZE_1024}/>
+      <source media="(min-width: 1280px)" srcSet={sizes.SIZE_1440}/>
+      <img alt={alt} src={sizes.SIZE_640} />
     </picture>
   )
 }
