@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import {withStore} from './db'
 import Fade from "react-reveal/Fade"
 import {useTranslation} from 'react-i18next'
 
@@ -13,7 +12,6 @@ export const Prices = () => {
         cascade
         up
       >
-
         <ul className="price-list">
           <li>
             <div className="price-content">
@@ -81,4 +79,4 @@ export const Prices = () => {
 }
 
 
-export default withStore(Prices)
+export default Prices

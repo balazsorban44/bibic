@@ -7,7 +7,7 @@ import {toLocalePrice} from 'utils/i18n'
 import PersonalDetail from 'components/shared/PersonalDetails/PersonalDetail'
 import {isAvailable, getPrice} from 'components/db/reservation'
 import {FormGroup, FormSection, Send, Service, PeopleCount, Children} from 'components/shared/Form'
-import {withStore} from 'components/db'
+import {useStore} from 'components/db'
 
 import RoomSelector from './RoomSelector'
 import Footnote from './Footnote'
@@ -23,8 +23,8 @@ import {valid, validContent, addressRe, nameRe, emailRe, telRe} from 'utils/vali
 const options = {generateProps: p => p}
 
 
-const ReservationForm = ({rooms}) => {
-
+const ReservationForm = () => {
+  const {rooms} = useStore()
   const [t, i18n] = useTranslation()
 
   useEffect(() => {
@@ -268,4 +268,4 @@ const ReservationForm = ({rooms}) => {
   )
 }
 
-export default withStore(ReservationForm)
+export default ReservationForm

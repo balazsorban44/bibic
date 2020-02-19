@@ -1,6 +1,6 @@
 import React from 'react'
 import Stars from './Stars'
-import {withStore} from '../db'
+import {useStore} from '../db'
 import {Loading} from '../shared/Elements'
 import Fade from "react-reveal/Fade"
 import {formatDistance} from 'date-fns'
@@ -8,7 +8,8 @@ import {TODAY} from '../../utils/env'
 import {useTranslation} from 'react-i18next'
 import {useLocale} from 'utils/i18n'
 
-export const Feedbacks = ({feedbacks}) => {
+export const Feedbacks = () => {
+  const {feedbacks} = useStore()
   const rooms = Object.entries(feedbacks.rooms || {})
   const sum = rooms.reduce((acc, [_, value]) => acc + value, 0)
   const allAvg = (sum / rooms.length).toFixed(2)
@@ -61,7 +62,7 @@ export const Feedbacks = ({feedbacks}) => {
   )
 }
 
-export default withStore(Feedbacks)
+export default Feedbacks
 
 
 export const Feedback = ({content, roomId, timestamp}) => {
