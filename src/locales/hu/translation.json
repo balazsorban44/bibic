@@ -15,6 +15,21 @@
 		"more": "További szolgáltatásaink →",
 		"title": "Szolgáltatásaink"
 	},
+	"room-facilities": {
+		"airconditioner": "Légkondi",
+		"balcony": "Erkély",
+		"bathtub": "Fürdőkád",
+		"crib": "Babaágy",
+		"doublebed": "Dupla ágy",
+		"hairdryer": "Hajszárító",
+		"shower": "Zuhanyzó",
+		"singlebed": "Egyes ágy",
+		"sofa": "Kanapé",
+		"toilet": "WC",
+		"tv": "TV",
+		"wardrobe": "Ruhás szekrény",
+		"wifi": "Wi-Fi"
+	},
 	"feedback": {
 		"error": {
 			"alt": "Szomorú szmájli",

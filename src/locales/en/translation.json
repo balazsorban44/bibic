@@ -15,6 +15,21 @@
 		"more": "More services →",
 		"title": "Our services"
 	},
+	"room-facilities": {
+		"airconditioner": "air conditioning",
+		"balcony": "balcony",
+		"bathtub": "bathtub",
+		"crib": "crib",
+		"doublebed": "double bed",
+		"hairdryer": "hairdryer",
+		"shower": "shower",
+		"singlebed": "single bed",
+		"sofa": "sofa",
+		"toilet": "toilet",
+		"tv": "TV",
+		"wardrobe": "wardrobe",
+		"wifi": "Wi-Fi"
+	},
 	"feedback": {
 		"error": {
 			"alt": "Sad smiley",
