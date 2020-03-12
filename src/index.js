@@ -1,16 +1,31 @@
 import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
 import {render} from 'react-dom'
-import './sass/main.sass'
+import {BrowserRouter} from 'react-router-dom'
+
+import "lib/i18n"
+import {NotificationProvider} from 'lib/notification'
 import 'react-toastify/dist/ReactToastify.css'
-import Database from './components/db'
-import App from './components/App'
+
+import './sass/main.sass'
+import Database from 'context/db'
+import App from 'App'
+import {ParagraphProvider} from 'context/paragraph'
+import {GalleryProvider} from 'context/gallery'
+import {RoomFacilitiesProvider} from 'context/roomFacilities'
 
 render(
   <BrowserRouter>
-    <Database>
-      <App/>
-    </Database>
+    <NotificationProvider>
+      <Database>
+        <ParagraphProvider>
+          <GalleryProvider>
+            <RoomFacilitiesProvider>
+              <App/>
+            </RoomFacilitiesProvider>
+          </GalleryProvider>
+        </ParagraphProvider>
+      </Database>
+    </NotificationProvider>
   </BrowserRouter>,
   document.querySelector('.app')
 )

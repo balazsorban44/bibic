@@ -1,37 +1,57 @@
-body, ul, h1, h2, h3, h4, h5, p, textarea, input, fieldset
+body,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+textarea,
+input,
+fieldset
   margin: 0
   padding: 0
+
 a
-  text-decoration: none
   cursor: pointer
+  text-decoration: none
+
 li
   list-style-type: none
+
 img
+  color: $dark
   display: block
-  color: black
   max-width: 100%
 
 section
+  background-color: $accent-color-dark
+  min-height: 70vh
   overflow: hidden
   padding: 7.5%
   position: relative
-  background-color: $accent-color-dark
-  min-height: 70vh
   @media (min-width: 768px)
-    background-image: url($images + "bg/bg.png")
-    
-textarea, input, fieldset
-  border: none
+    background-image: $images + 'bg/bg.png'
 
-textarea, input, button
+
+textarea,
+input,
+fieldset
+  border: 0
+
+textarea,
+input,
+button
   &:focus
     outline: none
 
 button
-  border: none
+  border: 0
   cursor: pointer
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button
-  -webkit-appearance: none
-  margin: 0
+input
+  [type='number']
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button
+      -webkit-appearance: none
+      margin: 0

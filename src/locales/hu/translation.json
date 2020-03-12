@@ -1,0 +1,246 @@
+{
+	"chat-fab": "Megtalál minket a Messengeren is!",
+	"child": "gyerek",
+	"content-unavailable": "Tartalom nem elérhető",
+	"date": "{{date, date}}",
+	"email": {
+		"error": "hiba kukac bibicvendeghazak pont hu",
+		"info": "info kukac bibicvendeghazak pont hu",
+		"reservation": "szallasfoglalas kukac bibicvendeghazak pont hu"
+	},
+	"events": {
+		"title": "Rendezvényeink"
+	},
+	"facilities": {
+		"more": "További szolgáltatásaink →",
+		"title": "Szolgáltatásaink"
+	},
+	"room-facilities": {
+		"airconditioner": "Légkondi",
+		"balcony": "Erkély",
+		"bathtub": "Fürdőkád",
+		"crib": "Babaágy",
+		"doublebed": "Dupla ágy",
+		"hairdryer": "Hajszárító",
+		"shower": "Zuhanyzó",
+		"singlebed": "Egyes ágy",
+		"sofa": "Kanapé",
+		"toilet": "WC",
+		"tv": "TV",
+		"wardrobe": "Ruhás szekrény",
+		"wifi": "Wi-Fi"
+	},
+	"feedback": {
+		"error": {
+			"alt": "Szomorú szmájli",
+			"title": "Hiba történt."
+		},
+		"our-services": {
+			"footnote": "1 = legrosszabb, 5 = legjobb",
+			"title": "szolgáltatásaink"
+		},
+		"services": {
+			"cleanliness": "tisztaság",
+			"coffee": "kávé",
+			"comfort": "komfort",
+			"food": "étel",
+			"services": "szolgáltatások",
+			"staff": "személyzet"
+		},
+		"subtitle": "(foglalási azonosító: {{id}})",
+		"success": {
+			"alt": "Pipa",
+			"title": "Köszönjük visszajelzését."
+		},
+		"title": "Visszajelzés"
+	},
+	"feedbacks": {
+		"no-reviews": "Nincs visszajelzés.",
+		"overall": "Összesített",
+		"ratings": "Értékelések",
+		"title": "Visszajelzések",
+		"your-reviews": "Önök mondták"
+	},
+	"foods": {
+		"subtitle": "Vendégházunkban éttermet nem üzemeltetünk, ezért az ételek kiválasztása előre szükséges, ételeket kizárólag szállóvendégeink részére készítünk, a falusi vendégasztal keretén belül.",
+		"title": "Ételeink"
+	},
+	"footer": {
+		"email": "info kukac bibicvendeghazak pont hu",
+		"fb-alt": "Facebook",
+		"insta-alt": "Instagram",
+		"mail-alt": "e-mail",
+		"map-alt": "Térkép",
+		"pictures-and-design": "Képek & Design:",
+		"rights-reserved": "© Minden jog fenntartva.",
+		"tel-alt": "Telefon",
+		"version-number": "Verziószám",
+		"webpage-and-design": "Weblap & Design:",
+		"yt-alt": "YouTube"
+	},
+	"form": {
+		"address": "lakcím",
+		"content": "üzenet",
+		"customId": "foglalási azonosító",
+		"email": "e-mail",
+		"id": "foglalási azonosító (id)",
+		"invalid": "Érvénytelen mező: {{fields}}",
+		"invalid_plural": "Érvénytelen mezők: {{fields}}",
+		"message": "üzenet",
+		"messageInput": {
+			"details": "Az üzenet részletei",
+			"placeholder": "Tisztelt Bíbic vendégházak..."
+		},
+		"name": "teljes név",
+		"overlaps": "A szoba már foglalt ebben az intervallumban. Kérjük válasszon másik szobát, vagy dátumot.",
+		"period": "A foglalás legalább egy éjszakát kell, hogy tartalmazzon.",
+		"personal-details": "Személyi adatok",
+		"ratings": "értékelések",
+		"required": "kötelező",
+		"send": "Küldés",
+		"send-disabled_general": "Küldés nem lehetséges. Kérjük elenőrízze a beírt adatokat.",
+		"send-disabled_reservation": "A foglalás legalább egy éjszakát kell, hogy tartalmazzon.",
+		"tel": "telefonszám"
+	},
+	"introduction": {
+		"position": {
+			"host": "Bíbic vendégházak házigazdája",
+			"owner": "Tulajdonos"
+		},
+		"title": "Üdvözöljük"
+	},
+	"menu": {
+		"back-to": "Vissza ide: {{title}}",
+		"contact": "Kapcsolat",
+		"events": "Rendezvények",
+		"facilities": "Szolgáltatások",
+		"feedback": "Visszajelzések",
+		"homepage": "főoldal",
+		"intro": "Bemutatkozás",
+		"menu": "Ételek",
+		"prices": "Árak",
+		"rooms": "Szobák"
+	},
+	"message": {
+		"body": "Az üzenet tartalma",
+		"subject": "Az üzenet témája",
+		"subjects": {
+			"entireHouse": "Teljes ház",
+			"eventHall": "Rendezvényterem",
+			"exclusiveDeal": "Külön ajánlat",
+			"other": "Egyéb"
+		}
+	},
+	"name": "{{familyName}} {{givenName}}",
+	"not-found": {
+		"back-to-homepage": "Vissza a főoldalra",
+		"paragraph": "Hmm... Ez az oldal sajnos üres."
+	},
+	"notification": {
+		"date-selected": "Dátum kiválasztva.",
+		"error": {
+			"body": "Ha a hiba tartósan fennáll, kérjük jelezze:",
+			"header": "{{message}}"
+		},
+		"feedback-success": "Visszajelzés sikeresen elküldve.",
+		"message-success": {
+			"body": "Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:",
+			"header": "Üzenet elküldve."
+		},
+		"no-reservation-found": "Hiba! Ez a foglalás nem létezik.",
+		"overlap": "Az adott intervallum már tartalmaz foglalást. Az elérhető leghosszabb intervallum kijelölve. Próbálkozhat új intervallummal, vagy másik szobával.",
+		"reservation-success": {
+			"body": "Néhány másodperc múlva visszakerül a főoldalra. További kérdésével fordulhat:",
+			"header": "Foglalását rögzítettük."
+		},
+		"same-day": "A foglalás minimum 1 éjszakát kell hogy tartalmazzon. Kérjük válasszon másik dátumot.",
+		"use-the-calendar": "Kérjük, hogy az érkezés és távozás kiválasztásához használja a naptárat."
+	},
+	"prices": {
+		"2-or-more-people": "két- vagy több fő részére",
+		"disclaimer": "*Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.",
+		"entire-house": "Teljes ház",
+		"event-hall": "Rendezvényterem",
+		"exclusive-deal": {
+			"0": "KÜLÖN",
+			"1": "AJÁNLAT"
+		},
+		"hall-rent": "terembérlés",
+		"huf-and-up": "-Forinttól",
+		"huf-per-hour": "Forint/órától",
+		"max-21-people": "maximum 21 fő",
+		"multibed-room": "Többágyas szoba",
+		"title": "Árak",
+		"write-us": "Írjon nekünk"
+	},
+	"reservation": {
+		"accepted-payment-methods": "Elfogadott fizetési módok",
+		"adults": {
+			"label": "felnőttek"
+		},
+		"children": {
+			"label": "gyerekek"
+		},
+		"choose-a-room": "Válasszon szobát",
+		"dates": {
+			"footnote": "érkezés: 14:00-tól, távozás: 10:00-ig",
+			"title": "érkezés/távozás"
+		},
+		"food": {
+			"breakfast": "reggeli",
+			"footnote": {
+				"0": "az ételeket előre kell kiválasztani, mivel nem üzemeltetünk éttermet",
+				"1": "főbb ételeinket ide kattintva találja"
+			},
+			"halfBoard": "félpanzió",
+			"title": "igényelt ellátás"
+		},
+		"from": {
+			"label": "érkezés"
+		},
+		"guests": {
+			"footnote": "6 év alatt ingyenes",
+			"title": "személyek (maximum {{maxPeople}} fő)"
+		},
+		"message": {
+			"placeholder": "(pl.: étel egyeztetés, speciális kívánság, egyéb kérdés)",
+			"title": "megjegyzés"
+		},
+		"no-payment-warning": "FIGYELEM! Felhívjuk figyelmét, hogy a foglalás elküldése fizetési kötelezettséget nem von maga után. Foglalását először jóvá kell hagyjuk. A fizetés helyben, vagy átutalással történik. További részletekért kérdezhet a megjegyzésben, vagy írhat az alábbi címre:",
+		"payment-methods": {
+			"cash": {
+				"alt": "Készpénz",
+				"title": "Készpénz"
+			},
+			"mastercard": {
+				"alt": "Mastercard"
+			},
+			"otp": {
+				"alt": "OTP Szép"
+			},
+			"visa": {
+				"alt": "Visa"
+			},
+			"wire-transfer": {
+				"alt": "Bankártya",
+				"title": "Előreutalás"
+			}
+		},
+		"required-for-invoice": "(számla kiállításához szükséges)",
+		"reservation-details": "Foglalási adatok",
+		"reservation-email": "szallasfoglalas kukac bibicvendeghazak pont hu",
+		"room-chosen": "({{id}}. szoba kiválasztva)",
+		"room-facilities": "A szoba szolgáltatásai",
+		"title": "Foglalás",
+		"to": {
+			"label": "távozás"
+		}
+	},
+	"reserve": "Lefoglalom",
+	"room": "Szoba {{id}}",
+	"rooms": {
+		"subtitle": "Flóra ház",
+		"title": "Szobák"
+	},
+	"year": "év"
+}
