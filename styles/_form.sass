@@ -1,0 +1,182 @@
+.form
+  max-width: 720px
+  margin: 0 auto
+  h2
+    margin: 2em auto 1em
+    text-align: center
+    font-family: "White Festive", sans-serif
+    letter-spacing: .1em
+    font-size: 2rem
+    text-transform: uppercase
+  h4
+    text-transform: uppercase
+    letter-spacing: .1em
+    font-size: 1.2em
+    font-family: "Coolvetica", sans-serif
+    font-weight: bolder
+    margin: 2em 1.5em 0
+    align-self: flex-start
+  
+  h5
+    margin: 1em 0 0 1em
+    font-family: "Coolvetica", sans-serif
+    letter-spacing: .1em
+    font-weight: lighter
+
+.input-box
+  margin: 1em
+  min-height: 32px
+  display: flex
+  align-items: baseline
+  justify-content: flex-end
+  font-family: "Coolvetica", sans-serif
+  letter-spacing: .1em
+  border-bottom: 2px solid black
+  
+  label
+    margin-right: .5em
+    font-weight: bolder
+  input
+    letter-spacing: .1em
+    flex-grow: 1
+    margin-left: .2em
+    padding: .5em
+    transition: .3s background-color
+    font-family: "Coolvetica", sans-serif
+    text-align: right
+    border: none
+    &::placeholder
+      color: transparentize(grey, .6)
+    &:focus
+      background-color: transparentize($dark, .95)
+
+.number-controls button
+  margin: 0 0 .5em .5em
+  position: relative
+  background-color: $accent-color
+  border: none
+  color: $light
+  border-radius: 50%
+  width: 32px
+  height: 32px
+  letter-spacing: 0
+  font-weight: bolder
+
+.input-error
+  box-sizing: border-box
+  border-bottom: 2px solid transparentize($error, .1)
+  label
+    color: transparentize($error, .1)
+  &::after
+    position: relative
+    content: '!'
+    font-size: .8em
+    font-weight: bold
+    font-family: sans-serif
+    letter-spacing: 0
+    color: $light
+    background-color: transparentize($error, .1)
+    width: 10px
+    height: 10px
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 50%
+    padding: 4px
+    margin-left: 4px
+
+.message 
+  textarea
+    padding: .5em
+    width: calc(100% - 3em - 4px)
+    border: 2px solid $dark
+    margin: 1em 1em 0
+    font-family: "Coolvetica", sans-serif
+    letter-spacing: .1em
+
+
+
+.footnote
+  align-self: center
+  margin-left: 1em
+  display: block
+  padding: .5em .5em 1.5em
+  font-family: "Coolvetica", sans-serif
+  letter-spacing: .05em
+  font-size: .9em
+  a
+    text-decoration: underline
+    display: block
+    margin: 1em
+    text-align: center
+    transition: .1s
+    &:hover
+      color: $accent-color-dark
+  &::before
+    content: "*"
+
+.footnote-asterix::after
+  content: "*"
+
+
+
+.submit
+  width: 128px
+  height: 128px
+  background-color: $accent-color
+  color: $light
+  display: grid
+  place-items: center
+  border-radius: 50%
+  font-size: 2.5em
+  font-family: "White Festive", sans-serif
+  font-weight: bolder
+  border: none
+  margin: .75em auto
+  text-transform: uppercase
+  transition: .2s ease-out
+  span
+    line-height: .4
+    font-size: .65em
+  &:hover
+    background-color: $accent-color-dark
+    transform: scale(1.1)
+  &:disabled
+    background-color: grey
+    transform: none
+    cursor: not-allowed
+
+
+.submit-loading
+  pointer-events: none
+  opacity: .8
+
+
+
+@media (min-width: 720px)
+  .form
+    h4, h5
+      margin-left: 0
+    h5
+      margin: 2em 0 0 1em
+      text-align: right
+  .form-group
+    margin-top: 1em
+    display: flex
+    flex-wrap: wrap
+    align-items: flex-start
+    background-color: transparentize($accent-color, .95)
+    border-radius: 12px
+    padding: 1em
+  .input-box
+    position: relative
+    min-width: calc(50% - 2em)
+
+  .footnote
+    padding-top: 1em
+    min-width: 90%
+    
+  .message 
+    textarea
+      width: calc(100% - 1em - 4px)
+      margin:  0

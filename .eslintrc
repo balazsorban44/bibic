@@ -1,12 +1,7 @@
 {
-  "extends": [
-    "prettier",
-    "prettier/react",
-    "react-app"
-  ],
   "parser":"babel-eslint",
   "rules": {
-    "require-jsdoc":"warn",
+    "require-jsdoc":"off",
     // "max-len": ["warn", {
     //   "ignoreTemplateLiterals": true,
     //   "ignoreStrings": true

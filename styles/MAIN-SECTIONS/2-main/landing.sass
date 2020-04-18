@@ -1,0 +1,109 @@
+.welcome-title
+  color: $accent-color-2
+  text-align: center
+
+.history
+  margin: 7.5% auto 10%
+
+.profiles
+  li:nth-of-type(even)
+    margin: 15% 0
+  h5
+    text-align: center
+    letter-spacing: .1em
+
+
+.profile-img
+  display: block
+  border-radius: 50%
+  width: 160px
+  height: 160px
+  margin: 0 auto
+
+
+@media (min-width: 560px)
+  .profiles
+    li
+      display: flex
+      align-items: center
+      >div
+        margin: 0 2.5%
+      &:nth-child(odd)
+        h3,h4
+          text-align: left
+      &:nth-child(even)
+        margin: -2.5% 0
+        flex-direction: row-reverse
+        align-self: flex-end
+        h3,h4, h5
+          text-align: right
+
+
+@media (min-width: 640px)
+  #bemutatkozas
+    padding: 5%
+
+  .history
+    p
+      &:nth-child(even)
+        margin: 5% 0
+        text-align: right
+
+
+@media (min-width: 768px)
+  #bemutatkozas
+    padding: 5% 12.5%
+  .welcome-title
+    font-size: 70px
+  .profiles
+    max-width: 720px
+    margin: 0 auto
+    li
+      &:last-child
+        margin-left: 15%
+  .history
+    max-width: 580px
+    margin: 12.5% auto 64px auto
+
+
+@media (min-width: 960px)
+  .profiles
+    max-width: 840px
+  .history
+    p
+      &:nth-child(even)
+        margin: 7.5% 0
+        text-align: center
+      &:last-child
+        text-align: right
+
+
+@media (min-width: 1024px)
+  .history
+    margin-top: 10%
+    p
+      &:nth-child(even)
+        text-align: right
+      &:nth-child(odd)
+        text-align: left
+
+
+@media (min-width: 1280px)
+  #bemutatkozas
+    padding-top: 2.5%
+    h2
+      padding-top: 0
+      margin-top: 0
+    li
+      margin-top: -3.5%
+      img
+        transition: .2s ease-in-out
+        &:nth-of-type(2)
+          margin: -2.5% 0
+
+
+@media (min-width: 1440px)
+  .profiles
+    img
+      width: 192px
+      height: 192px

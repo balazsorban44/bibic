@@ -20,5 +20,11 @@ main.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
 
 src/migrations/*.json
+
+.next
+build
+node_modules
+data

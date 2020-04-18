@@ -1,0 +1,85 @@
+@import '2-main/landing'
+@import '2-main/napraforgo'
+@import '2-main/services'
+@import '2-main/rooms/main'
+@import '2-main/prices'
+@import '2-main/carousel'
+@import '2-main/events'
+@import '2-main/programs'
+
+.back-to-home, .chat-fab
+  z-index: 1000
+  position: fixed
+  bottom: 0
+  margin: 2.5%
+  transition: .2s ease-out
+
+.back-to-home, .chat-fab a
+  box-shadow: 0 0 10px black
+  @media (min-width: 720px)
+    &:hover, &:active
+      animation: none
+      transform: scale(1.1)
+
+.chat-fab
+  right: 0
+  width: 54px
+  height: 54px
+  a
+    display: flex
+    align-items: center
+    flex-direction: column
+    justify-content: center
+    width: 100%
+    height: 100%
+    background-color: $accent-color
+    border-radius: 50%
+    @media (min-width: 720px)
+      animation: chat 2.5s infinite
+    
+    img
+      width: 32px
+  .filled
+    transition: opacity .3s
+    opacity: 1
+  .tooltip
+    margin-bottom: -54px
+    float: right
+    color: $light
+    background-color: #444
+    font-family: monospace
+    padding: .3em .5em
+    pointer-events: none
+    z-index: -1
+    position: relative
+    white-space: nowrap
+    margin-right: 3em
+    border-radius: 1em
+    transition: .3s
+    transform: scale(0)
+    transform-origin: right
+    opacity: 0
+  &:hover, &:active
+    .tooltip
+      position: relative
+      transform: none
+      opacity: 1
+  
+
+.back-to-home
+  padding: .5em .75em
+  color: $light
+  font-family: "White Festive"
+  font-weight: bolder
+  font-size: 1.3em
+  letter-spacing: .1em
+  background-color: $accent-color
+  border-radius: 2em
+  transition: .2s
+  &:hover
+    transform: scale(1.05)
+    color: $light
+
+@media (max-width: 768px)
+  .back-to-home
+    display: none

@@ -1,0 +1,45 @@
+// ------------------------------ TYPOGRAPHY ------------------------------ //
+
+$fonts: '/fonts/'
+
+@font-face
+  font-family: "White Festive"
+  src:  url($fonts + "WhiteFestive.otf")
+
+@font-face
+  font-family: "Coolvetica"
+  src:  url($fonts + "Coolvetica.woff")
+
+
+a
+  color: $accent-color-2
+  transition: .3s
+  &:hover
+    color: $light
+
+section
+  font-family: "Coolvetica", sans-serif
+  color: $light
+  
+  h2
+    letter-spacing: .05em
+    text-shadow: 2px 2px 0 $accent-color-4
+    font-family: "White Festive", sans-serif
+    font-size: 50px
+    margin-top: 2.5%
+    padding: 2.5% 0 1%
+    text-transform: uppercase
+
+  h3, h4, p
+    font-weight: lighter
+
+  h3, h4
+    text-align: center
+
+  h3
+    font-size: 25px
+    
+  p
+    line-height: 1.6
+    letter-spacing: .015em
+    font-size: 1.1em

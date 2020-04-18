@@ -1,0 +1,70 @@
+#logos
+  display: none
+#reachout
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  padding: 7.5% 12.5%
+  li
+    margin: 1em 1.5em
+
+  a
+    font-family: "Coolvetica", sans-serif
+    transition: .3s
+    border-bottom: none
+    color: $dark
+    &:hover
+      color: $accent-color-2
+  img
+    width: 48px
+    height: 48px
+    transition: .3s
+  span
+    display: none
+
+
+@media (min-width: 640px)
+  #logos, #reachout a
+    img
+      transition: .2s
+
+  #logos img:hover, #reachout a:hover img
+    transform: scale(.9)
+
+  
+  #reachout
+    padding: 0
+  #logos
+    filter: invert(1)
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    li
+      margin: 1em
+    li:nth-of-type(2)
+      order: -1
+    img
+      margin-bottom: 1em
+      width: 128px
+@media (min-width: 1024px)
+  #reachout
+    padding: 1em 15%
+    justify-content: space-evenly
+    li
+      margin: 1em
+    span
+      display: block
+      margin-left: .5em
+    a
+      display: flex
+      flex-direction: row-reverse
+      align-items: center
+      justify-content: space-between
+
+
+@media (min-width: 1280px)
+  .contact
+    padding: 0 10%
+  #logos
+    img
+      width: 192px
