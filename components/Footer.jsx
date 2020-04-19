@@ -44,7 +44,7 @@ const Footer = () => {
         <h4>
           Weblap & Design : <a href="https://balazsorban.com" rel="noopener noreferrer" target="_blank" >Orbán Balázs</a>
         </h4>
-        <h6>verziószám: %REACT_APP_VERSION%</h6>
+        <h6>verziószám: {process.env.VERSION}</h6>
       </div>
     </footer>
   )

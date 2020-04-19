@@ -2,14 +2,11 @@ import React, {useState, useEffect, useMemo, useCallback} from 'react'
 import Link from 'next/link'
 
 const Rooms = ({rooms}) =>
-  <section id="szobak">
-    <h2>Szobák</h2>
-    <ul className="rooms">
-      {rooms.map(room =>
-        <Room key={room.id} {...room}/>
-      )}
-    </ul>
-  </section>
+  <ul className="rooms">
+    {rooms.map(room =>
+      <Room key={room.id} {...room}/>
+    )}
+  </ul>
 
 export default Rooms
 

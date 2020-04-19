@@ -8,9 +8,9 @@ const menu = [
   {href: "#szolgaltatasok", name: "Szolgáltatások"},
   {href: "#szobak", name: "Szobák"},
   {href: "#arak", name: "Árak"},
-  {href:"/menu", as: "/etelek", name: "Ételek"},
-  {href:"/events", as: "/rendezvenyek", name: "Rendezvények"},
-  {href: "#visszajelzesek", name: "Visszajelzések"},
+  {href: "/menu", as: "/etelek", name: "Ételek"},
+  {href: "/events", as: "/rendezvenyek", name: "Rendezvények"},
+  {href: "/feedbacks", as: "/visszajelzesek", name: "Visszajelzések"},
   {href: "#kapcsolat", name: "Kapcsolat"}
 ]
 
@@ -22,6 +22,7 @@ const IndexMenu = ({rooms}) => {
 
   useEffect(() => {
     setRoomMenuOpen(window.innerWidth <= 768)
+    setScrolled(window.pageYOffset >= 100)
   }, [])
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const IndexMenu = ({rooms}) => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleShowRoomMenu = () => setMenuOpen(true)
+  const handleShowRoomMenu = () => setRoomMenuOpen(true)
 
   const handleMenuToggle = () => setMenuOpen(menuOpen => !menuOpen)
 
@@ -48,7 +49,7 @@ const IndexMenu = ({rooms}) => {
         onClick={handleMenuToggle}
       ><span/><span/><span/></div>
       <a
-        className={`menu-logo ${scrolled ? "menu-logo-scrolled" : ""}`}
+        className="menu-logo"
         href={process.env.BASE_URL}
       >
         <picture>
@@ -64,6 +65,11 @@ const IndexMenu = ({rooms}) => {
       </a>
       <nav>
         <ul>
+          <li>
+            <a href="https://bibicvendeghazak.blog">
+              Blog
+            </a>
+          </li>
           {menu.map(({name, href, as}) =>
             <li key={name}>
               {as ? (
@@ -74,7 +80,7 @@ const IndexMenu = ({rooms}) => {
                 <a
                   href={href}
                   onClick={handleHideMenu}
-                  onMouseEnter={() => href==="szobak" && handleShowRoomMenu()}
+                  onMouseEnter={() => href.includes("szobak") && handleShowRoomMenu()}
                 >
                   {name}
                 </a>

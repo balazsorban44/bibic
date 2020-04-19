@@ -1,28 +1,33 @@
-import React from 'react'
+import * as React from 'react'
 import {hu} from 'date-fns/locale'
 import {formatDistance} from 'date-fns'
+import Section from "components/section"
+
+// TODO: Use Sanity or Firebase
+import roomsData from "data/rooms.json"
+import feedbacksData from "data/feedbacks.json"
+import roomFacilitiesData from "data/roomFacilities.json"
 
 const Feedbacks = ({feedbacks, allAvg, rooms}) => {
   return (
-    <section id="visszajelzesek">
-      <h2>Visszajelzések</h2>
+      <Section  id="visszajelzesek" title={"Visszajelzések"}>
       <div>
         <h3>Értékelések</h3>
         <Stars
           title="Összesített"
           value={allAvg}
-        />
+          />
         <div className="room-feedbacks">
           {rooms.map(({roomId, avg}) =>
             <div
-              className="room-feedback"
-              key={roomId}
+            className="room-feedback"
+            key={roomId}
             >
               <Stars
                 size={18}
                 title={`Szoba ${roomId}`}
                 value={avg.toFixed(2)}
-              />
+                />
             </div>
           )}
         </div>
@@ -32,10 +37,10 @@ const Feedbacks = ({feedbacks, allAvg, rooms}) => {
         <ul className="feedback-list">
           {feedbacks.map((feedback, index) =>
             <Feedback key={index} {...feedback} />
-          )}
+            )}
         </ul>
       </div>
-    </section>
+            </Section>
   )
 }
 
@@ -84,3 +89,22 @@ const Stars = ({value, title}) => {
     </div>
   )
 }
+
+
+
+export const getStaticProps = async () => {
+    return ({
+      props: {
+        feedbacks: feedbacksData
+        .filter(({content, accepted}) => accepted && !/^\*{1,5}$/.test(content)),
+        allAvg: 5,
+        rooms: [
+        {
+            roomId: 1,
+            avg: 3.4
+        }
+        ]
+      }
+    })
+  }
+  

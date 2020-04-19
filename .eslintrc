@@ -1,5 +1,9 @@
 {
   "parser":"babel-eslint",
+  "extends": [
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
   "rules": {
     "require-jsdoc":"off",
     // "max-len": ["warn", {
@@ -36,6 +40,7 @@
     "react/jsx-sort-props":"error",
     "react/jsx-no-literals": "error",
     "react/no-deprecated": "warn",
+    "jsx-a11y/anchor-is-valid": "off",
     "lines-between-class-members":"error"
   },
   "parserOptions": {

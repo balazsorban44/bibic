@@ -1,14 +1,16 @@
-import React from 'react'
+import * as React from 'react'
 import GoogleMaps from "google-map-react"
 
-const Marker = () =>
-  <img
-    //   TODO: better alt text
-    alt="map marker"
-    className="bibic-marker"
-    src="/icons/bibic-white.png"
-  />
-
+const Marker = () => {
+  return (
+    <img
+      alt="map marker"
+      className="bibic-marker"
+      // TODO: better alt text
+      src="/icons/bibic-white.png"
+    />
+  )
+}
 const Map = () =>
   <div className="map">
     <GoogleMaps

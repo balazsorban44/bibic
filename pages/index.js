@@ -1,12 +1,11 @@
 import IndexMenu from 'components/IndexMenu'
 import Hero from 'components/Hero'
 import Introduction from 'components/Introduction'
-import Sunflower from 'components/Sunflower'
 import Facilities from 'components/Facilities'
 import Rooms from "components/Rooms"
 import Prices from 'components/Prices'
-import Feedbacks from 'components/Feedbacks'
 import Map from "components/Map"
+import Section from "components/section"
 
 // TODO: Use Sanity or Firebase
 import introductionData from "data/introduction.json"
@@ -16,17 +15,35 @@ import roomsData from "data/rooms.json"
 import feedbacksData from "data/feedbacks.json"
 import roomFacilitiesData from "data/roomFacilities.json"
 
-const Index = ({introduction, sunflower, facilities, rooms, feedbacks}) => {
+const Index = ({introduction, facilities, rooms, feedbacks}) => {
   return (
     <>
       <IndexMenu rooms={rooms}/>
       <Hero/>
-      <Introduction {...introduction}/>
-      <Sunflower {...sunflower}/>
-      <Facilities {...facilities}/>
-      <Rooms rooms={rooms}/>
-      <Prices/>
-      <Feedbacks {...feedbacks}/>
+      <Section className="introduction" id="bemutatkozas" title={"Üdvözöljük"}>
+        <Introduction {...introduction}/>
+      </Section>
+      <Section
+        className="facilities-section"
+        id="szolgaltatasok"
+        title={"Szolgáltatások"}
+      >
+        <Facilities {...facilities}/>
+      </Section>
+      <Section
+        className="rooms-section"
+        id="szobak"
+        title={<>Szobák <span>(Flóra ház)</span></>}
+      >
+        <Rooms rooms={rooms}/>
+      </Section>
+      <Section
+        className="prices-section"
+        id="arak"
+        title={"Árak"}
+      >
+        <Prices/>
+      </Section>
       <Map/>
     </>
   )
@@ -38,8 +55,10 @@ export default Index
 export const getStaticProps = async () => {
   return ({
     props: {
-      introduction: introductionData,
-      sunflower: sunflowerData,
+      introduction: {
+        ...introductionData,
+        sunflower: sunflowerData
+      },
       facilities: {
         ...facilitiesData,
         images: facilitiesData.images.slice(0, 3)

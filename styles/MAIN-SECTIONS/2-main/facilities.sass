@@ -1,0 +1,49 @@
+
+.facilities-section .gallery, .services-footer
+  max-width: 1280px
+  margin-left: auto
+  margin-right: auto
+
+.facilities-section
+  .gallery
+    display: grid
+    grid-gap: 3em
+    grid-template-columns: repeat(auto-fill, calc(1280px / 3 - 2em))
+
+  .gallery-item
+    border-radius: 1rem
+    color: $dark
+    background-color: $light
+    transition: transform .2s
+    &:hover
+      transform: scale(1.1)
+      box-shadow: 0 0 40px black
+    img
+      min-height: 240px
+      user-select: none
+    .img-wrapper
+      border-top-left-radius: 1rem
+      border-top-right-radius: 1rem
+      overflow: hidden
+      max-height: calc(420px * 0.54)
+      display: flex
+      align-items: flex-end
+      img
+        width: 100%
+        margin: auto
+    h3
+      padding: .75rem
+      text-align: left
+      font-style: italic
+      letter-spacing: .05em
+    p
+      padding: 0 1rem 1rem
+      font-size: 1.125rem
+      letter-spacing: .02rem
+    
+.services-footer
+  width: 100%
+  margin-top: 3em
+  text-align: right
+  padding-bottom: 10%
+  font-size: 1.5rem

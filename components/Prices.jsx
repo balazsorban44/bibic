@@ -1,9 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import Link from "next/link"
 
 const Prices = () =>
-  <section id="arak">
-    <h2>Árak</h2>
+  <>
     <ul className="price-list">
       <li>
         <div className="price-content">
@@ -91,7 +90,7 @@ const Prices = () =>
     <p>
           *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
     </p>
-  </section>
+  </>
 
 
 export default Prices

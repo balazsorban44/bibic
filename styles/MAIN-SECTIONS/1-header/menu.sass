@@ -12,6 +12,9 @@
 .menu-logo
   display: none
 
+.menu-home-icon
+  width: 64px
+
 nav, .room-menu
   transition: .5s
 
@@ -27,16 +30,22 @@ nav
     margin: 0
     flex-direction: column
     justify-content: space-evenly
+  li
+    margin: 0 .5rem
   a
     text-transform: uppercase
     letter-spacing: .05em
     align-items: center
-    padding: 1rem 0 1rem 2rem
+    padding: .5rem 0 0 1rem
+    line-height: 1.6
     color: $accent-color-dark
     font-family: "White Festive", sans-serif
     font-weight: bolder
     font-size: 2rem
-    &:hover
+    transition: .1s
+    border-bottom: 1px solid transparent
+    &:hover, .active
+      border-bottom-color: $accent-color
       color: $accent-color
 
 .room-menu
@@ -116,7 +125,10 @@ nav
     background-color: transparent
     transform: translateY(-100%) !important
     z-index: -1
+    li
+      box-shadow: 0 0 10px black
     a
+      font-weight: bolder
       font-size: 1.25em
 
   .room-menu-show
@@ -147,9 +159,11 @@ nav
       position: absolute
 
 @media (min-width: 1024px)
-  .menu nav a
-    padding: 0 1em
+  .menu
+    transition: transform .2s
+    nav a
+      padding: 0 1rem
   .menu-logo
     height: 116px
-  .menu-logo-scrolled
-    height: 0
+  .menu-scrolled
+    transform: translateY(-116px)

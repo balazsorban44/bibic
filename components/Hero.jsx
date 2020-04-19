@@ -1,44 +1,27 @@
-import React from 'react'
-import {useRouter} from "next/router"
+import * as React from 'react'
 
 const Hero = () => {
-
-  const router = useRouter()
-  //   const handleScrollClick = (e) => {
-  //     const el = document.querySelector("#bemutatkozas")
-  //     el?.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "start"
-  //     })
-  //   }
-
   return (
     <section className="hero">
-      {[1,2].map(id =>
-        <div className="hero-slide" key={id}>
-          <img
-            //   TODO: Add alt text
-            alt="Hero kép"
-            src={`images/hero/${id}.jpg`}
-          />
-        </div>
-      )}
-      <span className="hero-slider-overlay"/>
-      <a
-        className="hero-logo"
-        href="/"
-      >
+      <img
+        alt="Hero kép"
+        //   TODO: Add alt text
+        className="hero-img"
+        src={`images/hero/2.jpg`}
+      />
+      <a className="hero-logo" href="/">
         <img
           //   TODO: Add alt text
           alt=""
-          src="/icons/logo.png"
+          src="/mstile-150x150.png"
         />
       </a>
       <a
         className="scroll-icon"
         href="#bemutatkozas"
-        // onClick={handleScrollClick}
-      />
+        title="Go to next section"
+        // TODO: check a11y
+      ><span aria-label="Go to next section"/></a>
     </section>
   )
 }
