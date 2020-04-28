@@ -38,10 +38,9 @@ module.exports = {
   },
   target: "serverless",
   experimental: {
+    reactRefresh:true,
     rewrites() {
-      return [
-        {source: "/visszajelzesek", destination: "/feedbacks"}
-      ]
+      return [{source: "/visszajelzesek", destination: "/feedbacks"}]
     }
   }
 }
