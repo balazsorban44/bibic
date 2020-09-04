@@ -27,7 +27,7 @@
     "eslint-plugin-react": "^7.13.0",
     "firebase-mock": "^2.2.10",
     "jest-fetch-mock": "^2.1.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react-scripts": "3.0.1",
     "source-map-explorer": "^1.8.0",
     "stylelint": "^10.0.1",
