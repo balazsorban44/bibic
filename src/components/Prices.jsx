@@ -14,7 +14,7 @@ export const Prices = () =>
       <ul className="price-list">
         <li>
           <div className="price-content">
-            <h3>6000<span>-Forinttól<sup>*</sup></span> </h3>
+            <h3>9000<span>-Forinttól<sup>*</sup></span> </h3>
             <h4>Többágyas szoba</h4>
             <h5>két- vagy több fő részére</h5>
           </div>
@@ -27,7 +27,7 @@ export const Prices = () =>
         </li>
         <li>
           <div className="price-content">
-            <h3>6000 <span>Forint/órától<sup>*</sup></span></h3>
+            <h3>8000 <span>Forint/órától<sup>*</sup></span></h3>
             <h4>Rendezvényterem</h4>
             <h5>terembérlés</h5>
           </div>
@@ -40,7 +40,7 @@ export const Prices = () =>
         </li>
         <li>
           <div className="price-content">
-            <h3>90000<span>Forinttól<sup>*</sup></span> </h3>
+            <h3>200000<span>Forinttól<sup>*</sup></span> </h3>
             <h4>Teljes ház</h4>
             <h5>maximum 21 fő</h5>
           </div>
@@ -71,7 +71,7 @@ export const Prices = () =>
           </div>
         </Link> */}
     <p>
-          *Az árak forintban értendők és tartalmazzák a reggeli árát. Az idegenforgalmi adó plusz költségként jelentkezik (településünkön ez 300Ft/fő/nap 18 éves kor felett). Rendezvényterem és teljes ház bérlésének esetén egyedi árszabást alkalmazunk.
+        *Egyedi árakért keressen e-mailen! Az árak forintban értendők. Idegenforgalmi adó 18 év felett 300.-/éj. A terem bérlethez igényelt ellátás változtatja az árat!
     </p>
   </section>
 
