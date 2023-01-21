@@ -23,6 +23,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "firebase-mock": "^2.2.10",
+    "firebase-tools": "^11.21.0",
     "jest-fetch-mock": "^2.1.2",
     "node-sass": "^8.0.0",
     "react-scripts": "5.0.1",
